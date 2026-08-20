@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Armor Sets</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. Armor builder sets for the various classes." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?p=armorsets';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li class="selected"><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=40">Item Store</a></li>
+ <li><a href="armory.php?s=36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=12">Consumable Books</a></li>
+ <li><a href="armory.php?s=1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=4">Last Legion</a></li>
+ <li><a href="armory.php?s=5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=21">Aquilonia</a></li>
+ <li><a href="armory.php?s=22">Cimmeria</a></li>
+ <li><a href="armory.php?s=28">House of Crom</a></li>
+ <li><a href="armory.php?s=23">Stygia</a></li>
+ <li><a href="armory.php?s=30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=19">Khitai</a></li>
+ <li><a href="armory.php?s=25">Turan</a></li>
+ <li><a href="armory.php?s=32">Unchained</a></li>
+ <li><a href="armory.php?s=33">World Boss</a></li>
+ <li><a href="armory.php?s=14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=31">Bags</a></li>
+ <li><a href="armory.php?s=29">Recipes</a></li>
+ <li><a href="armory.php?s=16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=39">Raidfinder</a></li>
+ <li><a href="armory.php?s=44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<h1>Armor Sets</h1>
+<p>This page contains armor builder links for the various armor sets each class can have for quick comparison.</p>
+
+<hr/>
+
+<fieldset class="collapsible collapsed" id="fs-assassin">
+ <legend>Assassin</legend>
+ <ul>
+  <li>Brittle Blade :: <a href="armory.php?p=armorsets&ab=eNoNyksOgCAMBcArCcrH9jRon9aEaEIxXl%2B2k1EUIb%2FyrrBO88Smz1sFjbLnr10Dl8habjFyKTreUDulwBWnUcp8AKOEH2wfF28%3D">Blade&#039;s epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVylEKgDAMBNErKREbu6epdjVCUWgUr2%2F7NzzGmHKUELAZ%2FWmlcLvfklmjLDO%2BenYWhaUre5yGEStLI1UUHt4uwU72Kfzodxix">Darkblade&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNoVytEKgCAMRuFnmi207Wks%2F1ogBc7o9bO7w8cx5CIcSDeD91FB3e6nFjThyPq28%2BcpqeWr%2BDDSFbVLYtKKw2WZSXfgn%2BIH40sYnQ%3D%3D">Scholar&#039;s epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVylsKgDAMBdEtKX3QJKup9tYIRaGpuH3r3zAcRS7sKcmusDGLxPR%2BWkHnEKO8%2FZw7OBLNVzFeF%2BdlQxtMwUvDYZMlqcCv0gcBHxj0">Shadow&#039;s epic set</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQBcArKaKru6exfLWBFKjR9ct%2Bh1HkwiEmWRV9cEhGul53LWhMzsrTjp%2BjaD5L%2F8zJgjrYGk9SsU%2FysgFz0QsA6hjx">Wolf&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNody1EKgDAMg%2BErWQXdzGmmi1YoCpvi9XV9%2B%2FhJql6PZZZZJIxYaHdTxFuO6gzQdOb6M3ZQptwkMO7eBmykDyesSv%2FE%2FgOdlhoy">Deadly Guile</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNody20KgCAQhOErqfRlcxrLqQ2kwC26fq3%2FHl5mVK6nZNbZ%2B9hhYblNI956aOMASWdW4wRhyqaIwv1vwXlsZBv2WIX2Cc59nisaKg%3D%3D">Black Whispers</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtVVqgbzWWzyYYCrRo%2Bzn9HS63yfVoZo3BBazUOwY%2F4a1HM42QdObW5SBMucNDuVtZUEibBmzCf58%2F8xsYvw%3D%3D">Dark Malice</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIyMLWwTs5ILS4BMc2sizPyS3NSUotAPEPr8qJMiISJdUZiXkoxiGlqnZSaAxY0ss5JTQeLmVunpaaCxYwBjnIaFg%3D%3D">The Clay</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgCAMRNEtyUuQrgZltCZEE6px%2B9K%2FyZlcRqnZTsbRxpBHpyfh%2B20VPZsYHH39HIdZ5kBcripDo6cVTdElajhEO0s7oObTD48jGi8%3D">The Death God</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNodjFsKgDAQA69UH9hqTlPd1BWKQlfx%2Btr%2BTWYgyijL6EKHTWl3xQGm15OF5V9%2BwluOFnyAxlOs4oyVuUmPzL260COR7cF9k4QaOg%3D%3D">The Silent Slayer</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQhOErVQpuzWksxzaQAi26fq1v%2F3yjjGnxLgRsynZbCppeT0ms%2F5IBbz36ISM0nqlZTlhZOjoU7mZhRia7%2BQ%2BXHxpR">Ghost of the Veldt</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDUxt05KzSkBskwNrJMzUovBTGPrtNRUEMvEwjojMS%2BlGCRoaJ2RmpgCYhlZ56Smg8VMrMuLMsF6TCwBlHgaMQ%3D%3D">Whispering Blade</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodylsKgDAMRNEtWSHxMaupdjRCUWgVt6%2Fp3%2BFyq11PTixzEBEszLdrxEY2KSyeqTonGGP6pR0yd2%2FaYzVWPzXgLUejDB%2BRhho7">Concealing Shadows</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDUztk5KzSkBscys01JTwSwT64zEvJRiENPcOiM1MQXEsrDOSU0HiZkbWCdnpBaDVVpalxdlQpimAJHxGkU%3D">Vindictive Malice</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-barbarian">
+ <legend>Barbarian</legend>
+ <ul>
+  <li>Brittle Blade :: <a href="armory.php?p=armorsets&ab=eNoNylEKgCAQBcArRYXb7juN5bMNpECNrp%2B%2FwzhjsqA4nK2bTGj%2BvCWxmq6Cr15Dlw0e79RMZuws3TQEFJ4DFJkcQ35uaBeH">Blade&#039;s epic set</a></li>
+  <li>Children of Yag-kosha :: <a href="armory.php?p=armorsets&ab=eNoNylEKgCAQRdE1jTlGvtVYvppACrRo%2B83f5XCNpWaZFJtxPF4Rw%2B63VfYsGvD103lRWLnqyJIEK5uPKaDxcNEZO%2BlP%2FAG03xgs">Sage&#039;s epic set</a></li>
+  <li>Hyrkanians :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtlSmYbzWWzyaQAqdo%2B41%2Fl8MV5pLmGLAL9bHyULnfVtiT8wu%2Bfhq7aYXkq6iZw8Zm5CMajyEBlRxT%2FAHj9RiU">Honored epic set</a></li>
+  <li>Tamarin&#039;s Tigeres :: <a href="armory.php?p=armorsets&ab=eNoVilEKgCAQBa%2B0agr5TmP5agMpUKPrp3%2FDzChTjn512JWtD7Jo%2Brwls0YjzuKr1%2FBBDDTducUQLDaWPqtD4TmUX3CQ85IfDsIY8g%3D%3D">Tiger&#039;s epic set</a></li>
+  <li>Yellow Priests of Yun :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdE1WTnqzGosn00gBWq0%2FfTvcriKmNiRlUPR%2BqhNmj5vSagcaJWvXpODE413auwXkh2lszdWCs4hxkkG5kQ%2F6wEYyg%3D%3D">Archdeacon&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDQ3sE5LTS0BsQyty4syi8FMI%2BuMxLyUYhDTxDopNQcsaGydnJEKkTezzkhNTAGxTK1zUtPBCs0Bm84aHg%3D%3D">Violent Rage</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDS3sE5LTS0BsSyty4syi0FMCwPrjMS8lGIQ08g6KTUHLGhonZyRCpE3sc5ITUwBsYytc1LTwQpNAZ%2BEGig%3D">Brutal Carnage</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbKyNDKyTktNLQEyjK3LizKLQSwT64zEvJRiIMvMOik1ByRkap2ckQqWtLDOSE1MATLMrXNS00GKLAH0RRi%2B">The Savage Slaughter</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyl0OQDAQBOArVUmLOU3psJKGpEtcn%2B7b%2FHzClGfvYo9VqHeLHirXUzLr30LEWw87wgRJZ9ZmOiwsph0Kd9sGbKTB8QOPOxoh">The Refectory</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgDAIRNEtSX20lNVUQTFpNCkat2%2F5m5zJVSmcwxASbSr2%2BIxker%2BVpWWIEehrZz8AE5CWi63rvNAq1XFEqnKYd0i7iNuEP5IiGkE%3D">Untamed Violence</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxsDSwTs5ILS4BMi0srYsz8ktzUlKLQDwT6%2FKiTIiEmXVGYl5KMYhpbp2UmgMWtLDOSU0HiVkaWqelpoLFTAGUzRpE">The Berserkers Fury</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNolyW0OQDAQhOEr%2Bdaa05QOK2lIusT12fr3zjPCEKeudT0WoV6WA1TOO0VmWw5P3v%2FDQ8IR9UtfY2Yy9BUSNzM3YiWLNS%2BZVhpb">Amaranthine Drums</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNpLSs0psTI0tjCyTktNBbMMrMuLMovBTEPr4oz80pyU1CIgz9zSOiMxL6UYJGFsnZyRClFjap2RmpgCYplY56Smg6XNAI4KGjc%3D">Vicious Frenzy</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodylEKgDAMg%2BErOSe4mtNMF60wFFbF60v39oX8K%2BuzhCgDdtKVEr52WqfA9H5rYfM1Q%2FNVzOuATdkbiVDm4hpRefR7%2BgGRPhpB">Wild Furor</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodymsKgCAQReEtaS%2BzuxrLWxNIgVO0%2FRj%2FfQfOyvIsvo8zdrJpwldPbQxQud%2BSWa1GSLqyGiM2oT2D8xCmbHIoPNTU%2FZKqGjA%3D">The Ragereaver</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-bear-shaman">
+ <legend>Bear Shaman</legend>
+ <ul>
+  <li>Children of Yag-kosha :: <a href="armory.php?p=armorsets&ab=eNoVymsKgCAQReEtNdnLuauxvDWBFKjR9st%2Fh49jDFFFPDZjqX8tKHY%2FKTKrdL3Dm8%2Fmg4OFKxaV0WFlquqnGYlHE4%2BdbFP%2FAfU6GMI%3D">Sage&#039;s epic set</a></li>
+  <li>Hyrkanians :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtqajpzGosX00gBU7R9tO%2Fy%2BEKSiVnF94E%2BoyKrHK%2FraJTjoG%2Ffk72lqVcVSl5wyvaoOC44VDKPvEOzMn84%2FcYmA%3D%3D">Honored epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdE1CY6RbzWWr0YYCrRo%2B41%2Fl8NVlppFInbleLwEQ%2B%2FXKnuWZcXX2%2BQg0HLV4Zaw0ZxShPGcEnCQc4o%2F6CkYrw%3D%3D">Shadow&#039;s epic set</a></li>
+  <li>Tamarin&#039;s Tigers :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtmTRSvtVYPptgKNCi7ad%2Fl8NVphyDW7Ar29NrRdP7tcwagzh89RzsBZqu3Lp5bLROMsF4DAko5JjmH%2BX7GKU%3D">Tiger&#039;s epic set</a></li>
+  <li>Yellow Priests of Yun :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEt5RPUnNVYjr1ACrRo%2B%2Bnf5XCVKcdgLHZlf0YJut5vzWxxdQZfOwd7b6Hpyj0GEWys83SoPKYsKOSc5Afl%2FRin">Archpriest&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolylEKgDAMBNErGVtB3dNUuxohKLSK15fUvwczVa%2FHMsssEkZs5O2a8JajOmOHhdYk0HTm6uyhTNkVsCr%2FM8K4tzx8lyMaCA%3D%3D">Vernant Fury</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodylEOQDAQRdEtGVTxVlP6GElD0hLbp%2FN3knuLXk%2BKzLNIP2Aj7yqPNx%2FFOGJhMk3QcMby0zVQhlglWJV2uhaJu%2BXuA5ldGhI%3D">The Savage Fang</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNoVylEKgDAMBNErKaiN7mmqWY1QFFrF65v8PZhpdr9FWRdJA3bycYz46tlCE1aWQILlS5tLYMzqmLEZ45IOhYc36X%2F3Yxjc">Clawing Might</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIysDS3Ts5ILS4BMU2sizPyS3NSUotAPEPr8qJMiISxdUZiXkoxiGlqnZSaAxY0s85JTQeLWVinpaaCxYwAkrIaNg%3D%3D">The Revelations of Tarim</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgCAMRNEtyaModDUoozUhmlCN2xf%2BJmdyBbkkO7nAm0CfMT2r3G8taMnEhfhrZz%2FMTJElX0W7essrasfoiCsOHR3xDgwL5geSbRo4">The Scattered Gods</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMDW3Ts5ILS4BMS2sizPyS3NSUotAPCPr8qJMiISJdUZiXkoxiGlmnZSaAxY0tc5JTQeLWVqnpaaCxYwBkeMaLg%3D%3D">The Furious Swipe</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTS1Ts5ILS4BMY2sizPyS3NSUouAPANL6%2FKiTIiEgXVGYl5KMYhpYp2UmgMWNLbOSU0Hi5lZp6WmgsUMAY%2FfGh8%3D">Earth Mother</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolyVEKgCAURNEtaWmgsxrLsRdIgRZtP3z9He7tcj01s0XrQsDKekfrzYRCqgzednSlhaQz98EZm%2FCvHsKUhxwqd93LB5ipGhA%3D">Ferine Anger</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodyVkKgDAQBNErzbjg0qeJpnWEoJAoXl8zf4%2BqYteTIvOsvQxYmO5fKtjIKhnx5qM4J1g4Y6lfsRq9aovE3WMHY4hVzQeZWBoR">Bristling Ire</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyFsKgDAMBMAr2UB97Wmq3RohKLSK15f0b5im92uZdQ0xRGy0xzWjkF0jvnq2zgmartycC3ZlXwkwHp4iUKbsGn6bkhob">Bestial Rage</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-conqueror">
+ <legend>Conqueror</legend>
+ <ul>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVymsKgCAQReEt6Qg9vKuxvDaBFDhF20%2F%2FHQ6fMuUY3IxdaU%2BvCab3WzNbDN7ha2ffsgRourJF70SwsQ66ovKwzgSFHEp%2B9jEYsQ%3D%3D">General&#039;s epic set (heavy)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVykEOgCAMBdErUVSU9jQoX2tCNKEYr6%2FsJpOnSJl9JNkU1v5yYno%2FJaPyQCRvPfsOs2i6sjE5H2RFaRynRQoO%2B9koO9BV%2BAD5GxjK">General&#039;s epic set (plate)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtVWapsxrLqRdIgc9o%2B%2Bnf5XCFMYXJe%2BxCra0cVJ43J5ZgBoevXJ1XC4l30mDGBRtzbWGReXYxOMg%2BzT%2Fnohih">General&#039;s epic set (plate w/prot)</a></li>
+  <li>Tamarin&#039;s Tigers :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtGdVkvtVYvppgKNCi7af9XQ5XGVOQocOqLHcth6LXY4k5yNjjzcfPMzSeqVTzWGiVxMG4N5mwkW3yH%2BYuGLM%3D">Tiger&#039;s epic set (heavy)</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVi1sKgCAUBbekJvk4q7E8dQMp8BZtP%2FsbZhhhqTk4h1Wo9yALletplT0Hb%2FH249eTgZSzak5zxMI2lDdo3HW0iI383%2FQB5N4Yqw%3D%3D">Wolf&#039;s epic set (plate)</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNody1sKgDAMRNEtJQq%2BZjXVjkYoCq3i9iX5O8xlmt1vyayLqgzYycc1YjM2p3awdOXmFKws0WcYU%2FZNUXhE7fHVMz4y%2FYwoGfI%3D">The Triumphant</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNody1sKgDAQQ9EtOcV3VlOd1BGKQqu4fZn%2BHXJJtfvNyrKKSI9EPq4Bu7E6QweLl1ZfZ2zMrU8wRnUtyDy8BsFXzvaR8QeNQhn8">The Martial Paragon</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodym0KgCAQhOEr2ReocxrLqQ2WAtfo%2Bmn%2FHt4Zk%2FvRzBJ98NjJ2hCwCa3G4GZIurI1jVipPQ0QptwwQXn0acFbzv%2FuPu4fGLI%3D">The Victorious Elite</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyNkNgDAMBNGWuK%2BtJpAFI1kgxSDax8nfzBOGuExzj01oj9cAk%2FvVyORT4Utn4QYSrmheHVZqphbKI8uIncxS%2F%2B4zGN4%3D">The Black Dragon (plate)</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodikkOgCAQBL80eGDr16C0jgnRhNH4fZVjLcpS8yQpYVHalV0MDqbn3Sr7Rz7h6fsIPkDLUe1%2FBDPbkBGNm%2BXJiWAlh%2FMvl60aTA%3D%3D">The Milites Templi</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQBcArtaYivtNYvtpACrTo%2BqW%2FM8qUowTvsCrbHY1MgqbXUzJrjwlvPf6QYB00nbl1NVhYOvoZhfswi40cJh%2BSKBo5">The Ostiary</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1EKgCAQhOErqS2W7mkspzaQArfo%2Brlvwzf8glJzcOR5E%2Bhj07HK%2FbaKnv28EH%2F9HIdPFFnKVXVoSryiGUbihkOtC7wDZtP8A5DJGjk%3D">Courageous Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgCAMRNEtiTwqdDVoqzUhmlCN25f%2BTc7kClcq8xQCbsL62PSocr%2BNuBcHAPj1cxwuh4hSL9KhacGVm2EGbHyodRF3ZjOffpLdGkQ%3D">Fearless Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy0EOgCAMRNEriaIF5jQo1ZoQTajG60t3kzf5wrmkcZgCNmF9bBJU7rcWbskRBXzt7IeLniD5Ktp1IaxcDWdC5UOti9iZzUb%2FA5S8Gkg%3D">Indomitable Souls</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNolyVsOgCAQQ9EtoRBfXQ1KdUyIJozG7evIX%2B%2BpMKYpuNBiEepls4HKeefE8pXv8JS9Hg4Sj6SmA2ZmQz8iczMLHiv5W%2F8CjWIaGg%3D%3D">The Proven Champion</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNolyl0SQDAQA%2BArseo3pykb1kyHmZZxfVpvyZcYvU7OyYjFmK4vNoJk5x2UMbcKT9z%2FoYb5Q1O%2BD5gZMkqLwK1Yj5Us1r2SLRoz">Great Impi</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTW2Ts5ILS4BMU2tizPyS3NSUotAPBPr8qJMiISZdUZiXkoxiGlknZSaAxY0sM5JTQeLGVqnpaaCxEwsAZRnGj8%3D">Steel Behemoth</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTG3Ts5ILS4BMU2sizPyS3NSUotAPCPr8qJMiIShdUZiXkoxiGlqnZSaAxY0ts5JTQeLWVinpaaCxcwAk9AaPg%3D%3D">Warded Brute</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDE1tE5KzSkBsUys01JTwSwj6%2BSM1GIw09w6IzEvpRjENLXOSE1MAbHMrHNS08FiFtblRZkQlcYAkgEaLg%3D%3D">The Vanguard</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDG1tE5KzSkBssyMrNNSU8EsA%2BvkjNRiMNPUOiMxL6UYxDS2zkhNTAGxTKxzUtPBYmbW5UWZEJWGAJN0Gi8%3D">The Usurper</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtZclYvdVYvppgKNCi7Zf%2BHS636PVYYp6dl4CFdv8KHTaySkasytLiAI1nKpUOypiqehj31jzefLRTpg%2BUOxo5">Reckless Challenge</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-dark-templar">
+ <legend>Dark Templar</legend>
+ <ul>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVymsKgCAQReEt6Qg9vKuxvDaBFDhF20%2F%2FHQ6fMuUY3IxdaU%2BvCab3WzNbDN7ha2ffsgRourJF70SwsQ66ovKwzgSFHEp%2B9jEYsQ%3D%3D">General&#039;s epic set (heavy)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVykEOgCAMBdErUVSU9jQoX2tCNKEYr6%2FsJpOnSJl9JNkU1v5yYno%2FJaPyQCRvPfsOs2i6sjE5H2RFaRynRQoO%2B9koO9BV%2BAD5GxjK">General&#039;s epic set (plate)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtVWapsxrLqRdIgc9o%2B%2Bnf5XCFMYXJe%2BxCra0cVJ43J5ZgBoevXJ1XC4l30mDGBRtzbWGReXYxOMg%2BzT%2Fnohih">General&#039;s epic set (plate w/prot)</a></li>
+  <li>Tamarin&#039;s Tigers :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtGdVkvtVYvppgKNCi7af9XQ5XGVOQocOqLHcth6LXY4k5yNjjzcfPMzSeqVTzWGiVxMG4N5mwkW3yH%2BYuGLM%3D">Tiger&#039;s epic set (heavy)</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVi1sKgCAUBbekJvk4q7E8dQMp8BZtP%2FsbZhhhqTk4h1Wo9yALletplT0Hb%2FH249eTgZSzak5zxMI2lDdo3HW0iI383%2FQB5N4Yqw%3D%3D">Wolf&#039;s epic set (plate)</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNody1EKgDAMg%2BErbaB2mtNMG60wFDbF60v39pGfNLvfoqxLDDJgJx%2FXiM3YnCnA8qXN14SVpXeBMatrRuHhNUV89ewfmX6TPhok">Black Spite</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNLAwsk5LTS0BsYytkzNSi8FMC%2BuMxLyUYhDTzDopNQcsaGqdkZqYAmKZW%2BekpoNlLa3LizIhekwAlGEaLg%3D%3D">Baleful Blood</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbKysDCyTktNLQEyjK2TM1KLQSwL64zEvJRiIMvMOik1ByRkap2RmpgCZJhb56Smg6QsrcuLMsHKTQDxJxjm">The Painlegion</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyNkNgDAMBNGWuK%2BtJpAFI1kgxSDax8nfzBOGuExzj01oj9cAk%2FvVyORT4Utn4QYSrmheHVZqphbKI8uIncxS%2F%2B4zGN4%3D">The Black Dragon (plate)</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodikkOgCAQBL80eGDr16C0jgnRhNH4fZVjLcpS8yQpYVHalV0MDqbn3Sr7Rz7h6fsIPkDLUe1%2FBDPbkBGNm%2BXJiWAlh%2FMvl60aTA%3D%3D">The Milites Templi</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQBcArtaYivtNYvtpACrTo%2BqW%2FM8qUowTvsCrbHY1MgqbXUzJrjwlvPf6QYB00nbl1NVhYOvoZhfswi40cJh%2BSKBo5">The Ostiary</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1EKgCAQhOErqS2W7mkspzaQArfo%2Brlvwzf8glJzcOR5E%2Bhj07HK%2FbaKnv28EH%2F9HIdPFFnKVXVoSryiGUbihkOtC7wDZtP8A5DJGjk%3D">Courageous Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgCAMRNEtiTwqdDVoqzUhmlCN25f%2BTc7kClcq8xQCbsL62PSocr%2BNuBcHAPj1cxwuh4hSL9KhacGVm2EGbHyodRF3ZjOffpLdGkQ%3D">Fearless Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy0EOgCAMRNEriaIF5jQo1ZoQTajG60t3kzf5wrmkcZgCNmF9bBJU7rcWbskRBXzt7IeLniD5Ktp1IaxcDWdC5UOti9iZzUb%2FA5S8Gkg%3D">Indomitable Souls</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxNDSxTs5ILS4BMY2tizPyS3NSUouAPAML6%2FKiTIiEkXVGYl5KMYhpYJ2UmgMWNLTOSU0Hi5lap6WmgsQMLAGLiBoI">The Chaos Agent</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNolilsKgDAMBK8kND73NNVujVAUGsXrS%2Brf7MwqY1pEwoxNabfjCNPrKYnVV8Bbjz9M0HgmcxywsriUDoV7cz0y2Y7yAZUrGj0%3D">Masquer of the Sands</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTW2Ts5ILS4BMU2tizPyS3NSUotAPBPr8qJMiISZdUZiXkoxiGlknZSaAxY0sM5JTQeLGVqnpaaCxEwsAZRnGj8%3D">Steel Behemoth</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTG3Ts5ILS4BMU2sizPyS3NSUotAPCPr8qJMiIShdUZiXkoxiGlqnZSaAxY0ts5JTQeLWVinpaaCxcwAk9AaPg%3D%3D">Warded Brute</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNodylEKgDAMBNErWVFb3dNUuxohKDSK15f0b3iMyf1qYV3CEEes1McrYSdbTdiE5pkCJF%2FFXGcIc3HsoDzcUo%2Bvnu2M8QeWcxpD">The Wicked</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNLEwtk5KzSkBscys01JTwSwT6%2BSM1GIw09I6IzEvpRjENLfOSE1MAbEsrHNS00FilgbW5UWZEJWmAJeUGk0%3D">The Black Warden</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNLE0tE5KzSkBsUys01JTwSwj6%2BSM1GIw09w6IzEvpRjENLXOSE1MAbHMrHNS08FiFtblRZkQlcYAltkaTg%3D%3D">The Tormentor</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-demonologist">
+ <legend>Demonologist</legend>
+ <ul>
+  <li>Brittle Blade :: <a href="armory.php?p=armorsets&ab=eNoNykEKgDAMBMA3hVYi2ddUuxqhKDQVv2%2BvwzhLNcnYnTFMEsKft1V2U8HXr4lLhpe7hq2CjW2YZjSeYao4yBnSD0E%2BFv4%3D">Blade&#039;s epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVyFEKgCAQBcAr6UrR%2Bk5j%2BWoDKdCi66d%2FwxhTjmH22Izt6RI0u9%2BSWaN34vHVc7woLF25xaATVpZeuqDwGCPYyT7B%2FfaBGMo%3D">Summoner&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNoViuEKgCAMBl8p2ULansbyywVS4IxeP%2F133J0hZeHAehi8DyJ1e96a0YQj6deuqVdSS3f24aLuqF3CQkEriss24gnMi3%2F5%2FBjK">Scholar&#039;s epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtWaFDvtVYPptACrRo%2B41%2Fl8NVphy9C9iV%2FbESdL3fmtmiF4%2BvnYOXCZqu3M0EG6uRzKg8TMKKQo7J%2FeXYGKg%3D">Shadow&#039;s epic set</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtpYamsxrLqRdIgRZtv%2Bff5XCFuSS%2FGGzC%2FmhZdLnfWthS9BO%2BdioHM0PyVXoKzmJlVXIRlceQgJ0ck%2FsB55oYrw%3D%3D">Wolf&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNody2sKgCAQReEtZU7PuxrLWxMMBVq0%2FdJ%2FHwdO1uuxyDS71gs28i7q8KYjV%2FYw7vmXOCy02gZoOGOJfoQyxKIJq7I%2B0nyXIxoU">The Ecliptic</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDIxsk5LTS0BsYyty4syi8FME%2Buc1PRiEMvSOik1Byxmap2RmJcCFjSzzkhNTAGxzK2TM1IheiwAl4caHg%3D%3D">The Bloodmoon</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNoVylsKgDAMRNEt%2BYCmOqupdmqEotAobt%2F073C5pvdbM9saQ0AhH4fga6d1RVQe5liwsXqRAZqu7ElGKFN2TNiVfZf5B%2FXyGNI%3D">Pandemonium</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIyMDOxTs5ILS4BMc2sizPyS3NSUouAPFNL6%2FKiTIiEkXVGYl5KMYhpbJ2UmgMWNLDOSU0Hi5lap6WmgsUMAY8QGhc%3D">The Lector</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNodi0EOgCAMBL8EKDTQ16Cs1oRoQjV%2BX%2FA2mdkV5JKcsYFXgd4DiVWupxa0ZONs%2BG1HD5bIseSzaLfe8ILaZQzEFbuOn%2BcN%2BIfTB4%2BTGiw%3D">The Outer Dark</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMDOzTs5ILS4BMc2tizPyS3NSUotAPAPr8qJMiISRdUZiXkoxiGlinZSaAxY0ts5JTQeLmVqnpaaCxQwBkTYaJg%3D%3D">The First Circle</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxNrO0Ts5ILS4BMs0NrIsz8ktzUlKLQDwj6%2FKiTIiEsXVGYl5KMYhpYp2UmgMWNLXOSU0Hixlap6WmgsXMAJWLGkc%3D">Cackling Marionette</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDO0tE5KzSkBsoyMrNNSU8EsA%2BuMxLyUYhDT2DojNTEFxDKxzklNB4uZWSdnpBaDVZpalxdlQpiGAIz4Gh8%3D">Fiendish Invocation</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNody2sKgCAQReEt5Ri97mosr00gBVq0%2FXL%2BfRw4Va8nR5bFDTJiZb5%2F%2BQ6JbJIJGs5YW3RQhtgkyNyt9diU1R6PtxxGmT%2BNvRop">The Firebrand</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAURNEtZZpWsxrLqRdIgRZtv55%2Fh8utcj05sczG2wEL860asZFNHhLPVJUThDH9ch0yd22uxyqsejqDtxyNNnyQVhoz">Intricate Spite</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-guardian">
+ <legend>Guardian</legend>
+ <ul>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVymsKgCAQReEt6Qg9vKuxvDaBFDhF20%2F%2FHQ6fMuUY3IxdaU%2BvCab3WzNbDN7ha2ffsgRourJF70SwsQ66ovKwzgSFHEp%2B9jEYsQ%3D%3D">General&#039;s epic set (heavy)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVykEOgCAMBdErUVSU9jQoX2tCNKEYr6%2FsJpOnSJl9JNkU1v5yYno%2FJaPyQCRvPfsOs2i6sjE5H2RFaRynRQoO%2B9koO9BV%2BAD5GxjK">General&#039;s epic set (plate)</a></li>
+  <li>Last Legion :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtVWapsxrLqRdIgc9o%2B%2Bnf5XCFMYXJe%2BxCra0cVJ43J5ZgBoevXJ1XC4l30mDGBRtzbWGReXYxOMg%2BzT%2Fnohih">General&#039;s epic set (plate w/prot)</a></li>
+  <li>Tamarin&#039;s Tigers :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtGdVkvtVYvppgKNCi7af9XQ5XGVOQocOqLHcth6LXY4k5yNjjzcfPMzSeqVTzWGiVxMG4N5mwkW3yH%2BYuGLM%3D">Tiger&#039;s epic set (heavy)</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVi1sKgCAUBbekJvk4q7E8dQMp8BZtP%2FsbZhhhqTk4h1Wo9yALletplT0Hb%2FH249eTgZSzak5zxMI2lDdo3HW0iI383%2FQB5N4Yqw%3D%3D">Wolf&#039;s epic set (plate)</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNLA0sE5LTS0BsQytkzNSi8FMM%2BuMxLyUYhDTxDopNQcsaGydkZqYAmKZWuekpoNlza3LizIheowAkz0aJg%3D%3D">The Valiant</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNLC0sE5LTS0BsSytkzNSi4FMQwMT64zEvJRiENPIOik1ByxoaJ2RmpgCYhlb56Smg2VNrcuLMiF6DACRDxn6">Heroic Soul</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbKyMDGyTktNLQEyjK2TM1KLQSwT64zEvJRiIMvUOik1ByRkZp2RmpgCZJhb56Smg6QsrMuLMsHKLQHr%2BBjG">The Invincible</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyNkNgDAMBNGWuK%2BtJpAFI1kgxSDax8nfzBOGuExzj01oj9cAk%2FvVyORT4Utn4QYSrmheHVZqphbKI8uIncxS%2F%2B4zGN4%3D">The Black Dragon (plate)</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodikkOgCAQBL80eGDr16C0jgnRhNH4fZVjLcpS8yQpYVHalV0MDqbn3Sr7Rz7h6fsIPkDLUe1%2FBDPbkBGNm%2BXJiWAlh%2FMvl60aTA%3D%3D">The Milites Templi</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQBcArtaYivtNYvtpACrTo%2BqW%2FM8qUowTvsCrbHY1MgqbXUzJrjwlvPf6QYB00nbl1NVhYOvoZhfswi40cJh%2BSKBo5">The Ostiary</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1EKgCAQhOErqS2W7mkspzaQArfo%2Brlvwzf8glJzcOR5E%2Bhj07HK%2FbaKnv28EH%2F9HIdPFFnKVXVoSryiGUbihkOtC7wDZtP8A5DJGjk%3D">Courageous Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy1sOgCAMRNEtiTwqdDVoqzUhmlCN25f%2BTc7kClcq8xQCbsL62PSocr%2BNuBcHAPj1cxwuh4hSL9KhacGVm2EGbHyodRF3ZjOffpLdGkQ%3D">Fearless Souls</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVy0EOgCAMRNEriaIF5jQo1ZoQTajG60t3kzf5wrmkcZgCNmF9bBJU7rcWbskRBXzt7IeLniD5Ktp1IaxcDWdC5UOti9iZzUb%2FA5S8Gkg%3D">Indomitable Souls</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMDWwTs5ILS4BMk0srYsz8ktzUlKLQDwT6%2FKiTIiEhXVGYl5KMYhpZp2UmgMWNLfOSU0HiZkaWqelpoLFTAGQDRok">The Tireless Defender</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNolyl0SQDAQA%2BArseo3pykb1kyHmZZxfVpvyZcYvU7OyYjFmK4vNoJk5x2UMbcKT9z%2FoYb5Q1O%2BD5gZMkqLwK1Yj5Us1r2SLRoz">Great Impi</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTW2Ts5ILS4BMU2tizPyS3NSUotAPBPr8qJMiISZdUZiXkoxiGlknZSaAxY0sM5JTQeLGVqnpaaCxEwsAZRnGj8%3D">Steel Behemoth</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMTG3Ts5ILS4BMU2sizPyS3NSUotAPCPr8qJMiIShdUZiXkoxiGlqnZSaAxY0ts5JTQeLWVinpaaCxcwAk9AaPg%3D%3D">Warded Brute</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNodymsKgCAQReEt5Sj0uKuxvDaBFDhF2y%2F993E4ptdTEuvigoxYWe5ffkAmm2TCprQePTSeyRodlDE1CQr33gLeevRT5g%2BPYxoZ">The Defiant</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQRdEtZVpWbzWWryYYCrRo%2BzH%2BXQ63yv1qZllc8ANW6mM1YSdbjdiE1TI4SLpyNZ0hTNmwg%2FIwCz2%2BcrbTxx%2BRmxoj">The Assailant</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDExtk5KzSkBscys01JTwSwT6%2BSM1GIw09I6IzEvpRjENLfOSE1MAbEsrHNS00FipgbW5UWZEJWmAJK8Gi0%3D">The Dauntless</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-herald-of-xotli">
+ <legend>Herald of Xotli</legend>
+ <ul>
+  <li>Brittle Blade :: <a href="armory.php?p=armorsets&ab=eNoNytEJgDAMBcCVbISqyTTVvhohKDQV1ze%2FxylKZUpyKHwwkbg%2Br1V0Xif5%2BhWYSbTc1XmZZYcN3kIMZ0CWBsRIP1Y4FzA%3D">Blade&#039;s epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVymEKgCAMBtArGStt22ksP1sgBVp0%2FfTv4xliEvKsu6E9QsFps%2FstCVWInX71HDx7tXilJrQG3VA6MWvB0YUnzcBIyw%2FnFRiv">Darkblade&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNoVymEKgCAMBtArmU3F7TSWXy2QAld0%2FfLv4ylKZfJZVoXdTLMT0%2BtpFZ0pBXn7MZiiaDmr8eR8kgXttxSlYTfOwckGjBU%2B%2BvYY1A%3D%3D">Scholar&#039;s epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVytEKgCAMRuFXKnAut6ex%2FG2BFLii18%2FuDh%2FHkIuENOlm8HvUrG7X0wq6EAd9%2BzGYAqvls7gkIl3RBvGiDbsLRdYK%2FFP8AOg1GL0%3D">Shadow&#039;s epic set</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVykEKgDAMBdErVVJTbU5T7dcIRaFRvL5xNzxGUWrmRLIq7PaKYno9raLnIVCQtx%2FuKbBoOavlmSZZ0JwoSsNuHiwb8E%2FjB%2FmfGNo%3D">Wolf&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolyFEOQDAQBcAr2SLBO03Zx0oaki5xfVp%2Fk3E776TMkwQZMDNdn4JgMXplh5UskhFP3v9sYPFQLwwwRi1qkbjV61%2BWExoA">Ardent Fire</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNodyVsKgDAMRNEt2RR8zWqqnRqhKDSK25f073Ku6f3WzLYGkREb6%2BO1YFeaZxQUsuOEr50dZYamK5v%2FAcqUvQIqj27xB5hOGgo%3D">Infernal Zeal</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyFsKgDAMBMAr%2BapU9zTVrEYICq3i9U39G6bo9ZgwzzFELLTbMWFVFtfYYCMrWrz5%2BKuDplOKq4cyiWOAca8TPvTBGMg%3D">Conflagrant Flame</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodzGEKgCAUA%2BAr9UzK2mksZy%2BQAi26fuq%2F7RtM6cMqizjsyvLUaARF7zcF5tYGfPnsg0xQf4XSdMTGVNFZi8SjmcyIZH8wP5MMGjc%3D">The Exorcist</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVjEEKgDAMBL%2FUBqpp85pqVyMUhUbx%2B8bbMLOsorZCIWZZFXY7UhDT6%2BkNo8RMSd5xeIhzYtF6NnObSBZ0l5lZOnb7L1g24B9O4QOQyho0">The Strange Beyond</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNodilsOgDAMw660AuKV0wwaKNIE0gbi%2BrD%2BOXaMUecuSIPVWO4fw4hi15OUua4ebz48SIDFU0tFwcLk7wGJu7sWG%2Blu%2BgCKahoC">The Eternal Blaze</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNodim0KgCAMhq8kuUp9T2M5WyAFruj6MX8%2BH8K5JCI3YRfWJ5GPC1TutxXuRh5fPy2QmyH5Kmo2YuM27oDGh1oOqMxjXH%2BVLxpK">Endless Sands</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDU3tE5KzSkBsUys01JTwSwj64zEvJRiENPUOiM1MQXEMrPOSU0Hi1lYJ2ekFoNVmluXF2VCmMYAkZcaRg%3D%3D">The Doomsayer</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNolylsOQDAQBdAtKep1V1PmMpKGpCW2T8ff%2BThZzzsK0%2BR8P2JmvD4NNVbSVEHDIbmwQeRm6qAMUtRiUWabHk%2Faf7oXlBYaRw%3D%3D">The Precursor</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNody2sKgCAQReEtZQ8au6uxvDaBFGjR9sv593HgVL2eHFkWN8mMlfn%2B5TskskkEGs5YW3TI3E0jlCE29diU1Z4BbzmM4j%2BU2xpR">The Harbinger</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-necromancer">
+ <legend>Necromancer</legend>
+ <ul>
+  <li>Brittle Blade :: <a href="armory.php?p=armorsets&ab=eNoNykEKgDAMBMA3hVYi2ddUuxqhKDQVv2%2BvwzhLNcnYnTFMEsKft1V2U8HXr4lLhpe7hq2CjW2YZjSeYao4yBnSD0E%2BFv4%3D">Blade&#039;s epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVyFEKgCAQBcAr6UrR%2Bk5j%2BWoDKdCi66d%2FwxhTjmH22Izt6RI0u9%2BSWaN34vHVc7woLF25xaATVpZeuqDwGCPYyT7B%2FfaBGMo%3D">Summoner&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNoViuEKgCAMBl8p2ULansbyywVS4IxeP%2F133J0hZeHAehi8DyJ1e96a0YQj6deuqVdSS3f24aLuqF3CQkEriss24gnMi3%2F5%2FBjK">Scholar&#039;s epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtWaFDvtVYPptACrRo%2B41%2Fl8NVphy9C9iV%2FbESdL3fmtmiF4%2BvnYOXCZqu3M0EG6uRzKg8TMKKQo7J%2FeXYGKg%3D">Shadow&#039;s epic set</a></li>
+  <li>Wolves of the Steppes :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtpYamsxrLqRdIgRZtv%2Bff5XCFuSS%2FGGzC%2FmhZdLnfWthS9BO%2BdioHM0PyVXoKzmJlVXIRlceQgJ0ck%2FsB55oYrw%3D%3D">Wolf&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolyFsKgDAMBMAraX27p6lmNUJQaBWvL41%2Fw2S9HhOmuQ5VwEK7izqsyuwcsZGuBm86%2Fmxh3HPRBGWUogEaT%2FHsP5J7Gf4%3D">Dark Terror</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNolyFsKgDAMBMAr2foC9zTVbo1QFBrF60vi3zAq11Mz2xJi6LCy3qYem1CdEwrpCnjb8WdE5a6mGcKUTSMkndlz%2BACRVhn2">Necrotic Dread</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNoVyVEKgDAMBNErpQpq3dNUuzVCUGgVr2%2F6N7xper%2BWWdcoEzba4xGxK5tXGFDITjO%2BenaSBcaj%2BRuhTNkjQNOVO8kP798Yqg%3D%3D">Black Oblivion</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIyMDOxTs5ILS4BMc2sizPyS3NSUouAPFNL6%2FKiTIiEkXVGYl5KMYhpbJ2UmgMWNLDOSU0Hi5lap6WmgsUMAY8QGhc%3D">The Lector</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNodi0EOgCAMBL8EKDTQ16Cs1oRoQjV%2BX%2FA2mdkV5JKcsYFXgd4DiVWupxa0ZONs%2BG1HD5bIseSzaLfe8ILaZQzEFbuOn%2BcN%2BIfTB4%2BTGiw%3D">The Outer Dark</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxsLS0Ts5ILS4BMc2tizPyS3NSUotAPCPr8qJMiISpdUZiXkoxiGlmnZSaAxY0ts5JTQeLWVinpaaCxUwAlxIaTg%3D%3D">The Unholy Communion</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxNrO0Ts5ILS4BMs0NrIsz8ktzUlKLQDwj6%2FKiTIiEsXVGYl5KMYhpYp2UmgMWNLXOSU0Hixlap6WmgsXMAJWLGkc%3D">Cackling Marionette</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNodylEKgCAQhOEraaBlcxrLqQ2kwC26fq1vH%2F%2BMyvXUwjb7kAIW1ts0YRXqz%2Bg8NrLHCMlnUWOCMBebHSp3NQ1426H9OX6YXhpA">The Forsaken</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDMwtk5KzSkBscyskzNSi8FMS%2Bu01FQwy8Q6IzEvpRjENLfOSE1MAbEsrHNS00FihgbW5UWZED2mAJIsGh0%3D">The Reanimator</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDM0tE5KzSkBsUyskzNSi8FMc%2Bu01FQwy8g6IzEvpRjENLXOSE1MAbHMrHNS08FiFtblRZkQPcYAkXIaHg%3D%3D">The Darkwretch</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-priest-of-mitra">
+ <legend>Priest of Mitra</legend>
+ <ul>
+  <li>Children of Yag-kosha :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtpaWVsxrLqRdIgc9o%2B%2Bnf5XCFMQVjPXah1lYzVJ43J5ZgnMNXrs7DCIl30mYeG3MNq5%2BQeXZZcJB9sj%2FiFBiM">Sage&#039;s epic set</a></li>
+  <li>Hyrkanians :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtqVmgbzXWPJtACrRo%2B01%2Fl8NVFsk%2BBWzKcVtNGHo9TdhzmD3efhgH56HllGHmsLIZxYTG3SQuqOQ%2FuQ%2FiBBiC">Honored epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtBaOl81Zj%2BWoCKVCj7Zd%2Fl8M1pqziBZux9b8cmt1PyawqIeKt5%2BAww9KVm0pcsLJ0ddOEwmOIw06OyX%2Fmrxit">Summoner&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNodyFEOQDAQBcArsSnVvtOUPlbSkHSJ6yt%2Fk1GmHN3YY1Ha1SQwPe%2BSWaPzE566%2Fx2g6cgWgwuYWVp5QeHWZhCs5DfdC%2BfjGLU%3D">Scholar&#039;s epic set</a></li>
+  <li>Yellow Priests of Yun :: <a href="armory.php?p=armorsets&ab=eNoVykEOgCAMBdErCYrU9jRov9aEaAIYr6%2FsJi9jSMoxzLIZavsrSrX7yYrC5Ed5y9mZFrF0aWVyk6zIjd3gg2QcnUh2oF%2F0AQC2GPE%3D">Archpriest&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNodylsKgDAQQ9EtWXDqI6upNjpCUegobl%2BnfyeXrEq75xBiB9PrKZn1X9JjI72L4K1Hu0jEwtI0QNOZzTlCmbJrQuHuLYYPmLIaHA%3D%3D">Illuminant Conviction</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNpLzkgtLrEyNDSzsC7OyC%2FNSUktAvGMrNNSU8HixtblRZkQJSbWSak5YJapdUZiXkoxiGlmnZGamAJimVvnpKaDxSwBmkoaJg%3D%3D">Effulgent Devotion</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNoVyWsKgCAQReEtNdJL72osr00gBVq0%2FcZ%2FH%2BfsyvYE7wY0vd%2BSWIOXEZm0KhO%2BevYvMzaWjgUar9RMK5QxGTwKDytOfvCpGLQ%3D">Celestial Radiance</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQhOErmVBrzWksxzZYCrTo%2BqVv%2F3yjjGnxLgzYlPVu6VD1eiyx%2FEtGvOXohwg0nqm2nLHSOgYY92bBI5Pdpg%2BP5Ror">Erlik</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNolilEKgCAUBK%2BkUeFzT2O59gIpUKPrh%2FY3OzvKEL11MmNX1uatmAlV7ydHlr4s3nL%2Bh4GGK9aeO2zMrdOKzGM4QSKHWz6UwhpV">The Revelations</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVi0EOgCAMBL8kpEWhr0FZrQnRhGr8vnCbzOwqckl%2B8iSbwp6BQUzvtxa05OIyy9fOHtwcgmi%2BinVLJCtql5FJKg4bP5YdGEPmH5IgGjk%3D">A Thousand Blossoms</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNodi1sOgCAMBK%2FEQ4PQ06BdrQnRhGK8vuDfZGdHkDk54yxtAm0DHancT2HUZOO80FvPLmwIhiRfrH2dPK0obXhPBYeOztMO%2FMf4AY6qGi0%3D">The Dragon King</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNodyVEOQDAQhOErFaWY05QOK9mQtMT16b79840wptm7YcIqLHfNEUWuRxPzv0KDNx92hA4Sz1Rq9liohh7K3cxhI83aD5NlGjA%3D">The Ascension</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNodjNEKgCAQBH%2FJ8Cp0v8a6tQukQIt%2BP%2FRtmFnWmDSKuAm7sT0dPZrdb1HWKD4Ivnr24MMKS5e2vnHYWIacUXgMJ8jkeFh%2BkVcaMA%3D%3D">Primal Spirit</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolyWsKgCAQReEtKdnzrsby1gRS4BRtP0b%2FfZyjcr85sSw%2BuA4r82MasJNVAV85tbKHxCupccQmbHWGMCbThMzDtnc%2FltoaDQ%3D%3D">Tribulation</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDE0tE5KzSkBsUys01JTwSwj6%2FKizGIw09g6IzEvpRjENLVOzkiFiJpbZ6QmpoBYZtY5qelgaQsAlb4aDg%3D%3D">Righteous Smiting</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNolyVEKgCAQRdEtNWZBvdVYPptgKNCi7Zf2d7i36HlbZJ7Fy4SFdn1yDols6vDkvTQKNByxVPZYlX8doAyxysO4tT2%2BlzMaDw%3D%3D">Rapturous Battle</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-ranger">
+ <legend>Ranger</legend>
+ <ul>
+  <li>Children of Yag-kosha :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtOZRGvtVY82oCKVCj7ad%2Fl8M1Jo0iDruxtl6Cas%2BblSVKmPCVa7AXWLq19pqxMbe4%2BgWZZ5fgcJBjcj%2Febhh8">Sage&#039;s epic set</a></li>
+  <li>Hyrkanians :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdE9jUo4bzWWryYYCtRo%2B%2BXf5XCNpapIxGbs46%2BEbvfjlU0lBbztnBwCrFy1q8SIlT40pwznMWXBTs5JPuIXGJI%3D">Honored epic set</a></li>
+  <li>Shadows of Jade :: <a href="armory.php?p=armorsets&ab=eNoVilEKgCAQBa9kaxbsO43lqw2kQI2un%2F7NDGOMScMi2I21dfKo9rw5sXQJ%2BMo1snhYvFPVsHpszE0nJzMyz5EcDnJc8gP8RRjK">Shadow&#039;s epic set</a></li>
+  <li>Tamarin&#039;s Tigers :: <a href="armory.php?p=armorsets&ab=eNoVytEKgCAMRuFnMtnC%2FU9juVowCtTo9dO7w8cxzUU4MHbT1ketaPa8XrQKU8JXr8kxwvJdmjAHbOpdEjFczyFEOFTntPznmRix">Tiger&#039;s epic set</a></li>
+  <li>Yellow Priests of Yun :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtqSiZbzXWvJpACrRo%2B01%2Fl8NVVinZRazKcVslDL2eJuwlB4%2B3H8ZT9tB6yjBLWNjsDBGNu4mfsZH%2F5D7l6xis">Archdeacon&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNolyVsKgDAMBMAztb7d01SzGiEotIrXl8a%2FgSl6PSbMcwgxYiPvqgZvPoqzxUJzddB0SqnssSr%2FH6FMUjXAuHtPH5b9GgY%3D">Jagged Barbs</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNolyVsKgDAMBMArWesD3NNUszVCUWgUry%2BpfwNjej1FWJcQYodM3q6Atx7W2GNlaYrQdIo5B2zK%2Fycok7hGFO6t5w%2BV2hn%2B">The Swift Talon</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNodyVsKgDAMBMArqfWB7mmqWY1QFFrF65v0b2CK3m8S5mUODXbyMbT48llcHVYmR4DGS4qpx6asOUIZxTAg8fCbfvJSGLY%3D">The Ravenflight</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIysLC0Ts5ILS4BMc2sizPyS3NSUouAPEsD6%2FKiTIiEqXVGYl5KMYhpbp2UmgMWtLDOSU0Hixlbp6WmgsVMAJMkGjU%3D">The Living Tarim</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNodi1EKgCAUBK%2BkSYruaSy3XiAFvqLrp%2F0NM7vCXNJknMUq1Huggcr11MKWbPARbzt6sNF7SD6LdjsHLKxDBoPKXcfPYSP%2FofsAkC4aMg%3D%3D">The Deathstalker</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxNDCzTs5ILS4BMU2tizPyS3NSUotAPAPr8qJMiISRdUZiXkoxiGlinZSaAxY0ts5JTQeLmVunpaaCxQwBirYZ%2Fg%3D%3D">The Quilled Darts</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNodjFsKgDAMBK9ka8DHnqba1QhBoVW8vjZ%2FszOwypRnkTBgVda74Yiq12OZ5V%2Bxx1sOD1Gg6cy1YcRCcxlg3N112Eh%2FmD6Rrhop">Bone and Horn</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDUytk5KzSkBscys01JTwSwT6%2FKizGIw09Q6IzEvpRjENLdOzkiFiFpaZ6QmpoBYFtY5qekgaWMDAJp%2BGiU%3D">The Farseeker</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNolyVEOQDAQRdE1VRXxVlPmMZKGpENsXzr%2BTu41vZ4irHNIMWBhuZt6bKSrw1sPc0ZoPsUaE1blX0coszQNKNx9Tx%2BZYhom">The Huntmaster</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNolyVEKgCAQRdEtZWpQbzWWryaQAqdo%2B%2BX0d7hX5bxLZp1c9CNmlutT6LGSpg5P3dXoIOnI2uixCP8aIUy5KaBwsz28mtcaJw%3D%3D">Swiftstriking</a></li>
+ </ul>
+</fieldset>
+<fieldset class="collapsible collapsed" id="fs-tempest-of-set">
+ <legend>Tempest of Set</legend>
+ <ul>
+  <li>Children of Yag-kosha :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAURNEtpaWVsxrLqRdIgc9o%2B%2Bnf5XCFMQVjPXah1lYzVJ43J5ZgnMNXrs7DCIl30mYeG3MNq5%2BQeXZZcJB9sj%2FiFBiM">Sage&#039;s epic set</a></li>
+  <li>Hyrkanians :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtqVmgbzXWPJtACrRo%2B01%2Fl8NVFsk%2BBWzKcVtNGHo9TdhzmD3efhgH56HllGHmsLIZxYTG3SQuqOQ%2FuQ%2FiBBiC">Honored epic set</a></li>
+  <li>Scarlet Circle :: <a href="armory.php?p=armorsets&ab=eNoVylEKgCAQRdEtBaOl81Zj%2BWoCKVCj7Zd%2Fl8M1pqziBZux9b8cmt1PyawqIeKt5%2BAww9KVm0pcsLJ0ddOEwmOIw06OyX%2Fmrxit">Summoner&#039;s epic set</a></li>
+  <li>Scholars of Cheng-Ho :: <a href="armory.php?p=armorsets&ab=eNodyFEOQDAQBcArsSnVvtOUPlbSkHSJ6yt%2Fk1GmHN3YY1Ha1SQwPe%2BSWaPzE566%2Fx2g6cgWgwuYWVp5QeHWZhCs5DfdC%2BfjGLU%3D">Scholar&#039;s epic set</a></li>
+  <li>Yellow Priests of Yun :: <a href="armory.php?p=armorsets&ab=eNoVykEOgCAMBdErCYrU9jRov9aEaAIYr6%2FsJi9jSMoxzLIZavsrSrX7yYrC5Ed5y9mZFrF0aWVyk6zIjd3gg2QcnUh2oF%2F0AQC2GPE%3D">Archpriest&#039;s epic set</a></li>
+  <li>PvE Tier 1 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbIyNDC1sE5LTS0BsSyty4syi0FMMwPrnNT0YhDL1DopNQcsZmidkZiXAhY0ss5ITUwBsYytkzNSIXpMAJeXGhA%3D">The Cloudcleaver</a></li>
+  <li>PvE Tier 2 :: <a href="armory.php?p=armorsets&ab=eNody1EKgCAQRdEtaYFWbzXWPJtACrRo%2B%2BX8HS7cptdThHXxLgRk8u6KeOvRjBMK9%2FYrjlhZrM3QdIpFB2WSLo9NaU8cPpl1Gho%3D">The Riftcaller</a></li>
+  <li>PvE Tier 3 :: <a href="armory.php?p=armorsets&ab=eNorzsgvzUlJLbKyMDWwTktNLQEyDK3LizKLQSwj65zU9GIgw9g6KTUHJGJinZGYlwISMrXOSE1MATLMrJMzUsHKzQHwlhi%2B">The Sundered Skies</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNodyVEKgCAQhOErmVBrzWksxzZYCrTo%2BqVv%2F3yjjGnxLgzYlPVu6VD1eiyx%2FEtGvOXohwg0nqm2nLHSOgYY92bBI5Pdpg%2BP5Ror">Erlik</a></li>
+  <li>PvE Tier 3.5 :: <a href="armory.php?p=armorsets&ab=eNolilEKgCAUBK%2BkUeFzT2O59gIpUKPrh%2FY3OzvKEL11MmNX1uatmAlV7ydHlr4s3nL%2Bh4GGK9aeO2zMrdOKzGM4QSKHWz6UwhpV">The Revelations</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNoVi0EOgCAMBL8kpEWhr0FZrQnRhGr8vnCbzOwqckl%2B8iSbwp6BQUzvtxa05OIyy9fOHtwcgmi%2BinVLJCtql5FJKg4bP5YdGEPmH5IgGjk%3D">A Thousand Blossoms</a></li>
+  <li>PvE Tier 4 :: <a href="armory.php?p=armorsets&ab=eNodi1sOgCAMBK%2FEQ4PQ06BdrQnRhGK8vuDfZGdHkDk54yxtAm0DHancT2HUZOO80FvPLmwIhiRfrH2dPK0obXhPBYeOztMO%2FMf4AY6qGi0%3D">The Dragon King</a></li>
+  <li>PvE Tier 5 :: <a href="armory.php?p=armorsets&ab=eNrLSE1MsTIxMDaxTs5ILS4BMU2tizPyS3NSUouAPCML6%2FKiTIiEgXVGYl5KMYhpZJ2UmgMWNLTOSU0Hixlbp6WmgsSMLAGNEhoQ">The Judgement Bolt</a></li>
+  <li>PvE Tier 6 :: <a href="armory.php?p=armorsets&ab=eNodjNEKgCAQBH%2FJ8Cp0v8a6tQukQIt%2BP%2FRtmFnWmDSKuAm7sT0dPZrdb1HWKD4Ivnr24MMKS5e2vnHYWIacUXgMJ8jkeFh%2BkVcaMA%3D%3D">Primal Spirit</a></li>
+  <li>PvP Tier 1 :: <a href="armory.php?p=armorsets&ab=eNodyVsKgDAMRNEtWaXxMaupdjRCUWgVty%2FJ3%2BHepvdbMusShhixsjymCTvpEnz1bM4Rmq7cjDM2pVcJUKZs6lB42Jb%2BB5zcGis%3D">Vengeful Zeal</a></li>
+  <li>PvP Tier 2 :: <a href="armory.php?p=armorsets&ab=eNolyVEKgCAQRdEtFZZWbzWWryaQAqdo%2BzH6d7hX5X5zYll65x1W5sfksZNVA75yauUIiVdSY8AmbHWGMCbThMzDduh%2BnNYaNQ%3D%3D">The Stormbringer</a></li>
+  <li>PvP Tier 3 :: <a href="armory.php?p=armorsets&ab=eNolyVEOQDAQRdE1VVHxVlPmMZKGpENsXzr%2BTu41vZ4irHOIKWBhuZt6bKSrw1sPc0ZoPsUaB6zKvyYoszSNKNx9Tx%2Bbuho2">Vehement Thunder</a></li>
+ </ul>
+</fieldset>
+
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.966 seconds using 4 queries, consuming 1492.258 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

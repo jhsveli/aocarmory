@@ -1,0 +1,1061 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Stygia</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Stygia section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=23';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=23;40">Item Store</a></li>
+ <li><a href="armory.php?s=23;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=23;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=23;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=23;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=23;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=23;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=23;4">Last Legion</a></li>
+ <li><a href="armory.php?s=23;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=23;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=23;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=23;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=23;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=23;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=23;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=23;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=23;28">House of Crom</a></li>
+ <li class="selected"><a href="armory.php?s=">Stygia</a></li>
+ <li><a href="armory.php?s=23;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=23;19">Khitai</a></li>
+ <li><a href="armory.php?s=23;25">Turan</a></li>
+ <li><a href="armory.php?s=23;32">Unchained</a></li>
+ <li><a href="armory.php?s=23;33">World Boss</a></li>
+ <li><a href="armory.php?s=23;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=23;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=23;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=23;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=23;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=23;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=23;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=23;31">Bags</a></li>
+ <li><a href="armory.php?s=23;29">Recipes</a></li>
+ <li><a href="armory.php?s=23;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=23;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=23;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=23;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=23;44">Kutchemes</a></li>
+ <li><a href="armory.php?s=23;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=23;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-stygia">
+<legend>Stygia</legend>
+<ul class="locations">
+ <li class="collapsible zone"><a href="#" onclick="toggleList(this); return false"><strong>Khemi :: Silver Atrium</strong></a> (914,1116)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Companion</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/companion_attendant.jpg" id="item-4527-1" class="Rare pet">Companion: Attendant</a> [Pet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/brittle_blade_honormask.jpg" id="item-4526-2" class="Rare head">Brittle Blade Honormask</a> [Head]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/visage_of_elder_shadows.jpg" id="item-4525-3" class="Rare head">Visage of Elder Shadows</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Azusena</strong></a> (543,1052)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/nakuum.jpg" id="item-4180-4" class="Rare 2hb">Nakuum</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/nggoth.jpg" id="item-4181-5" class="Rare 2he">Nggoth</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ytoth.jpg" id="item-4182-6" class="Rare polearm">Ytoth</a> [Polearm]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Captain Nut</strong></a> (661,586)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/enforcers_boon.jpg" id="item-4365-7" class="Rare necklace">Enforcer's Boon</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/enforcers_favor.jpg" id="item-4366-8" class="Rare necklace">Enforcer's Favor</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ieb.jpg" id="item-4188-9" class="Rare dagger">Ieb</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/nehfu.jpg" id="item-4189-10" class="Rare staff">Nehfu</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/razhar.jpg" id="item-4190-11" class="Rare 1hb">Razhar</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shemmu.jpg" id="item-4191-12" class="Rare 1he">Shemmu</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Iti</strong></a> (1236,710)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cats_eye_ring.jpg" id="item-4248-13" class="Rare ring">Cat's Eye Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/coiled_serpent_ring.jpg" id="item-4249-14" class="Rare ring">Coiled Serpent Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/crocodile_claw_ring.jpg" id="item-4250-15" class="Rare ring">Crocodile Claw Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/scarab_horn_ring.jpg" id="item-4251-16" class="Rare ring">Scarab Horn Ring</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Semira</strong></a> (452,1217)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/heart_of_pashtun.jpg" id="item-4285-17" class="Rare necklace">Heart of Pashtun</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/soul_of_pashtun.jpg" id="item-4286-18" class="Rare necklace">Soul of Pashtun</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Seth-Ur</strong></a> (545,102)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/shukusht.jpg" id="item-4290-19" class="Rare bow">Shu'kusht</a> [Bow]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Black Castle</strong></a> (1067,212)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/aspfang.jpg" id="item-2936-20" class="Rare thrown">Aspfang</a> [Thrown]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/frosthunter_arrows.jpg" id="item-2756-21" class="Rare ammunition">Frosthunter Arrows</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mark_of_suspicion.jpg" id="item-2748-22" class="Rare talisman">Mark of Suspicion</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/waspsting_bolts.jpg" id="item-2755-23" class="Rare ammunition">Waspsting Bolts</a> [Ammunition]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/hive_bludgeon.jpg" id="item-2761-24" class="Rare 2hb">Hive Bludgeon</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hive_hammer.jpg" id="item-2762-25" class="Rare 1hb">Hive Hammer</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hive_hasta.jpg" id="item-2763-26" class="Rare polearm">Hive Hasta</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hive_khopesh.jpg" id="item-2764-27" class="Rare 1he">Hive Khopesh</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/subjugator_axe.jpg" id="item-2765-28" class="Rare 2he">Subjugator Axe</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/subjugator_blade.jpg" id="item-2766-29" class="Rare dagger">Subjugator Blade</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/subjugator_dagger.jpg" id="item-2767-30" class="Rare dagger">Subjugator Dagger</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/subjugator_staff.jpg" id="item-2768-31" class="Rare staff">Subjugator Staff</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/subjugator_sword.jpg" id="item-2769-32" class="Rare 1he">Subjugator Sword</a> [1HE]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/deathgasp_mitts.jpg" id="item-2740-33" class="Rare hands">Deathgasp Mitts</a> [Hands]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/demonlink_wristbands.jpg" id="item-2741-34" class="Rare wrist">Demonlink Wristbands</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/eldermind_hood.jpg" id="item-2742-35" class="Rare head">Eldermind Hood</a> [Head]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/flashburst_wristbands.jpg" id="item-2745-36" class="Rare wrist">Flashburst Wristbands</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/gravecrypt_wristbands.jpg" id="item-2746-37" class="Rare wrist">Gravecrypt Wristbands</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/venomshield_belt.jpg" id="item-2752-38" class="Rare belt">Venomshield Belt</a> [Belt]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blesswar_bracers.jpg" id="item-2739-39" class="Rare wrist">Blesswar Bracers</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/flamefuse_helm.jpg" id="item-2744-40" class="Rare head">Flamefuse Helm</a> [Head]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heartcrusher_grips.jpg" id="item-2747-41" class="Rare hands">Heartcrusher Grips</a> [Hands]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/thunderskin_bracers.jpg" id="item-2751-42" class="Rare wrist">Thunderskin Bracers</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wildguard_girdle.jpg" id="item-2753-43" class="Rare belt">Wildguard Girdle</a> [Belt]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/serpentscale_belt.jpg" id="item-2749-44" class="Rare belt">Serpentscale Belt</a> [Belt]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/soulwound_gloves.jpg" id="item-2750-45" class="Rare hands">Soulwound Gloves</a> [Hands]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wildmight_gloves.jpg" id="item-2754-46" class="Rare hands">Wildmight Gloves</a> [Hands]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blackwatch_armguards.jpg" id="item-2738-47" class="Rare shoulder">Blackwatch Armguards</a> [Shoulder]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/firesoul_helm.jpg" id="item-2743-48" class="Rare head">Firesoul Helm</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Pyramid of the Ancients</strong></a> (1255,803)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blessed_signet.jpg" id="item-2953-49" class="Rare ring">Blessed Signet</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/endurance.jpg" id="item-2955-50" class="Rare necklace">Endurance</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/lord_atum_kekets_cape.jpg" id="item-2957-51" class="Rare back">Lord Atum-Keket's Cape</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_scroll.jpg" id="item-2950-52" class="Rare talisman">Ancient Scroll</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/arcane_shield.jpg" id="item-2951-53" class="Rare shield">Arcane Shield</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/blacksting.jpg" id="item-2952-54" class="Rare crossbow">Blacksting</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/crusher.jpg" id="item-2954-55" class="Rare 2hb">Crusher</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hunger.jpg" id="item-2956-56" class="Rare 2he">Hunger</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sadistic_probe.jpg" id="item-2958-57" class="Rare 1hb">Sadistic Probe</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/stormpike.jpg" id="item-2959-58" class="Rare polearm">Stormpike</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/thirst.jpg" id="item-2960-59" class="Rare dagger">Thirst</a> [Dagger]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Khopshef Province :: Treasury of the Ancients</strong></a> (1397,648)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_arbalest.jpg" id="item-2961-60" class="Rare crossbow">Ancient Arbalest</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_blade.jpg" id="item-2962-61" class="Rare 1he">Ancient Blade</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_kukri.jpg" id="item-2963-62" class="Rare dagger">Ancient Kukri</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_mace.jpg" id="item-2964-63" class="Rare 1hb">Ancient Mace</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_serpent_staff.jpg" id="item-2965-64" class="Rare staff">Ancient Serpent Staff</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_shield.jpg" id="item-2966-65" class="Rare shield">Ancient Shield</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_spear.jpg" id="item-2967-66" class="Rare polearm">Ancient Spear</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_war_scythe.jpg" id="item-2968-67" class="Rare 2he">Ancient War Scythe</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ancient_warhammer.jpg" id="item-2969-68" class="Rare 2hb">Ancient Warhammer</a> [2HB]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/dark_amulet_of_severed_souls.jpg" id="item-4367-69" class="Rare necklace">Dark Amulet of Severed Souls</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/radiant_charm_of_fury.jpg" id="item-4368-70" class="Rare necklace">Radiant Charm of Fury</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Mizra Suffi</strong></a> (655,1203)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/caravan_masters_necklace.jpg" id="item-4263-71" class="Rare necklace">Caravan Master's Necklace</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Serafis</strong></a> (843,654)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/anktar_longshot.jpg" id="item-4287-72" class="Rare bow">Anktar Longshot</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/phortahz_crossbow.jpg" id="item-4288-73" class="Rare crossbow">Phortahz Crossbow</a> [Crossbow]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Twinkle</strong></a> (750,1200)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/royal_signet.jpg" id="item-4303-74" class="Rare ring">Royal Signet</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Viltren Al&#039;mackra</strong></a> (743,1154)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/soulscream_necklace.jpg" id="item-4308-75" class="Rare necklace">Soulscream Necklace</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/vicious_drape.jpg" id="item-4309-76" class="Rare back">Vicious Drape</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/nefarious_chest.jpg" id="item-4306-77" class="Rare chest">Nefarious Chest</a> [Chest]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/phantom_ward.jpg" id="item-4307-78" class="Rare shield">Phantom Ward</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wicked_heart.jpg" id="item-4310-79" class="Rare talisman">Wicked Heart</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Scorpion Cave</strong></a> (555,976)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ahnefet.jpg" id="item-3683-80" class="Rare dagger">Ahnefet</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/gargantuan_fist.jpg" id="item-2859-81" class="Rare 1hb">Gargantuan Fist</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/khemit.jpg" id="item-3684-82" class="Rare crossbow">Khemit</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/kubri.jpg" id="item-2879-83" class="Rare polearm">Kubri</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/nakush.jpg" id="item-3794-84" class="Rare 1hb">Nakush</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/neith.jpg" id="item-2860-85" class="Rare talisman">Neith</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/neter.jpg" id="item-3447-86" class="Rare staff">Neter</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/okush.jpg" id="item-3795-87" class="Rare 1he">Okush</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sekhmet.jpg" id="item-3232-88" class="Rare 2he">Sekhmet</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shah_stinger.jpg" id="item-2861-89" class="Rare dagger">Shah Stinger</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shawabti.jpg" id="item-3233-90" class="Rare polearm">Shawabti</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/taerra.jpg" id="item-2862-91" class="Rare 2hb">Taerra</a> [2HB]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/flameweave_sash.jpg" id="item-2858-92" class="Rare belt">Flameweave Sash</a> [Belt]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/magewalk_slippers.jpg" id="item-3446-93" class="Rare feet">Magewalk Slippers</a> [Feet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/whisperstride.jpg" id="item-2863-94" class="Rare feet">Whisperstride</a> [Feet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/dunedancer_shoes.jpg" id="item-2857-95" class="Rare feet">Dunedancer Shoes</a> [Feet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shocksand_belt.jpg" id="item-2881-96" class="Rare belt">Shocksand Belt</a> [Belt]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/dominators_boots.jpg" id="item-3227-97" class="Rare feet">Dominator's Boots</a> [Feet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pureblood_girdle.jpg" id="item-3230-98" class="Rare belt">Pureblood Girdle</a> [Belt]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/deathgird.jpg" id="item-3226-99" class="Rare belt">Deathgird</a> [Belt]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/warhoof_boots.jpg" id="item-3448-100" class="Rare feet">Warhoof Boots</a> [Feet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/bladebarrier_girdle.jpg" id="item-3444-101" class="Rare belt">Bladebarrier Girdle</a> [Belt]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bloodtrail_sabatons.jpg" id="item-2856-102" class="Rare feet">Bloodtrail Sabatons</a> [Feet]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Caravan Raider Camp</strong></a> (1212,434)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blade_of_the_bloodhunter.jpg" id="item-3668-103" class="Rare dagger">Blade of the Bloodhunter</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bloodbarbs.jpg" id="item-3210-104" class="Rare ammunition">Bloodbarbs</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bloodedge.jpg" id="item-3209-105" class="Rare 1he">Bloodedge</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/buckler_of_the_blood_god.jpg" id="item-3669-106" class="Rare shield">Buckler of the Blood God</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/claymore_of_the_death_master.jpg" id="item-3670-107" class="Rare 2he">Claymore of the Death Master</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/crossbow_of_the_blood_drinker.jpg" id="item-3671-108" class="Rare crossbow">Crossbow of the Blood Drinker</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/glaive_of_red_ruin.jpg" id="item-3672-109" class="Rare polearm">Glaive of Red Ruin</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hammer_of_the_sanguine_disciple.jpg" id="item-3673-110" class="Rare 2hb">Hammer of the Sanguine Disciple</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/icon_of_the_blood_god.jpg" id="item-3674-111" class="Rare talisman">Icon of the Blood God</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mace_of_the_blood_god.jpg" id="item-3675-112" class="Rare 1hb">Mace of the Blood God</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> removed from loot table</span><a href="//static.is-better-than.tv/armory/needlebag.jpg" id="item-3211-113" class="Rare ammunition">Needlebag</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/opus_ignis.jpg" id="item-2489-114" class="Rare talisman">Opus Ignis</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/projectiles_of_the_blood_drinker.jpg" id="item-3676-115" class="Rare ammunition">Projectiles of the Blood Drinker</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shield_of_the_fallen_empire.jpg" id="item-3677-116" class="Rare shield">Shield of the Fallen Empire</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/stave_of_the_hell_walker_(nm).jpg" id="item-3678-117" class="Rare staff">Stave of the Hell Walker (nm)</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sword_of_the_death_master.jpg" id="item-3679-118" class="Rare 1he">Sword of the Death Master</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/totem_of_the_blood_god.jpg" id="item-3680-119" class="Rare staff">Totem of the Blood God</a> [Staff]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodhunter (nm)</a> [Sin] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNolyVEKgDAMBNEraVOpuKepdjVCUWgUr6%2FBv8eM6XnXwjZJChErebkSlLl8kg6aj2LOgJnVt4yo3LzFHk%2FbzWMULMqfwwuRJRpB"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_bands_of_the_bloodhunter_(nm).jpg" id="item-3724-120" class="Rare shoulder">Arm-bands of the Bloodhunter (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_bloodhunter_(nm).jpg" id="item-3727-121" class="Rare feet">Boots of the Bloodhunter (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/facemask_of_the_bloodhunter_(nm).jpg" id="item-3730-122" class="Rare head">Facemask of the Bloodhunter (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_bloodhunter_(nm).jpg" id="item-3732-123" class="Rare hands">Gloves of the Bloodhunter (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/sash_of_the_bloodhunter_(nm).jpg" id="item-3738-124" class="Rare belt">Sash of the Bloodhunter (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_the_bloodhunter_(nm).jpg" id="item-3741-125" class="Rare legs">Tasset of the Bloodhunter (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_bloodhunter_(nm).jpg" id="item-3743-126" class="Rare wrist">Vambraces of the Bloodhunter (nm)</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_bloodhunter_(nm).jpg" id="item-3745-127" class="Rare chest">Vest of the Bloodhunter (nm)</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Crimson Slaughter (nm)</a> [HoX] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNolylEKgDAMBNErNVawuKepdjVCUGgVr6%2FRv8cwTY%2FLCusYhxAw0U6XYCE%2F9dC8l%2BZMUObySiKMqzdJmJXNzy7grttPeQCNoRop"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_straps_of_crimson_slaughter_(nm).jpg" id="item-3700-128" class="Rare shoulder">Arm-straps of Crimson Slaughter (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/belt_of_crimson_slaughter_(nm).jpg" id="item-3701-129" class="Rare belt">Belt of Crimson Slaughter (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_crimson_slaughter_(nm).jpg" id="item-3704-130" class="Rare feet">Boots of Crimson Slaughter (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_crimson_slaughter_(nm).jpg" id="item-3708-131" class="Rare hands">Gloves of Crimson Slaughter (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_crimson_slaughter_(nm).jpg" id="item-3713-132" class="Rare head">Mask of Crimson Slaughter (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_crimson_slaughter_(nm).jpg" id="item-3718-133" class="Rare legs">Tasset of Crimson Slaughter (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_crimson_slaughter_(nm).jpg" id="item-3720-134" class="Rare chest">Tunic of Crimson Slaughter (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_crimson_slaughter_(nm).jpg" id="item-3721-135" class="Rare wrist">Vambrace of Crimson Slaughter (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Hell Walker (nm)</a> [Demo/Necro] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNolylEOQDAQRdE9aat4qynzGMmEpCW2T%2Bvv5OYWPW8T5snFLmAlr6oBmg4pH52DMklVgHFrbcST91JP77Eof%2FaYaU3xBZm9GlI%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_bands_of_the_hell_walker_(nm).jpg" id="item-3725-136" class="Rare shoulder">Arm-bands of the Hell Walker (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_hell_walker_(nm).jpg" id="item-3728-137" class="Rare feet">Boots of the Hell Walker (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_hell_walker_(nm).jpg" id="item-3733-138" class="Rare hands">Gloves of the Hell Walker (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_hell_walker_(nm).jpg" id="item-3735-139" class="Rare head">Headdress of the Hell Walker (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/skirt_of_the_hell_walker_(nm).jpg" id="item-3739-140" class="Rare legs">Skirt of the Hell Walker (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_hell_walker_(nm).jpg" id="item-3744-141" class="Rare wrist">Vambraces of the Hell Walker (nm)</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_hell_walker_(nm).jpg" id="item-3746-142" class="Rare chest">Vest of the Hell Walker (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrap_of_the_hell_walker_(nm).jpg" id="item-3747-143" class="Rare belt">Wrap of the Hell Walker (nm)</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Widowdusk</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_bracers.jpg" id="item-2485-144" class="Rare wrist">Widowdusk Bracers</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Blood God (nm)</a> [PoM/ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNolyFEKgCAQBcArGZYbvdNY%2B2oDKdCi66f1N0yx807KPHnpR1g8tFQOAmPUquCQuLULHjPT1RSwkp8Ei7E0isOT95%2FdC5d1Glk%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_straps_of_the_blood_god_(nm).jpg" id="item-3748-145" class="Rare shoulder">Arm-straps of the Blood God (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_blood_god_(nm).jpg" id="item-3757-146" class="Rare hands">Gloves of the Blood God (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_blood_god_(nm).jpg" id="item-3760-147" class="Rare head">Headdress of the Blood God (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_blood_god_(nm).jpg" id="item-3763-148" class="Rare legs">Leggings of the Blood God (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/sash_of_the_blood_god_(nm).jpg" id="item-3766-149" class="Rare belt">Sash of the Blood God (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_straps_of_the_blood_god_(nm).jpg" id="item-3767-150" class="Rare feet">Shin-straps of the Blood God (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_blood_god_(nm).jpg" id="item-3770-151" class="Rare chest">Vest of the Blood God (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrist_straps_of_the_blood_god_(nm).jpg" id="item-3771-152" class="Rare wrist">Wrist-straps of the Blood God (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Death Master (nm)</a> [Barb] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNodylEOQDAQhOErsUXDnKbssJKGpCWuL9u3bzL%2FyvwsIXaCzKO6Jli6tHHGZqz%2B9wJjUteAaveblcXXiJ1sRcRXzhZL%2BAF5KBo2"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_death_master_(nm).jpg" id="item-3702-153" class="Rare belt">Belt of the Death Master (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_death_master_(nm).jpg" id="item-3706-154" class="Rare legs">Cuisse of the Death Master (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_death_master_(nm).jpg" id="item-3709-155" class="Rare hands">Gloves of the Death Master (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/jerkin_of_the_death_master_(nm).jpg" id="item-3712-156" class="Rare chest">Jerkin of the Death Master (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_the_death_master_(nm).jpg" id="item-3714-157" class="Rare head">Mask of the Death Master (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_death_master_(nm).jpg" id="item-3715-158" class="Rare shoulder">Rerebrace of the Death Master (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_straps_of_the_death_master_(nm).jpg" id="item-3717-159" class="Rare feet">Shin-straps of the Death Master (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrist_straps_of_the_death_master_(nm).jpg" id="item-3723-160" class="Rare wrist">Wrist-straps of the Death Master (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Exaltate</a> [PoM] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNpLzkgtLrEyMrEwsM5JTS8GsQwBROcGDw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> removed from loot table</span><a href="//static.is-better-than.tv/armory/exaltates_jerkin.jpg" id="item-2480-161" class="Rare chest">Exaltate's Jerkin</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/exaltates_tasset.jpg" id="item-2481-162" class="Rare legs">Exaltate's Tasset</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Goremonger</a> [Barb]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/goremongers_armband.jpg" id="item-2482-163" class="Rare shoulder">Goremonger's Armband</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Blood Drinker (nm)</a> [Ranger] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNodylEOQDAQhOEzoSprTlM6rKQhaYnrs%2Fv2%2FZlZWO55mIJgI01jh8K9mQI0ndkZsSqb7wJlyr9ij6bXUzKrVcBbD79E%2BQB3Zhpg"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_blood_drinker_(nm).jpg" id="item-3749-164" class="Rare belt">Belt of the Blood Drinker (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_blood_drinker_(nm).jpg" id="item-3751-165" class="Rare feet">Boots of the Blood Drinker (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_blood_drinker_(nm).jpg" id="item-3754-166" class="Rare legs">Cuisse of the Blood Drinker (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_blood_drinker_(nm).jpg" id="item-3756-167" class="Rare hands">Gloves of the Blood Drinker (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/harness_of_the_blood_drinker_(nm).jpg" id="item-3759-168" class="Rare chest">Harness of the Blood Drinker (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_blood_drinker_(nm).jpg" id="item-3762-169" class="Rare head">Helm of the Blood Drinker (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_blood_drinker_(nm).jpg" id="item-3764-170" class="Rare shoulder">Rerebrace of the Blood Drinker (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_blood_drinker_(nm).jpg" id="item-3769-171" class="Rare wrist">Vambraces of the Blood Drinker (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Sanguine Disciple (nm)</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNody1EKgCAQRdEtVaJJbzWWzyaQAqdo%2B%2BX8nftxV9Z7cbMfUEjThE2oRofKXbs8JJ3ZGCFM%2BVcYoXI9NbP18njbYV%2BIH3ZIGlU%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_sanguine_disciple_(nm).jpg" id="item-3750-172" class="Rare belt">Belt of the Sanguine Disciple (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_sanguine_disciple_(nm).jpg" id="item-3752-173" class="Rare feet">Boots of the Sanguine Disciple (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuirass_of_the_sanguine_disciple_(nm).jpg" id="item-3753-174" class="Rare chest">Cuirass of the Sanguine Disciple (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_sanguine_disciple_(nm).jpg" id="item-3755-175" class="Rare legs">Cuisse of the Sanguine Disciple (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_sanguine_disciple_(nm).jpg" id="item-3758-176" class="Rare hands">Gloves of the Sanguine Disciple (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_sanguine_disciple_(nm).jpg" id="item-3761-177" class="Rare head">Headdress of the Sanguine Disciple (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_sanguine_disciple_(nm).jpg" id="item-3765-178" class="Rare shoulder">Rerebrace of the Sanguine Disciple (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_the_sanguine_disciple_(nm).jpg" id="item-3768-179" class="Rare wrist">Vambrace of the Sanguine Disciple (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Strifescar</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNrLSMxLKbYyMrEwts5ITUwBsUwAQ9UF8w%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/strifescar_gauntlets.jpg" id="item-2483-180" class="Rare hands">Strifescar Gauntlets</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/strifescar_helm.jpg" id="item-2484-181" class="Rare head">Strifescar Helm</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodseraph</a> [DT]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> removed from loot table</span><a href="//static.is-better-than.tv/armory/bloodseraphs_gauntlets.jpg" id="item-2490-182" class="Rare hands">Bloodseraph's Gauntlets</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Red Ruin (nm)</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNodzOEKgCAQA%2BBXKhWl9jTWrS6QAi16%2FTr%2FfRtjC8s9%2B%2BQiVmXrnKD5lPbTj9hIK32AMospoun1FGG1lFC42zYMeOvRH4L7AH5eGkU%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_red_ruin_(nm).jpg" id="item-3726-183" class="Rare belt">Belt of Red Ruin (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/breastplate_of_red_ruin_(nm).jpg" id="item-3729-184" class="Rare chest">Breastplate of Red Ruin (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_red_ruin_(nm).jpg" id="item-3731-185" class="Rare hands">Gloves of Red Ruin (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/greaves_of_red_ruin_(nm).jpg" id="item-3734-186" class="Rare feet">Greaves of Red Ruin (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_red_ruin_(nm).jpg" id="item-3736-187" class="Rare head">Mask of Red Ruin (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_red_ruin_(nm).jpg" id="item-3737-188" class="Rare shoulder">Rerebrace of Red Ruin (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_red_ruin_(nm).jpg" id="item-3740-189" class="Rare legs">Tasset of Red Ruin (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_red_ruin_(nm).jpg" id="item-3742-190" class="Rare wrist">Vambrace of Red Ruin (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Fallen Empire (nm)</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNodzEsKgDAQA9Ar9YMWzWmqTR2hKHQUry%2FT3UsI2dieNSYXsQt1cILkq6gxoZJWegdhLiYPlftthd3SjMbDtn7B18%2FxEMIPedAaMQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_fallen_empire_(nm).jpg" id="item-3703-191" class="Rare belt">Belt of the Fallen Empire (nm)</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuirass_of_the_fallen_empire_(nm).jpg" id="item-3705-192" class="Rare chest">Cuirass of the Fallen Empire (nm)</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_the_fallen_empire_(nm).jpg" id="item-3707-193" class="Rare hands">Gauntlets of the Fallen Empire (nm)</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/greaves_of_the_fallen_empire_(nm).jpg" id="item-3710-194" class="Rare feet">Greaves of the Fallen Empire (nm)</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_fallen_empire_(nm).jpg" id="item-3711-195" class="Rare head">Helm of the Fallen Empire (nm)</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_fallen_empire_(nm).jpg" id="item-3716-196" class="Rare shoulder">Rerebrace of the Fallen Empire (nm)</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_the_fallen_empire_(nm).jpg" id="item-3719-197" class="Rare legs">Tasset of the Fallen Empire (nm)</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_fallen_empire_(nm).jpg" id="item-3722-198" class="Rare wrist">Vambraces of the Fallen Empire (nm)</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: The Onyx Chambers</strong></a> (730,611)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/accensus.jpg" id="item-2864-199" class="Rare 2he">Accensus</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/acutus.jpg" id="item-2802-200" class="Rare 1he">Acutus</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/agilis.jpg" id="item-2865-201" class="Rare dagger">Agilis</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/astrum.jpg" id="item-2866-202" class="Rare 1hb">Astrum</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/battleblessed_opus.jpg" id="item-3145-203" class="Rare talisman">Battleblessed Opus</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/blackfang.jpg" id="item-2803-204" class="Rare dagger">Blackfang</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/blackshard.jpg" id="item-2867-205" class="Rare dagger">Blackshard</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bonebiter.jpg" id="item-2910-206" class="Rare 1he">Bonebiter</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/boneshard.jpg" id="item-2812-207" class="Rare dagger">Boneshard</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/custoditus.jpg" id="item-2868-208" class="Rare shield">Custoditus</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/farspire.jpg" id="item-2869-209" class="Rare bow">Farspire</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/fractalus.jpg" id="item-2870-210" class="Rare polearm">Fractalus</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/grimward.jpg" id="item-2871-211" class="Rare shield">Grimward</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/lamentatus.jpg" id="item-2816-212" class="Rare 2he">Lamentatus</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/oxleg.jpg" id="item-2818-213" class="Rare 2hb">Oxleg</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/redspray.jpg" id="item-2872-214" class="Rare 2he">Redspray</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/servatus.jpg" id="item-2873-215" class="Rare shield">Servatus</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shadows_bane.jpg" id="item-2819-216" class="Rare staff">Shadow's Bane</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/skyfire.jpg" id="item-2909-217" class="Rare staff">Skyfire</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/soulrenders_mark.jpg" id="item-2908-218" class="Rare talisman">Soulrender's Mark</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tectus.jpg" id="item-2874-219" class="Rare shield">Tectus</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/warhaven.jpg" id="item-2832-220" class="Rare shield">Warhaven</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/windfury.jpg" id="item-2837-221" class="Rare 1hb">Windfury</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolfsbane.jpg" id="item-2875-222" class="Rare crossbow">Wolfsbane</a> [Crossbow]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/amtah.jpg" id="item-2973-223" class="Rare 2he">Amtah</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/kefmeh.jpg" id="item-2974-224" class="Rare staff">Kefmeh</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/kesht.jpg" id="item-2975-225" class="Rare thrown">Kesht</a> [Thrown]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sinstrike.jpg" id="item-3255-226" class="Rare 1he">Sinstrike</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tekesh.jpg" id="item-2976-227" class="Rare 1hb">Tekesh</a> [1HB]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Blacksulphur</a> [Demo] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysjQysc5ITUyxMrIwALIS81KKQYKm1jmp6WCWmXVSak4JSNrUurwos7gEJGgOAKm0E%2Fw%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_armbands.jpg" id="item-2924-228" class="Rare shoulder">Blacksulphur Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_cowl.jpg" id="item-2804-229" class="Rare head">Blacksulphur Cowl</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_gloves.jpg" id="item-2925-230" class="Rare hands">Blacksulphur Gloves</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_pants.jpg" id="item-2926-231" class="Rare legs">Blacksulphur Pants</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_sash.jpg" id="item-2805-232" class="Rare belt">Blacksulphur Sash</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/blacksulphur_wristbands.jpg" id="item-2927-233" class="Rare wrist">Blacksulphur Wristbands</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodseer</a> [HoX] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNpLS00tsTKysDSwzkhNTAGyDMysMxLzUopBTHPrpNQcsLShdU5qOljMwrq8KLMYLGgEADrWEkI%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_boots.jpg" id="item-2890-234" class="Rare feet">Bloodseer's Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_cowl.jpg" id="item-2806-235" class="Rare head">Bloodseer's Cowl</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_gloves.jpg" id="item-2807-236" class="Rare hands">Bloodseer's Gloves</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_sash.jpg" id="item-2891-237" class="Rare belt">Bloodseer's Sash</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_tasset.jpg" id="item-2808-238" class="Rare legs">Bloodseer's Tasset</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseers_wristbands.jpg" id="item-2892-239" class="Rare wrist">Bloodseer's Wristbands</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Nihilistic</a> [Necro] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysjQwts5ITUyxMrIwNLfOSMxLKQYJmlgnpeaUgFim1uVFmcVgphkA73ERBQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/nihilistic_armbands.jpg" id="item-2903-240" class="Rare shoulder">Nihilistic Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/nihilistic_cowl.jpg" id="item-2817-241" class="Rare head">Nihilistic Cowl</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/nihilistic_gloves.jpg" id="item-2904-242" class="Rare hands">Nihilistic Gloves</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/nihilistic_sash.jpg" id="item-2905-243" class="Rare belt">Nihilistic Sash</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/nihilistic_wristbands.jpg" id="item-2906-244" class="Rare wrist">Nihilistic Wristbands</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Widowdusk</a> [Sin] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysjS0sE5KzSkBsSytc1LTi4EsIwPrjNTEFCsjC2Nj64zEvBSwoKF1ckZqMUilkTEAqOoT1w%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_arm_straps.jpg" id="item-2918-245" class="Rare shoulder">Widowdusk Arm-straps</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_belt.jpg" id="item-2919-246" class="Rare belt">Widowdusk Belt</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_fauld.jpg" id="item-2920-247" class="Rare legs">Widowdusk Fauld</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_hood.jpg" id="item-2833-248" class="Rare head">Widowdusk Hood</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_mitts.jpg" id="item-2921-249" class="Rare hands">Widowdusk Mitts</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/widowdusk_tunic.jpg" id="item-2923-250" class="Rare chest">Widowdusk Tunic</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Exaltate</a> [PoM] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysrA0ti4vyiwuATINja2TUnNALEsT64zEvJRiENPUOiM1MQXEMgMA%2B3wRIQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/exaltates_armbands.jpg" id="item-2893-251" class="Rare shoulder">Exaltate's Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/exaltates_bracers.jpg" id="item-2813-252" class="Rare wrist">Exaltate's Bracers</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/exaltates_girdle.jpg" id="item-2894-253" class="Rare belt">Exaltate's Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/exaltates_gloves.jpg" id="item-2895-254" class="Rare hands">Exaltate's Gloves</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/exaltates_helm.jpg" id="item-2896-255" class="Rare head">Exaltate's Helm</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Goremonger</a> [Barb] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorL8osLrEysjQ0sc5IzEspBjFNrZNSc4CCFkDB5IzUYjDT1DojNTEFJG1mnZOaDlZoDgBixRKr"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/goremongers_bracers.jpg" id="item-2914-256" class="Rare wrist">Goremonger's Bracers</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/goremongers_gauntlets.jpg" id="item-2915-257" class="Rare hands">Goremonger's Gauntlets</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/goremongers_girdle.jpg" id="item-2814-258" class="Rare belt">Goremonger's Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/goremongers_harness.jpg" id="item-2815-259" class="Rare chest">Goremonger's Harness</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/goremongers_helm.jpg" id="item-2916-260" class="Rare head">Goremonger's Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/goremongers_leggings.jpg" id="item-2917-261" class="Rare legs">Goremonger's Leggings</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Skyshear</a> [ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIyMjMxsU5LTS0BsQyty4syi8FMI%2BuMxLyUYhDT1DopNQcoaGFpbp2RmpgCEjO2Ts5Ihag0BwCknxdS"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/skyshear_armbands.jpg" id="item-2644-262" class="Rare shoulder">Skyshear Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_boots.jpg" id="item-2641-263" class="Rare feet">Skyshear Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_bracers.jpg" id="item-2642-264" class="Rare wrist">Skyshear Bracers</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_gauntlets.jpg" id="item-2645-265" class="Rare hands">Skyshear Gauntlets</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_girdle.jpg" id="item-2897-266" class="Rare belt">Skyshear Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_helm.jpg" id="item-2643-267" class="Rare head">Skyshear Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/skyshear_jerkin.jpg" id="item-2647-268" class="Rare chest">Skyshear Jerkin</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Strifescar</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNpLS00tsTKyMDK1Li%2FKLAYzzayTM1IhTHMAntAJjw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/strifescar_boots.jpg" id="item-2825-269" class="Rare feet">Strifescar Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/strifescar_bracers.jpg" id="item-2826-270" class="Rare wrist">Strifescar Bracers</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/strifescar_harness.jpg" id="item-2827-271" class="Rare chest">Strifescar Harness</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Wildstrider</a> [Ranger] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysjQwsE5LTS2xMrIwNrFOSs0pAYkZWmck5qUUg5hG1hmpiSkgaVPrnNT0YhDLDACSOhNa"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_armbands.jpg" id="item-2900-272" class="Rare shoulder">Wildstrider Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_boots.jpg" id="item-2834-273" class="Rare feet">Wildstrider Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_girdle.jpg" id="item-2901-274" class="Rare belt">Wildstrider Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_gloves.jpg" id="item-2902-275" class="Rare hands">Wildstrider Gloves</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_helm.jpg" id="item-2835-276" class="Rare head">Wildstrider Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/wildstrider_tasset.jpg" id="item-2836-277" class="Rare legs">Wildstrider Tasset</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodseraph</a> [DT] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNorzsgvzUlJLbIysjCwtE5LTS2xMrI0NLROSs0BsiwMDawzUhNTQCxD65zU9GKQrJF1eVFmMVihMQCRShN%2F"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_armguards.jpg" id="item-2809-278" class="Rare shoulder">Bloodseraph's Armguards</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_boots.jpg" id="item-2911-279" class="Rare feet">Bloodseraph's Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_girdle.jpg" id="item-2810-280" class="Rare belt">Bloodseraph's Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_helm.jpg" id="item-2811-281" class="Rare head">Bloodseraph's Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_legguards.jpg" id="item-2912-282" class="Rare legs">Bloodseraph's Legguards</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/bloodseraphs_vambraces.jpg" id="item-2913-283" class="Rare wrist">Bloodseraph's Vambraces</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Warglory</a> [Conq] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNpLS00tsTKysLSwTs5ILQYxjSysMxLzUoqtjMwNTa2TUnPA8pbWGamJKSBpS%2Buc1HSgrIWxgXV5USZYj7EhACQnFak%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/warglory_boots.jpg" id="item-2898-284" class="Rare feet">Warglory Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_chestguard.jpg" id="item-2828-285" class="Rare chest">Warglory Chestguard</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_gauntlets.jpg" id="item-2715-286" class="Rare hands">Warglory Gauntlets</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_girdle.jpg" id="item-2899-287" class="Rare belt">Warglory Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_helm.jpg" id="item-2829-288" class="Rare head">Warglory Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_legguards.jpg" id="item-2830-289" class="Rare legs">Warglory Legguards</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/warglory_vambraces.jpg" id="item-2831-290" class="Rare wrist">Warglory Vambraces</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Steelspirit</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=23&amp;ab=eNrLSU0vtjKyMDKxLs7IL81JSS2yMjIzN7NOS00tAYkbWGck5qWAlRhaJ6XmgAWNrDNSE1NALGPr8qLM4hKQHnMAfDkW3w%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/steelspirirt_legguards.jpg" id="item-2824-291" class="Rare legs">Steelspirirt Legguards</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_armguards.jpg" id="item-2676-292" class="Rare shoulder">Steelspirit Armguards</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_boots.jpg" id="item-2820-293" class="Rare feet">Steelspirit Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_gauntlets.jpg" id="item-2821-294" class="Rare hands">Steelspirit Gauntlets</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_girdle.jpg" id="item-2822-295" class="Rare belt">Steelspirit Girdle</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_helm.jpg" id="item-2823-296" class="Rare head">Steelspirit Helm</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/steelspirit_vambraces.jpg" id="item-2677-297" class="Rare wrist">Steelspirit Vambraces</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2021<br/>
+<span class="stats">Page generated in 1.015 seconds using 5 queries, consuming 2088.656 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Yellow Priests of Yun</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Yellow Priests of Yun section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=10';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=10;40">Item Store</a></li>
+ <li><a href="armory.php?s=10;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=10;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=10;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=10;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=10;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=10;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=10;4">Last Legion</a></li>
+ <li><a href="armory.php?s=10;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=10;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=10;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=10;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=10;9">Wolves of the Steppes</a></li>
+ <li class="selected"><a href="armory.php?s=">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=10;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=10;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=10;28">House of Crom</a></li>
+ <li><a href="armory.php?s=10;23">Stygia</a></li>
+ <li><a href="armory.php?s=10;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=10;19">Khitai</a></li>
+ <li><a href="armory.php?s=10;25">Turan</a></li>
+ <li><a href="armory.php?s=10;32">Unchained</a></li>
+ <li><a href="armory.php?s=10;33">World Boss</a></li>
+ <li><a href="armory.php?s=10;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=10;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=10;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=10;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=10;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=10;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=10;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=10;31">Bags</a></li>
+ <li><a href="armory.php?s=10;29">Recipes</a></li>
+ <li><a href="armory.php?s=10;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=10;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=10;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=10;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=10;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=10;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=10;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-yellow-priests-of-yun">
+<legend>Yellow Priests of Yun</legend>
+<ul class="locations">
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: Fengdu</strong></a> (550,130)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Balance</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNorzsgvzUlJLbIytzCyzklNLwYyjK0zEvNSQCwT6%2BSM1OISIMvUOik1B8Qws85ITUwBMsyt01JTQSIW1uVFmWBFlgDwJxje"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_arm_straps_of_balance.jpg" id="item-782-1" class="Rare shoulder">Acolyte's Arm-straps of Balance</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_threads_of_balance.jpg" id="item-783-2" class="Rare legs">Acolyte's Threads of Balance</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_gloves_of_balance.jpg" id="item-784-3" class="Rare hands">Monk's Gloves of Balance</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_robes_of_balance.jpg" id="item-785-4" class="Rare chest">Monk's Robes of Balance</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_cord_of_balance.jpg" id="item-786-5" class="Rare belt">Priest's Cord of Balance</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_crest_of_balance.jpg" id="item-787-6" class="Rare head">Priest's Crest of Balance</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archpriests_boots_of_balance.jpg" id="item-788-7" class="Epic feet">Archpriest's Boots of Balance</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archpriests_straps_of_balance.jpg" id="item-789-8" class="Epic wrist">Archpriest's Straps of Balance</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archdeacons_leggings_of_the_eighteen_pits.jpg" id="item-817-9" class="Epic legs">Archdeacon's Leggings of the Eighteen Pits</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Spilling Blood</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNorzsgvzUlJLbIytzSwzklNLwYyDK0zEvNSQCwj6%2BSM1OISIMvYOik1B8Qwsc5ITUwBMkyt01JTQSJm1uVFmWBF5gDvHxjW"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_armbands_of_the_spilling_blood.jpg" id="item-790-10" class="Rare shoulder">Acolyte's Armbands of the Spilling Blood</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_leggings_of_the_spilling_blood.jpg" id="item-791-11" class="Rare legs">Acolyte's Leggings of the Spilling Blood</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_gauntlets_of_the_spilling_blood.jpg" id="item-792-12" class="Rare hands">Monk's Gauntlets of the Spilling Blood</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_harness_of_the_spilling_blood.jpg" id="item-793-13" class="Rare chest">Monk's Harness of the Spilling Blood</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_girdle_of_the_spilling_blood.jpg" id="item-794-14" class="Rare belt">Deacon's Girdle of the Spilling Blood</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_helm_of_the_spilling_blood.jpg" id="item-795-15" class="Rare head">Deacon's Helm of the Spilling Blood</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archdeacons_boots_of_the_spilling_blood.jpg" id="item-796-16" class="Epic feet">Archdeacon's Boots of the Spilling Blood</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archdeacons_bracers_of_the_spilling_blood.jpg" id="item-797-17" class="Epic wrist">Archdeacon's Bracers of the Spilling Blood</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archpriests_threads_of_the_underworld.jpg" id="item-818-18" class="Epic legs">Archpriest's Threads of the Underworld</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Hallow Worlds</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNodymsKgCAQReEt2YvUuxrLWxNIgWO0%2Fab%2BfQfOwtLiHDwknVlNARvZoncOTz30U4fCXQ09VK67ZFaLAcKUDSNW4T9OL9s0GKo%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_belt_of_the_hallow_worlds.jpg" id="item-798-19" class="Rare belt">Acolyte's Belt of the Hallow Worlds</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_gloves_of_the_hallow_worlds.jpg" id="item-799-20" class="Rare hands">Acolyte's Gloves of the Hallow Worlds</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_boots_of_the_hallow_worlds.jpg" id="item-800-21" class="Rare feet">Monk's Boots of the Hallow Worlds</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_bracers_of_the_hallow_worlds.jpg" id="item-801-22" class="Rare wrist">Monk's Bracers of the Hallow Worlds</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_legguards_of_the_hallow_worlds.jpg" id="item-802-23" class="Rare legs">Deacon's Legguards of the Hallow Worlds</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_straps_of_the_hallow_worlds.jpg" id="item-803-24" class="Rare shoulder">Deacon's Straps of the Hallow Worlds</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archdeacons_helm_of_the_hallow_worlds.jpg" id="item-804-25" class="Epic head">Archdeacon's Helm of the Hallow Worlds</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archdeacons_jerkin_of_the_hallow_worlds.jpg" id="item-805-26" class="Epic chest">Archdeacon's Jerkin of the Hallow Worlds</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Limitless Cipher</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNoVyVEOgCAMg%2BErgSaK9jQoxZksmoDG67u9fe2%2FUZ81hQmSr9JNMyrpV8LXzu5aoDysxYAu96uFzUbELvQeBwhzMYw%2F2rwYog%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_belt_of_the_limitless_cipher.jpg" id="item-806-27" class="Rare belt">Acolyte's Belt of the Limitless Cipher</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_gloves_of_the_limitless_cipher.jpg" id="item-807-28" class="Rare hands">Acolyte's Gloves of the Limitless Cipher</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_boots_of_the_limitless_cipher.jpg" id="item-808-29" class="Rare feet">Monk's Boots of the Limitless Cipher</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_bracers_of_the_limitless_cipher.jpg" id="item-809-30" class="Rare wrist">Monk's Bracers of the Limitless Cipher</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_fauld_of_the_limitless_cipher.jpg" id="item-810-31" class="Rare legs">Priest's Fauld of the Limitless Cipher</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_straps_of_the_limitless_cipher.jpg" id="item-811-32" class="Rare shoulder">Priest's Straps of the Limitless Cipher</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archpriests_tunic_of_the_limitless_cipher.jpg" id="item-812-33" class="Epic chest">Archpriest's Tunic of the Limitless Cipher</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archpriests_visage_of_the_limitless_cipher.jpg" id="item-813-34" class="Epic head">Archpriest's Visage of the Limitless Cipher</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Temple of Yun</strong></a> (230,505)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Faction Weapons and Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/blossoming_death.jpg" id="item-742-35" class="Epic 1hb">Blossoming Death</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="//static.is-better-than.tv/armory/bone_loop.jpg" id="item-743-36" class="Epic ring">Bone Loop</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />20</span><a href="//static.is-better-than.tv/armory/brew_of_acute_acumen.jpg" id="item-744-37" class="Rare potion">Brew of Acute Acumen</a> [Potion]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />1103<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />221<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />18</span><a href="//static.is-better-than.tv/armory/demontongue.jpg" id="item-745-38" class="Epic polearm">Demontongue</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_black_lotus.jpg" id="item-746-39" class="Rare pet">Pet: Black Lotus</a> [Pet]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_golden_lotus.jpg" id="item-747-40" class="Rare pet">Pet: Golden Lotus</a> [Pet]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_grey_lotus.jpg" id="item-748-41" class="Rare pet">Pet: Grey Lotus</a> [Pet]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_yellow_lotus.jpg" id="item-749-42" class="Rare pet">Pet: Yellow Lotus</a> [Pet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Sacrifice</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLSs0psTI3NbDOSMxLKQayDK3TUlNBQkbW5UWZxSCWsXVxRn5pTkpqEZBjYp2Tmg5SaGqdkZqYAmSYWSdnpIIVmgMA3VsYtg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_belt_of_sacrifice.jpg" id="item-750-43" class="Rare belt">Acolyte's Belt of Sacrifice</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_gloves_of_sacrifice.jpg" id="item-751-44" class="Rare hands">Acolyte's Gloves of Sacrifice</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_boots_of_sacrifice.jpg" id="item-752-45" class="Rare feet">Monk's Boots of Sacrifice</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_straps_of_sacrifice.jpg" id="item-753-46" class="Rare wrist">Monk's Straps of Sacrifice</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_coils_of_sacrifice.jpg" id="item-754-47" class="Rare shoulder">Priest's Coils of Sacrifice</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_threads_of_sacrifice.jpg" id="item-755-48" class="Rare legs">Priest's Threads of Sacrifice</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archpriests_crest_of_sacrifice.jpg" id="item-756-49" class="Epic head">Archpriest's Crest of Sacrifice</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archpriests_raiment_of_sacrifice.jpg" id="item-757-50" class="Epic chest">Archpriest's Raiment of Sacrifice</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Earthen Prison</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNrLSMxLKbYyN7WwTkrNKQEyLK3TUlOBDDMD6%2FKizGIQy9C6OCO%2FNCcltQjIMbLOSU0H6jAztk7OSAXLm1hnpCamABmmAOPKGMA%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_gauntlets_of_the_earthen_prison.jpg" id="item-758-51" class="Rare hands">Acolyte's Gauntlets of the Earthen Prison</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_girdle_of_the_earthen_prison.jpg" id="item-759-52" class="Rare belt">Acolyte's Girdle of the Earthen Prison</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_boots_of_the_earthen_prison.jpg" id="item-760-53" class="Rare feet">Monk's Boots of the Earthen Prison</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_bracers_of_the_earthen_prison.jpg" id="item-761-54" class="Rare wrist">Monk's Bracers of the Earthen Prison</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_armbands_of_the_earthen_prison.jpg" id="item-762-55" class="Rare shoulder">Deacon's Armbands of the Earthen Prison</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_leggings_of_the_earthen_prison.jpg" id="item-763-56" class="Rare legs">Deacon's Leggings of the Earthen Prison</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archdeacons_harness_of_the_earthen_prison.jpg" id="item-764-57" class="Epic chest">Archdeacon's Harness of the Earthen Prison</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/archdeacons_helm_of_the_earthen_prison.jpg" id="item-765-58" class="Epic head">Archdeacon's Helm of the Earthen Prison</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archdeacons_legguards_of_the_abyss.jpg" id="item-819-59" class="Epic legs">Archdeacon's Legguards of the Abyss</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Black Thread</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNoVylsKgDAMRNEt%2BYBGndVUMxqhKLSK2zf5O3OZwqMtkhKa3W9RVh8Cy5dGnrAZ2%2BOasbI4pIMxq6PHTkYZ8NUzTjL%2B648Yyg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_leggings_of_the_black_thread.jpg" id="item-766-60" class="Rare legs">Acolyte's Leggings of the Black Thread</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_straps_of_the_black_thread.jpg" id="item-767-61" class="Rare shoulder">Acolyte's Straps of the Black Thread</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_gloves_of_the_black_thread.jpg" id="item-768-62" class="Rare hands">Monk's Gloves of the Black Thread</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_tunic_of_the_black_thread.jpg" id="item-769-63" class="Rare chest">Monk's Tunic of the Black Thread</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_belt_of_the_black_thread.jpg" id="item-770-64" class="Rare belt">Priest's Belt of the Black Thread</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/priests_visage_of_the_black_thread.jpg" id="item-771-65" class="Rare head">Priest's Visage of the Black Thread</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archpriests_boots_of_the_black_thread.jpg" id="item-772-66" class="Epic feet">Archpriest's Boots of the Black Thread</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archpriests_bracers_of_the_black_thread.jpg" id="item-773-67" class="Epic wrist">Archpriest's Bracers of the Black Thread</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archpriests_fauld_of_the_nine_springs.jpg" id="item-820-68" class="Epic legs">Archpriest's Fauld of the Nine Springs</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Sacred Mountain</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNoVylEKgDAMg%2BErKaib5jTTRisUhVXx%2BnZvX35iPHxJaYDr%2FZqwxhih5ZKWJ2xKf0IJK60hQ1kkMGMno%2BQOXz3bKfc%2F7DoY1A%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_legguards_of_the_sacred_mountain.jpg" id="item-774-69" class="Rare legs">Acolyte's Legguards of the Sacred Mountain</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/acolytes_straps_of_the_sacred_mountain.jpg" id="item-775-70" class="Rare shoulder">Acolyte's Straps of the Sacred Mountain</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_gloves_of_the_sacred_mountain.jpg" id="item-776-71" class="Rare hands">Monk's Gloves of the Sacred Mountain</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/monks_jerkin_of_the_sacred_mountain.jpg" id="item-777-72" class="Rare chest">Monk's Jerkin of the Sacred Mountain</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_belt_of_the_sacred_mountain.jpg" id="item-778-73" class="Rare belt">Deacon's Belt of the Sacred Mountain</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_helm_of_the_sacred_mountain.jpg" id="item-779-74" class="Rare head">Deacon's Helm of the Sacred Mountain</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archdeacons_boots_of_the_sacred_mountain.jpg" id="item-780-75" class="Epic feet">Archdeacon's Boots of the Sacred Mountain</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/archdeacons_bracers_of_the_sacred_mountain.jpg" id="item-781-76" class="Epic wrist">Archdeacon's Bracers of the Sacred Mountain</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: The Kang Pagoda</strong></a> (241,1227)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_underworld.jpg" id="item-2979-77" class="Rare feet">Acolyte's Boots of the Underworld</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_abyss.jpg" id="item-3039-78" class="Rare feet">Acolyte's Boots of the Abyss</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_girdle_of_the_eighteen_pits.jpg" id="item-3032-79" class="Rare belt">Monk's Girdle of the Eighteen Pits</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_belt_of_the_underworld.jpg" id="item-3494-80" class="Rare belt">Monk's Belt of the Underworld</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_straps_of_the_abyss.jpg" id="item-821-81" class="Epic shoulder">Archdeacon's Straps of the Abyss</a> [Shoulder]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLSs0psTI2MDa0zkjMSym2sjAyAgA8uwXI"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_belt_of_the_nine_springs.jpg" id="item-3031-82" class="Rare belt">Monk's Belt of the Nine Springs</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/archpriests_gloves_of_the_nine_springs.jpg" id="item-822-83" class="Epic hands">Archpriest's Gloves of the Nine Springs</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Reliquary of Flame</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTI2MrawTs5ILQYyTcwNrDMS81KKrSyMzACSQAks"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_eighteen_pits.jpg" id="item-3238-84" class="Rare feet">Acolyte's Boots of the Eighteen Pits</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_harness_of_the_eighteen_pits.jpg" id="item-3470-85" class="Rare chest">Acolyte's Harness of the Eighteen Pits</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_gauntlets_of_the_eighteen_pits.jpg" id="item-826-86" class="Epic hands">Archdeacon's Gauntlets of the Eighteen Pits</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTKyNLe0zkhNTLEytrAwtk7OSC0uATJNjAGP2gj1"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_underworld.jpg" id="item-2979-87" class="Rare feet">Acolyte's Boots of the Underworld</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_hood_of_the_underworld.jpg" id="item-3883-88" class="Rare head">Acolyte's Hood of the Underworld</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_robes_of_the_underworld.jpg" id="item-3843-89" class="Rare chest">Acolyte's Robes of the Underworld</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTI2MLa0zkhNTAGyTAytkzNSi4GCFhYmAI4MCOA%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_abyss.jpg" id="item-3039-90" class="Rare feet">Acolyte's Boots of the Abyss</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_helm_of_the_abyss.jpg" id="item-3041-91" class="Rare head">Acolyte's Helm of the Abyss</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_jerkin_of_the_abyss.jpg" id="item-3884-92" class="Rare chest">Acolyte's Jerkin of the Abyss</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTI2MDGwzkhNTLEyNrE0AwA7IwWD"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/acolytes_boots_of_the_nine_springs.jpg" id="item-3040-93" class="Rare feet">Acolyte's Boots of the Nine Springs</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/acolytes_mask_of_the_nine_springs.jpg" id="item-3496-94" class="Rare head">Acolyte's Mask of the Nine Springs</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Pillars of Heaven</strong></a> (1431,1465)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNorzsgvzUlJLbIyNrc0tM5ITUyxMjazNAQAYY4HTw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_armbands_of_the_eighteen_pits.jpg" id="item-3791-95" class="Rare shoulder">Monk's Armbands of the Eighteen Pits</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_helm_of_the_eighteen_pits.jpg" id="item-3691-96" class="Rare head">Monk's Helm of the Eighteen Pits</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNorzsgvzUlJLbIyNrCwtM5ITUwBsiwNrHNS04utjC2NzayLYSosjIwBY4cOtQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_arm_straps_of_the_underworld.jpg" id="item-3089-97" class="Rare shoulder">Monk's Arm-straps of the Underworld</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_hood_of_the_underworld.jpg" id="item-3090-98" class="Rare head">Monk's Hood of the Underworld</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_threads_of_the_underworld.jpg" id="item-3936-99" class="Rare legs">Monk's Threads of the Underworld</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/archpriests_coils_of_the_underworld.jpg" id="item-823-100" class="Epic shoulder">Archpriest's Coils of the Underworld</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNrLSE1MsTI2tzSyzklNL7YyNrA0tC7OyC%2FNSUktsjK2NDC1TkrNKbGyMDKxzkjMSykGskwBrzoQFw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_helm_of_the_abyss.jpg" id="item-3792-101" class="Rare head">Monk's Helm of the Abyss</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_legguards_of_the_abyss.jpg" id="item-3091-102" class="Rare legs">Monk's Legguards of the Abyss</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_straps_of_the_abyss.jpg" id="item-3905-103" class="Rare shoulder">Monk's Straps of the Abyss</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_belt_of_the_abyss.jpg" id="item-824-104" class="Epic belt">Archdeacon's Belt of the Abyss</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_gloves_of_the_abyss.jpg" id="item-825-105" class="Epic hands">Archdeacon's Gloves of the Abyss</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNrLSU0vtjI2NTayzkhNTLEytjQ2tS7OyC%2FNSUktAoobmgIAsH8KNw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/monks_leggings_of_the_nine_springs.jpg" id="item-3532-106" class="Rare legs">Monk's Leggings of the Nine Springs</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_mask_of_the_nine_springs.jpg" id="item-3935-107" class="Rare head">Monk's Mask of the Nine Springs</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/monks_straps_of_the_nine_springs.jpg" id="item-3515-108" class="Rare shoulder">Monk's Straps of the Nine Springs</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Abyss of Kun Whu</strong></a> (38,538)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_bracers_of_the_eighteen_pits.jpg" id="item-2718-109" class="Rare wrist">Deacon's Bracers of the Eighteen Pits</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNorL8osLrEyNjG2tE5KzSmxMjQwMgUAR2kGKw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/priests_straps_of_the_underworld.jpg" id="item-3439-110" class="Rare wrist">Priest's Straps of the Underworld</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/archpriests_cord_of_the_underworld.jpg" id="item-1025-111" class="Epic belt">Archpriest's Cord of the Underworld</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_bracers_of_the_abyss.jpg" id="item-3534-112" class="Rare wrist">Deacon's Bracers of the Abyss</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/priests_bracers_of_the_nine_springs.jpg" id="item-3021-113" class="Rare wrist">Priest's Bracers of the Nine Springs</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Den of the Crowmen</strong></a> (6,575)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_gauntlets_of_the_eighteen_pits.jpg" id="item-2723-114" class="Rare hands">Deacon's Gauntlets of the Eighteen Pits</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNrLSMxLKbYyMjcyt84AMy0MTQBFVgY7"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/priests_gloves_of_the_underworld.jpg" id="item-2727-115" class="Rare hands">Priest's Gloves of the Underworld</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/archpriests_gloves_of_the_underworld.jpg" id="item-814-116" class="Epic hands">Archpriest's Gloves of the Underworld</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_gloves_of_the_abyss.jpg" id="item-3000-117" class="Rare hands">Deacon's Gloves of the Abyss</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTI2NTa3Ts5ILQYyDQzMrYsz8ktzUlKLrCzNjAGzvwqE"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_boots_of_the_eighteen_pits.jpg" id="item-3537-118" class="Rare feet">Deacon's Boots of the Eighteen Pits</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/deacons_harness_of_the_eighteen_pits.jpg" id="item-3007-119" class="Rare chest">Deacon's Harness of the Eighteen Pits</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_armbands_of_the_eighteen_pits.jpg" id="item-963-120" class="Epic shoulder">Archdeacon's Armbands of the Eighteen Pits</a> [Shoulder]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTI2MDW2Ts5ILQYxDSwBQtYGAg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/priests_boots_of_the_underworld.jpg" id="item-3053-121" class="Rare feet">Priest's Boots of the Underworld</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/priests_raiment_of_the_underworld.jpg" id="item-3009-122" class="Rare chest">Priest's Raiment of the Underworld</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/deacons_boots_of_the_abyss.jpg" id="item-3802-123" class="Rare feet">Deacon's Boots of the Abyss</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=10&amp;ab=eNpLS00tsTIxNDayLs7IL81JSS2ysjQzBABUJgck"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/priests_boots_of_the_nine_springs.jpg" id="item-4132-124" class="Rare feet">Priest's Boots of the Nine Springs</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/archpriests_straps_of_the_nine_springs.jpg" id="item-961-125" class="Epic shoulder">Archpriest's Straps of the Nine Springs</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/archdeacons_girdle_of_the_eighteen_pits.jpg" id="item-815-126" class="Epic belt">Archdeacon's Girdle of the Eighteen Pits</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/archpriests_belt_of_the_nine_springs.jpg" id="item-816-127" class="Epic belt">Archpriest's Belt of the Nine Springs</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eighteen Pits</a> [Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archdeacons_leggings_of_the_eighteen_pits.jpg" id="item-817-128" class="Epic legs">Archdeacon's Leggings of the Eighteen Pits</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Underworld</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archpriests_threads_of_the_underworld.jpg" id="item-818-129" class="Epic legs">Archpriest's Threads of the Underworld</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Abyss</a> [Ranger]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archdeacons_legguards_of_the_abyss.jpg" id="item-819-130" class="Epic legs">Archdeacon's Legguards of the Abyss</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nine Springs</a> [BS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/archpriests_fauld_of_the_nine_springs.jpg" id="item-820-131" class="Epic legs">Archpriest's Fauld of the Nine Springs</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Yi-T&#039;ian</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Earthen Prison</a> [Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/deacons_armbands_of_the_earthen_prison.jpg" id="item-762-132" class="Rare shoulder">Deacon's Armbands of the Earthen Prison</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 1.045 seconds using 5 queries, consuming 1854.312 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

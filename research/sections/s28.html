@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - House of Crom</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the House of Crom section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=28';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=28;40">Item Store</a></li>
+ <li><a href="armory.php?s=28;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=28;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=28;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=28;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=28;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=28;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=28;4">Last Legion</a></li>
+ <li><a href="armory.php?s=28;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=28;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=28;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=28;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=28;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=28;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=28;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=28;22">Cimmeria</a></li>
+ <li class="selected"><a href="armory.php?s=">House of Crom</a></li>
+ <li><a href="armory.php?s=28;23">Stygia</a></li>
+ <li><a href="armory.php?s=28;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=28;19">Khitai</a></li>
+ <li><a href="armory.php?s=28;25">Turan</a></li>
+ <li><a href="armory.php?s=28;32">Unchained</a></li>
+ <li><a href="armory.php?s=28;33">World Boss</a></li>
+ <li><a href="armory.php?s=28;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=28;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=28;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=28;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=28;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=28;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=28;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=28;31">Bags</a></li>
+ <li><a href="armory.php?s=28;29">Recipes</a></li>
+ <li><a href="armory.php?s=28;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=28;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=28;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=28;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=28;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=28;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=28;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-house-of-crom">
+<legend>House of Crom</legend>
+<ul class="locations">
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Field of the Dead :: Threshold of Divinity</strong></a> (550,1324)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Companion</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Cross Road King</span><a href="//static.is-better-than.tv/armory/furious_spirit.jpg" id="item-1885-1" class="Enchanted pet">Furious Spirit</a> [Pet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Myk-ra the Apex Alchemist</span><a href="//static.is-better-than.tv/armory/alchemists_pendant.jpg" id="item-1879-2" class="Rare necklace">Alchemist's Pendant</a> [Necklace]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Myk-ra the Apex Alchemist</span><a href="//static.is-better-than.tv/armory/pendant_of_contention.jpg" id="item-3234-3" class="Rare necklace">Pendant of Contention</a> [Necklace]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-los</span><a href="//static.is-better-than.tv/armory/ring_of_conservation.jpg" id="item-1880-4" class="Rare ring">Ring of Conservation</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Xan-Phon the Master Artificer</span><a href="//static.is-better-than.tv/armory/ring_of_scalding.jpg" id="item-2797-5" class="Rare ring">Ring of Scalding</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Hierophant Syth-los</span><a href="//static.is-better-than.tv/armory/ring_of_the_hierophant.jpg" id="item-1881-6" class="Rare ring">Ring of the Hierophant</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull Lord of Black Ice</span><a href="//static.is-better-than.tv/armory/ymirish_frostband.jpg" id="item-1933-7" class="Rare ring">Ymirish Frostband</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Xan-Phon the Master Artificer</span><a href="//static.is-better-than.tv/armory/bolts_of_conflagration.jpg" id="item-2798-8" class="Rare ammunition">Bolts of Conflagration</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Narvi the Opener of Hideous Doors</span><a href="//static.is-better-than.tv/armory/square_shield_of_the_ziggurat.jpg" id="item-1884-9" class="Rare shield">Square Shield of the Ziggurat</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Narvi the Opener of Hideous Doors</span><a href="//static.is-better-than.tv/armory/talisman_of_the_ziggurat.jpg" id="item-1883-10" class="Rare talisman">Talisman of the Ziggurat</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Narvi the Opener of Hideous Doors</span><a href="//static.is-better-than.tv/armory/throwing_axe_of_the_ziggurat.jpg" id="item-1882-11" class="Rare thrown">Throwing Axe of the Ziggurat</a> [Thrown]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bedlam</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMrUwsk5LTS0BsYyty4syi8FMQ%2BuMxLyUYhDTAABXyA4t"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/arm_straps_of_bedlam.jpg" id="item-2582-12" class="Rare shoulder">Arm-straps of Bedlam</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/boots_of_bedlam.jpg" id="item-2583-13" class="Rare feet">Boots of Bedlam</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/bracers_of_bedlam.jpg" id="item-2581-14" class="Rare wrist">Bracers of Bedlam</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/gloves_of_bedlam.jpg" id="item-2580-15" class="Rare hands">Gloves of Bedlam</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Lunacy</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjU2s05LTS0BsSysy4syi8FMS%2BuMxLyUYhDTHABXuQ4x"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/armstraps_of_lunacy.jpg" id="item-2536-16" class="Rare shoulder">Armstraps of Lunacy</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/boots_of_lunacy.jpg" id="item-2538-17" class="Rare feet">Boots of Lunacy</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/bracers_of_lunacy.jpg" id="item-2539-18" class="Rare wrist">Bracers of Lunacy</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/gloves_of_lunacy.jpg" id="item-2537-19" class="Rare hands">Gloves of Lunacy</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Sepulcher</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjMwt05KzSkBsYyt01JTwSwT6%2FKizGIw0xQARNMNtw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_sepulcher.jpg" id="item-2607-20" class="Rare shoulder">Arm-straps of the Sepulcher</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/belt_of_the_sepulcher.jpg" id="item-2603-21" class="Rare belt">Belt of the Sepulcher</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/boots_of_the_sepulcher.jpg" id="item-2604-22" class="Rare feet">Boots of the Sepulcher</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/wristband_of_the_sepulcher.jpg" id="item-2605-23" class="Rare wrist">Wristband of the Sepulcher</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Spheres</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMrW0sE5KzSkBsUytM1ITU0AsI%2BuMxLyUYhDTzDonNR3MMrZOzkgtBqs0sS4vyoQwLQGd9hd2"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_spheres.jpg" id="item-2598-24" class="Rare shoulder">Arm-straps of the Spheres</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/belt_of_the_spheres.jpg" id="item-2595-25" class="Rare belt">Belt of the Spheres</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/circlet_of_the_spheres.jpg" id="item-2592-26" class="Rare head">Circlet of the Spheres</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_spheres.jpg" id="item-2596-27" class="Rare hands">Hand-wraps of the Spheres</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/leggings_of_the_spheres.jpg" id="item-2593-28" class="Rare legs">Leggings of the Spheres</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/tunic_of_the_spheres.jpg" id="item-2594-29" class="Rare chest">Tunic of the Spheres</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/wristband_of_the_spheres.jpg" id="item-2599-30" class="Rare wrist">Wristband of the Spheres</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Wells of Night</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjUztE5KzSkBskzNrdNSU0EsMwPr8qLMYrCghXVGYl5KMYhpaZ2RmpgCYplZ56Smg8SMDa2TM1IhKk0Bmy4aPw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/armstraps_of_the_wells_of_night.jpg" id="item-2561-31" class="Rare shoulder">Armstraps of the Wells of Night</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/belt_of_the_wells_of_night.jpg" id="item-2557-32" class="Rare belt">Belt of the Wells of Night</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/boots_of_the_wells_of_night.jpg" id="item-2560-33" class="Rare feet">Boots of the Wells of Night</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/bracers_of_the_wells_of_night.jpg" id="item-2558-34" class="Rare wrist">Bracers of the Wells of Night</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/gloves_of_the_wells_of_night.jpg" id="item-2559-35" class="Rare hands">Gloves of the Wells of Night</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/headdress_of_the_wells_of_night.jpg" id="item-2556-36" class="Rare head">Headdress of the Wells of Night</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/leggings_of_the_wells_of_night.jpg" id="item-2531-37" class="Rare legs">Leggings of the Wells of Night</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/tunic_of_the_wells_of_night.jpg" id="item-2555-38" class="Rare chest">Tunic of the Wells of Night</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Insanity</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjUxtk5LTS0Bscysy4syi8FME%2BuMxLyUYhDTFABXMw4p"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/armbands_of_insanity.jpg" id="item-2543-39" class="Rare shoulder">Armbands of Insanity</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/boots_of_insanity.jpg" id="item-2546-40" class="Rare feet">Boots of Insanity</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/bracers_of_insanity.jpg" id="item-2544-41" class="Rare wrist">Bracers of Insanity</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/grips_of_insanity.jpg" id="item-2545-42" class="Rare hands">Grips of Insanity</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ichorous</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMrWwsC4vyiwuATEtrZNSc8Asc%2BuMxLyUYiDT0sA6OSMVIm9mnZGamAJimVjnpKaDpC1MAbBEF3I%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/armbands_of_the_ichorous.jpg" id="item-2588-43" class="Rare shoulder">Armbands of the Ichorous</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/bracers_of_the_ichorous.jpg" id="item-2589-44" class="Rare wrist">Bracers of the Ichorous</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/girdle_of_the_ichorous.jpg" id="item-2587-45" class="Rare belt">Girdle of the Ichorous</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/grips_of_the_ichorous.jpg" id="item-2590-46" class="Rare hands">Grips of the Ichorous</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/harness_of_the_ichorus.jpg" id="item-2586-47" class="Rare chest">Harness of the Ichorus</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/helm_of_the_ichorous.jpg" id="item-2584-48" class="Rare head">Helm of the Ichorous</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/leggings_of_the_ichorous.jpg" id="item-2585-49" class="Rare legs">Leggings of the Ichorous</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nebulous</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjWzsE5KzSkBsUytM1ITU0AsI%2BuMxLyUYhDT3Do5I7UYLG9sXV6UCWGaAQDA%2BBRu"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/armstraps_of_the_nebulous.jpg" id="item-2568-50" class="Rare shoulder">Armstraps of the Nebulous</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/belt_of_the_nebulous.jpg" id="item-2565-51" class="Rare belt">Belt of the Nebulous</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/circlet_of_the_nebulous.jpg" id="item-2562-52" class="Rare head">Circlet of the Nebulous</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_nebulous.jpg" id="item-2567-53" class="Rare hands">Hand-wraps of the Nebulous</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/tunic_of_the_nebulous.jpg" id="item-2563-54" class="Rare chest">Tunic of the Nebulous</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/wristband_of_the_nebulous.jpg" id="item-2566-55" class="Rare wrist">Wristband of the Nebulous</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Unutterable</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjMysk5LTS0BsYytMxLzUopBTAPr8qLMYrCoIQBUew4Z"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_unutterable.jpg" id="item-2622-56" class="Rare shoulder">Arm-straps of the Unutterable</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/boots_of_the_unutterable.jpg" id="item-2623-57" class="Rare feet">Boots of the Unutterable</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_unutterable.jpg" id="item-2620-58" class="Rare hands">Hand-wraps of the Unutterable</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/wristband_of_the_unutterable.jpg" id="item-2621-59" class="Rare wrist">Wristband of the Unutterable</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Inconceivable</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjU1tk5LTS0BsYysk1JzwCwD64zEvJRiENMEAEOQDZI%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/armbands_of_the_inconceivable.jpg" id="item-2553-60" class="Rare shoulder">Armbands of the Inconceivable</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/boots_of_the_inconceivable.jpg" id="item-2552-61" class="Rare feet">Boots of the Inconceivable</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/girdle_of_the_inconceivable.jpg" id="item-2550-62" class="Rare belt">Girdle of the Inconceivable</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/grips_of_the_inconceivable.jpg" id="item-2554-63" class="Rare hands">Grips of the Inconceivable</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Membranous</a> [BS/Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjM0si4vyiwuATFNrJNSc8AsQ%2BuMxLyUYhDT2Do5IxUsb2BpnZGamAJiWVjnpKaDpQ0Ap9MXOQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/armbands_of_the_membranous.jpg" id="item-2612-64" class="Rare shoulder">Armbands of the Membranous</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/bracers_of_the_membranous.jpg" id="item-2614-65" class="Rare wrist">Bracers of the Membranous</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/girdle_of_the_membranous.jpg" id="item-2611-66" class="Rare belt">Girdle of the Membranous</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/grips_of_the_membranous.jpg" id="item-2613-67" class="Rare hands">Grips of the Membranous</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/harness_of_the_membranous.jpg" id="item-2609-68" class="Rare chest">Harness of the Membranous</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/helm_of_the_membranous.jpg" id="item-2608-69" class="Rare head">Helm of the Membranous</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-Los</span><a href="//static.is-better-than.tv/armory/legguards_of_the_membranous.jpg" id="item-2610-70" class="Rare legs">Legguards of the Membranous</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Writhing</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjM2tE5LTS0BsowsrZNSc8Asc%2BuMxLyUYhDTAgBD2Q2b"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/armbands_of_writhing.jpg" id="item-2631-71" class="Rare shoulder">Armbands of Writhing</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/boots_of_writhing.jpg" id="item-2629-72" class="Rare feet">Boots of Writhing</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/girdle_of_writhing.jpg" id="item-2627-73" class="Rare belt">Girdle of Writhing</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Am-ra the Trapper</span><a href="//static.is-better-than.tv/armory/grips_of_writhing.jpg" id="item-2628-74" class="Rare hands">Grips of Writhing</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Beyond</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLSs0psTIyNTeyTktNBbNMrTMS81KKQUwz6%2FKizGKwqDEACgwMdA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shryke</span><a href="//static.is-better-than.tv/armory/belt_of_the_beyond.jpg" id="item-2572-75" class="Rare belt">Belt of the Beyond</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Alchemist Myk-ra</span><a href="//static.is-better-than.tv/armory/boots_of_the_beyond.jpg" id="item-2575-76" class="Rare feet">Boots of the Beyond</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vram the Duellist</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_beyond.jpg" id="item-2576-77" class="Rare hands">Gauntlets of the Beyond</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Dem-ru the Mage</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_beyond.jpg" id="item-2573-78" class="Rare wrist">Vambraces of the Beyond</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Atlantean</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIytDQ0tk5KzSkBsUys01JTQSwDS%2BuMxLyUYpCgoXVOajqYZWBdXpRZDFZpBACquxP7"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Arcanist Khor-nu</span><a href="//static.is-better-than.tv/armory/armguards_of_the_atlantean.jpg" id="item-1913-79" class="Rare shoulder">Armguards of the Atlantean</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jotunrodull</span><a href="//static.is-better-than.tv/armory/belt_of_the_atlantean.jpg" id="item-1914-80" class="Rare belt">Belt of the Atlantean</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Thaex the Challenger</span><a href="//static.is-better-than.tv/armory/boots_of_the_atlantean.jpg" id="item-1909-81" class="Rare feet">Boots of the Atlantean</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Artificer Xan-Phon</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_atlantean.jpg" id="item-1911-82" class="Rare hands">Gauntlets of the Atlantean</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Gor-na the Commander</span><a href="//static.is-better-than.tv/armory/legguards_of_the_atlantean.jpg" id="item-1910-83" class="Rare legs">Legguards of the Atlantean</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest Syth-los</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_atlantean.jpg" id="item-1912-84" class="Rare wrist">Vambraces of the Atlantean</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Field of the Dead :: The Vile Nativity</strong></a> (550,1324)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/bladekissed_cloak_of_the_final_goodnight.jpg" id="item-1877-85" class="Epic back">Bladekissed Cloak of the Final Goodnight</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/mantle_of_valkas_wrath.jpg" id="item-1874-86" class="Epic back">Mantle of Valka's Wrath</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/ring_of_the_excavator.jpg" id="item-2947-87" class="Rare ring">Ring of the Excavator</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/shroud_of_the_ghost_crows_spite.jpg" id="item-1875-88" class="Epic back">Shroud of the Ghost Crow's Spite</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/valkas_illimitable_aegis.jpg" id="item-1878-89" class="Epic back">Valka's Illimitable Aegis</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/vicious_cape_of_ill_intent.jpg" id="item-1876-90" class="Epic back">Vicious Cape of Ill Intent</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/kazaak_square_shield.jpg" id="item-3259-91" class="Rare shield">Kazaak Square Shield</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/vanir_avenger.jpg" id="item-3398-92" class="Rare 1hb">Vanir Avenger</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/vanir_butcher_axe.jpg" id="item-3272-93" class="Rare 1he">Vanir Butcher Axe</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/vanir_fleshcarver.jpg" id="item-3258-94" class="Rare dagger">Vanir Fleshcarver</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/vanir_stonecrusher.jpg" id="item-3260-95" class="Rare 2hb">Vanir Stonecrusher</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Overseer Olik</span><a href="//static.is-better-than.tv/armory/wind_of_the_vanir.jpg" id="item-3685-96" class="Rare bow">Wind of the Vanir</a> [Bow]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cape_of_atlantis.jpg" id="item-1915-97" class="Epic back">Cape of Atlantis</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/royal_atlantean_gown.jpg" id="item-1906-98" class="Rare chest">Royal Atlantean Gown</a> [Chest]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bedlam</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLSs0psTIyNbe0zkhNTAGxzK1zUtOLgSxjI%2BvkjNRisLQFAPmKC%2BM%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/belt_of_bedlam.jpg" id="item-2579-99" class="Rare belt">Belt of Bedlam</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/headdress_of_bedlam.jpg" id="item-2577-100" class="Rare head">Headdress of Bedlam</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/leggings_of_bedlam.jpg" id="item-2532-101" class="Rare legs">Leggings of Bedlam</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/tunic_of_bedlam.jpg" id="item-2578-102" class="Rare chest">Tunic of Bedlam</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Lunacy</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLSs0psTIyNTa1zkhNTLEyMre0tM5JTS8GiRlbJ2ekFoOlTQD5EAva"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sentinel of Defense</span><a href="//static.is-better-than.tv/armory/belt_of_lunacy.jpg" id="item-2535-103" class="Rare belt">Belt of Lunacy</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/headdress_of_lunacy.jpg" id="item-2799-104" class="Rare head">Headdress of Lunacy</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/leggings_of_lunacy.jpg" id="item-2533-105" class="Rare legs">Leggings of Lunacy</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/tunic_of_lunacy.jpg" id="item-2534-106" class="Rare chest">Tunic of Lunacy</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Sepulcher</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNrLSE1MsTIyMzCwzkjMSykGMc2sc1LTwSwj6%2BSM1OISENMQAAVsDCU%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/circlet_of_the_sepulcher.jpg" id="item-2600-107" class="Rare head">Circlet of the Sepulcher</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sentinel of Defense</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_sepulcher.jpg" id="item-2606-108" class="Rare hands">Hand-wraps of the Sepulcher</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/leggings_of_the_sepulcher.jpg" id="item-2602-109" class="Rare legs">Leggings of the Sepulcher</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/tunic_of_the_sepulcher.jpg" id="item-2601-110" class="Rare chest">Tunic of the Sepulcher</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Spheres</a> [Demo/Necro]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/boots_of_the_spheres.jpg" id="item-2597-111" class="Rare feet">Boots of the Spheres</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Insanity</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLSs0psTIyNTGyTs5ILQYyjQ0NrTNSE1NAggbWOanpxSCWIQD6ogvA"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sentinel of Defense</span><a href="//static.is-better-than.tv/armory/girdle_of_insanity.jpg" id="item-2542-112" class="Rare belt">Girdle of Insanity</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/harness_of_insanity.jpg" id="item-2311-113" class="Rare chest">Harness of Insanity</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/helm_of_insanity.jpg" id="item-2540-114" class="Rare head">Helm of Insanity</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/leggings_of_insanity.jpg" id="item-2541-115" class="Rare legs">Leggings of Insanity</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ichorous</a> [Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/boots_of_the_ichorous.jpg" id="item-2591-116" class="Rare feet">Boots of the Ichorous</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Nebulous</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/leggings_of_the_nebulous.jpg" id="item-2564-117" class="Rare legs">Leggings of the Nebulous</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Unutterable</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLSs0psTIyM7S0zkhNTAGxzKxzUtOLQSwL6%2BSM1GKwtDkA%2BJAL1w%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sentinel of Defense</span><a href="//static.is-better-than.tv/armory/belt_of_the_unutterable.jpg" id="item-2619-118" class="Rare belt">Belt of the Unutterable</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/circlet_of_the_unutterable.jpg" id="item-2616-119" class="Rare head">Circlet of the Unutterable</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/leggings_of_the_unutterable.jpg" id="item-2618-120" class="Rare legs">Leggings of the Unutterable</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/tunic_of_the_unutterable.jpg" id="item-2617-121" class="Rare chest">Tunic of the Unutterable</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Inconceivable</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorL8osLrEyMjU1tE7OSAUzTSysM1ITU0Asc%2Buc1PRiEMsSABNADG0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/bracers_of_the_inconceivable.jpg" id="item-2551-122" class="Rare wrist">Bracers of the Inconceivable</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/harness_of_the_inconceivable.jpg" id="item-2548-123" class="Rare chest">Harness of the Inconceivable</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/helm_of_the_inconceivable.jpg" id="item-2547-124" class="Rare head">Helm of the Inconceivable</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/legguards_of_the_inconceivable.jpg" id="item-2549-125" class="Rare legs">Legguards of the Inconceivable</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Membranous</a> [BS/Ranger]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sentinel of Defense</span><a href="//static.is-better-than.tv/armory/boots_of_the_membranous.jpg" id="item-2615-126" class="Rare feet">Boots of the Membranous</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Writhing</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorL8osLrEyMjM2sE7OSAUzjcysM1ITU0AsE%2Buc1PRiEMsUABKQDF8%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/bracers_of_writhing.jpg" id="item-2630-127" class="Rare wrist">Bracers of Writhing</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/harness_of_writhing.jpg" id="item-2626-128" class="Rare chest">Harness of Writhing</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/helm_of_writhing.jpg" id="item-2624-129" class="Rare head">Helm of Writhing</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/legguards_of_writhing.jpg" id="item-2625-130" class="Rare legs">Legguards of Writhing</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Beyond</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNorzsgvzUlJLbIyMjU3sU7OSC0uATENrDNSE1OALDNL65zU9GKQmCEARroNmQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Idols of Silence</span><a href="//static.is-better-than.tv/armory/armguards_of_the_beyond.jpg" id="item-2574-131" class="Rare shoulder">Armguards of the Beyond</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/chestplate_of_the_beyond.jpg" id="item-2570-132" class="Rare chest">Chestplate of the Beyond</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/helm_of_the_beyond.jpg" id="item-2569-133" class="Rare head">Helm of the Beyond</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Argo-satha</span><a href="//static.is-better-than.tv/armory/legguards_of_the_beyond.jpg" id="item-2571-134" class="Rare legs">Legguards of the Beyond</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Atlantean</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=28&amp;ab=eNpLzkgtLrEytDQwt85ITUwBsSwARGEF%2FA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Queen Cao-Polyphya</span><a href="//static.is-better-than.tv/armory/chestplate_of_the_atlantean.jpg" id="item-1907-135" class="Rare chest">Chestplate of the Atlantean</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Little Prince</span><a href="//static.is-better-than.tv/armory/helm_of_the_atlantean.jpg" id="item-1908-136" class="Rare head">Helm of the Atlantean</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible raid"><a href="#" onclick="toggleList(this); return false"><strong>Field of the Dead :: Threshold of Divinity - The Lurker at the Threshold</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Raid Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/death_bloom_thorn_caster.jpg" id="item-1975-137" class="Epic bow">Death-bloom Thorn Caster</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/impenetrable_word_of_valka.jpg" id="item-1977-138" class="Epic shield">Impenetrable Word of Valka</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/parched_blade_of_slaughter_wine.jpg" id="item-1984-139" class="Epic 2he">Parched Blade of Slaughter Wine</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ravens_feast.jpg" id="item-1972-140" class="Epic 2he">Raven's Feast</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/rod_of_the_resplendent_phoenix.jpg" id="item-1976-141" class="Epic staff">Rod of the Resplendent Phoenix</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/song_of_the_four_wailing_elohim.jpg" id="item-1979-142" class="Epic 2hb">Song of the Four Wailing Elohim</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/steelforged_salvation_of_the_undying_atlantis.jpg" id="item-1971-143" class="Epic shield">Steelforged Salvation of the Undying Atlantis</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/the_heart_of_atlantis.jpg" id="item-1974-144" class="Epic talisman">The Heart of Atlantis</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/the_silent_lullaby.jpg" id="item-1983-145" class="Epic dagger">The Silent Lullaby</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/the_three_fangs_of_reckoning.jpg" id="item-2111-146" class="Epic polearm">The Three Fangs of Reckoning</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tri_glave_of_the_demons_roar.jpg" id="item-1973-147" class="Epic polearm">Tri-Glave of the Demon's Roar</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/valkas_woe_hymn.jpg" id="item-2116-148" class="Epic 1hb">Valka's Woe Hymn</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/whisperer_of_evil_luck.jpg" id="item-2112-149" class="Epic crossbow">Whisperer of Evil Luck</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wound_hoe_of_picts_ruin.jpg" id="item-1978-150" class="Epic 1he">Wound-hoe of Picts Ruin</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Field of the Dead :: Threshold of Divinity - Shryke the Storm-Shrieker</strong></a> (550,1324)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_grounding.jpg" id="item-4354-151" class="Rare ring">Ring of Grounding</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Field of the Dead :: Threshold of Divinity - Khor-nu the Archarcanist</strong></a> (550,1324)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/collar_of_endurance.jpg" id="item-4353-152" class="Rare necklace">Collar of Endurance</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 1.015 seconds using 5 queries, consuming 1847.414 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Turan</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Turan section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=25';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=25;40">Item Store</a></li>
+ <li><a href="armory.php?s=25;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=25;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=25;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=25;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=25;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=25;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=25;4">Last Legion</a></li>
+ <li><a href="armory.php?s=25;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=25;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=25;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=25;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=25;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=25;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=25;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=25;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=25;28">House of Crom</a></li>
+ <li><a href="armory.php?s=25;23">Stygia</a></li>
+ <li><a href="armory.php?s=25;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=25;19">Khitai</a></li>
+ <li class="selected"><a href="armory.php?s=">Turan</a></li>
+ <li><a href="armory.php?s=25;32">Unchained</a></li>
+ <li><a href="armory.php?s=25;33">World Boss</a></li>
+ <li><a href="armory.php?s=25;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=25;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=25;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=25;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=25;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=25;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=25;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=25;31">Bags</a></li>
+ <li><a href="armory.php?s=25;29">Recipes</a></li>
+ <li><a href="armory.php?s=25;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=25;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=25;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=25;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=25;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=25;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=25;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-turan">
+<legend>Turan</legend>
+<ul class="locations">
+ <li class="collapsible boss"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Ardashir Arena</strong></a> (42,359)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/crossbow_of_the_undefeated.jpg" id="item-3291-1" class="Epic crossbow">Crossbow of the Undefeated</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/falchion_of_the_arena_master.jpg" id="item-3294-2" class="Epic 2he">Falchion of the Arena Master</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hammer_of_the_arena_victor.jpg" id="item-3297-3" class="Epic 2hb">Hammer of the Arena Victor</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mace_of_the_champion.jpg" id="item-3299-4" class="Epic 1hb">Mace of the Champion</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shiv_of_the_triumphant.jpg" id="item-3301-5" class="Epic dagger">Shiv of the Triumphant</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/staff_of_the_gladiator.jpg" id="item-3302-6" class="Epic staff">Staff of the Gladiator</a> [Staff]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible Boss"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Ardashir Arena - Marjan of Kara-Shehr/Tomb King</strong></a> (42,359)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Putrescent</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNpLSs0psTIxNjW0TktNLbEytjQ1sy4vyiwGMi3MjACRagkg"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/belt_of_the_putrescent.jpg" id="item-4351-7" class="Rare belt">Belt of the Putrescent</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Tomb King</span><a href="//static.is-better-than.tv/armory/boots_of_the_putrescent.jpg" id="item-3956-8" class="Rare feet">Boots of the Putrescent</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Commander Kamangir / Tomb King</span><a href="//static.is-better-than.tv/armory/bracers_of_the_putrescent.jpg" id="item-3862-9" class="Rare wrist">Bracers of the Putrescent</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Usurper</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorzsgvzUlJLbIytjQ1tk5KzSkBsUysy4syi0usDC1MjQDK6wrk"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/armbands_of_the_usurper.jpg" id="item-3953-10" class="Rare shoulder">Armbands of the Usurper</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/belt_of_the__usurper.jpg" id="item-3954-11" class="Rare belt">Belt of the  Usurper</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_usurper.jpg" id="item-1852-12" class="Rare wrist">Bracers of the Usurper</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Grand Monarch</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNpLS00tsTK2MDO1Li%2FKLC6xMjI1NLcuzsgvzUlJLbIytjQ1BwDCUQrl"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_grand_monarch.jpg" id="item-3865-13" class="Rare feet">Boots of the Grand Monarch</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_grand_monarch.jpg" id="item-2517-14" class="Rare wrist">Bracers of the Grand Monarch</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Tomb King</span><a href="//static.is-better-than.tv/armory/straps_of_the_grand_monarch.jpg" id="item-3957-15" class="Rare shoulder">Straps of the Grand Monarch</a> [Shoulder]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Kozak Slayer</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorzsgvzUlJLbIyMjWwtE5LTS2xMjE2NbIuL8osLrEytjAztE5KzSkBShtaAgBIOA3F"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/armbands_of_the_kozak_slayer.jpg" id="item-2509-16" class="Rare shoulder">Armbands of the Kozak Slayer</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Tomb King</span><a href="//static.is-better-than.tv/armory/boots_of_the_kozak_slayer.jpg" id="item-4352-17" class="Rare feet">Boots of the Kozak Slayer</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Commander Kamangir / Tomb King</span><a href="//static.is-better-than.tv/armory/bracers_of_the_kozak_slayer.jpg" id="item-3861-18" class="Rare wrist">Bracers of the Kozak Slayer</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/girdle_of_the_kozak_slayer.jpg" id="item-2519-19" class="Rare belt">Girdle of the Kozak Slayer</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Renegade</a> [BS/Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorzsgvzUlJLbIyMjSysE5LTS0Bscyty4syi8FMM%2Buk1BwQy9gAAEcmDa4%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/armbands_of_the_renegade.jpg" id="item-2128-20" class="Rare shoulder">Armbands of the Renegade</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_renegade.jpg" id="item-2127-21" class="Rare feet">Boots of the Renegade</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_renegade.jpg" id="item-2126-22" class="Rare wrist">Bracers of the Renegade</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/girdle_of_the_renegade.jpg" id="item-2130-23" class="Rare belt">Girdle of the Renegade</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Crimson Fort</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorzsgvzUlJLbIytjQ1tU5KzSmxMjE2NbBOS00tsTIyNTSzLi%2FKLAYxjYwBRfINwA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Tomb King</span><a href="//static.is-better-than.tv/armory/armguards_of_the_crimson_fort.jpg" id="item-3955-24" class="Rare shoulder">Armguards of the Crimson Fort</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Tomb King</span><a href="//static.is-better-than.tv/armory/belt_of_the_crimson_fort.jpg" id="item-4350-25" class="Rare belt">Belt of the Crimson Fort</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_crimson_fort.jpg" id="item-2516-26" class="Rare feet">Boots of the Crimson Fort</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_crimson_fort.jpg" id="item-2523-27" class="Rare wrist">Vambraces of the Crimson Fort</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Ardashir Fort</strong></a> (353,829)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/soulbearer.jpg" id="item-2648-28" class="Epic necklace">Soulbearer</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/arrows_of_the_bastion.jpg" id="item-1849-29" class="Rare ammunition">Arrows of the Bastion</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir</span><a href="//static.is-better-than.tv/armory/blade_of_the_turanian_army.jpg" id="item-1931-30" class="Rare dagger">Blade of the Turanian Army</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir</span><a href="//static.is-better-than.tv/armory/bow_of_the_rhino_rider.jpg" id="item-1929-31" class="Rare bow">Bow of the Rhino Rider</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/crossbow_of_ardashir_garrison.jpg" id="item-3681-32" class="Rare crossbow">Crossbow of Ardashir Garrison</a> [Crossbow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/guisarme_of_the_bastion.jpg" id="item-2713-33" class="Rare polearm">Guisarme of the Bastion</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/hammer_of_dreams.jpg" id="item-3018-34" class="Rare 1hb">Hammer of Dreams</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir</span><a href="//static.is-better-than.tv/armory/hammer_of_the_rhino_rider.jpg" id="item-1928-35" class="Rare 2hb">Hammer of the Rhino Rider</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir</span><a href="//static.is-better-than.tv/armory/mark_of_the_ancient_sands.jpg" id="item-1848-36" class="Rare talisman">Mark of the Ancient Sands</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/putrescent_blade.jpg" id="item-3434-37" class="Rare dagger">Putrescent Blade</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/shield_of_the_kozak_slayer.jpg" id="item-3337-38" class="Rare shield">Shield of the Kozak Slayer</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/staff_of_the_crustacean.jpg" id="item-3682-39" class="Rare staff">Staff of the Crustacean</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/sword_of_the_crimson_fort.jpg" id="item-3694-40" class="Rare 1he">Sword of the Crimson Fort</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir</span><a href="//static.is-better-than.tv/armory/sword_of_the_old_commander.jpg" id="item-1930-41" class="Rare 2he">Sword of the Old Commander</a> [2HE]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Putrescent</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorL8osLrEytjAzss5ITUyxMrQwMbfOSU0vtjIyMzGzTs5IBUobmRoZAgAQewxq"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Commander Kamangir / Tomb King</span><a href="//static.is-better-than.tv/armory/bracers_of_the_putrescent.jpg" id="item-3862-42" class="Rare wrist">Bracers of the Putrescent</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/hood_of_the_putrescent.jpg" id="item-1847-43" class="Epic head">Hood of the Putrescent</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/leggings_of_the_putrescent.jpg" id="item-2646-44" class="Rare legs">Leggings of the Putrescent</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/tunic_of_the_putrescent.jpg" id="item-2521-45" class="Rare chest">Tunic of the Putrescent</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Usurper</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorL8osLrEytDA1ss5ITUyxMjI1sLDOSU0vtjK2NDW0Ts5IBUobmRoZAQAPqgxj"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_usurper.jpg" id="item-1852-46" class="Rare wrist">Bracers of the Usurper</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/hood_of_the_usurper.jpg" id="item-2508-47" class="Epic head">Hood of the Usurper</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/leggings_of_the_usurper.jpg" id="item-3951-48" class="Rare legs">Leggings of the Usurper</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/tunic_of_the_usurper.jpg" id="item-2522-49" class="Rare chest">Tunic of the Usurper</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Grand Monarch</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorL8osLrEyMjU0t85JTS8GsUytM1ITU6wMLUyMrZMzUiHSJgAQMQxf"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_grand_monarch.jpg" id="item-2517-50" class="Rare wrist">Bracers of the Grand Monarch</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/coverings_of_the_grand_monarch.jpg" id="item-2515-51" class="Rare legs">Coverings of the Grand Monarch</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/headdress_of_the_grand_monarch.jpg" id="item-1843-52" class="Epic head">Headdress of the Grand Monarch</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/vestment_of_the_grand_monarch.jpg" id="item-2514-53" class="Rare chest">Vestment of the Grand Monarch</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Kozak Slayer</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorL8osLrEytjAztE7OSAUyDS1MDa0zUhNTgCwTI%2Buc1PRiKyNTIwMAE28MYA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Commander Kamangir / Tomb King</span><a href="//static.is-better-than.tv/armory/bracers_of_the_kozak_slayer.jpg" id="item-3861-54" class="Rare wrist">Bracers of the Kozak Slayer</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/harness_of_the_kozak_slayer.jpg" id="item-1851-55" class="Rare chest">Harness of the Kozak Slayer</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/headband_of_the_kozak_slayer.jpg" id="item-1842-56" class="Epic head">Headband of the Kozak Slayer</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/leggings_of_the_kozak_slayer.jpg" id="item-2520-57" class="Rare legs">Leggings of the Kozak Slayer</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Renegade</a> [BS/Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNorL8osLrEyMjQys07OSIUwLa0zUhNTQCxT65zU9GIgy9gQABIKDFE%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/bracers_of_the_renegade.jpg" id="item-2126-58" class="Rare wrist">Bracers of the Renegade</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/breastplate_of_the_renegade.jpg" id="item-2129-59" class="Rare chest">Breastplate of the Renegade</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/helm_of_the_renegade.jpg" id="item-2125-60" class="Epic head">Helm of the Renegade</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/legguards_of_the_renegade.jpg" id="item-2131-61" class="Rare legs">Legguards of the Renegade</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Crimson Fort</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=25&amp;ab=eNpLzkgtLrEyMjW0sM5ITUyxMrQwMbPOSU0vtjIyM7G0Li%2FKBEsbGQMAC%2F8Maw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> General Arman</span><a href="//static.is-better-than.tv/armory/chestplate_of_the_crimson_fort.jpg" id="item-2518-62" class="Rare chest">Chestplate of the Crimson Fort</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/helm_of_the_crimson_fort.jpg" id="item-1846-63" class="Epic head">Helm of the Crimson Fort</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sodabeh</span><a href="//static.is-better-than.tv/armory/legguards_of_the_crimson_fort.jpg" id="item-2649-64" class="Rare legs">Legguards of the Crimson Fort</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Kamangir / Marjan of Kara-Shehr</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_crimson_fort.jpg" id="item-2523-65" class="Rare wrist">Vambraces of the Crimson Fort</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Artus</strong></a> (431,723)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_chestguard.jpg" id="item-4172-66" class="Rare chest">Hero's Chestguard</a> [Chest]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_hauberk.jpg" id="item-4173-67" class="Rare chest">Hero's Hauberk</a> [Chest]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_jerkin.jpg" id="item-4174-68" class="Rare chest">Hero's Jerkin</a> [Chest]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_tunic.jpg" id="item-4175-69" class="Rare chest">Hero's Tunic</a> [Chest]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Dead Man&#039;s Hand - Unchained</strong></a> (427,744)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/quartermasters_band.jpg" id="item-3274-70" class="Rare ring">Quartermaster's Band</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/quartermasters_remedial_band.jpg" id="item-3273-71" class="Rare ring">Quartermaster's Remedial Band</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/quartermasters_war_band.jpg" id="item-3275-72" class="Rare ring">Quartermaster's War Band</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/harlots_bow.jpg" id="item-3946-73" class="Rare bow">Harlot's Bow</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/harlots_crossbow.jpg" id="item-3463-74" class="Rare crossbow">Harlot's Crossbow</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/harlots_stiletto.jpg" id="item-3477-75" class="Rare dagger">Harlot's Stiletto</a> [Dagger]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/armbands_of_the_merciless.jpg" id="item-3461-76" class="Rare shoulder">Armbands of the Merciless</a> [Shoulder]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bracers_of_the_merciless.jpg" id="item-3445-77" class="Rare wrist">Bracers of the Merciless</a> [Wrist]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hood_of_the_merciless.jpg" id="item-3462-78" class="Rare head">Hood of the Merciless</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible boss"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Gugalanna of Yimsha</strong></a> (143,816)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bonus Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_yimsha.jpg" id="item-4342-79" class="Rare ring">Ring of Yimsha</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Coast of Ardashir :: Isle of Iron Statues</strong></a> (427,744)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/diabolic_pirate_ring.jpg" id="item-3235-80" class="Rare ring">Diabolic Pirate Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/forceful_pirate_ring.jpg" id="item-1850-81" class="Rare ring">Forceful Pirate Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/panoptic_pirate_ring.jpg" id="item-3118-82" class="Rare ring">Panoptic Pirate Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sprightly_pirate_pendant.jpg" id="item-3144-83" class="Rare necklace">Sprightly Pirate Pendant</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sturdy_pirate_ring.jpg" id="item-1982-84" class="Rare ring">Sturdy Pirate Ring</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/headdress_of_the_blue_sea_(female_version).jpg" id="item-3013-85" class="Rare head">Headdress of the Blue Sea (Female Version)</a> [Head]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/headdress_of_the_blue_sea_(male_version).jpg" id="item-2683-86" class="Rare head">Headdress of the Blue Sea (Male Version)</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.967 seconds using 5 queries, consuming 1704.039 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

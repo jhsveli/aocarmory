@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Unchained</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Unchained section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=32';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=32;40">Item Store</a></li>
+ <li><a href="armory.php?s=32;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=32;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=32;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=32;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=32;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=32;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=32;4">Last Legion</a></li>
+ <li><a href="armory.php?s=32;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=32;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=32;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=32;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=32;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=32;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=32;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=32;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=32;28">House of Crom</a></li>
+ <li><a href="armory.php?s=32;23">Stygia</a></li>
+ <li><a href="armory.php?s=32;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=32;19">Khitai</a></li>
+ <li><a href="armory.php?s=32;25">Turan</a></li>
+ <li class="selected"><a href="armory.php?s=">Unchained</a></li>
+ <li><a href="armory.php?s=32;33">World Boss</a></li>
+ <li><a href="armory.php?s=32;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=32;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=32;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=32;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=32;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=32;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=32;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=32;31">Bags</a></li>
+ <li><a href="armory.php?s=32;29">Recipes</a></li>
+ <li><a href="armory.php?s=32;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=32;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=32;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=32;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=32;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=32;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=32;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-unchained">
+<legend>Unchained</legend>
+<ul class="locations">
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Mystical Excavator&#039;s Kit :: Dungeon Mastery: Excavators</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/burned_band_of_smoking_cinders.jpg" id="item-3544-1" class="Epic ring">Burned Band of Smoking Cinders</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/great_cloak_of_blessed_winds.jpg" id="item-3549-2" class="Epic back">Great Cloak of Blessed Winds</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/great_cloak_of_tribal_prayers.jpg" id="item-3550-3" class="Epic back">Great Cloak of Tribal Prayers</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trinket_of_sharpened_blades.jpg" id="item-3552-4" class="Epic necklace">Trinket of Sharpened Blades</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/arakh_of_the_archaeologian.jpg" id="item-3542-5" class="Epic 1he">Arakh of the Archaeologian</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/axe_of_the_archaeologian.jpg" id="item-3543-6" class="Epic 1he">Axe of the Archaeologian</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/claymore_of_the_archaeologian.jpg" id="item-3545-7" class="Epic 2he">Claymore of the Archaeologian</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/crossbow_of_the_archaeologian.jpg" id="item-3546-8" class="Epic crossbow">Crossbow of the Archaeologian</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/curio_of_the_archaeologian.jpg" id="item-3547-9" class="Epic talisman">Curio of the Archaeologian</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/dagger_of_the_archaeologian.jpg" id="item-3548-10" class="Epic dagger">Dagger of the Archaeologian</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/halberd_of_the_archaeologian.jpg" id="item-3551-11" class="Epic polearm">Halberd of the Archaeologian</a> [Polearm]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Acheronian Cache :: Halls of Eternal Frost; Scorpion Cave; Caravan Raider Camp - Unchained</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/amulet_of_ancient_python.jpg" id="item-3660-12" class="Epic necklace">Amulet of Ancient Python</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/amulet_of_crimson_slaughter.jpg" id="item-3661-13" class="Epic necklace">Amulet of Crimson Slaughter</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/amulet_of_the_hell_walker.jpg" id="item-3659-14" class="Epic necklace">Amulet of the Hell Walker</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/band_of_the_sanguine_disciple.jpg" id="item-3656-15" class="Epic ring">Band of the Sanguine Disciple</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/clasp_of_the_fallen_empire.jpg" id="item-3662-16" class="Epic necklace">Clasp of the Fallen Empire</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/dual_band_of_the_blood_god.jpg" id="item-3663-17" class="Epic ring">Dual-band of the Blood God</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/emblem_of_red_ruin.jpg" id="item-3657-18" class="Epic necklace">Emblem of Red Ruin</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/loop_of_the_hell_walker.jpg" id="item-3664-19" class="Epic ring">Loop of the Hell Walker</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_ancient_python.jpg" id="item-3658-20" class="Epic ring">Ring of Ancient Python</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_old_acheron.jpg" id="item-3665-21" class="Epic ring">Ring of Old Acheron</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_the_fallen_empire.jpg" id="item-3666-22" class="Epic ring">Ring of the Fallen Empire</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trinket_of_old_acheron.jpg" id="item-3667-23" class="Epic necklace">Trinket of Old Acheron</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/aegis_of_the_blood_god.jpg" id="item-3570-24" class="Epic shield">Aegis of the Blood God</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/barbs_of_the_blood_drinker.jpg" id="item-3571-25" class="Epic ammunition">Barbs of the Blood Drinker</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/claw_of_the_death_master.jpg" id="item-3572-26" class="Epic 1hb">Claw of the Death Master</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/composite_bow_of_the_blood_drinker.jpg" id="item-3573-27" class="Epic bow">Composite Bow of the Blood Drinker</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/dagger_of_the_bloodhunter.jpg" id="item-3574-28" class="Epic dagger">Dagger of the Bloodhunter</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/fellblade_of_crimson_slaughter.jpg" id="item-3575-29" class="Epic 2he">Fellblade of Crimson Slaughter</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/fellhammer_of_the_sanguine_disciple.jpg" id="item-3576-30" class="Epic 2hb">Fellhammer of the Sanguine Disciple</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/greatshield_of_the_fallen_empire.jpg" id="item-3577-31" class="Epic shield">Greatshield of the Fallen Empire</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/greatsword_of_the_death_master.jpg" id="item-3578-32" class="Epic 2he">Greatsword of the Death Master</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heater_shield_of_the_fallen_empire.jpg" id="item-3579-33" class="Epic shield">Heater-Shield of the Fallen Empire</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/partizan_of_red_ruin.jpg" id="item-3580-34" class="Epic polearm">Partizan of Red Ruin</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/relic_of_the_hell_walker.jpg" id="item-3581-35" class="Epic talisman">Relic of the Hell Walker</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/scimitar_of_red_ruin.jpg" id="item-3582-36" class="Epic 1he">Scimitar of Red Ruin</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/stave_of_the_hell_walker.jpg" id="item-3583-37" class="Epic staff">Stave of the Hell Walker</a> [Staff]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodhunter</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNolyVEKgCAURNEtGWZlsxrLqRdIgRptPx%2F%2BHe4t8rwpMq%2FWLSMOsqo8hCE2%2BQES7liUFhuTbj8j8WxtMgZfvkpVWuzCTvcDlUIaSA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_bands_of_the_bloodhunter.jpg" id="item-3584-38" class="Rare shoulder">Arm-bands of the Bloodhunter</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_bloodhunter.jpg" id="item-3589-39" class="Rare feet">Boots of the Bloodhunter</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/facemask_of_the_bloodhunter.jpg" id="item-3591-40" class="Epic head">Facemask of the Bloodhunter</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_bloodhunter.jpg" id="item-3593-41" class="Epic hands">Gloves of the Bloodhunter</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/sash_of_the_bloodhunter.jpg" id="item-3597-42" class="Rare belt">Sash of the Bloodhunter</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_the_bloodhunter.jpg" id="item-3600-43" class="Rare legs">Tasset of the Bloodhunter</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_bloodhunter.jpg" id="item-3603-44" class="Epic wrist">Vambraces of the Bloodhunter</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_bloodhunter.jpg" id="item-3605-45" class="Epic chest">Vest of the Bloodhunter</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Crimson Slaughter</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNolylEKgCAURNEtlZFpsxrrTb1ACrRo%2B6n9HS436%2FVEYZqH0VksjHfVhI1sctBwSi70BsogVRaRe2seqzKX03Y93nT8NB%2BYIRpY"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_straps_of_crimson_slaughter.jpg" id="item-3586-46" class="Rare shoulder">Arm-straps of Crimson Slaughter</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/belt_of_crimson_slaughter.jpg" id="item-3587-47" class="Rare belt">Belt of Crimson Slaughter</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_crimson_slaughter.jpg" id="item-3588-48" class="Rare feet">Boots of Crimson Slaughter</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_crimson_slaughter.jpg" id="item-3592-49" class="Epic hands">Gloves of Crimson Slaughter</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_crimson_slaughter.jpg" id="item-3596-50" class="Epic head">Mask of Crimson Slaughter</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_crimson_slaughter.jpg" id="item-3599-51" class="Rare legs">Tasset of Crimson Slaughter</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_crimson_slaughter.jpg" id="item-3601-52" class="Epic chest">Tunic of Crimson Slaughter</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_crimson_slaughter.jpg" id="item-3602-53" class="Epic wrist">Vambrace of Crimson Slaughter</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Hell Walker</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNolylEKgCAURNEtCalZsxrLqRc8CrRo%2B6n9HS63yPVoYp4HFxw28q6aDCSeqTRaCGNqclDuvQW8%2BSj19MZiFf70WKhd4webjBpQ"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_bands_of_the_hell_walker.jpg" id="item-3585-54" class="Rare shoulder">Arm-bands of the Hell Walker</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_hell_walker.jpg" id="item-3590-55" class="Rare feet">Boots of the Hell Walker</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_hell_walker.jpg" id="item-3594-56" class="Epic hands">Gloves of the Hell Walker</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_hell_walker.jpg" id="item-3595-57" class="Epic head">Headdress of the Hell Walker</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/skirt_of_the_hell_walker.jpg" id="item-3598-58" class="Rare legs">Skirt of the Hell Walker</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_hell_walker.jpg" id="item-3604-59" class="Epic wrist">Vambraces of the Hell Walker</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_hell_walker.jpg" id="item-3606-60" class="Epic chest">Vest of the Hell Walker</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrap_of_the_hell_walker.jpg" id="item-3607-61" class="Rare belt">Wrap of the Hell Walker</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Blood God</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNodyNsNgCAQBMCWTsHnVoOyeiYXTUBj%2Bwp%2Fk8l6PRaZZtfLCA1nzD8bD2WIRQOMe7lWsNDuIo%2BNrOqwKnPlhDcdlU4%2BkUwaNA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_straps_of_the_blood_god.jpg" id="item-3608-62" class="Rare shoulder">Arm-straps of the Blood God</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_blood_god.jpg" id="item-3614-63" class="Epic hands">Gloves of the Blood God</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_blood_god.jpg" id="item-3617-64" class="Epic head">Headdress of the Blood God</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_blood_god.jpg" id="item-3620-65" class="Rare legs">Leggings of the Blood God</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/sash_of_the_blood_god.jpg" id="item-3624-66" class="Rare belt">Sash of the Blood God</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_straps_of_the_blood_god.jpg" id="item-3625-67" class="Rare feet">Shin-straps of the Blood God</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/vest_of_the_blood_god.jpg" id="item-3629-68" class="Epic chest">Vest of the Blood God</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrist_straps_of_the_blood_god.jpg" id="item-3630-69" class="Epic wrist">Wrist-straps of the Blood God</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Death Master</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNodylEKgCAQhOErtSsJNqexnNpACrTo%2Bqlv3zD%2Fyvwszk8BmUdtEoXFKw3O2Iy1%2FxJgjKlJBdXuNyeWvhQ72Qv1%2BMo5Yic%2FeVYaMQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_death_master.jpg" id="item-3609-70" class="Rare belt">Belt of the Death Master</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_death_master.jpg" id="item-3612-71" class="Rare legs">Cuisse of the Death Master</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_death_master.jpg" id="item-3615-72" class="Epic hands">Gloves of the Death Master</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/jerkin_of_the_death_master.jpg" id="item-3619-73" class="Epic chest">Jerkin of the Death Master</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_the_death_master.jpg" id="item-3621-74" class="Epic head">Mask of the Death Master</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_death_master.jpg" id="item-3622-75" class="Rare shoulder">Rerebrace of the Death Master</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_straps_of_the_death_master.jpg" id="item-3626-76" class="Rare feet">Shin-straps of the Death Master</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/wrist_straps_of_the_death_master.jpg" id="item-3631-77" class="Epic wrist">Wrist-straps of the Death Master</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Blood Drinker</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNodylEOQDAQhOEriXYJc5rSYSUNSZe4Ptu378%2FMwnLPYQgBG9kkKNzNNUHTmZ2xx6o036NAmbJrhOn1lMz6l3R469EuIh9zhxpF"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_blood_drinker.jpg" id="item-3633-78" class="Rare belt">Belt of the Blood Drinker</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_blood_drinker.jpg" id="item-3635-79" class="Rare feet">Boots of the Blood Drinker</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_blood_drinker.jpg" id="item-3639-80" class="Rare legs">Cuisse of the Blood Drinker</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_blood_drinker.jpg" id="item-3642-81" class="Epic hands">Gloves of the Blood Drinker</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/harness_of_the_blood_drinker.jpg" id="item-3645-82" class="Epic chest">Harness of the Blood Drinker</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_blood_drinker.jpg" id="item-3647-83" class="Epic head">Helm of the Blood Drinker</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_blood_drinker.jpg" id="item-3650-84" class="Rare shoulder">Rerebrace of the Blood Drinker</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_blood_drinker.jpg" id="item-3655-85" class="Epic wrist">Vambraces of the Blood Drinker</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Sanguine Disciple</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNody0sKgDAQBNErKfkg9mmi0zpCUMgoXt84u1eLWljvOeQQsZGujFVpzgmVu3XFAVpOcQYoi%2FzKML2eKmy90oi3Hf6l%2BAF00RpB"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_sanguine_disciple.jpg" id="item-3634-86" class="Rare belt">Belt of the Sanguine Disciple</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_sanguine_disciple.jpg" id="item-3636-87" class="Rare feet">Boots of the Sanguine Disciple</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuirass_of_the_sanguine_disciple.jpg" id="item-3638-88" class="Epic chest">Cuirass of the Sanguine Disciple</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuisse_of_the_sanguine_disciple.jpg" id="item-3640-89" class="Rare legs">Cuisse of the Sanguine Disciple</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_sanguine_disciple.jpg" id="item-3643-90" class="Epic hands">Gloves of the Sanguine Disciple</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/headdress_of_the_sanguine_disciple.jpg" id="item-3646-91" class="Epic head">Headdress of the Sanguine Disciple</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_sanguine_disciple.jpg" id="item-3651-92" class="Rare shoulder">Rerebrace of the Sanguine Disciple</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_the_sanguine_disciple.jpg" id="item-3654-93" class="Epic wrist">Vambrace of the Sanguine Disciple</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Red Ruin</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNodzFkKgDAQA9Az2cUtp6k2OkJR6CheX6d%2FLyFkYbln33uHVaiNAySdWX%2BGDhtpZQgQpmwaoXI9JbNamlC42zY6vPVoD9F%2FfSUaRg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_red_ruin.jpg" id="item-3632-94" class="Rare belt">Belt of Red Ruin</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/breastplate_of_red_ruin.jpg" id="item-3637-95" class="Epic chest">Breastplate of Red Ruin</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_red_ruin.jpg" id="item-3641-96" class="Epic hands">Gloves of Red Ruin</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/greaves_of_red_ruin.jpg" id="item-3644-97" class="Rare feet">Greaves of Red Ruin</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/mask_of_red_ruin.jpg" id="item-3648-98" class="Epic head">Mask of Red Ruin</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_red_ruin.jpg" id="item-3649-99" class="Rare shoulder">Rerebrace of Red Ruin</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_red_ruin.jpg" id="item-3652-100" class="Rare legs">Tasset of Red Ruin</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambrace_of_red_ruin.jpg" id="item-3653-101" class="Epic wrist">Vambrace of Red Ruin</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Fallen Empire</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=32&amp;ab=eNodzOEKgCAQA%2BBXSgWT9jTWLS84CrTo9Uv%2FfRtjK%2B1eQnQTNmUbdNB8SusM2MlRRiizdCU0vR4T1j%2F5AGPpWz%2Fjrcd48OkDeFgaMQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_fallen_empire.jpg" id="item-3610-102" class="Rare belt">Belt of the Fallen Empire</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/cuirass_of_the_fallen_empire.jpg" id="item-3611-103" class="Epic chest">Cuirass of the Fallen Empire</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_the_fallen_empire.jpg" id="item-3613-104" class="Epic hands">Gauntlets of the Fallen Empire</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/greaves_of_the_fallen_empire.jpg" id="item-3616-105" class="Rare feet">Greaves of the Fallen Empire</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_fallen_empire.jpg" id="item-3618-106" class="Epic head">Helm of the Fallen Empire</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/rerebrace_of_the_fallen_empire.jpg" id="item-3623-107" class="Rare shoulder">Rerebrace of the Fallen Empire</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/tasset_of_the_fallen_empire.jpg" id="item-3627-108" class="Rare legs">Tasset of the Fallen Empire</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_fallen_empire.jpg" id="item-3628-109" class="Epic wrist">Vambraces of the Fallen Empire</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kheshatta :: Caravan Raider Camp (Unchained)</strong></a> (1212,434)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_cape_of_the_fallen_empire.jpg" id="item-3538-110" class="Epic back">Abyssal Cape of the Fallen Empire</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_cloak_of_crimson_slaughter.jpg" id="item-3539-111" class="Epic back">Abyssal Cloak of Crimson Slaughter</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_cloak_of_the_death_master.jpg" id="item-3540-112" class="Epic back">Abyssal Cloak of the Death Master</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_cloak_of_the_hell_walker.jpg" id="item-3541-113" class="Epic back">Abyssal Cloak of the Hell Walker</a> [Back]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Ymir&#039;s Pass :: Amphitheatre of Karutonia (Unchained)</strong></a> (1202,786)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_assault.jpg" id="item-2147-114" class="Rare necklace">Abyssal Demon Pendant of Assault</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_constitution.jpg" id="item-2138-115" class="Rare necklace">Abyssal Demon Pendant of Constitution</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_dexterity.jpg" id="item-2148-116" class="Rare necklace">Abyssal Demon Pendant of Dexterity</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_intelligence.jpg" id="item-2146-117" class="Rare necklace">Abyssal Demon Pendant of Intelligence</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_strength.jpg" id="item-2149-118" class="Rare necklace">Abyssal Demon Pendant of Strength</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_pendant_of_wisdom.jpg" id="item-2145-119" class="Rare necklace">Abyssal Demon Pendant of Wisdom</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_assault.jpg" id="item-2150-120" class="Rare ring">Abyssal Demon Ring of Assault</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_constitution.jpg" id="item-2139-121" class="Rare ring">Abyssal Demon Ring of Constitution</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_dexterity.jpg" id="item-2154-122" class="Rare ring">Abyssal Demon Ring of Dexterity</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_intelligence.jpg" id="item-2151-123" class="Rare ring">Abyssal Demon Ring of Intelligence</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_strength.jpg" id="item-2152-124" class="Rare ring">Abyssal Demon Ring of Strength</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_demon_ring_of_wisdom.jpg" id="item-2153-125" class="Rare ring">Abyssal Demon Ring of Wisdom</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Ymir&#039;s Pass :: Amphitheatre of Karutonia (Unchained) - The Dimensionalist</strong></a> (1202,786)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_sting.jpg" id="item-2143-126" class="Epic crossbow">Abyssal Sting</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/grimwrest.jpg" id="item-2142-127" class="Epic 2hb">Grimwrest</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pains_edge.jpg" id="item-2156-128" class="Epic 1he">Pain's Edge</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Ymir&#039;s Pass :: Amphitheatre of Karutonia (Unchained) - Abyssal Convoker</strong></a> (1202,786)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_gale.jpg" id="item-2140-129" class="Epic bow">Abyssal Gale</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bloodbane.jpg" id="item-2137-130" class="Epic shield">Bloodbane</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/harbinger_of_acheron.jpg" id="item-2157-131" class="Epic 2he">Harbinger of Acheron</a> [2HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Ymir&#039;s Pass :: Amphitheatre of Karutonia (Unchained) - The Devourer</strong></a> (1202,786)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/devourers_ring_of_the_abyss.jpg" id="item-2155-132" class="Epic ring">Devourer's Ring of the Abyss</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_slicer.jpg" id="item-2144-133" class="Epic dagger">Abyssal Slicer</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/relic_of_dark_blessings.jpg" id="item-2136-134" class="Epic talisman">Relic of Dark Blessings</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/toil_of_woes.jpg" id="item-2141-135" class="Epic staff">Toil of Woes</a> [Staff]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 1.021 seconds using 5 queries, consuming 1761.078 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

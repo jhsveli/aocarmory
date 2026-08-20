@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - PvP Tier 2</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the PvP Tier 2 section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=17';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=17;40">Item Store</a></li>
+ <li><a href="armory.php?s=17;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=17;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=17;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=17;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=17;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=17;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=17;4">Last Legion</a></li>
+ <li><a href="armory.php?s=17;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=17;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=17;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=17;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=17;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=17;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=17;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=17;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=17;28">House of Crom</a></li>
+ <li><a href="armory.php?s=17;23">Stygia</a></li>
+ <li><a href="armory.php?s=17;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=17;19">Khitai</a></li>
+ <li><a href="armory.php?s=17;25">Turan</a></li>
+ <li><a href="armory.php?s=17;32">Unchained</a></li>
+ <li><a href="armory.php?s=17;33">World Boss</a></li>
+ <li><a href="armory.php?s=17;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=17;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=17;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=17;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=17;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=17;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=17;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=17;31">Bags</a></li>
+ <li><a href="armory.php?s=17;29">Recipes</a></li>
+ <li><a href="armory.php?s=17;16">PvP Tier 1</a></li>
+ <li class="selected"><a href="armory.php?s=">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=17;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=17;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=17;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=17;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=17;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-pvp-tier-2">
+<legend>PvP Tier 2</legend>
+<ul class="locations">
+ <li class="collapsible pvp"><a href="#" onclick="toggleList(this); return false"><strong>PvP :: Minigames</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">PvP Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_band_of_might.jpg" id="item-1647-1" class="Epic ring">Warlord's Band of Might</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_band_of_power.jpg" id="item-1648-2" class="Epic ring">Warlord's Band of Power</a> [Ring]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />60<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_cloak.jpg" id="item-1650-3" class="Epic back">Warlord's Cloak</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_pendant_of_shielding.jpg" id="item-1649-4" class="Epic necklace">Warlord's Pendant of Shielding</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">PvP Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3<img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" />20</span><a href="//static.is-better-than.tv/armory/warlords_arrows.jpg" id="item-1674-5" class="Epic ammunition">Warlord's Arrows</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_axe.jpg" id="item-1676-6" class="Epic 1he">Warlord's Axe</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_blade.jpg" id="item-1677-7" class="Epic 1he">Warlord's Blade</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3<img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" />20</span><a href="//static.is-better-than.tv/armory/warlords_bolts.jpg" id="item-1675-8" class="Epic ammunition">Warlord's Bolts</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_crossbow.jpg" id="item-1678-9" class="Epic crossbow">Warlord's Crossbow</a> [Crossbow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_dagger.jpg" id="item-1679-10" class="Epic dagger">Warlord's Dagger</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_great_shield.jpg" id="item-1680-11" class="Epic shield">Warlord's Great Shield</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_greatbow.jpg" id="item-1681-12" class="Epic bow">Warlord's Greatbow</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_greatsword.jpg" id="item-1687-13" class="Epic 2he">Warlord's Greatsword</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_mace.jpg" id="item-1682-14" class="Epic 1hb">Warlord's Mace</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_mark_of_loathing.jpg" id="item-1683-15" class="Epic talisman">Warlord's Mark of Loathing</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_maxim_of_chaos.jpg" id="item-1684-16" class="Epic talisman">Warlord's Maxim of Chaos</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_mystic_blade.jpg" id="item-1685-17" class="Epic dagger">Warlord's Mystic Blade</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/warlords_sanctum.jpg" id="item-1686-18" class="Epic shield">Warlord's Sanctum</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_scepter.jpg" id="item-1688-19" class="Epic staff">Warlord's Scepter</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_spell_glaive.jpg" id="item-1689-20" class="Epic polearm">Warlord's Spell Glaive</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_spellsword.jpg" id="item-1690-21" class="Epic 2he">Warlord's Spellsword</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_staff.jpg" id="item-1691-22" class="Epic staff">Warlord's Staff</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_war_glaive.jpg" id="item-1692-23" class="Epic polearm">Warlord's War Glaive</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />135<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />6</span><a href="//static.is-better-than.tv/armory/warlords_war_hammer.jpg" id="item-1693-24" class="Epic 2hb">Warlord's War Hammer</a> [2HB]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">PvP Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Concealing Shadows</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNodylsKgDAMRNEtWSHxMaupdjRCUWgVt6%2Fp3%2BFyq11PTixzEBEszLdrxEY2KSyeqTonGGP6pR0yd2%2FaYzVWPzXgLUejDB%2BRhho7"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armbands_of_concealing_shadows.jpg" id="item-1555-25" class="Epic shoulder">Armbands of Concealing Shadows</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_concealing_shadows.jpg" id="item-1558-26" class="Epic belt">Belt of Concealing Shadows</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_concealing_shadows.jpg" id="item-1556-27" class="Epic feet">Boots of Concealing Shadows</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_concealing_shadows.jpg" id="item-1559-28" class="Epic hands">Gloves of Concealing Shadows</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/hood_of_concealing_shadows.jpg" id="item-1560-29" class="Epic head">Hood of Concealing Shadows</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_concealing_shadows.jpg" id="item-1562-30" class="Epic legs">Leggings of Concealing Shadows</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/tunic_of_concealing_shadows.jpg" id="item-1561-31" class="Epic chest">Tunic of Concealing Shadows</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/wristwraps_of_concealing_shadows.jpg" id="item-1557-32" class="Epic wrist">Wristwraps of Concealing Shadows</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Firebrand</a> [Demo] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNody2sKgCAQReEt5Ri97mosr00gBVq0%2FXL%2BfRw4Va8nR5bFDTJiZb5%2F%2BQ6JbJIJGs5YW3RQhtgkyNyt9diU1R6PtxxGmT%2BNvRop"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armwrap_of_the_firebrand.jpg" id="item-1627-33" class="Epic shoulder">Armwrap of the Firebrand</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_firebrand.jpg" id="item-1630-34" class="Epic belt">Belt of the Firebrand</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_firebrand.jpg" id="item-1628-35" class="Epic feet">Boots of the Firebrand</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_the_firebrand.jpg" id="item-1631-36" class="Epic hands">Gloves of the Firebrand</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_firebrand.jpg" id="item-1632-37" class="Epic head">Helm of the Firebrand</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_the_firebrand.jpg" id="item-1634-38" class="Epic legs">Leggings of the Firebrand</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/tunic_of_the_firebrand.jpg" id="item-1633-39" class="Epic chest">Tunic of the Firebrand</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/wristwraps_of_the_firebrand.jpg" id="item-1629-40" class="Epic wrist">Wristwraps of the Firebrand</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Precursor</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNolylsOQDAQBdAtKep1V1PmMpKGpCW2T8ff%2BThZzzsK0%2BR8P2JmvD4NNVbSVEHDIbmwQeRm6qAMUtRiUWabHk%2Faf7oXlBYaRw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armwraps_of_the_precursor.jpg" id="item-1579-41" class="Epic shoulder">Armwraps of the Precursor</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_precursor.jpg" id="item-1582-42" class="Epic belt">Belt of the Precursor</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/footwraps_of_the_precursor.jpg" id="item-1580-43" class="Epic feet">Footwraps of the Precursor</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_the_precursor.jpg" id="item-1583-44" class="Epic hands">Gloves of the Precursor</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_the_precursor.jpg" id="item-1586-45" class="Epic legs">Leggings of the Precursor</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/mask_of_the_precursor.jpg" id="item-1584-46" class="Epic head">Mask of the Precursor</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/tunic_of_the_precursor.jpg" id="item-1585-47" class="Epic chest">Tunic of the Precursor</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/wristwraps_of_the_precursor.jpg" id="item-1581-48" class="Epic wrist">Wristwraps of the Precursor</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Reanimator</a> [Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNorzsgvzUlJLbIyNDMwtk5KzSkBscyskzNSi8FMS%2Bu01FQwy8Q6IzEvpRjENLfOSE1MAbEsrHNS00FihgbW5UWZED2mAJIsGh0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armwraps_of_the_reanimator.jpg" id="item-1603-49" class="Epic shoulder">Armwraps of the Reanimator</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_reanimator.jpg" id="item-1606-50" class="Epic belt">Belt of the Reanimator</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bindings_of_the_reanimator.jpg" id="item-1609-51" class="Epic chest">Bindings of the Reanimator</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/footwraps_of_the_reanimator.jpg" id="item-1604-52" class="Epic feet">Footwraps of the Reanimator</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_the_reanimator.jpg" id="item-1607-53" class="Epic hands">Gloves of the Reanimator</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/horns_of_the_reanimator.jpg" id="item-1608-54" class="Epic head">Horns of the Reanimator</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/loincloth_of_the_reanimator.jpg" id="item-1610-55" class="Epic legs">Loincloth of the Reanimator</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/wristwraps_of_the_reanimator.jpg" id="item-1605-56" class="Epic wrist">Wristwraps of the Reanimator</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">PvP Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Righteous Smiting</a> [PoM] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNorzsgvzUlJLbIyNDE0tE5KzSkBsUys01JTwSwj6%2FKizGIw09g6IzEvpRjENLVOzkiFiJpbZ6QmpoBYZtY5qelgaQsAlb4aDg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armbands_of_righteous_smiting.jpg" id="item-1411-57" class="Epic shoulder">Armbands of Righteous Smiting</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_righteous_smiting.jpg" id="item-1414-58" class="Epic belt">Belt of Righteous Smiting</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_righteous_smiting.jpg" id="item-1412-59" class="Epic feet">Boots of Righteous Smiting</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bracers_of_righteous_smiting.jpg" id="item-1413-60" class="Epic wrist">Bracers of Righteous Smiting</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_righteous_smiting.jpg" id="item-1415-61" class="Epic hands">Gloves of Righteous Smiting</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/harness_of_righteous_smiting.jpg" id="item-1417-62" class="Epic chest">Harness of Righteous Smiting</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_righteous_smiting.jpg" id="item-1416-63" class="Epic head">Helm of Righteous Smiting</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/tasset_of_righteous_smiting.jpg" id="item-1418-64" class="Epic legs">Tasset of Righteous Smiting</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Stormbringer</a> [ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNolyVEKgCAQRdEtFZZWbzWWryaQAqdo%2BzH6d7hX5X5zYll65x1W5sfksZNVA75yauUIiVdSY8AmbHWGMCbThMzDduh%2BnNYaNQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armbands_of_the_stormbringer.jpg" id="item-1363-65" class="Epic shoulder">Armbands of the Stormbringer</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_stormbringer.jpg" id="item-1366-66" class="Epic belt">Belt of the Stormbringer</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_stormbringer.jpg" id="item-1364-67" class="Epic feet">Boots of the Stormbringer</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bracers_of_the_stormbringer.jpg" id="item-1365-68" class="Epic wrist">Bracers of the Stormbringer</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_the_stormbringer.jpg" id="item-1367-69" class="Epic hands">Gloves of the Stormbringer</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/harness_of_the_stormbringer.jpg" id="item-1369-70" class="Epic chest">Harness of the Stormbringer</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_stormbringer.jpg" id="item-1368-71" class="Epic head">Helm of the Stormbringer</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/tasset_of_the_stormbringer.jpg" id="item-1370-72" class="Epic legs">Tasset of the Stormbringer</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Wild Furor</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNodylEKgDAMg%2BErOSe4mtNMF60wFFbF60v39oX8K%2BuzhCgDdtKVEr52WqfA9H5rYfM1Q%2FNVzOuATdkbiVDm4hpRefR7%2BgGRPhpB"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_wild_furor.jpg" id="item-1390-73" class="Epic belt">Belt of Wild Furor</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_wild_furor.jpg" id="item-1388-74" class="Epic feet">Boots of Wild Furor</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bracers_of_wild_furor.jpg" id="item-1389-75" class="Epic wrist">Bracers of Wild Furor</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/brassarts_of_wild_furor.jpg" id="item-1387-76" class="Epic shoulder">Brassarts of Wild Furor</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_wild_furor.jpg" id="item-1391-77" class="Epic hands">Gloves of Wild Furor</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/harness_of_wild_furor.jpg" id="item-1393-78" class="Epic chest">Harness of Wild Furor</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_wild_furor.jpg" id="item-1392-79" class="Epic head">Helm of Wild Furor</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_wild_furor.jpg" id="item-1394-80" class="Epic legs">Leggings of Wild Furor</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">PvP Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bristling Ire</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNodyVkKgDAQBNErzbjg0qeJpnWEoJAoXl8zf4%2BqYteTIvOsvQxYmO5fKtjIKhnx5qM4J1g4Y6lfsRq9aovE3WMHY4hVzQeZWBoR"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armbands_of_bristling_ire.jpg" id="item-1507-81" class="Epic shoulder">Armbands of Bristling Ire</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_bristling_ire.jpg" id="item-1510-82" class="Epic belt">Belt of Bristling Ire</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_bristling_ire.jpg" id="item-1508-83" class="Epic feet">Boots of Bristling Ire</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bracers_of_bristling_ire.jpg" id="item-1509-84" class="Epic wrist">Bracers of Bristling Ire</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_bristling_ire.jpg" id="item-1511-85" class="Epic hands">Gloves of Bristling Ire</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/harness_of_bristling_ire.jpg" id="item-1513-86" class="Epic chest">Harness of Bristling Ire</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_bristling_ire.jpg" id="item-1514-87" class="Epic legs">Leggings of Bristling Ire</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/mask_of_bristling_ire.jpg" id="item-1512-88" class="Epic head">Mask of Bristling Ire</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Huntmaster</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNolyVEOQDAQRdE1VRXxVlPmMZKGpENsXzr%2BTu41vZ4irHNIMWBhuZt6bKSrw1sPc0ZoPsUaE1blX0coszQNKNx9Tx%2BZYhom"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armbands_of_the_huntmaster.jpg" id="item-1531-89" class="Epic shoulder">Armbands of the Huntmaster</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_huntmaster.jpg" id="item-1534-90" class="Epic belt">Belt of the Huntmaster</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_huntmaster.jpg" id="item-1532-91" class="Epic feet">Boots of the Huntmaster</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/bracers_of_the_huntmaster.jpg" id="item-1533-92" class="Epic wrist">Bracers of the Huntmaster</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gloves_of_the_huntmaster.jpg" id="item-1535-93" class="Epic hands">Gloves of the Huntmaster</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/hauberk_of_the_huntmaster.jpg" id="item-1537-94" class="Epic chest">Hauberk of the Huntmaster</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_huntmaster.jpg" id="item-1536-95" class="Epic head">Helm of the Huntmaster</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/leggings_of_the_huntmaster.jpg" id="item-1538-96" class="Epic legs">Leggings of the Huntmaster</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">PvP Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Black Warden</a> [DT] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNorzsgvzUlJLbIyNLEwtk5KzSkBscys01JTwSwT6%2BSM1GIw09I6IzEvpRjENLfOSE1MAbEsrHNS00FilgbW5UWZEJWmAJeUGk0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armguards_of_the_black_warden.jpg" id="item-1483-97" class="Epic shoulder">Armguards of the Black Warden</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_black_warden.jpg" id="item-1486-98" class="Epic belt">Belt of the Black Warden</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_black_warden.jpg" id="item-1484-99" class="Epic feet">Boots of the Black Warden</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/chestguard_of_the_black_warden.jpg" id="item-1489-100" class="Epic chest">Chestguard of the Black Warden</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_black_warden.jpg" id="item-1487-101" class="Epic hands">Gauntlets of the Black Warden</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_black_warden.jpg" id="item-1488-102" class="Epic head">Helm of the Black Warden</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/legguards_of_the_black_warden.jpg" id="item-1490-103" class="Epic legs">Legguards of the Black Warden</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_black_warden.jpg" id="item-1485-104" class="Epic wrist">Vambraces of the Black Warden</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Usurper</a> [Conq] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNorzsgvzUlJLbIyNDG1tE5KzSkBssyMrNNSU8EsA%2BvkjNRiMNPUOiMxL6UYxDS2zkhNTAGxTKxzUtPBYmbW5UWZEJWGAJN0Gi8%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armguards_of_the_usurper.jpg" id="item-1459-105" class="Epic shoulder">Armguards of the Usurper</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_usurper.jpg" id="item-1462-106" class="Epic belt">Belt of the Usurper</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_usurper.jpg" id="item-1460-107" class="Epic feet">Boots of the Usurper</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/chestguard_of_the_usurper.jpg" id="item-1465-108" class="Epic chest">Chestguard of the Usurper</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_usurper.jpg" id="item-1463-109" class="Epic hands">Gauntlets of the Usurper</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_usurper.jpg" id="item-1464-110" class="Epic head">Helm of the Usurper</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/legguards_of_the_usurper.jpg" id="item-1466-111" class="Epic legs">Legguards of the Usurper</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_usurper.jpg" id="item-1461-112" class="Epic wrist">Vambraces of the Usurper</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">PvP Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Assailant</a> [Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=17&amp;ab=eNodylEKgCAQRdEtZVpWbzWWryYYCrRo%2BzH%2BXQ63yv1qZllc8ANW6mM1YSdbjdiE1TI4SLpyNZ0hTNmwg%2FIwCz2%2BcrbTxx%2BRmxoj"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/armguards_of_the_assailant.jpg" id="item-1435-113" class="Epic shoulder">Armguards of the Assailant</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/belt_of_the_assailant.jpg" id="item-1438-114" class="Epic belt">Belt of the Assailant</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/boots_of_the_assailant.jpg" id="item-1436-115" class="Epic feet">Boots of the Assailant</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/chestguard_of_the_assailant.jpg" id="item-1441-116" class="Epic chest">Chestguard of the Assailant</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_assailant.jpg" id="item-1439-117" class="Epic hands">Gauntlets of the Assailant</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/helm_of_the_assailant.jpg" id="item-1440-118" class="Epic head">Helm of the Assailant</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/legguards_of_the_assailant.jpg" id="item-1442-119" class="Epic legs">Legguards of the Assailant</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/campaign_badges.png" alt="Campaign Badges" class="coin" height="12" width="12" title="Campaign Badges" />45<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />4</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_assailant.jpg" id="item-1437-120" class="Epic wrist">Vambraces of the Assailant</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2025<br/>
+<span class="stats">Page generated in 1.114 seconds using 5 queries, consuming 1775.328 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - PvE Tier 1</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the PvE Tier 1 section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=14';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=14;40">Item Store</a></li>
+ <li><a href="armory.php?s=14;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=14;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=14;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=14;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=14;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=14;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=14;4">Last Legion</a></li>
+ <li><a href="armory.php?s=14;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=14;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=14;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=14;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=14;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=14;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=14;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=14;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=14;28">House of Crom</a></li>
+ <li><a href="armory.php?s=14;23">Stygia</a></li>
+ <li><a href="armory.php?s=14;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=14;19">Khitai</a></li>
+ <li><a href="armory.php?s=14;25">Turan</a></li>
+ <li><a href="armory.php?s=14;32">Unchained</a></li>
+ <li><a href="armory.php?s=14;33">World Boss</a></li>
+ <li class="selected"><a href="armory.php?s=">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=14;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=14;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=14;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=14;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=14;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=14;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=14;31">Bags</a></li>
+ <li><a href="armory.php?s=14;29">Recipes</a></li>
+ <li><a href="armory.php?s=14;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=14;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=14;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=14;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=14;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=14;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=14;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-pve-tier-1">
+<legend>PvE Tier 1</legend>
+<ul class="locations">
+ <li class="collapsible raid"><a href="#" onclick="toggleList(this); return false"><strong>Atzel&#039;s Approach :: The Lair</strong></a> (352,841)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/black_dragon_cloak.jpg" id="item-1339-1" class="Epic back">Black Dragon Cloak</a> [Back]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible raid"><a href="#" onclick="toggleList(this); return false"><strong>Cimmeria :: Kyllikki/Yakhmar/Vistrix</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Raid Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/aegis_of_the_warlord.jpg" id="item-1264-2" class="Epic shield">Aegis of the Warlord</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/axis_of_tartarus.jpg" id="item-1269-3" class="Epic staff">Axis of Tartarus</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/blade_of_marred_spirits.jpg" id="item-1259-4" class="Epic dagger">Blade of Marred Spirits</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bloodseeker_blade.jpg" id="item-1254-5" class="Epic 1he">Bloodseeker Blade</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bloodseeker_claymore.jpg" id="item-1255-6" class="Epic 2he">Bloodseeker Claymore</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bolts_of_black_sorrow.jpg" id="item-1275-7" class="Epic ammunition">Bolts of Black Sorrow</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/broadsword_of_okeanos.jpg" id="item-1262-8" class="Epic 1he">Broadsword of Okeanos</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/draw_of_fangs.jpg" id="item-1278-9" class="Epic crossbow">Draw of Fangs</a> [Crossbow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/edge_of_tartarus.jpg" id="item-1268-10" class="Epic dagger">Edge of Tartarus</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/fetish_of_caged_fiends.jpg" id="item-1261-11" class="Epic talisman">Fetish of Caged Fiends</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gorulgas_mark.jpg" id="item-1258-12" class="Epic talisman">Gorulga's Mark</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gorulgas_shield.jpg" id="item-1257-13" class="Epic shield">Gorulga's Shield</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/hammer_of_primal_wrath.jpg" id="item-1253-14" class="Epic 2hb">Hammer of Primal Wrath</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mace_of_the_cloudseer.jpg" id="item-1282-15" class="Epic 1hb">Mace of the Cloudseer</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/opus_of_ash_and_blood.jpg" id="item-1270-16" class="Epic talisman">Opus of Ash and Blood</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/pavis_of_fealty.jpg" id="item-1272-17" class="Epic shield">Pavis of Fealty</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/quiver_of_barbed_tongues.jpg" id="item-1276-18" class="Epic ammunition">Quiver of Barbed Tongues</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/rage_of_xotli.jpg" id="item-1267-19" class="Epic 2he">Rage of Xotli</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/sepulchers_ward.jpg" id="item-1281-20" class="Epic shield">Sepulcher's Ward</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/song_of_demise.jpg" id="item-1250-21" class="Epic dagger">Song of Demise</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/staff_of_devout_piety.jpg" id="item-1273-22" class="Epic staff">Staff of Devout Piety</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/stave_of_malefic_rites.jpg" id="item-1260-23" class="Epic staff">Stave of Malefic Rites</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_baleful_blade.jpg" id="item-1256-24" class="Epic 1he">The Baleful Blade</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_cloudscar.jpg" id="item-1283-25" class="Epic polearm">The Cloudscar</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_crescent_of_blood.jpg" id="item-1251-26" class="Epic 1he">The Crescent of Blood</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_fleeted_wing.jpg" id="item-1277-27" class="Epic bow">The Fleeted Wing</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_gilded_grave.jpg" id="item-1279-28" class="Epic dagger">The Gilded Grave</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_lost_soul.jpg" id="item-1265-29" class="Epic dagger">The Lost Soul</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_scimitar_of_dunes.jpg" id="item-1280-30" class="Epic 1he">The Scimitar of Dunes</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_storm_harbor.jpg" id="item-1284-31" class="Epic shield">The Storm Harbor</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_tome_of_storms.jpg" id="item-1285-32" class="Epic talisman">The Tome of Storms</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/the_twinned_moons.jpg" id="item-1252-33" class="Epic 2he">The Twinned Moons</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tome_of_holy_obeisance.jpg" id="item-1274-34" class="Epic talisman">Tome of Holy Obeisance</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />18<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/trident_of_okeanos.jpg" id="item-1263-35" class="Epic polearm">Trident of Okeanos</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />9<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/vise_of_the_anointed.jpg" id="item-1271-36" class="Epic 1hb">Vise of the Anointed</a> [1HB]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Raid Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Ardent Fire</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNolyFEOQDAQBcAr2SLBO03Zx0oaki5xfVp%2Fk3E776TMkwQZMDNdn4JgMXplh5UskhFP3v9sYPFQLwwwRi1qkbjV61%2BWExoA"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armband_of_ardent_fire.jpg" id="item-1218-37" class="Epic shoulder">Armband of Ardent Fire</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/belt_of_ardent_fire.jpg" id="item-1221-38" class="Epic belt">Belt of Ardent Fire</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bindings_of_ardent_fire.jpg" id="item-1224-39" class="Epic chest">Bindings of Ardent Fire</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_ardent_fire.jpg" id="item-1219-40" class="Epic feet">Boots of Ardent Fire</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_ardent_fire.jpg" id="item-1220-41" class="Epic wrist">Bracers of Ardent Fire</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/handguards_of_ardent_fire.jpg" id="item-1222-42" class="Epic hands">Handguards of Ardent Fire</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_ardent_fire.jpg" id="item-1223-43" class="Epic head">Helm of Ardent Fire</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/shendoh_of_ardent_fire.jpg" id="item-1225-44" class="Epic legs">Shendoh of Ardent Fire</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dark Terror</a> [Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNolyFsKgDAMBMAraX27p6lmNUJQaBWvL41%2Fw2S9HhOmuQ5VwEK7izqsyuwcsZGuBm86%2Fmxh3HPRBGWUogEaT%2FHsP5J7Gf4%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_dark_terror.jpg" id="item-1202-45" class="Epic shoulder">Armbands of Dark Terror</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/belt_of_dark_terror.jpg" id="item-1205-46" class="Epic belt">Belt of Dark Terror</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bindings_of_dark_terror.jpg" id="item-1208-47" class="Epic chest">Bindings of Dark Terror</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_dark_terror.jpg" id="item-1203-48" class="Epic feet">Boots of Dark Terror</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_dark_terror.jpg" id="item-1204-49" class="Epic wrist">Bracers of Dark Terror</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gida_of_dark_terror.jpg" id="item-1209-50" class="Epic legs">Gida of Dark Terror</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_dark_terror.jpg" id="item-1207-51" class="Epic head">Helm of Dark Terror</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/talons_of_dark_terror.jpg" id="item-1206-52" class="Epic hands">Talons of Dark Terror</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Deadly Guile</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNody1EKgDAMg%2BErWQXdzGmmi1YoCpvi9XV9%2B%2FhJql6PZZZZJIxYaHdTxFuO6gzQdOb6M3ZQptwkMO7eBmykDyesSv%2FE%2FgOdlhoy"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/arm_straps_of_deadly_guile.jpg" id="item-1186-53" class="Epic shoulder">Arm-straps of Deadly Guile</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/belt_of_deadly_guile.jpg" id="item-1189-54" class="Epic belt">Belt of Deadly Guile</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_deadly_guile.jpg" id="item-1188-55" class="Epic wrist">Bracers of Deadly Guile</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gloves_of_deadly_guile.jpg" id="item-1190-56" class="Epic hands">Gloves of Deadly Guile</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/hood_of_deadly_guile.jpg" id="item-1191-57" class="Epic head">Hood of Deadly Guile</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/leggings_of_deadly_guile.jpg" id="item-1193-58" class="Epic legs">Leggings of Deadly Guile</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/padsoles_of_deadly_guile.jpg" id="item-1187-59" class="Epic feet">Padsoles of Deadly Guile</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tunic_of_deadly_guile.jpg" id="item-1192-60" class="Epic chest">Tunic of Deadly Guile</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ecliptic</a> [Demo] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNody2sKgCAQReEtZU7PuxrLWxMMBVq0%2FdJ%2FHwdO1uuxyDS71gs28i7q8KYjV%2FYw7vmXOCy02gZoOGOJfoQyxKIJq7I%2B0nyXIxoU"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_the_ecliptic.jpg" id="item-1234-61" class="Epic shoulder">Armbands of the Ecliptic</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_the_ecliptic.jpg" id="item-1235-62" class="Epic feet">Boots of the Ecliptic</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_the_ecliptic.jpg" id="item-1236-63" class="Epic wrist">Bracers of the Ecliptic</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gida_of_the_ecliptic.jpg" id="item-1241-64" class="Epic legs">Gida of the Ecliptic</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_the_ecliptic.jpg" id="item-1237-65" class="Epic belt">Girdle of the Ecliptic</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gloves_of_the_ecliptic.jpg" id="item-1238-66" class="Epic hands">Gloves of the Ecliptic</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_the_ecliptic.jpg" id="item-1239-67" class="Epic head">Helm of the Ecliptic</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/shatush_of_the_ecliptic.jpg" id="item-1240-68" class="Epic chest">Shatush of the Ecliptic</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Raid Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Illuminant Conviction</a> [PoM] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNodylsKgDAQQ9EtWXDqI6upNjpCUegobl%2BnfyeXrEq75xBiB9PrKZn1X9JjI72L4K1Hu0jEwtI0QNOZzTlCmbJrQuHuLYYPmLIaHA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/achiton_of_illuminant_conviction.jpg" id="item-1160-69" class="Epic chest">Achiton of Illuminant Conviction</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_illuminant_conviction.jpg" id="item-1154-70" class="Epic shoulder">Armbands of Illuminant Conviction</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_illuminant_conviction.jpg" id="item-1155-71" class="Epic feet">Boots of Illuminant Conviction</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_illuminant_conviction.jpg" id="item-1156-72" class="Epic wrist">Bracers of Illuminant Conviction</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_illuminant_conviction.jpg" id="item-1157-73" class="Epic belt">Girdle of Illuminant Conviction</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gloves_of_illuminant_conviction.jpg" id="item-1158-74" class="Epic hands">Gloves of Illuminant Conviction</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_illuminant_conviction.jpg" id="item-1159-75" class="Epic head">Helm of Illuminant Conviction</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/poderes_of_illuminant_conviction.jpg" id="item-1161-76" class="Epic legs">Poderes of Illuminant Conviction</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Cloudcleaver</a> [ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNorzsgvzUlJLbIyNDC1sE5LTS0BsSyty4syi0FMMwPrnNT0YhDL1DopNQcsZmidkZiXAhY0ss5ITUwBsYytkzNSIXpMAJeXGhA%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_the_cloudcleaver.jpg" id="item-1058-77" class="Epic shoulder">Armbands of the Cloudcleaver</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_the_cloudcleaver.jpg" id="item-1059-78" class="Epic feet">Boots of the Cloudcleaver</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_the_cloudcleaver.jpg" id="item-1060-79" class="Epic wrist">Bracers of the Cloudcleaver</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gida_of_the_cloudcleaver.jpg" id="item-1065-80" class="Epic legs">Gida of the Cloudcleaver</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_the_cloudcleaver.jpg" id="item-1061-81" class="Epic belt">Girdle of the Cloudcleaver</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gyre_of_the_cloudcleaver.jpg" id="item-1062-82" class="Epic hands">Gyre of the Cloudcleaver</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/miter_of_the_cloudcleaver.jpg" id="item-1063-83" class="Epic head">Miter of the Cloudcleaver</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/telkari_of_the_cloudcleaver.jpg" id="item-1064-84" class="Epic chest">Telkari of the Cloudcleaver</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Violent Rage</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNorzsgvzUlJLbIyNDQ3sE5LTS0BsQyty4syi8FMI%2BuMxLyUYhDTxDopNQcsaGydnJEKkTezzkhNTAGxTK1zUtPBCs0Bm84aHg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_violent_rage.jpg" id="item-1170-85" class="Epic shoulder">Armbands of Violent Rage</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_violent_rage.jpg" id="item-1171-86" class="Epic feet">Boots of Violent Rage</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_violent_rage.jpg" id="item-1172-87" class="Epic wrist">Bracers of Violent Rage</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gauntlets_of_violent_rage.jpg" id="item-1174-88" class="Epic hands">Gauntlets of Violent Rage</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_violent_rage.jpg" id="item-1173-89" class="Epic belt">Girdle of Violent Rage</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/harness_of_violent_rage.jpg" id="item-1176-90" class="Epic chest">Harness of Violent Rage</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_violent_rage.jpg" id="item-1175-91" class="Epic head">Helm of Violent Rage</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tasset_of_violent_rage.jpg" id="item-1177-92" class="Epic legs">Tasset of Violent Rage</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Raid Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Jagged Barbs</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNolyVsKgDAMBMAztb7d01SzGiEotIrXl8a%2FgSl6PSbMcwgxYiPvqgZvPoqzxUJzddB0SqnssSr%2FH6FMUjXAuHtPH5b9GgY%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_jagged_barbs.jpg" id="item-1122-93" class="Epic shoulder">Armbands of Jagged Barbs</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_jagged_barbs.jpg" id="item-1123-94" class="Epic feet">Boots of Jagged Barbs</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_jagged_barbs.jpg" id="item-1124-95" class="Epic wrist">Bracers of Jagged Barbs</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_jagged_barbs.jpg" id="item-1125-96" class="Epic belt">Girdle of Jagged Barbs</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/handguard_of_jagged_barbs.jpg" id="item-1126-97" class="Epic hands">Handguard of Jagged Barbs</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/harness_of_jagged_barbs.jpg" id="item-1128-98" class="Epic chest">Harness of Jagged Barbs</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/hood_of_jagged_barbs.jpg" id="item-1127-99" class="Epic head">Hood of Jagged Barbs</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/leggings_of_jagged_barbs.jpg" id="item-1129-100" class="Epic legs">Leggings of Jagged Barbs</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Vernant Fury</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNolylEKgDAMBNErGVtB3dNUuxohKLSK15fUvwczVa%2FHMsssEkZs5O2a8JajOmOHhdYk0HTm6uyhTNkVsCr%2FM8K4tzx8lyMaCA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armbands_of_vernant_fury.jpg" id="item-1138-101" class="Epic shoulder">Armbands of Vernant Fury</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_vernant_fury.jpg" id="item-1139-102" class="Epic feet">Boots of Vernant Fury</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/bracers_of_vernant_fury.jpg" id="item-1140-103" class="Epic wrist">Bracers of Vernant Fury</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_vernant_fury.jpg" id="item-1141-104" class="Epic belt">Girdle of Vernant Fury</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/handguards_of_vernant_fury.jpg" id="item-1142-105" class="Epic hands">Handguards of Vernant Fury</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_vernant_fury.jpg" id="item-1143-106" class="Epic head">Helm of Vernant Fury</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/jerkin_of_vernant_fury.jpg" id="item-1144-107" class="Epic chest">Jerkin of Vernant Fury</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/leggings_of_vernant_fury.jpg" id="item-1145-108" class="Epic legs">Leggings of Vernant Fury</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Raid Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Black Spite</a> [DT] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNody1EKgDAMg%2BErbaB2mtNMG60wFDbF60v39pGfNLvfoqxLDDJgJx%2FXiM3YnCnA8qXN14SVpXeBMatrRuHhNUV89ewfmX6TPhok"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armguards_of_black_spite.jpg" id="item-1074-109" class="Epic shoulder">Armguards of Black Spite</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_black_spite.jpg" id="item-1075-110" class="Epic feet">Boots of Black Spite</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/chestguard_of_black_spite.jpg" id="item-1080-111" class="Epic chest">Chestguard of Black Spite</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gauntlets_of_black_spite.jpg" id="item-1078-112" class="Epic hands">Gauntlets of Black Spite</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_black_spite.jpg" id="item-1077-113" class="Epic belt">Girdle of Black Spite</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_black_spite.jpg" id="item-1079-114" class="Epic head">Helm of Black Spite</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tasset_of_black_spite.jpg" id="item-1081-115" class="Epic legs">Tasset of Black Spite</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/vambraces_of_black_spite.jpg" id="item-1076-116" class="Epic wrist">Vambraces of Black Spite</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Triumphant</a> [Conq] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNody1sKgDAMRNEtJQq%2BZjXVjkYoCq3i9iX5O8xlmt1vyayLqgzYycc1YjM2p3awdOXmFKws0WcYU%2FZNUXhE7fHVMz4y%2FYwoGfI%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armguards_of_the_triumphant.jpg" id="item-1106-117" class="Epic shoulder">Armguards of the Triumphant</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_the_triumphant.jpg" id="item-1107-118" class="Epic feet">Boots of the Triumphant</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/chestguard_of_the_triumphant.jpg" id="item-1112-119" class="Epic chest">Chestguard of the Triumphant</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_triumphant.jpg" id="item-1110-120" class="Epic hands">Gauntlets of the Triumphant</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_the_triumphant.jpg" id="item-1109-121" class="Epic belt">Girdle of the Triumphant</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_the_triumphant.jpg" id="item-1111-122" class="Epic head">Helm of the Triumphant</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tasset_of_the_triumphant.jpg" id="item-1113-123" class="Epic legs">Tasset of the Triumphant</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_triumphant.jpg" id="item-1108-124" class="Epic wrist">Vambraces of the Triumphant</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Raid Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Valiant</a> [Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=14&amp;ab=eNorzsgvzUlJLbIyNLA0sE5LTS0BsQytkzNSi8FMM%2BuMxLyUYhDTxDopNQcsaGydkZqYAmKZWuekpoNlza3LizIheowAkz0aJg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/armguards_of_the_valiant.jpg" id="item-1090-125" class="Epic shoulder">Armguards of the Valiant</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/boots_of_the_valiant.jpg" id="item-1091-126" class="Epic feet">Boots of the Valiant</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/chestguard_of_the_valiant.jpg" id="item-1096-127" class="Epic chest">Chestguard of the Valiant</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_valiant.jpg" id="item-1094-128" class="Epic hands">Gauntlets of the Valiant</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/girdle_of_the_valiant.jpg" id="item-1093-129" class="Epic belt">Girdle of the Valiant</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/helm_of_the_valiant.jpg" id="item-1095-130" class="Epic head">Helm of the Valiant</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />6<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/tasset_of_the_valiant.jpg" id="item-1097-131" class="Epic legs">Tasset of the Valiant</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_relic_i.png" alt="Simple Relic I" class="coin" height="12" width="12" title="Simple Relic I" />4<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_valiant.jpg" id="item-1092-132" class="Epic wrist">Vambraces of the Valiant</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible raid"><a href="#" onclick="toggleList(this); return false"><strong>Eiglophian Mountains :: Yakhmar&#039;s Cave</strong></a> (596,1159)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/breath_of_the_north.jpg" id="item-1343-133" class="Epic crossbow">Breath of the North</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/the_frostflight.jpg" id="item-1344-134" class="Epic bow">The Frostflight</a> [Bow]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible raid"><a href="#" onclick="toggleList(this); return false"><strong>None :: No longer available</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Raid Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blood_scripture_of_xotli.jpg" id="item-1266-135" class="Epic talisman">Blood Scripture of Xotli</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 1.008 seconds using 5 queries, consuming 1798.000 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

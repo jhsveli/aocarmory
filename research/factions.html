@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Factions</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. Information about the various factions in Khitai." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?p=factions';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li class="selected"><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=40">Item Store</a></li>
+ <li><a href="armory.php?s=36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=12">Consumable Books</a></li>
+ <li><a href="armory.php?s=1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=4">Last Legion</a></li>
+ <li><a href="armory.php?s=5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=21">Aquilonia</a></li>
+ <li><a href="armory.php?s=22">Cimmeria</a></li>
+ <li><a href="armory.php?s=28">House of Crom</a></li>
+ <li><a href="armory.php?s=23">Stygia</a></li>
+ <li><a href="armory.php?s=30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=19">Khitai</a></li>
+ <li><a href="armory.php?s=25">Turan</a></li>
+ <li><a href="armory.php?s=32">Unchained</a></li>
+ <li><a href="armory.php?s=33">World Boss</a></li>
+ <li><a href="armory.php?s=14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=31">Bags</a></li>
+ <li><a href="armory.php?s=29">Recipes</a></li>
+ <li><a href="armory.php?s=16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=39">Raidfinder</a></li>
+ <li><a href="armory.php?s=44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<h1>Rise of the Godslayer Factions</h1>
+<p>
+Rise of The Godslayer brings a new dimension to Age of Conan... Faction Warfare.<br/>
+Which faction you pledge your allegiance to, depends on the rewards they lure you with.<br/>
+The two hottest factions to join are Tamarin's Tigers for their Tiger pet/mount and Wolves of the Steppes for their Wolf pet/mount, but aligning with them will make you enemies with two other factions, so choose wisely.<br/>
+To make your choice easier, I've made this page to give you a helping hand when you weigh one faction against another. Check out what kind of armor, weapons and accessories each faction can provide you with and make the choice which is right for you.<br/>
+</p>
+<p>
+The opposing factions in Rise of the Godslayer are:<br/>
+<a href="?s=1"><strong>Brittle Blade</strong></a> vs <a href="?s=7"><strong>Shadows of Jade</strong></a><br/>
+<a href="?s=2"><strong>Children of Yag-kosha</strong></a> vs <a href="?s=10"><strong>Yellow Priests of Yun</strong></a><br/>
+<a href="?s=3"><strong>Hyrkanians</strong></a> vs <a href="?s=9"><strong>Wolves of the Steppes</strong></a><br/>
+<a href="?s=4"><strong>Last Legion</strong></a> vs <a href="?s=5"><strong>Scarlet Circle</strong></a><br/>
+<a href="?s=6"><strong>Scholars of Cheng-Ho</strong></a> vs <a href="?s=8"><strong>Tamarin's Tigers</strong></a><br/>
+</p>
+<p>
+In addition to the ten factions, there are two hidden factions which you have to seek out on your own.<br/>
+The rewards they may provide you with remains to be seen...<br/>
+</p>
+<p>
+RotGS also brings upgrades to your combos and spells in form of <a href="?s=12">consumable books</a>. You can find the location and what upgrades each book provide on this page.<br/>
+</p>
+<hr/>
+<h2>Armor sets explained</h2>
+<p>There are multiple ways to put together an armor set.</p>
+<ul>
+ <li>You can purchase a faction armor set which include 6 rare items and 2 epic items (feet, wrist) using Mark of Acclaim which you can gain by doing faction quests. The set is named by its suffix.</li>
+ <li>You can purchase a dungeon armor set which include 6 rare items and 2 epic items (head, chest) using Simple Trophies and Rare Trophies which you can gain by doing dungeons in normal and hardmode. The set is named by its suffix.</li>
+ <li>You can put together an epic armor set by purchasing 2 epic faction items (feet, wrist) using Mark of Acclaim, 2 epic dungeon items (head, chest) using Rare Trophies and doing dungeons in hardmode to obtain the 4 last epic pieces (shoulder, gloves, belt, legs) which drops from certain instances. The set is named by its prefix.</li>
+</ul>
+<p>The last option is of course the best option since you will get a full epic set.</p>
+
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.976 seconds using 4 queries, consuming 1493.172 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

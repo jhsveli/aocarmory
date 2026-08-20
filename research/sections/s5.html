@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Scarlet Circle</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Scarlet Circle section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=5';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=5;40">Item Store</a></li>
+ <li><a href="armory.php?s=5;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=5;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=5;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=5;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=5;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=5;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=5;4">Last Legion</a></li>
+ <li class="selected"><a href="armory.php?s=">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=5;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=5;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=5;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=5;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=5;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=5;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=5;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=5;28">House of Crom</a></li>
+ <li><a href="armory.php?s=5;23">Stygia</a></li>
+ <li><a href="armory.php?s=5;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=5;19">Khitai</a></li>
+ <li><a href="armory.php?s=5;25">Turan</a></li>
+ <li><a href="armory.php?s=5;32">Unchained</a></li>
+ <li><a href="armory.php?s=5;33">World Boss</a></li>
+ <li><a href="armory.php?s=5;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=5;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=5;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=5;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=5;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=5;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=5;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=5;31">Bags</a></li>
+ <li><a href="armory.php?s=5;29">Recipes</a></li>
+ <li><a href="armory.php?s=5;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=5;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=5;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=5;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=5;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=5;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=5;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-scarlet-circle">
+<legend>Scarlet Circle</legend>
+<ul class="locations">
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: Pra-Eun&#039;s Palace</strong></a> (1390,1060)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Faction Weapons and Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/barbs_of_persuasion.jpg" id="item-317-1" class="Epic ammunition">Barbs of Persuasion</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="//static.is-better-than.tv/armory/cape_of_reprisal.jpg" id="item-318-2" class="Epic back">Cape of Reprisal</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="//static.is-better-than.tv/armory/cape_of_the_imperium.jpg" id="item-319-3" class="Epic back">Cape of the Imperium</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_kang_zai.jpg" id="item-320-4" class="Rare pet">Pet: Kang-Zai</a> [Pet]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/seal_of_privilege.jpg" id="item-321-5" class="Epic talisman">Seal of Privilege</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/the_circles_notch.jpg" id="item-322-6" class="Epic ammunition">The Circle's Notch</a> [Ammunition]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/darkblades_leggings_of_consumed_souls.jpg" id="item-391-7" class="Epic legs">Darkblade's Leggings of Consumed Souls</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/summoners_leggings_of_prestige.jpg" id="item-392-8" class="Epic legs">Summoner's Leggings of Prestige</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/darkblades_leggings_of_secret_doors.jpg" id="item-393-9" class="Epic legs">Darkblade's Leggings of Secret Doors</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Sovereign Rule</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNodyVsKgDAMBMArifW9p6lmNUJQaBWvb9q%2Fgcl6vyZMS2gDjEd2dNB4SVGPTZkf14CVVjBCGcUx4UtnvRk76QjND%2BilGI0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_armbands_of_sovereign_rule.jpg" id="item-323-10" class="Rare shoulder">Neophyte's Armbands of Sovereign Rule</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_pants_of_sovereign_rule.jpg" id="item-324-11" class="Rare legs">Neophyte's Pants of Sovereign Rule</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_gloves_of_sovereign_rule.jpg" id="item-325-12" class="Rare hands">Thaumaturge's Gloves of Sovereign Rule</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_tunic_of_sovereign_rule.jpg" id="item-326-13" class="Rare chest">Thaumaturge's Tunic of Sovereign Rule</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_belt_of_sovereign_rule.jpg" id="item-327-14" class="Rare belt">Sorcerer's Belt of Sovereign Rule</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_hood_of_sovereign_rule.jpg" id="item-328-15" class="Rare head">Sorcerer's Hood of Sovereign Rule</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/summoners_bands_of_sovereign_rule.jpg" id="item-329-16" class="Epic wrist">Summoner's Bands of Sovereign Rule</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/summoners_boots_of_sovereign_rule.jpg" id="item-330-17" class="Epic feet">Summoner's Boots of Sovereign Rule</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Supreme Decree</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorzsgvzUlJLbIyNja0zklNLwYyjKwzEvNSQCxj6%2BSM1OISIMvEOik1B8Qwtc5ITUwBMsys01JTQSLm1uVFmWBFFgDlHxiO"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_armbands_of_supreme_decree.jpg" id="item-331-18" class="Rare shoulder">Neophyte's Armbands of Supreme Decree</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_leggings_of_supreme_decree.jpg" id="item-332-19" class="Rare legs">Neophyte's Leggings of Supreme Decree</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_gloves_of_supreme_decree.jpg" id="item-333-20" class="Rare hands">Medium's Gloves of Supreme Decree</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_tunic_of_supreme_decree.jpg" id="item-334-21" class="Rare chest">Medium's Tunic of Supreme Decree</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_belt_of_supreme_decree.jpg" id="item-335-22" class="Rare belt">Diviner's Belt of Supreme Decree</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_hood_of_supreme_decree.jpg" id="item-336-23" class="Rare head">Diviner's Hood of Supreme Decree</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/darkblades_boots_of_supreme_decree.jpg" id="item-337-24" class="Epic feet">Darkblade's Boots of Supreme Decree</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/darkblades_bracers_of_supreme_decree.jpg" id="item-338-25" class="Epic wrist">Darkblade's Bracers of Supreme Decree</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Dark Pact</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNodylEKgDAMBNErqamC3dNUuxohKLSK17fx7zFM1euxzBJFZhj3GiV00HRmV49VWe%2BmAQvNIVCm3BCwkV5GvOX4p%2BkD5nEYjw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_armbands_of_the_dark_pact.jpg" id="item-339-26" class="Rare shoulder">Neophyte's Armbands of the Dark Pact</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_leggings_of_the_dark_pact.jpg" id="item-340-27" class="Rare legs">Neophyte's Leggings of the Dark Pact</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_gloves_of_the_dark_pact.jpg" id="item-341-28" class="Rare hands">Medium's Gloves of the Dark Pact</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_robe_of_the_dark_pact.jpg" id="item-342-29" class="Rare chest">Medium's Robe of the Dark Pact</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_belt_of_the_dark_pact.jpg" id="item-343-30" class="Rare belt">Diviner's Belt of the Dark Pact</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_hood_of_the_dark_pact.jpg" id="item-344-31" class="Rare head">Diviner's Hood of the Dark Pact</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/darkblades_boots_of_the_dark_pact.jpg" id="item-345-32" class="Epic feet">Darkblade's Boots of the Dark Pact</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/darkblades_bracers_of_the_dark_pact.jpg" id="item-346-33" class="Epic wrist">Darkblade's Bracers of the Dark Pact</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Emperor's Favor</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNrLSMxLKbYyNjG3TkrNKQEyLKzTUlNBDEvr8qLMYiDL1MC6OCO%2FNCcltQjIMbTOSU0H6jA1ss5ITUwBMoytkzNSwQpNANycGJk%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_gauntlets_of_the_emperors_favor.jpg" id="item-347-34" class="Rare hands">Neophyte's Gauntlets of the Emperor's Favor</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_girdle_of_the_emperors_favor.jpg" id="item-348-35" class="Rare belt">Neophyte's Girdle of the Emperor's Favor</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_boots_of_the_emperors_favor.jpg" id="item-349-36" class="Rare feet">Thaumaturge's Boots of the Emperor's Favor</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_bracers_of_the_emperors_favor.jpg" id="item-350-37" class="Rare wrist">Thaumaturge's Bracers of the Emperor's Favor</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_armbands_of_the_emperors_favor.jpg" id="item-351-38" class="Rare shoulder">Sorcerer's Armbands of the Emperor's Favor</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_leggings_of_the_emperors_favor.jpg" id="item-352-39" class="Rare legs">Sorcerer's Leggings of the Emperor's Favor</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/summoners_helm_of_the_emperors_favor.jpg" id="item-353-40" class="Epic head">Summoner's Helm of the Emperor's Favor</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/summoners_robes_of_the_emperors_favor.jpg" id="item-354-41" class="Epic chest">Summoner's Robes of the Emperor's Favor</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Baishan</strong></a> (320,1160)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Regal Might</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNoVylsKgDAQQ9Et%2BaDjI6upNnWEotAqbt%2BZv5NwN5ZnHUOAxis1kyCTfk346tlcM5reb0msNhYUHhZKB2VMhh670kMZft0dGKM%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_belt_of_regal_might.jpg" id="item-355-42" class="Rare belt">Neophyte's Belt of Regal Might</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_gloves_of_regal_might.jpg" id="item-356-43" class="Rare hands">Neophyte's Gloves of Regal Might</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_boots_of_regal_might.jpg" id="item-357-44" class="Rare feet">Thaumaturge's Boots of Regal Might</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_bracers_of_regal_might.jpg" id="item-358-45" class="Rare wrist">Thaumaturge's Bracers of Regal Might</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_armbands_of_regal_might.jpg" id="item-359-46" class="Rare shoulder">Sorcerer's Armbands of Regal Might</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_leggings_of_regal_might.jpg" id="item-360-47" class="Rare legs">Sorcerer's Leggings of Regal Might</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/summoners_crown_of_regal_might.jpg" id="item-361-48" class="Epic head">Summoner's Crown of Regal Might</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/summoners_robes_of_regal_might.jpg" id="item-362-49" class="Epic chest">Summoner's Robes of Regal Might</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Emissary</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNoVylEKgDAMg%2BErCdNNzWmmy6xQFDbF69u%2BfQn%2FRn3WEAMkX6WbRlTSrwlfO7srosv9amGzkaA8PJwhzMWwYBd6mIYf3RsYrQ%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_belt_of_the_emissary.jpg" id="item-363-50" class="Rare belt">Neophyte's Belt of the Emissary</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_gloves_of_the_emissary.jpg" id="item-364-51" class="Rare hands">Neophyte's Gloves of the Emissary</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_boots_of_the_emissary.jpg" id="item-365-52" class="Rare feet">Medium's Boots of the Emissary</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_bracers_of_the_emissary.jpg" id="item-366-53" class="Rare wrist">Medium's Bracers of the Emissary</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_armbands_of_the_emissary.jpg" id="item-367-54" class="Rare shoulder">Diviner's Armbands of the Emissary</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_leggings_of_the_emissary.jpg" id="item-368-55" class="Rare legs">Diviner's Leggings of the Emissary</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/darkblades_hood_of_the_emissary.jpg" id="item-369-56" class="Epic head">Darkblade's Hood of the Emissary</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/darkblades_robe_of_the_emissary.jpg" id="item-370-57" class="Epic chest">Darkblade's Robe of the Emissary</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Kingmaker</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNodylEOQDAQhOEzUVTMaUqnVtKQdInr2%2FX2zeRfWe8lxA6SzqymHoX0K%2BBth7oGqFxPzWw2RlTuHk4QpmyI2IR%2FOH%2FcDBiu"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_belt_of_the_kingmaker.jpg" id="item-371-58" class="Rare belt">Neophyte's Belt of the Kingmaker</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_gloves_of_the_kingmaker.jpg" id="item-372-59" class="Rare hands">Neophyte's Gloves of the Kingmaker</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_boots_of_the_kingmaker.jpg" id="item-373-60" class="Rare feet">Medium's Boots of the Kingmaker</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/mediums_bracers_of_the_kingmaker.jpg" id="item-374-61" class="Rare wrist">Medium's Bracers of the Kingmaker</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_armbands_of_the_kingmaker.jpg" id="item-375-62" class="Rare shoulder">Diviner's Armbands of the Kingmaker</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_leggings_of_the_kingmaker.jpg" id="item-376-63" class="Rare legs">Diviner's Leggings of the Kingmaker</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/darkblades_hood_of_the_kingmaker.jpg" id="item-377-64" class="Epic head">Darkblade's Hood of the Kingmaker</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/darkblades_tunic_of_the_kingmaker.jpg" id="item-378-65" class="Epic chest">Darkblade's Tunic of the Kingmaker</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/summoners_leggings_of_imperial_assent.jpg" id="item-394-66" class="Epic legs">Summoner's Leggings of Imperial Assent</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Mandate</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNodymsKgCAQReEtVfb0rsaaWxNIgRZtP8d%2FH4eT9X6jMHk3LYg8sndzAw2XmFpsyvwUdVgZDQ7KIAU9dtLKgC%2BddRp%2F6tEYrw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_armbands_of_the_mandate.jpg" id="item-379-67" class="Rare shoulder">Neophyte's Armbands of the Mandate</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/neophytes_leggings_of_the_mandate.jpg" id="item-380-68" class="Rare legs">Neophyte's Leggings of the Mandate</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_gauntlets_of_the_mandate.jpg" id="item-381-69" class="Rare hands">Thaumaturge's Gauntlets of the Mandate</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/thaumaturges_robes_of_the_mandate.jpg" id="item-382-70" class="Rare chest">Thaumaturge's Robes of the Mandate</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_girdle_of_the_mandate.jpg" id="item-383-71" class="Rare belt">Sorcerer's Girdle of the Mandate</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/sorcerers_helm_of_the_mandate.jpg" id="item-384-72" class="Rare head">Sorcerer's Helm of the Mandate</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/summoners_boots_of_the_mandate.jpg" id="item-385-73" class="Epic feet">Summoner's Boots of the Mandate</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/summoners_bracers_of_the_mandate.jpg" id="item-386-74" class="Epic wrist">Summoner's Bracers of the Mandate</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: The Kang Pagoda</strong></a> (241,1227)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_boots_of_consumed_souls.jpg" id="item-3501-75" class="Rare feet">Neophyte's Boots of Consumed Souls</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/summoners_straps_of_prestige.jpg" id="item-1021-76" class="Epic shoulder">Summoner's Straps of Prestige</a> [Shoulder]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_boots_of_secret_doors.jpg" id="item-2984-77" class="Rare feet">Neophyte's Boots of Secret Doors</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_boots_of_imperial_assent.jpg" id="item-4134-78" class="Rare feet">Neophyte's Boots of Imperial Assent</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/mediums_belt_of_consumed_souls.jpg" id="item-3150-79" class="Rare belt">Medium's Belt of Consumed Souls</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNpLSs0psTI2NLKwzkjMSym2MrY0BQA9CwXU"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_belt_of_prestige.jpg" id="item-3128-80" class="Rare belt">Thaumaturge's Belt of Prestige</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/summoners_gloves_of_prestige.jpg" id="item-395-81" class="Epic hands">Summoner's Gloves of Prestige</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNpLSs0psTI2MjSxLs7IL81JSS2yMrY0AwBUUAcp"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/mediums_belt_of_secret_doors.jpg" id="item-3214-82" class="Rare belt">Medium's Belt of Secret Doors</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/darkblades_armbands_of_secret_doors.jpg" id="item-396-83" class="Epic shoulder">Darkblade's Armbands of Secret Doors</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNpLSs0psTK2sDS1zkjMSym2MrY0BwA9mwXh"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_girdle_of_imperial_assent.jpg" id="item-3895-84" class="Rare belt">Thaumaturge's Girdle of Imperial Assent</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/summoners_gauntlets_of_imperial_assent.jpg" id="item-397-85" class="Epic hands">Summoner's Gauntlets of Imperial Assent</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Reliquary of Flame</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorL8osLrEyNrE0t85ITUyxMjYwMbdOzkgFChpaGJpYJ6XmAKUtLQEFAQw7"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_bracers_of_consumed_souls.jpg" id="item-3497-86" class="Rare wrist">Neophyte's Bracers of Consumed Souls</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_hood_of_consumed_souls.jpg" id="item-3047-87" class="Rare head">Neophyte's Hood of Consumed Souls</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_robe_of_consumed_souls.jpg" id="item-1814-88" class="Rare chest">Neophyte's Robe of Consumed Souls</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/darkblades_belt_of_consumed_souls.jpg" id="item-399-89" class="Epic belt">Darkblade's Belt of Consumed Souls</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorL8osLrEyNrG0sM5ITUyxMjYytwAAR0oGJw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_bracers_of_prestige.jpg" id="item-3498-90" class="Rare wrist">Neophyte's Bracers of Prestige</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_hood_of_prestige.jpg" id="item-3278-91" class="Rare head">Neophyte's Hood of Prestige</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorL8osLrEyNjIxsM5ITUwBsszNrZMzUkGCJuZGAJ%2FWCXM%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_bracers_of_secret_doors.jpg" id="item-3240-92" class="Rare wrist">Neophyte's Bracers of Secret Doors</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_hood_of_secret_doors.jpg" id="item-3277-93" class="Rare head">Neophyte's Hood of Secret Doors</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_tunic_of_secret_doors.jpg" id="item-3472-94" class="Rare chest">Neophyte's Tunic of Secret Doors</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNpLzkgtLrEyNjE3tC4vygQyDc0tDKyTUnNKrEwMDACYBwlP"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/neophytes_robes_of_imperial_assent.jpg" id="item-3471-95" class="Rare chest">Neophyte's Robes of Imperial Assent</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/neophytes_bracers_of_imperial_assent.jpg" id="item-1780-96" class="Rare wrist">Neophyte's Bracers of Imperial Assent</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/summoners_girdle_of_imperial_assent.jpg" id="item-400-97" class="Epic belt">Summoner's Girdle of Imperial Assent</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Vortex of the Storm</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/darkblades_gloves_of_secret_doors.jpg" id="item-401-98" class="Epic hands">Darkblade's Gloves of Secret Doors</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Pillars of Heaven</strong></a> (1431,1465)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorzsgvzUlJLbIyNrE0tM5ITUyxMjY1MrDOSU0vtjI2NDMCALvXCi8%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/mediums_armbands_of_consumed_souls.jpg" id="item-3491-99" class="Rare shoulder">Medium's Armbands of Consumed Souls</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/mediums_hood_of_consumed_souls.jpg" id="item-3520-100" class="Rare head">Medium's Hood of Consumed Souls</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/mediums_leggings_of_consumed_souls.jpg" id="item-3162-101" class="Rare legs">Medium's Leggings of Consumed Souls</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorzsgvzUlJLbIytjS2tM5JTS%2B2MjY1tLBOSs0pAYpZAACz6woq"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_armbands_of_prestige.jpg" id="item-3939-102" class="Rare shoulder">Thaumaturge's Armbands of Prestige</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_leggings_of_prestige.jpg" id="item-3518-103" class="Rare legs">Thaumaturge's Leggings of Prestige</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/summoners_cincture_of_prestige.jpg" id="item-398-104" class="Epic belt">Summoner's Cincture of Prestige</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorzsgvzUlJLbIyNrAwt85ITUwBsSysc1LTi62MjczNALxLCj8%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/mediums_armbands_of_secret_doors.jpg" id="item-3087-105" class="Rare shoulder">Medium's Armbands of Secret Doors</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/mediums_hood_of_secret_doors.jpg" id="item-3088-106" class="Rare head">Medium's Hood of Secret Doors</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/mediums_leggings_of_secret_doors.jpg" id="item-3276-107" class="Rare legs">Medium's Leggings of Secret Doors</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNorzsgvzUlJLbIyNjEzt85ITUyxMjazNLLOSU0vtjK2NDEAALycCkA%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_armbands_of_imperial_assent.jpg" id="item-3467-108" class="Rare shoulder">Thaumaturge's Armbands of Imperial Assent</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_helm_of_imperial_assent.jpg" id="item-3692-109" class="Rare head">Thaumaturge's Helm of Imperial Assent</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/thaumaturges_leggings_of_imperial_assent.jpg" id="item-3940-110" class="Rare legs">Thaumaturge's Leggings of Imperial Assent</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Palace of Yun Rau</strong></a> (156,1389)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/summoners_armbands_of_imperial_assent.jpg" id="item-389-111" class="Epic shoulder">Summoner's Armbands of Imperial Assent</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Den of the Crowmen</strong></a> (6,575)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/darkblades_gloves_of_consumed_souls.jpg" id="item-387-112" class="Epic hands">Darkblade's Gloves of Consumed Souls</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/darkblades_belt_of_secret_doors.jpg" id="item-388-113" class="Epic belt">Darkblade's Belt of Secret Doors</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_bracers_of_consumed_souls.jpg" id="item-3778-114" class="Rare wrist">Diviner's Bracers of Consumed Souls</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_bracers_of_prestige.jpg" id="item-3012-115" class="Rare wrist">Sorcerer's Bracers of Prestige</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_bracers_of_secret_doors.jpg" id="item-3452-116" class="Rare wrist">Diviner's Bracers of Secret Doors</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_bracers_of_imperial_assent.jpg" id="item-3011-117" class="Rare wrist">Sorcerer's Bracers of Imperial Assent</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNrLSMxLKbYyNrcwtC7OyC%2FNSUktsjK2NAAAXiYHkw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_gloves_of_consumed_souls.jpg" id="item-3781-118" class="Rare hands">Diviner's Gloves of Consumed Souls</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/darkblades_armbands_of_consumed_souls.jpg" id="item-390-119" class="Epic shoulder">Darkblade's Armbands of Consumed Souls</a> [Shoulder]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_gloves_of_prestige.jpg" id="item-3882-120" class="Rare hands">Sorcerer's Gloves of Prestige</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_gloves_of_secret_doors.jpg" id="item-3524-121" class="Rare hands">Diviner's Gloves of Secret Doors</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_gauntlets_of_imperial_assent.jpg" id="item-3891-122" class="Rare hands">Sorcerer's Gauntlets of Imperial Assent</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_robe_of_consumed_souls.jpg" id="item-3454-123" class="Rare chest">Diviner's Robe of Consumed Souls</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=5&amp;ab=eNpLS00tsTK2sDS3Ts5ILS6xMjK3NAMAQ8oGHg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_boots_of_prestige.jpg" id="item-3897-124" class="Rare feet">Sorcerer's Boots of Prestige</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_robe_of_prestige.jpg" id="item-2796-125" class="Rare chest">Sorcerer's Robe of Prestige</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/diviners_tunic_of_secret_doors.jpg" id="item-3783-126" class="Rare chest">Diviner's Tunic of Secret Doors</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/sorcerers_robes_of_imperial_assent.jpg" id="item-1748-127" class="Rare chest">Sorcerer's Robes of Imperial Assent</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Consumed Souls</a> [HoX]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/darkblades_leggings_of_consumed_souls.jpg" id="item-391-128" class="Epic legs">Darkblade's Leggings of Consumed Souls</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Prestige</a> [Demo/Necro]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/summoners_leggings_of_prestige.jpg" id="item-392-129" class="Epic legs">Summoner's Leggings of Prestige</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Secret Doors</a> [Sin]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/darkblades_leggings_of_secret_doors.jpg" id="item-393-130" class="Epic legs">Darkblade's Leggings of Secret Doors</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Imperial Assent</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/summoners_leggings_of_imperial_assent.jpg" id="item-394-131" class="Epic legs">Summoner's Leggings of Imperial Assent</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District - Sxi Ai</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Kingmaker</a> [Sin]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/diviners_leggings_of_the_kingmaker.jpg" id="item-376-132" class="Rare legs">Diviner's Leggings of the Kingmaker</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2025<br/>
+<span class="stats">Page generated in 1.049 seconds using 5 queries, consuming 1863.383 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - About</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. Info about the author, the page and the mystery of life." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?p=about';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li class="selected"><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=40">Item Store</a></li>
+ <li><a href="armory.php?s=36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=12">Consumable Books</a></li>
+ <li><a href="armory.php?s=1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=4">Last Legion</a></li>
+ <li><a href="armory.php?s=5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=21">Aquilonia</a></li>
+ <li><a href="armory.php?s=22">Cimmeria</a></li>
+ <li><a href="armory.php?s=28">House of Crom</a></li>
+ <li><a href="armory.php?s=23">Stygia</a></li>
+ <li><a href="armory.php?s=30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=19">Khitai</a></li>
+ <li><a href="armory.php?s=25">Turan</a></li>
+ <li><a href="armory.php?s=32">Unchained</a></li>
+ <li><a href="armory.php?s=33">World Boss</a></li>
+ <li><a href="armory.php?s=14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=31">Bags</a></li>
+ <li><a href="armory.php?s=29">Recipes</a></li>
+ <li><a href="armory.php?s=16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=39">Raidfinder</a></li>
+ <li><a href="armory.php?s=44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<h1>About</h1>
+<p>
+The AoC>TV: Armory started out as a mapping project to find out what kind of gear the various factions could provide me with to make it easier to decide which faction I should go for. Since no-one else had created such a list I took it upon myself to do this task. Little did I know the amount of time I would later spend on this "small" project.<br>
+</p>
+
+<hr/>
+
+<h2>Milestones</h2>
+<dl>
+ <dt>2010-05-11</dt>
+ <dd>Rise of the Godslayer hits the live servers.</dd>
+ <dt>2010-05-13</dt>
+ <dd>Started working on the <strong><em>Faction Armory</em></strong> page by mapping the location of all the faction merchants and the items which they were selling.</dd>
+ <dt>2010-05-17</dt>
+ <dd>Finished adding all the items sold by the faction merchants.</dd>
+ <dt>2010-05-20</dt>
+ <dd>Added <strong><em>Attribute calculator</em></strong>.</dd>
+ <dt>2010-05-24</dt>
+ <dd>Added prices to the items sold by the merchants.</dd>
+ <dt>2010-06-14</dt>
+ <dd>Added search functionality to the faction page.</dd>
+ <dt>2010-06-15</dt>
+ <dd>Started the long process with adding boss drop location for epic items from Khitai hardmode dungeons.</dd>
+ <dt>2010-07-13</dt>
+ <dd>Official <a href="http://forums-eu.ageofconan.com/showthread.php?t=149722">thread on EU-forums</a> finally got some glue, thx to Vorbiz.</dd>
+ <dt>2010-08-01</dt>
+ <dd>The title <strong><em>Faction Armory</em></strong> did not fit the content of the page any more and the new <strong><em>Armory</em></strong> page came to life.<br><a href="//static.is-better-than.tv/images/factions.png"><img src="//static.is-better-than.tv/images/factions_380x95.jpg" width="380" height="95" alt="AoC>TV: Faction Armory" style="margin-top:5px" /></a><br><a href="images/armory.png"><img src="//static.is-better-than.tv/images/armory_380x95.jpg" width="380" height="95" alt="AoC>TV: Armory" style="margin-top:5px" /></a></dd>
+ <dt>2010-09-02</dt>
+ <dd>Added <strong><em>Armor builder</em></strong> to the Armory, much inspired by EvE online's <strong><em>EvE Fitting Tool</em></strong>, where you can put together items of your choice and see the stats of the items. Also started adding Tier 3 armor sets.</dd>
+ <dt>2010-09-03</dt>
+ <dd>Added <strong><em>Shoutbox</em></strong> to the page to make it easier for all the visitors to leave feedback. Only gotten feedback from the EU-community until now.</dd>
+ <dt>2010-09-06</dt>
+ <dd>Finished adding the Tier 3 armor sets.</dd>
+ <dt>2010-09-22</dt>
+ <dd>Improved <strong><em>Armor builder</em></strong> by incorporating the <strong><em>Attribute calculator</em></strong> for the base stats.</dd>
+ <dt>2010-10-28</dt>
+ <dd>Added links to <strong><em>Armor builder</em></strong> sets so that people could share their builds.</dd>
+ <dt>2010-10-30</dt>
+ <dd>Started adding Tier 3 crafted weapons to the Armory</dd>
+ <dt>2010-11-01</dt>
+ <dd>Started adding Tier 1 and Tier 2 armor sets to the Armory.</dd>
+ <dt>2010-11-04</dt>
+ <dd>Finished adding Tier 1 and Tier 2 armor sets.</dd>
+ <dt>2010-11-08</dt>
+ <dd>Added <strong><em>Profiler</em></strong> which reads the profile data provided by YG and presents it in a plain view. The unique feature is the link to the <strong><em>Armor builder</em></strong> so that you can quickly see the stats of the items you or your friends/enemies are wearing.</dd>
+ <dt>2010-11-11</dt>
+ <dd>Started adding PvP armor sets to the Armory.</dd>
+ <dt>2010-11-14</dt>
+ <dd>Finished adding PvP gear including accessories and weapons.</dd>
+ <dt>2011-01-18</dt>
+ <dd>Added last armor item, Blade's Gloves of the Hidden Tomb, which can drop from Khitai hardmodes.</dd>
+</dl>
+
+<hr/>
+
+<h2>Credits</h2>
+<p>
+&middot; <strong>Funcom</strong> for creating the game (and breaking it as well...)<br>
+&middot; <strong>Getrix</strong> for running the <a href="http://bebot.shadow-realm.org/aoc-0-6-x-customunofficial-modules/alternative-central-itemdb-%28!item!items!itemreg%28auto%29%29/">Bebot ItemDB</a>.<br>
+&middot; <strong>YellowGremlin</strong> for providing the gaming community with their database and services.<br>
+&middot; <strong>Everyone</strong> who has contributed with feedback.<br>
+&middot; <strong>Everyone</strong> who has bothered to just say thank you. We all crave attention, and I'm no different.<br>
+</p>
+
+<hr/>
+
+<h2>Donations</h2>
+<p>I would also give a special thanks to the people who have donated to this project.</p>
+<p>
+Xiloscient<br>
+Oddbj&oslash;rn<br>
+Dana<br>
+Thutkemi<br>
+Sidar<br>
+Fabien<br>
+Schmoozer<br>
+Ronald<br>
+Anthony<br>
+Tomas<br>
+Patrick<br>
+David<br>
+Armelle<br>
+Brian<br>
+Aaron<br>
+Anna<br>
+Billy<br>
+Jose Manuel<br>
+Stephan<br>
+Howard<br>
+Lorayne<br>
+Markus<br>
+Arild<br>
+David<br>
+Todd<br>
+Jicamo<br>
+Darlene<br>
+Emmanuel<br>
+Stephan<br>
+Qassim<br>
+Peter<br>
+Durango<br>
+James<br>
+Richard<br>
+Anthony<br>
+Steinar<br>
+Qassim<br>
+Oscar<br>
+Benoit<br>
+Jose<br>
+Stig <em>**</em><br>
+Jonathan<br>
+Eivind<br>
+Bernard<br>
+David<br>
+Vanessa<br>
+Anthony<br>
+Jan<br>
+Park<br>
+Jarid<br>
+Blair<br>
+</p>
+<p><em>If you don't want your name in this list, please let me know.</em></p>
+
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2023<br/>
+<span class="stats">Page generated in 0.960 seconds using 4 queries, consuming 1493.375 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

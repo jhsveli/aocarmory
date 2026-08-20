@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+.idea
+*.tsbuildinfo
+research/images
+
+# test/build artifacts
+vitest-report.json
+test-summary.txt
+build-out.txt
+lint-out.txt
+
+# scratch
+debug_tree.py
+live_armory.html

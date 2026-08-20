@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li class="selected"><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=40">Item Store</a></li>
+ <li><a href="armory.php?s=36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=12">Consumable Books</a></li>
+ <li><a href="armory.php?s=1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=4">Last Legion</a></li>
+ <li><a href="armory.php?s=5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=21">Aquilonia</a></li>
+ <li><a href="armory.php?s=22">Cimmeria</a></li>
+ <li><a href="armory.php?s=28">House of Crom</a></li>
+ <li><a href="armory.php?s=23">Stygia</a></li>
+ <li><a href="armory.php?s=30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=19">Khitai</a></li>
+ <li><a href="armory.php?s=25">Turan</a></li>
+ <li><a href="armory.php?s=32">Unchained</a></li>
+ <li><a href="armory.php?s=33">World Boss</a></li>
+ <li><a href="armory.php?s=14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=31">Bags</a></li>
+ <li><a href="armory.php?s=29">Recipes</a></li>
+ <li><a href="armory.php?s=16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=39">Raidfinder</a></li>
+ <li><a href="armory.php?s=44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset><div class="rightColumn">
+   <div class="rightBox">
+    <div class="header">Statistics</div>
+    <table cellspacing="0" class="tableedit" style="margin:10px;width:230px;">
+     <tr>
+      <th>Sections</th>
+      <td style="text-align:right;width:50%">38</td>
+     </tr>
+     <tr>
+      <th>Sets</th>
+      <td style="text-align:right">373</td>
+     </tr>
+     <tr>
+      <th>Items</th>
+      <td style="text-align:right">4657</td>
+     </tr>
+    </table>
+   </div>
+<div id="shoutbox" class="rightBox">
+ <div class="header">Shoutbox</div>
+ <div id="shoutboxMessages">
+  <div class="shoutboxMessage">
+   <div class="title">@Vanessa</div>   <p>Thank you very much for the donation :o)<br />
+<br />
+Wish you all a good holiday season! :o)</p>
+   <div class="author"><span class="name">Kentarii</span> <br/>2024-12-09 09:44 CET</div>
+  </div>
+  <div class="shoutboxMessage">
+   <div class="title">@Sangue</div>   <p>Thank you very much for the donation :)<br />
+<br />
+And thanks for letting me know about the problem with the site. Apologies for the downtime.</p>
+   <div class="author"><span class="name">Kentarii</span> <br/>2024-09-23 00:14 CET</div>
+  </div>
+  <div class="shoutboxMessage">
+      <p>Thank you for the donation Yan, very much appreciated :o)</p>
+   <div class="author"><span class="name">Kentarii</span> <br/>2024-08-08 10:02 CET</div>
+  </div>
+  <div class="shoutboxMessage">
+      <p>Thank you for the donation Steffen :o)<br />
+<br />
+Wish you all a good summer ☀️</p>
+   <div class="author"><span class="name">Kentarii</span> <br/>2024-07-03 11:15 CET</div>
+  </div>
+  <div class="shoutboxMessage">
+   <div class="title">appreciation</div>   <p>this is the best aoc related site on the net, even if it hiccups a bit. thank you for keeping it going even after all these years.</p>
+   <div class="author"><span class="name">camoka</span> <br/>2024-07-02 12:58 CET</div>
+  </div>
+  <div class="navigation">
+Page:
+ <strong>1</strong>  <a href="#2" class="shoutboxPageLink" id="shoutbox-page-2">2</a>  <a href="#3" class="shoutboxPageLink" id="shoutbox-page-3">3</a>  <a href="#4" class="shoutboxPageLink" id="shoutbox-page-4">4</a>  <a href="#5" class="shoutboxPageLink" id="shoutbox-page-5">5</a>  <a href="#6" class="shoutboxPageLink" id="shoutbox-page-6">6</a>  <a href="#7" class="shoutboxPageLink" id="shoutbox-page-7">7</a>  <a href="#8" class="shoutboxPageLink" id="shoutbox-page-8">8</a>  <a href="#9" class="shoutboxPageLink" id="shoutbox-page-9">9</a>  <a href="#10" class="shoutboxPageLink" id="shoutbox-page-10">10</a>  <a href="#11" class="shoutboxPageLink" id="shoutbox-page-11">11</a>  <a href="#12" class="shoutboxPageLink" id="shoutbox-page-12">12</a>  <a href="#13" class="shoutboxPageLink" id="shoutbox-page-13">13</a>  <a href="#14" class="shoutboxPageLink" id="shoutbox-page-14">14</a>  <a href="#15" class="shoutboxPageLink" id="shoutbox-page-15">15</a>  <a href="#16" class="shoutboxPageLink" id="shoutbox-page-16">16</a>  <a href="#17" class="shoutboxPageLink" id="shoutbox-page-17">17</a>  <a href="#18" class="shoutboxPageLink" id="shoutbox-page-18">18</a>  <a href="#19" class="shoutboxPageLink" id="shoutbox-page-19">19</a>  <a href="#20" class="shoutboxPageLink" id="shoutbox-page-20">20</a>  <a href="#21" class="shoutboxPageLink" id="shoutbox-page-21">21</a>  <a href="#22" class="shoutboxPageLink" id="shoutbox-page-22">22</a>  <a href="#23" class="shoutboxPageLink" id="shoutbox-page-23">23</a>  <a href="#24" class="shoutboxPageLink" id="shoutbox-page-24">24</a>  <a href="#25" class="shoutboxPageLink" id="shoutbox-page-25">25</a>  <a href="#26" class="shoutboxPageLink" id="shoutbox-page-26">26</a>  <a href="#27" class="shoutboxPageLink" id="shoutbox-page-27">27</a>  <a href="#28" class="shoutboxPageLink" id="shoutbox-page-28">28</a>  <a href="#29" class="shoutboxPageLink" id="shoutbox-page-29">29</a>  <a href="#30" class="shoutboxPageLink" id="shoutbox-page-30">30</a>  <a href="#31" class="shoutboxPageLink" id="shoutbox-page-31">31</a>  <a href="#32" class="shoutboxPageLink" id="shoutbox-page-32">32</a>  <a href="#33" class="shoutboxPageLink" id="shoutbox-page-33">33</a>  <a href="#34" class="shoutboxPageLink" id="shoutbox-page-34">34</a>  <a href="#35" class="shoutboxPageLink" id="shoutbox-page-35">35</a>  <a href="#36" class="shoutboxPageLink" id="shoutbox-page-36">36</a>  <a href="#37" class="shoutboxPageLink" id="shoutbox-page-37">37</a>  <a href="#38" class="shoutboxPageLink" id="shoutbox-page-38">38</a>  <a href="#39" class="shoutboxPageLink" id="shoutbox-page-39">39</a>  <a href="#40" class="shoutboxPageLink" id="shoutbox-page-40">40</a>  <a href="#41" class="shoutboxPageLink" id="shoutbox-page-41">41</a>  <a href="#42" class="shoutboxPageLink" id="shoutbox-page-42">42</a>  <a href="#43" class="shoutboxPageLink" id="shoutbox-page-43">43</a>  <a href="#44" class="shoutboxPageLink" id="shoutbox-page-44">44</a>  <a href="#45" class="shoutboxPageLink" id="shoutbox-page-45">45</a>  <a href="#46" class="shoutboxPageLink" id="shoutbox-page-46">46</a>  <a href="#47" class="shoutboxPageLink" id="shoutbox-page-47">47</a>  <a href="#48" class="shoutboxPageLink" id="shoutbox-page-48">48</a>  <a href="#49" class="shoutboxPageLink" id="shoutbox-page-49">49</a>  <a href="#50" class="shoutboxPageLink" id="shoutbox-page-50">50</a>  <a href="#51" class="shoutboxPageLink" id="shoutbox-page-51">51</a>  <a href="#52" class="shoutboxPageLink" id="shoutbox-page-52">52</a>  <a href="#53" class="shoutboxPageLink" id="shoutbox-page-53">53</a>  <a href="#54" class="shoutboxPageLink" id="shoutbox-page-54">54</a>  <a href="#55" class="shoutboxPageLink" id="shoutbox-page-55">55</a>  <a href="#56" class="shoutboxPageLink" id="shoutbox-page-56">56</a>  <a href="#57" class="shoutboxPageLink" id="shoutbox-page-57">57</a>  <a href="#58" class="shoutboxPageLink" id="shoutbox-page-58">58</a>  <a href="#59" class="shoutboxPageLink" id="shoutbox-page-59">59</a>  <a href="#60" class="shoutboxPageLink" id="shoutbox-page-60">60</a>  <a href="#61" class="shoutboxPageLink" id="shoutbox-page-61">61</a>  <a href="#62" class="shoutboxPageLink" id="shoutbox-page-62">62</a>  <a href="#63" class="shoutboxPageLink" id="shoutbox-page-63">63</a>  <a href="#64" class="shoutboxPageLink" id="shoutbox-page-64">64</a>  <a href="#65" class="shoutboxPageLink" id="shoutbox-page-65">65</a>  <a href="#66" class="shoutboxPageLink" id="shoutbox-page-66">66</a>  <a href="#67" class="shoutboxPageLink" id="shoutbox-page-67">67</a>  <a href="#68" class="shoutboxPageLink" id="shoutbox-page-68">68</a>  <a href="#69" class="shoutboxPageLink" id="shoutbox-page-69">69</a>  <a href="#70" class="shoutboxPageLink" id="shoutbox-page-70">70</a>  <a href="#71" class="shoutboxPageLink" id="shoutbox-page-71">71</a>  <a href="#72" class="shoutboxPageLink" id="shoutbox-page-72">72</a>  <a href="#73" class="shoutboxPageLink" id="shoutbox-page-73">73</a>  <a href="#74" class="shoutboxPageLink" id="shoutbox-page-74">74</a>  <a href="#75" class="shoutboxPageLink" id="shoutbox-page-75">75</a>  <a href="#76" class="shoutboxPageLink" id="shoutbox-page-76">76</a>  <a href="#77" class="shoutboxPageLink" id="shoutbox-page-77">77</a>  <a href="#78" class="shoutboxPageLink" id="shoutbox-page-78">78</a>  <a href="#79" class="shoutboxPageLink" id="shoutbox-page-79">79</a>  <a href="#80" class="shoutboxPageLink" id="shoutbox-page-80">80</a>  <a href="#81" class="shoutboxPageLink" id="shoutbox-page-81">81</a>  <a href="#82" class="shoutboxPageLink" id="shoutbox-page-82">82</a>  <a href="#83" class="shoutboxPageLink" id="shoutbox-page-83">83</a>  <a href="#84" class="shoutboxPageLink" id="shoutbox-page-84">84</a>  <a href="#85" class="shoutboxPageLink" id="shoutbox-page-85">85</a>  <a href="#86" class="shoutboxPageLink" id="shoutbox-page-86">86</a>  <a href="#87" class="shoutboxPageLink" id="shoutbox-page-87">87</a>  <a href="#88" class="shoutboxPageLink" id="shoutbox-page-88">88</a>  <a href="#89" class="shoutboxPageLink" id="shoutbox-page-89">89</a>  <a href="#90" class="shoutboxPageLink" id="shoutbox-page-90">90</a>  <a href="#91" class="shoutboxPageLink" id="shoutbox-page-91">91</a>  <a href="#92" class="shoutboxPageLink" id="shoutbox-page-92">92</a>  <a href="#93" class="shoutboxPageLink" id="shoutbox-page-93">93</a>  <a href="#94" class="shoutboxPageLink" id="shoutbox-page-94">94</a>  <a href="#95" class="shoutboxPageLink" id="shoutbox-page-95">95</a>  <a href="#96" class="shoutboxPageLink" id="shoutbox-page-96">96</a>  <a href="#97" class="shoutboxPageLink" id="shoutbox-page-97">97</a>  <a href="#98" class="shoutboxPageLink" id="shoutbox-page-98">98</a>  <a href="#99" class="shoutboxPageLink" id="shoutbox-page-99">99</a>  <a href="#100" class="shoutboxPageLink" id="shoutbox-page-100">100</a>  <a href="#101" class="shoutboxPageLink" id="shoutbox-page-101">101</a>  <a href="#102" class="shoutboxPageLink" id="shoutbox-page-102">102</a>  <a href="#103" class="shoutboxPageLink" id="shoutbox-page-103">103</a>  <a href="#104" class="shoutboxPageLink" id="shoutbox-page-104">104</a>  <a href="#105" class="shoutboxPageLink" id="shoutbox-page-105">105</a>  <a href="#106" class="shoutboxPageLink" id="shoutbox-page-106">106</a>  <a href="#107" class="shoutboxPageLink" id="shoutbox-page-107">107</a>  <a href="#108" class="shoutboxPageLink" id="shoutbox-page-108">108</a>  <a href="#109" class="shoutboxPageLink" id="shoutbox-page-109">109</a>  <a href="#110" class="shoutboxPageLink" id="shoutbox-page-110">110</a>  <a href="#111" class="shoutboxPageLink" id="shoutbox-page-111">111</a>  <a href="#112" class="shoutboxPageLink" id="shoutbox-page-112">112</a>  <a href="#113" class="shoutboxPageLink" id="shoutbox-page-113">113</a>  <a href="#114" class="shoutboxPageLink" id="shoutbox-page-114">114</a>  <a href="#115" class="shoutboxPageLink" id="shoutbox-page-115">115</a>  <a href="#116" class="shoutboxPageLink" id="shoutbox-page-116">116</a>  <a href="#117" class="shoutboxPageLink" id="shoutbox-page-117">117</a>  <a href="#118" class="shoutboxPageLink" id="shoutbox-page-118">118</a>  <a href="#119" class="shoutboxPageLink" id="shoutbox-page-119">119</a>  <a href="#120" class="shoutboxPageLink" id="shoutbox-page-120">120</a>  <a href="#121" class="shoutboxPageLink" id="shoutbox-page-121">121</a>  <a href="#122" class="shoutboxPageLink" id="shoutbox-page-122">122</a>  <a href="#123" class="shoutboxPageLink" id="shoutbox-page-123">123</a>  <a href="#124" class="shoutboxPageLink" id="shoutbox-page-124">124</a>  <a href="#125" class="shoutboxPageLink" id="shoutbox-page-125">125</a>  <a href="#126" class="shoutboxPageLink" id="shoutbox-page-126">126</a>  <a href="#127" class="shoutboxPageLink" id="shoutbox-page-127">127</a>  <a href="#128" class="shoutboxPageLink" id="shoutbox-page-128">128</a>  <a href="#129" class="shoutboxPageLink" id="shoutbox-page-129">129</a>  <a href="#130" class="shoutboxPageLink" id="shoutbox-page-130">130</a>  <a href="#131" class="shoutboxPageLink" id="shoutbox-page-131">131</a>  <a href="#132" class="shoutboxPageLink" id="shoutbox-page-132">132</a>  <a href="#133" class="shoutboxPageLink" id="shoutbox-page-133">133</a>  <a href="#134" class="shoutboxPageLink" id="shoutbox-page-134">134</a>  <a href="#135" class="shoutboxPageLink" id="shoutbox-page-135">135</a>  <a href="#136" class="shoutboxPageLink" id="shoutbox-page-136">136</a>  <a href="#137" class="shoutboxPageLink" id="shoutbox-page-137">137</a>  <a href="#138" class="shoutboxPageLink" id="shoutbox-page-138">138</a>  <a href="#139" class="shoutboxPageLink" id="shoutbox-page-139">139</a>  <a href="#140" class="shoutboxPageLink" id="shoutbox-page-140">140</a>  <a href="#141" class="shoutboxPageLink" id="shoutbox-page-141">141</a>  <a href="#142" class="shoutboxPageLink" id="shoutbox-page-142">142</a>  <a href="#143" class="shoutboxPageLink" id="shoutbox-page-143">143</a>  <a href="#144" class="shoutboxPageLink" id="shoutbox-page-144">144</a>  <a href="#145" class="shoutboxPageLink" id="shoutbox-page-145">145</a>  <a href="#146" class="shoutboxPageLink" id="shoutbox-page-146">146</a>  <a href="#147" class="shoutboxPageLink" id="shoutbox-page-147">147</a>  <a href="#148" class="shoutboxPageLink" id="shoutbox-page-148">148</a>  <a href="#149" class="shoutboxPageLink" id="shoutbox-page-149">149</a>  <a href="#150" class="shoutboxPageLink" id="shoutbox-page-150">150</a>   </div>
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+	$('a.shoutboxPageLink').click(
+		function(e){
+			$.post(script_name,{ajax:'shoutbox',a:'list',page:$(this).attr('id')},function(data){
+				if(data.result==1){
+					$('#shoutboxMessages').empty().append(data.content);
+				}
+				else{
+					alert(data.content);
+				}
+			},'json');
+		}
+	);
+});
+
+// -->
+</script>
+   </div>
+ <div class="addLink"><a href="#shoutbox" id="shoutboxLink">add message</a></div>
+ <div class="addForm" style="display:none">
+ <form id="shoutboxForm" method="post" action="/armory.php">
+  <table>
+   <tr>
+    <td><label for="f-name">Name*</label><input type="text" name="name" id="f-name" value="" maxlength="30" /></td>
+   </tr>
+   <tr>
+    <td><label for="f-guild">Guild</label><input type="text" name="guild" id="f-guild" value="" maxlength="30" /></td>
+   </tr>
+   <tr>
+    <td>
+     <label for="f-server">Server</label>
+     <select name="server" id="f-server">
+      <option value="">Choose server</option>
+<option label="Asgard" value="Asgard">Asgard</option>
+<option label="Baal" value="Baal">Baal</option>
+<option label="Callantes" value="Callantes">Callantes</option>
+<option label="Crom" value="Crom">Crom</option>
+<option label="Deathwish" value="Deathwish">Deathwish</option>
+<option label="Fury" value="Fury">Fury</option>
+<option label="Mitra" value="Mitra">Mitra</option>
+<option label="Rage" value="Rage">Rage</option>
+<option label="Rothat" value="Rothat">Rothat</option>
+<option label="Saga" value="Saga">Saga</option>
+<option label="Set" value="Set">Set</option>
+<option label="Tarim" value="Tarim">Tarim</option>
+<option label="Two Eagles" value="Two Eagles">Two Eagles</option>
+<option label="Tyranny" value="Tyranny">Tyranny</option>
+<option label="Wiccana" value="Wiccana">Wiccana</option>
+<option label="Yag-kosha" value="Yag-kosha">Yag-kosha</option>
+
+     </select>
+    </td>
+   </tr>
+   <tr>
+    <td><label for="f-title">Title</label><input type="text" name="title" id="f-title" value="" maxlength="30" /></td>
+   </tr>
+   <tr>
+    <td><label for="f-message">Message*</label><textarea name="message" id="f-message" rows="5" cols="50"></textarea></td>
+   </tr>
+   <tr>
+    <td><input type="hidden" name="token" id="f-token" value="2fbf0dace46f07ee846561cc6b09bc56" /><input type="submit" value="Send" class="button" /><input type="reset" value="Reset" class="button" /><input type="button" value="Close" class="button" id="shoutboxFormClose" /></td>
+   </tr>
+  </table>
+ </form>
+ </div>
+</div>
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+	$('#shoutboxLink').click(function(e){$('#shoutbox div.addForm').show();});
+	$('#shoutboxFormClose').click(function(e){$('#shoutbox div.addForm').hide();});
+	$('#shoutboxForm').submit(function(e){
+		$.post(script_name,{ajax:'shoutbox',a:'add',token:$('#f-token').val(),name:$('#f-name').val(),guild:$('#f-guild').val(),server:$('#f-server').val(),title:$('#f-title').val(),message:$('#f-message').val()},function(data){
+			if(data.result==1){$('#f-title').val('');$('#f-message').val('');$('#shoutbox div.addForm').hide();$.post(script_name,{ajax:'shoutbox',a:'list',page:'shoutbox-page-1'},function(data2){if(data2.result==1){$('#shoutboxMessages').empty().append(data2.content);}else{alert(data2.content)}},'json');}
+			else{alert(data.content);}
+		},'json');
+		return false;
+	});
+});
+
+// -->
+</script></div>
+<h1>Welcome to the Age of Conan Armory</h1>
+<p>
+Here you'll find information about some of the endgame gear which you can obtain.<br/>
+<br/>
+If you like this page, please spread the word and leave a comment in my <a href="http://forums-eu.ageofconan.com/showthread.php?t=149722">feedback thread</a> (EU only).<br/>
+Feel free to post about this page on the US forums since I don't have access to post there... :o(<br/>
+<br/>
+Best regards,<br/>
+Kentarii of Ragnarok @ Fury PvP<br/>
+</p>
+
+<hr/>
+
+<h2>How to find what you're looking for</h2>
+<p>
+The items are structured in the following way:<br/>
+1) <strong>Section</strong> (f.ex: Brittle Blade)<br/>
+2) <strong>Location</strong> (f.ex: Reliquary of Flames)<br/>
+3) <strong>Category</strong> (f.ex: Dungeon Cloth Armor)<br/>
+4) <strong>Set</strong> (f.ex: The Hidden Tomb)<br/>
+5) <strong>Item</strong> (f.ex: Blade's Armbands of the Hidden Tomb)<br/>
+<br/>
+So your options are:<br/>
+</p>
+<ul class="locations">
+ <li>
+  Click your way around the lists and look at stuff.<br/>
+  This is good if you don't know what you're looking for.<br/>
+  <br/>
+ </li>
+ <li>
+  Use the <strong>SEARCH</strong> box at the top right to find something specific.<br/>
+  You can type in any of the 5 things I mentioned above, but you can also search for class (f.ex: sin), category (f.ex: hands), power level (f.ex: rare).<br/>
+  Here's a few examples you can type in the search box:<br/>
+  <em>the+grasslands belt</em><br/>
+  <em>pillars+of+heaven</em><br/>
+  <em>hox epic dungeon</em><br/>
+  <em>tos scarlet+circle epic</em><br/>
+ </li>
+</ul>
+<p>
+So with that in mind, next time you're looking for something, please try the search box.<br/>
+</p>
+<hr/>
+<h2>Armory is now open for contributors</h2>
+<p>
+Since I don't play this game anymore, I have now opened up the armory for contributors.<br/>
+<br/>
+So if you want to help keep the armory updated, please head on over to <a href="//aoc.is-better-than.tv/forums/viewtopic.php?f=3&t=36">the forums</a> and read more about it there.<br/>
+</p><div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.963 seconds using 8 queries, consuming 1535.203 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

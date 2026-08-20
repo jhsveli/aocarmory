@@ -1,0 +1,1609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Last Legion</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Last Legion section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=4';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=4;40">Item Store</a></li>
+ <li><a href="armory.php?s=4;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=4;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=4;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=4;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=4;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=4;11">Jiang Shi</a></li>
+ <li class="selected"><a href="armory.php?s=">Last Legion</a></li>
+ <li><a href="armory.php?s=4;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=4;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=4;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=4;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=4;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=4;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=4;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=4;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=4;28">House of Crom</a></li>
+ <li><a href="armory.php?s=4;23">Stygia</a></li>
+ <li><a href="armory.php?s=4;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=4;19">Khitai</a></li>
+ <li><a href="armory.php?s=4;25">Turan</a></li>
+ <li><a href="armory.php?s=4;32">Unchained</a></li>
+ <li><a href="armory.php?s=4;33">World Boss</a></li>
+ <li><a href="armory.php?s=4;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=4;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=4;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=4;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=4;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=4;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=4;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=4;31">Bags</a></li>
+ <li><a href="armory.php?s=4;29">Recipes</a></li>
+ <li><a href="armory.php?s=4;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=4;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=4;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=4;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=4;44">Kutchemes</a></li>
+ <li><a href="armory.php?s=4;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=4;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-last-legion">
+<legend>Last Legion</legend>
+<ul class="locations">
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: Fengdu</strong></a> (550,130)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Faction Weapons and Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />20</span><a href="//static.is-better-than.tv/armory/brew_of_acute_foresight.jpg" id="item-254-1" class="Rare potion">Brew of Acute Foresight</a> [Potion]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="//static.is-better-than.tv/armory/cloak_of_the_fortified_mind.jpg" id="item-255-2" class="Epic back">Cloak of the Fortified Mind</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="//static.is-better-than.tv/armory/cloak_of_the_garrison.jpg" id="item-256-3" class="Epic back">Cloak of the Garrison</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />1103<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />221<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />18</span><a href="//static.is-better-than.tv/armory/honors_focus.jpg" id="item-257-4" class="Epic 2he">Honor's Focus</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/pet_war_machine.jpg" id="item-258-5" class="Rare pet">Pet: War Machine</a> [Pet]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />1103<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />221<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />18</span><a href="//static.is-better-than.tv/armory/spear_of_the_pagoda.jpg" id="item-259-6" class="Epic staff">Spear of the Pagoda</a> [Staff]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Warring States</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNoVylEKgDAMBNEraQUb3dNUuzVCUGgVr2%2F6Nzym6f1aZl1DnGE8mkfErmyPl0DTlbst2GhOMkCZsseIQnYJ%2BOrZd5l%2B6%2BgYqg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_armguards_of_the_warring_states.jpg" id="item-276-7" class="Rare shoulder">Conscript's Armguards of the Warring States</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_legguards_of_the_warring_states.jpg" id="item-277-8" class="Rare legs">Conscript's Legguards of the Warring States</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_chestguard_of_the_warring_states.jpg" id="item-278-9" class="Rare chest">Captain's Chestguard of the Warring States</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_gauntlets_of_the_warring_states.jpg" id="item-279-10" class="Rare hands">Captain's Gauntlets of the Warring States</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_belt_of_the_warring_states.jpg" id="item-280-11" class="Rare belt">Commander's Belt of the Warring States</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_helm_of_the_warring_states.jpg" id="item-281-12" class="Rare head">Commander's Helm of the Warring States</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_boots_of_the_warring_states.jpg" id="item-282-13" class="Epic feet">General's Boots of the Warring States</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_vambraces_of_the_warring_states.jpg" id="item-283-14" class="Epic wrist">General's Vambraces of the Warring States</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_the_watchtowers.jpg" id="item-312-15" class="Epic legs">General's Legguards of the Watchtowers</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dynastic Rule</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorzsgvzUlJLbIyMjOwzklNLwYyDK2TM1KLS4AsI%2BuMxLwUkJixdVJqDkjIxDojNTEFyDC1TktNBYmYWZcXZYKVmwMA5pEYlg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_armguards_of_dynastic_rule.jpg" id="item-260-16" class="Rare shoulder">Conscript's Armguards of Dynastic Rule</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_legguards_of_dynastic_rule.jpg" id="item-261-17" class="Rare legs">Conscript's Legguards of Dynastic Rule</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_chestplate_of_dynastic_rule.jpg" id="item-262-18" class="Rare chest">Captain's Chestplate of Dynastic Rule</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_gauntlets_of_dynastic_rule.jpg" id="item-263-19" class="Rare hands">Captain's Gauntlets of Dynastic Rule</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_belt_of_dynastic_rule.jpg" id="item-264-20" class="Rare belt">Commander's Belt of Dynastic Rule</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_helm_of_dynastic_rule.jpg" id="item-265-21" class="Rare head">Commander's Helm of Dynastic Rule</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_boots_of_dynastic_rule.jpg" id="item-266-22" class="Epic feet">General's Boots of Dynastic Rule</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_vambraces_of_dynastic_rule.jpg" id="item-267-23" class="Epic wrist">General's Vambraces of Dynastic Rule</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_heavens_pass.jpg" id="item-313-24" class="Epic legs">General's Legguards of Heaven's Pass</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ascending Kingdom</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorzsgvzUlJLbIyMrOwzklNLwYyLK2TM1KLS6yMzA2sMxLzUoBi5obWSak5ICEj64zUxBQgw9g6LTUVJGJiXV6UCVZuCgDp7Big"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_armguards_of_the_ascending_kingdom.jpg" id="item-268-25" class="Rare shoulder">Conscript's Armguards of the Ascending Kingdom</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_legguards_of_the_ascending_kingdom.jpg" id="item-269-26" class="Rare legs">Conscript's Legguards of the Ascending Kingdom</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_chestplate_of_the_ascending_kingdom.jpg" id="item-270-27" class="Rare chest">Captain's Chestplate of the Ascending Kingdom</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_gauntlets_of_the_ascending_kingdom.jpg" id="item-271-28" class="Rare hands">Captain's Gauntlets of the Ascending Kingdom</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_belt_of_the_ascending_kingdom.jpg" id="item-272-29" class="Rare belt">Commander's Belt of the Ascending Kingdom</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_helm_of_the_ascending_kingdom.jpg" id="item-273-30" class="Rare head">Commander's Helm of the Ascending Kingdom</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_boots_of_the_ascending_kingdom.jpg" id="item-274-31" class="Epic feet">General's Boots of the Ascending Kingdom</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="//static.is-better-than.tv/armory/generals_vambraces_of_the_ascending_kingdom.jpg" id="item-275-32" class="Epic wrist">General's Vambraces of the Ascending Kingdom</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_the_battlements.jpg" id="item-314-33" class="Epic legs">General's Legguards of the Battlements</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Baishan</strong></a> (320,1160)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Shining Sun</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLSs0psTI2MLDOSMxLKQayDK3TUlNBQkbW5UWZxSCWsXVxRn5pTkpqEZBjYp2Tmg5SaGqdnJEKljezzkhNTAEyzAHU6Rhu"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_belt_of_the_shining_sun.jpg" id="item-300-34" class="Rare belt">Conscript's Belt of the Shining Sun</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_gauntlets_of_the_shining_sun.jpg" id="item-301-35" class="Rare hands">Conscript's Gauntlets of the Shining Sun</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_boots_of_the_shining_sun.jpg" id="item-302-36" class="Rare feet">Captain's Boots of the Shining Sun</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_vambraces_of_the_shining_sun.jpg" id="item-303-37" class="Rare wrist">Captain's Vambraces of the Shining Sun</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_armguards_of_the_shining_sun.jpg" id="item-304-38" class="Rare shoulder">Commander's Armguards of the Shining Sun</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_legguards_of_the_shining_sun.jpg" id="item-305-39" class="Rare legs">Commander's Legguards of the Shining Sun</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_chestguard_of_the_shining_sun.jpg" id="item-306-40" class="Epic chest">General's Chestguard of the Shining Sun</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_helm_of_the_shining_sun.jpg" id="item-307-41" class="Epic head">General's Helm of the Shining Sun</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eastern Sun</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLSs0psTKyMLHOSMxLKQayTK3TUlNBQmbW5UWZxSCWuXVxRn5pTkpqEZBjYZ2Tmg5SaGmdnJEKkrc0sM5ITUwBMgwB4QIYtA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_belt_of_the_eastern_sun.jpg" id="item-284-42" class="Rare belt">Conscript's Belt of the Eastern Sun</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_gauntlets_of_the_eastern_sun.jpg" id="item-285-43" class="Rare hands">Conscript's Gauntlets of the Eastern Sun</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_boots_of_the_eastern_sun.jpg" id="item-286-44" class="Rare feet">Captain's Boots of the Eastern Sun</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_vambraces_of_the_eastern_sun.jpg" id="item-287-45" class="Rare wrist">Captain's Vambraces of the Eastern Sun</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_armguards_of_the_eastern_sun.jpg" id="item-288-46" class="Rare shoulder">Commander's Armguards of the Eastern Sun</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_legguards_of_the_eastern_sun.jpg" id="item-289-47" class="Rare legs">Commander's Legguards of the Eastern Sun</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_chestplate_of_the_eastern_sun.jpg" id="item-290-48" class="Epic chest">General's Chestplate of the Eastern Sun</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_helm_of_the_eastern_sun.jpg" id="item-291-49" class="Epic head">General's Helm of the Eastern Sun</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Golden Sun</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLSs0psTKyNLLOSMxLKQayjK3TUlNBQibW5UWZxSCWqXVxRn5pTkpqEZBjZp2Tmg5SaG6dnJEKlrewzkhNTAEyLAHgTRi%2B"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_belt_of_the_golden_sun.jpg" id="item-292-50" class="Rare belt">Conscript's Belt of the Golden Sun</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="//static.is-better-than.tv/armory/conscripts_gauntlets_of_the_golden_sun.jpg" id="item-293-51" class="Rare hands">Conscript's Gauntlets of the Golden Sun</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_boots_of_the_golden_sun.jpg" id="item-294-52" class="Rare feet">Captain's Boots of the Golden Sun</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="//static.is-better-than.tv/armory/captains_vambraces_of_the_golden_sun.jpg" id="item-295-53" class="Rare wrist">Captain's Vambraces of the Golden Sun</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_armguards_of_the_golden_sun.jpg" id="item-296-54" class="Rare shoulder">Commander's Armguards of the Golden Sun</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_legguards_of_the_golden_sun.jpg" id="item-297-55" class="Rare legs">Commander's Legguards of the Golden Sun</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_chestplate_of_the_golden_sun.jpg" id="item-298-56" class="Epic chest">General's Chestplate of the Golden Sun</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="//static.is-better-than.tv/armory/generals_helm_of_the_golden_sun.jpg" id="item-299-57" class="Epic head">General's Helm of the Golden Sun</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: The Kang Pagoda</strong></a> (241,1227)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_vambraces_of_heavens_pass.jpg" id="item-2983-58" class="Rare wrist">Conscript's Vambraces of Heaven's Pass</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorL8osLrEyMTQ2tk5KzSmxsjS1AABBEwYB"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_vambraces_of_the_battlements.jpg" id="item-4133-59" class="Rare wrist">Conscript's Vambraces of the Battlements</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_belt_of_the_battlements.jpg" id="item-958-60" class="Epic belt">General's Belt of the Battlements</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorzsgvzUlJLbIyNjQys85JTS%2B2MjYwMrfOSE1MsTK2MDAEALxvCiw%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_armguards_of_the_watchtowers.jpg" id="item-3126-61" class="Rare shoulder">Captain's Armguards of the Watchtowers</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/captains_legguards_of_the_watchtowers.jpg" id="item-3027-62" class="Rare legs">Captain's Legguards of the Watchtowers</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/conscripts_helm_of_the_watchtowers.jpg" id="item-3801-63" class="Rare head">Conscript's Helm of the Watchtowers</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorzsgvzUlJLbIyNjI1t85IzEsptjI2NAMAYr8Hjw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_armguards_of_heavens_pass.jpg" id="item-3257-64" class="Rare shoulder">Captain's Armguards of Heaven's Pass</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_gauntlets_of_heavens_pass.jpg" id="item-316-65" class="Epic hands">General's Gauntlets of Heaven's Pass</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_armguards_of_the_battlements.jpg" id="item-4127-66" class="Rare shoulder">Captain's Armguards of the Battlements</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Reliquary of Flame</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLS00tsTK2NDC2Ts5ILQYyDUxMAUMXBgY%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_boots_of_the_watchtowers.jpg" id="item-3903-67" class="Rare feet">Conscript's Boots of the Watchtowers</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/conscripts_chestguard_of_the_watchtowers.jpg" id="item-3045-68" class="Rare chest">Conscript's Chestguard of the Watchtowers</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_boots_of_heavens_pass.jpg" id="item-1816-69" class="Rare feet">Conscript's Boots of Heaven's Pass</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Vortex of the Storm</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLzkgtLrEytjAwtc5ITUyxMjYwswAARFMF%2Bg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_chestplate_of_heavens_pass.jpg" id="item-3805-70" class="Rare chest">Conscript's Chestplate of Heaven's Pass</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/conscripts_helm_of_heavens_pass.jpg" id="item-3068-71" class="Rare head">Conscript's Helm of Heaven's Pass</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/conscripts_chestplate_of_the_battlements.jpg" id="item-3136-72" class="Rare chest">Conscript's Chestplate of the Battlements</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Pillars of Heaven</strong></a> (1431,1465)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_belt_of_the_watchtowers.jpg" id="item-3084-73" class="Rare belt">Captain's Belt of the Watchtowers</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLSs0psTI2NLW0ToKyADaRBWk%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_belt_of_heavens_pass.jpg" id="item-3159-74" class="Rare belt">Captain's Belt of Heaven's Pass</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_belt_of_heavens_pass.jpg" id="item-315-75" class="Epic belt">General's Belt of Heaven's Pass</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_belt_of_the_battlements.jpg" id="item-4137-76" class="Rare belt">Captain's Belt of the Battlements</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Palace of Yun Rau</strong></a> (156,1389)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNorzsgvzUlJLbIyNjSwTkrNKbEyNrAEAFPLBu0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/generals_armguards_of_the_watchtowers.jpg" id="item-310-77" class="Epic shoulder">General's Armguards of the Watchtowers</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_belt_of_the_watchtowers.jpg" id="item-309-78" class="Epic belt">General's Belt of the Watchtowers</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNrLSE1MsTI2NDaxzklNL7YytrAwBwA65QWS"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_helm_of_heavens_pass.jpg" id="item-3134-79" class="Rare head">Captain's Helm of Heaven's Pass</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/captains_legguards_of_heavens_pass.jpg" id="item-3887-80" class="Rare legs">Captain's Legguards of Heaven's Pass</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/captains_legguards_of_the_battlements.jpg" id="item-3310-81" class="Rare legs">Captain's Legguards of the Battlements</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Abyss of Kun Whu</strong></a> (38,538)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_gauntlets_of_heavens_pass.jpg" id="item-2996-82" class="Rare hands">Commander's Gauntlets of Heaven's Pass</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNrLSMxLKbYytjQwtM4AMw0NjMwAS20GYg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_gauntlets_of_the_battlements.jpg" id="item-3901-83" class="Rare hands">Commander's Gauntlets of the Battlements</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_gauntlets_of_the_battlements.jpg" id="item-1026-84" class="Epic hands">General's Gauntlets of the Battlements</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Den of the Crowmen</strong></a> (6,575)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/generals_armguards_of_heavens_pass.jpg" id="item-308-85" class="Epic shoulder">General's Armguards of Heaven's Pass</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNrLSMxLKbYyNjU2s84AMw0NjIwAS5QGYg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_gauntlets_of_the_watchtowers.jpg" id="item-3536-86" class="Rare hands">Commander's Gauntlets of the Watchtowers</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_gauntlets_of_the_watchtowers.jpg" id="item-1022-87" class="Epic hands">General's Gauntlets of the Watchtowers</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_vambraces_of_the_watchtowers.jpg" id="item-3479-88" class="Rare wrist">Commander's Vambraces of the Watchtowers</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLS00tsTI2tzCwTs5ILS6xMrQwNbYuzsgvzUlJLbIyNjQEALQbCn4%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_boots_of_the_battlements.jpg" id="item-3780-89" class="Rare feet">Commander's Boots of the Battlements</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/commanders_chestplate_of_the_battlements.jpg" id="item-1853-90" class="Rare chest">Commander's Chestplate of the Battlements</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/generals_armguards_of_the_battlements.jpg" id="item-311-91" class="Epic shoulder">General's Armguards of the Battlements</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLS00tsTI2NDawTs5ILQYyTSyMAEK7BgM%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_boots_of_the_watchtowers.jpg" id="item-3130-92" class="Rare feet">Commander's Boots of the Watchtowers</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/commanders_chestguard_of_the_watchtowers.jpg" id="item-3482-93" class="Rare chest">Commander's Chestguard of the Watchtowers</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=4&amp;ab=eNpLS00tsTI2NTKzTs5ILS6xMjQ3tLQuL8oEMo0NjQ0BnSUJgw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_boots_of_heavens_pass.jpg" id="item-3526-94" class="Rare feet">Commander's Boots of Heaven's Pass</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/commanders_chestplate_of_heavens_pass.jpg" id="item-1719-95" class="Rare chest">Commander's Chestplate of Heaven's Pass</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/commanders_vambraces_of_heavens_pass.jpg" id="item-3131-96" class="Rare wrist">Commander's Vambraces of Heaven's Pass</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/commanders_vambraces_of_the_battlements.jpg" id="item-1739-97" class="Rare wrist">Commander's Vambraces of the Battlements</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Watchtowers</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_the_watchtowers.jpg" id="item-312-98" class="Epic legs">General's Legguards of the Watchtowers</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Heaven's Pass</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_heavens_pass.jpg" id="item-313-99" class="Epic legs">General's Legguards of Heaven's Pass</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Battlements</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />248<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/generals_legguards_of_the_battlements.jpg" id="item-314-100" class="Epic legs">General's Legguards of the Battlements</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District - Commander Yeng-Wang-Yeh</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Eastern Sun</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_legguards_of_the_eastern_sun.jpg" id="item-289-101" class="Rare legs">Commander's Legguards of the Eastern Sun</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - The Ironwright</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Golden Sun</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_legguards_of_the_golden_sun.jpg" id="item-297-102" class="Rare legs">Commander's Legguards of the Golden Sun</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Yi-T&#039;ian</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Shining Sun</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="//static.is-better-than.tv/armory/commanders_armguards_of_the_shining_sun.jpg" id="item-304-103" class="Rare shoulder">Commander's Armguards of the Shining Sun</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+<div class="armorBuilder" id="set-1">
+ <a href="#set-1-close" onclick="closeArmorBuilder(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height=12 width=12 /></a>
+ <h4>Armor builder #1</h4>
+ <div class="armorBuilderWin">
+  <p style="margin-bottom: 15px">Drag and drop items from the armory into the corresponding slots in the armor builder to see the combined stats of your gear/setup.</p>
+  <table id="set-1-items" class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:10px">#</th>
+     <th style="width:65px">Slot</th>
+     <th>Item</th>
+    </tr>
+   </thead>
+   <tfoot>
+    <tr>
+     <th colspan="3"><a href="http://aoc.is-better-than.tv/armory.php?ab=eNrLTczM081IzEuxMjI0NAcAJXkEcw%3D%3D&amp;ref=ab%3DeNrLTczM081IzEuxMjI0NAcAJXkEcw%253D%253D" id="set-1-url">Link to this armor set</a> <em style="font-weight:normal">(right click & copy link)</em></th>
+    </tr>
+   </tfoot>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Head</td>
+     <td class="head" id="set-1-head"></td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Chest</td>
+     <td class="chest" id="set-1-chest"></td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Shoulder</td>
+     <td class="shoulder" id="set-1-shoulder"></td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Wrist</td>
+     <td class="wrist" id="set-1-wrist"></td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Hands</td>
+     <td class="hands" id="set-1-hands"></td>
+    </tr>
+    <tr>
+     <td>6</td>
+     <td>Belt</td>
+     <td class="belt" id="set-1-belt"></td>
+    </tr>
+    <tr>
+     <td>7</td>
+     <td>Legs</td>
+     <td class="legs" id="set-1-legs"></td>
+    </tr>
+    <tr>
+     <td>8</td>
+     <td>Feet</td>
+     <td class="feet" id="set-1-feet"></td>
+    </tr>
+    <tr>
+     <td>9</td>
+     <td>Back</td>
+     <td class="back" id="set-1-back"></td>
+    </tr>
+    <tr>
+     <td>10</td>
+     <td>Necklace</td>
+     <td class="necklace" id="set-1-necklace"></td>
+    </tr>
+    <tr>
+     <td>11</td>
+     <td>Left Ring</td>
+     <td class="left-ring" id="set-1-left-ring"></td>
+    </tr>
+    <tr>
+     <td>12</td>
+     <td>Right Ring</td>
+     <td class="right-ring" id="set-1-right-ring"></td>
+    </tr>
+    <tr>
+     <td>13</td>
+     <td>Main Hand</td>
+     <td class="main-hand" id="set-1-main-hand"><a href="#remove" onclick="removeArmorBuilderItem('set-1-main-hand'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-1-2117" href="armory/razor_of_the_divinity_serpent.jpg">Razor of the Divinity Serpent</a></td>
+    </tr>
+    <tr>
+     <td>14</td>
+     <td>Off Hand</td>
+     <td class="off-hand" id="set-1-off-hand"></td>
+    </tr>
+   </tbody>
+  </table>
+  <div id="set-1-attributes">
+  <table class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:40px">Value</th>
+     <th>Attribute <a href="#merge" onclick="toggleArmorBuilderCalculation('set-1', 1); return false" style="float:right;font-weight:normal;font-style:italic">Merge stats</a></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td style="text-align:right">81.7</td>
+     <td>
+      DPS
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+68</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Wisdom</a><br/>
+      <div style="display:none;font-style:italic">
++40.8 Magic Damage (priest/unholy for DT)<br/>
++34 Holy/Unholy Protection<br/>
++204 Mana<br/>
++4.76 Natural Mana Regen<br/>
++25.84 OOC Mana Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+8</td>
+     <td>
+      Natural Mana Regen
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+295</td>
+     <td>
+      Heal Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+45</td>
+     <td>
+      Magic Damage
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+62</td>
+     <td>
+      Hit Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+61</td>
+     <td>
+      Critical Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+36</td>
+     <td>
+      Hate Decrease Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+70</td>
+     <td>
+      Critical Damage Rating
+     </td>
+    </tr>
+   </tbody>
+  </table>  </div>
+ </div><!-- /armorBuilderWin -->
+</div><!-- /armorBuilder -->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+
+	var set_id = '#set-1';
+	var posX = 50 - 20;
+	var posY = 50 + 10;
+	var dimW = 450;
+	var dimH = 600;
+
+	$(set_id).css('left',posX).css('top',posY).css('width',dimW).css('height',dimH).resizable({resize:function(event,ui){$(set_id+' .armorBuilderWin').css('height',ui.size.height-45+'px');},stop:function(event,ui){$.post(script_name,{ajax:'armorBuilder',a:'resize',set_id:set_id,width:$(set_id).css('width'),height:$(set_id).css('height')});}}).draggable({handle:'h4',stop:function(e,ui){$.post(script_name,{ajax:'armorBuilder',a:'move',set_id:set_id,posx:$(set_id).css('left'),posy:$(set_id).css('top')});}});
+	$(set_id+'-items').tablesorter({sortList:[[0,0]],widgets:['zebra']});
+	$(set_id+'-attributes table').tablesorter({headers:{0:{sorter:false},1:{sorter:false}},widgets:['zebra']});
+	$(set_id+'-items a.abitem').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$(set_id+'-items a.abitem').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	addArmorBuilderItem(set_id+'-items td.head', 'a.head');
+	addArmorBuilderItem(set_id+'-items td.chest', 'a.chest');
+	addArmorBuilderItem(set_id+'-items td.shoulder', 'a.shoulder');
+	addArmorBuilderItem(set_id+'-items td.wrist', 'a.wrist');
+	addArmorBuilderItem(set_id+'-items td.hands', 'a.hands');
+	addArmorBuilderItem(set_id+'-items td.belt', 'a.belt');
+	addArmorBuilderItem(set_id+'-items td.legs', 'a.legs');
+	addArmorBuilderItem(set_id+'-items td.feet', 'a.feet');
+	addArmorBuilderItem(set_id+'-items td.back', 'a.back');
+	addArmorBuilderItem(set_id+'-items td.necklace', 'a.necklace');
+	addArmorBuilderItem(set_id+'-items td.left-ring,td.right-ring', 'a.ring');
+	addArmorBuilderItem(set_id+'-items td.main-hand', 'a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff');
+	addArmorBuilderItem(set_id+'-items td.off-hand', 'a.1hb,a.1he,a.1heranger,a.dagger,a.talisman,a.ammunition,a.shield');
+});
+
+// -->
+</script><div class="armorBuilder" id="set-2">
+ <a href="#set-2-close" onclick="closeArmorBuilder(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height=12 width=12 /></a>
+ <h4>Armor builder #2</h4>
+ <div class="armorBuilderWin">
+  <p style="margin-bottom: 15px">Drag and drop items from the armory into the corresponding slots in the armor builder to see the combined stats of your gear/setup.</p>
+  <table id="set-2-items" class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:10px">#</th>
+     <th style="width:65px">Slot</th>
+     <th>Item</th>
+    </tr>
+   </thead>
+   <tfoot>
+    <tr>
+     <th colspan="3"><a href="http://aoc.is-better-than.tv/armory.php?ab=eNrLTczM081IzEuxsrQ0BwAhMQRR&amp;ref=ab%3DeNrLTczM081IzEuxsrQ0BwAhMQRR" id="set-2-url">Link to this armor set</a> <em style="font-weight:normal">(right click & copy link)</em></th>
+    </tr>
+   </tfoot>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Head</td>
+     <td class="head" id="set-2-head"></td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Chest</td>
+     <td class="chest" id="set-2-chest"></td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Shoulder</td>
+     <td class="shoulder" id="set-2-shoulder"></td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Wrist</td>
+     <td class="wrist" id="set-2-wrist"></td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Hands</td>
+     <td class="hands" id="set-2-hands"></td>
+    </tr>
+    <tr>
+     <td>6</td>
+     <td>Belt</td>
+     <td class="belt" id="set-2-belt"></td>
+    </tr>
+    <tr>
+     <td>7</td>
+     <td>Legs</td>
+     <td class="legs" id="set-2-legs"></td>
+    </tr>
+    <tr>
+     <td>8</td>
+     <td>Feet</td>
+     <td class="feet" id="set-2-feet"></td>
+    </tr>
+    <tr>
+     <td>9</td>
+     <td>Back</td>
+     <td class="back" id="set-2-back"></td>
+    </tr>
+    <tr>
+     <td>10</td>
+     <td>Necklace</td>
+     <td class="necklace" id="set-2-necklace"></td>
+    </tr>
+    <tr>
+     <td>11</td>
+     <td>Left Ring</td>
+     <td class="left-ring" id="set-2-left-ring"></td>
+    </tr>
+    <tr>
+     <td>12</td>
+     <td>Right Ring</td>
+     <td class="right-ring" id="set-2-right-ring"></td>
+    </tr>
+    <tr>
+     <td>13</td>
+     <td>Main Hand</td>
+     <td class="main-hand" id="set-2-main-hand"><a href="#remove" onclick="removeArmorBuilderItem('set-2-main-hand'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-2-997" href="armory/tome_of_the_black_gale.jpg">Tome of the Black Gale</a></td>
+    </tr>
+    <tr>
+     <td>14</td>
+     <td>Off Hand</td>
+     <td class="off-hand" id="set-2-off-hand"></td>
+    </tr>
+   </tbody>
+  </table>
+  <div id="set-2-attributes">
+  <table class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:40px">Value</th>
+     <th>Attribute <a href="#merge" onclick="toggleArmorBuilderCalculation('set-2', 1); return false" style="float:right;font-weight:normal;font-style:italic">Merge stats</a></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td style="text-align:right">+23</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Constitution</a><br/>
+      <div style="display:none;font-style:italic">
++184 Health<br/>
++3.45 OOC Health Regen<br/>
++46 Stamina<br/>
++1.15 Natural Stamina Regen<br/>
++3.45 OOC Stamina Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+68</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Wisdom</a><br/>
+      <div style="display:none;font-style:italic">
++40.8 Magic Damage (priest/unholy for DT)<br/>
++34 Holy/Unholy Protection<br/>
++204 Mana<br/>
++4.76 Natural Mana Regen<br/>
++25.84 OOC Mana Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+27</td>
+     <td>
+      Magic Damage
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+50</td>
+     <td>
+      Hit Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+54</td>
+     <td>
+      Critical Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+65</td>
+     <td>
+      Critical Damage Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+30</td>
+     <td>
+      Magic Life Tap Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+33</td>
+     <td>
+      Casting Concentration Skill
+     </td>
+    </tr>
+   </tbody>
+  </table>  </div>
+ </div><!-- /armorBuilderWin -->
+</div><!-- /armorBuilder -->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+
+	var set_id = '#set-2';
+	var posX = 50 - 20;
+	var posY = 50 + 10;
+	var dimW = 450;
+	var dimH = 600;
+
+	$(set_id).css('left',posX).css('top',posY).css('width',dimW).css('height',dimH).resizable({resize:function(event,ui){$(set_id+' .armorBuilderWin').css('height',ui.size.height-45+'px');},stop:function(event,ui){$.post(script_name,{ajax:'armorBuilder',a:'resize',set_id:set_id,width:$(set_id).css('width'),height:$(set_id).css('height')});}}).draggable({handle:'h4',stop:function(e,ui){$.post(script_name,{ajax:'armorBuilder',a:'move',set_id:set_id,posx:$(set_id).css('left'),posy:$(set_id).css('top')});}});
+	$(set_id+'-items').tablesorter({sortList:[[0,0]],widgets:['zebra']});
+	$(set_id+'-attributes table').tablesorter({headers:{0:{sorter:false},1:{sorter:false}},widgets:['zebra']});
+	$(set_id+'-items a.abitem').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$(set_id+'-items a.abitem').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	addArmorBuilderItem(set_id+'-items td.head', 'a.head');
+	addArmorBuilderItem(set_id+'-items td.chest', 'a.chest');
+	addArmorBuilderItem(set_id+'-items td.shoulder', 'a.shoulder');
+	addArmorBuilderItem(set_id+'-items td.wrist', 'a.wrist');
+	addArmorBuilderItem(set_id+'-items td.hands', 'a.hands');
+	addArmorBuilderItem(set_id+'-items td.belt', 'a.belt');
+	addArmorBuilderItem(set_id+'-items td.legs', 'a.legs');
+	addArmorBuilderItem(set_id+'-items td.feet', 'a.feet');
+	addArmorBuilderItem(set_id+'-items td.back', 'a.back');
+	addArmorBuilderItem(set_id+'-items td.necklace', 'a.necklace');
+	addArmorBuilderItem(set_id+'-items td.left-ring,td.right-ring', 'a.ring');
+	addArmorBuilderItem(set_id+'-items td.main-hand', 'a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff');
+	addArmorBuilderItem(set_id+'-items td.off-hand', 'a.1hb,a.1he,a.1heranger,a.dagger,a.talisman,a.ammunition,a.shield');
+});
+
+// -->
+</script><div class="armorBuilder" id="set-3">
+ <a href="#set-3-close" onclick="closeArmorBuilder(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height=12 width=12 /></a>
+ <h4>Armor builder #3</h4>
+ <div class="armorBuilderWin">
+  <p style="margin-bottom: 15px">Drag and drop items from the armory into the corresponding slots in the armor builder to see the combined stats of your gear/setup.</p>
+  <table id="set-3-items" class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:10px">#</th>
+     <th style="width:65px">Slot</th>
+     <th>Item</th>
+    </tr>
+   </thead>
+   <tfoot>
+    <tr>
+     <th colspan="3"><a href="http://aoc.is-better-than.tv/armory.php?ab=eNrLTczM081IzEuxMjQwNQIAJXUEcA%3D%3D&amp;ref=ab%3DeNrLTczM081IzEuxMjQwNQIAJXUEcA%253D%253D" id="set-3-url">Link to this armor set</a> <em style="font-weight:normal">(right click & copy link)</em></th>
+    </tr>
+   </tfoot>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Head</td>
+     <td class="head" id="set-3-head"></td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Chest</td>
+     <td class="chest" id="set-3-chest"></td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Shoulder</td>
+     <td class="shoulder" id="set-3-shoulder"></td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Wrist</td>
+     <td class="wrist" id="set-3-wrist"></td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Hands</td>
+     <td class="hands" id="set-3-hands"></td>
+    </tr>
+    <tr>
+     <td>6</td>
+     <td>Belt</td>
+     <td class="belt" id="set-3-belt"></td>
+    </tr>
+    <tr>
+     <td>7</td>
+     <td>Legs</td>
+     <td class="legs" id="set-3-legs"></td>
+    </tr>
+    <tr>
+     <td>8</td>
+     <td>Feet</td>
+     <td class="feet" id="set-3-feet"></td>
+    </tr>
+    <tr>
+     <td>9</td>
+     <td>Back</td>
+     <td class="back" id="set-3-back"></td>
+    </tr>
+    <tr>
+     <td>10</td>
+     <td>Necklace</td>
+     <td class="necklace" id="set-3-necklace"></td>
+    </tr>
+    <tr>
+     <td>11</td>
+     <td>Left Ring</td>
+     <td class="left-ring" id="set-3-left-ring"></td>
+    </tr>
+    <tr>
+     <td>12</td>
+     <td>Right Ring</td>
+     <td class="right-ring" id="set-3-right-ring"></td>
+    </tr>
+    <tr>
+     <td>13</td>
+     <td>Main Hand</td>
+     <td class="main-hand" id="set-3-main-hand"><a href="#remove" onclick="removeArmorBuilderItem('set-3-main-hand'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-3-1052" href="armory/ell_of_torment.jpg">Ell of Torment</a></td>
+    </tr>
+    <tr>
+     <td>14</td>
+     <td>Off Hand</td>
+     <td class="off-hand" id="set-3-off-hand"></td>
+    </tr>
+   </tbody>
+  </table>
+  <div id="set-3-attributes">
+  <table class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:40px">Value</th>
+     <th>Attribute <a href="#merge" onclick="toggleArmorBuilderCalculation('set-3', 1); return false" style="float:right;font-weight:normal;font-style:italic">Merge stats</a></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td style="text-align:right">77.6</td>
+     <td>
+      DPS
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+27</td>
+     <td>
+      Magic Damage
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+34</td>
+     <td>
+      Evade Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+56</td>
+     <td>
+      Critical Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+16</td>
+     <td>
+      Hate Decrease Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+67</td>
+     <td>
+      Critical Damage Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+150</td>
+     <td>
+      Protection
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+16</td>
+     <td>
+      Immunity Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+56</td>
+     <td>
+      Fatality Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+27</td>
+     <td>
+      Magic Mana Tap Rating
+     </td>
+    </tr>
+   </tbody>
+  </table>  </div>
+ </div><!-- /armorBuilderWin -->
+</div><!-- /armorBuilder -->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+
+	var set_id = '#set-3';
+	var posX = 50 - 20;
+	var posY = 50 + 10;
+	var dimW = 450;
+	var dimH = 600;
+
+	$(set_id).css('left',posX).css('top',posY).css('width',dimW).css('height',dimH).resizable({resize:function(event,ui){$(set_id+' .armorBuilderWin').css('height',ui.size.height-45+'px');},stop:function(event,ui){$.post(script_name,{ajax:'armorBuilder',a:'resize',set_id:set_id,width:$(set_id).css('width'),height:$(set_id).css('height')});}}).draggable({handle:'h4',stop:function(e,ui){$.post(script_name,{ajax:'armorBuilder',a:'move',set_id:set_id,posx:$(set_id).css('left'),posy:$(set_id).css('top')});}});
+	$(set_id+'-items').tablesorter({sortList:[[0,0]],widgets:['zebra']});
+	$(set_id+'-attributes table').tablesorter({headers:{0:{sorter:false},1:{sorter:false}},widgets:['zebra']});
+	$(set_id+'-items a.abitem').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$(set_id+'-items a.abitem').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	addArmorBuilderItem(set_id+'-items td.head', 'a.head');
+	addArmorBuilderItem(set_id+'-items td.chest', 'a.chest');
+	addArmorBuilderItem(set_id+'-items td.shoulder', 'a.shoulder');
+	addArmorBuilderItem(set_id+'-items td.wrist', 'a.wrist');
+	addArmorBuilderItem(set_id+'-items td.hands', 'a.hands');
+	addArmorBuilderItem(set_id+'-items td.belt', 'a.belt');
+	addArmorBuilderItem(set_id+'-items td.legs', 'a.legs');
+	addArmorBuilderItem(set_id+'-items td.feet', 'a.feet');
+	addArmorBuilderItem(set_id+'-items td.back', 'a.back');
+	addArmorBuilderItem(set_id+'-items td.necklace', 'a.necklace');
+	addArmorBuilderItem(set_id+'-items td.left-ring,td.right-ring', 'a.ring');
+	addArmorBuilderItem(set_id+'-items td.main-hand', 'a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff');
+	addArmorBuilderItem(set_id+'-items td.off-hand', 'a.1hb,a.1he,a.1heranger,a.dagger,a.talisman,a.ammunition,a.shield');
+});
+
+// -->
+</script><div class="armorBuilder" id="set-4">
+ <a href="#set-4-close" onclick="closeArmorBuilder(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height=12 width=12 /></a>
+ <h4>Armor builder #4</h4>
+ <div class="armorBuilderWin">
+  <p style="margin-bottom: 15px">Drag and drop items from the armory into the corresponding slots in the armor builder to see the combined stats of your gear/setup.</p>
+  <table id="set-4-items" class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:10px">#</th>
+     <th style="width:65px">Slot</th>
+     <th>Item</th>
+    </tr>
+   </thead>
+   <tfoot>
+    <tr>
+     <th colspan="3"><a href="http://aoc.is-better-than.tv/armory.php?ab=eNoVylsKgCAQBdAt%2BSyauxrLWxNIgRptv%2Fw9HGXKYt2ETdm6%2BBjQ9H5KZhUbI956%2FmyNh6YrN%2FHLjJWlSzAGhceQgJ0cyX3iUBiI&amp;ref=ab%3DeNoVylsKgCAQBdAt%252BSyauxrLWxNIgRptv%252Fw9HGXKYt2ETdm6%252BBjQ9H5KZhUbI956%252FmyNh6YrN%252FHLjJWlSzAGhceQgJ0cyX3iUBiI" id="set-4-url">Link to this armor set</a> <em style="font-weight:normal">(right click & copy link)</em></th>
+    </tr>
+   </tfoot>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Head</td>
+     <td class="head" id="set-4-head"><a href="#remove" onclick="removeArmorBuilderItem('set-4-head'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-126" href="armory/sages_cover_of_shimmering_light.jpg">Sage&#039;s Cover of Shimmering Light</a></td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Chest</td>
+     <td class="chest" id="set-4-chest"><a href="#remove" onclick="removeArmorBuilderItem('set-4-chest'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-354" href="armory/summoners_robes_of_the_emperors_favor.jpg">Summoner&#039;s Robes of the Emperor&#039;s Favor</a></td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Shoulder</td>
+     <td class="shoulder" id="set-4-shoulder"><a href="#remove" onclick="removeArmorBuilderItem('set-4-shoulder'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-155" href="armory/sages_braid_of_the_eldritch.jpg">Sage&#039;s Braid of the Eldritch</a></td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Wrist</td>
+     <td class="wrist" id="set-4-wrist"><a href="#remove" onclick="removeArmorBuilderItem('set-4-wrist'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-103" href="armory/sages_wrist_straps_of_yag.jpg">Sage&#039;s Wrist-straps of Yag</a></td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Hands</td>
+     <td class="hands" id="set-4-hands"><a href="#remove" onclick="removeArmorBuilderItem('set-4-hands'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-397" href="armory/summoners_gauntlets_of_imperial_assent.jpg">Summoner&#039;s Gauntlets of Imperial Assent</a></td>
+    </tr>
+    <tr>
+     <td>6</td>
+     <td>Belt</td>
+     <td class="belt" id="set-4-belt"><a href="#remove" onclick="removeArmorBuilderItem('set-4-belt'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-400" href="armory/summoners_girdle_of_imperial_assent.jpg">Summoner&#039;s Girdle of Imperial Assent</a></td>
+    </tr>
+    <tr>
+     <td>7</td>
+     <td>Legs</td>
+     <td class="legs" id="set-4-legs"><a href="#remove" onclick="removeArmorBuilderItem('set-4-legs'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-394" href="armory/summoners_leggings_of_imperial_assent.jpg">Summoner&#039;s Leggings of Imperial Assent</a></td>
+    </tr>
+    <tr>
+     <td>8</td>
+     <td>Feet</td>
+     <td class="feet" id="set-4-feet"><a href="#remove" onclick="removeArmorBuilderItem('set-4-feet'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-4-102" href="armory/sages_sandals_of_yag.jpg">Sage&#039;s Sandals of Yag</a></td>
+    </tr>
+    <tr>
+     <td>9</td>
+     <td>Back</td>
+     <td class="back" id="set-4-back"></td>
+    </tr>
+    <tr>
+     <td>10</td>
+     <td>Necklace</td>
+     <td class="necklace" id="set-4-necklace"></td>
+    </tr>
+    <tr>
+     <td>11</td>
+     <td>Left Ring</td>
+     <td class="left-ring" id="set-4-left-ring"></td>
+    </tr>
+    <tr>
+     <td>12</td>
+     <td>Right Ring</td>
+     <td class="right-ring" id="set-4-right-ring"></td>
+    </tr>
+    <tr>
+     <td>13</td>
+     <td>Main Hand</td>
+     <td class="main-hand" id="set-4-main-hand"></td>
+    </tr>
+    <tr>
+     <td>14</td>
+     <td>Off Hand</td>
+     <td class="off-hand" id="set-4-off-hand"></td>
+    </tr>
+   </tbody>
+  </table>
+  <div id="set-4-attributes">
+  <table class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:40px">Value</th>
+     <th>Attribute <a href="#merge" onclick="toggleArmorBuilderCalculation('set-4', 1); return false" style="float:right;font-weight:normal;font-style:italic">Merge stats</a></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td style="text-align:right">3443</td>
+     <td>
+      Armor
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">1883</td>
+     <td>
+      Critigation Amount
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+310</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Constitution</a><br/>
+      <div style="display:none;font-style:italic">
++2480 Health<br/>
++46.5 OOC Health Regen<br/>
++620 Stamina<br/>
++15.5 Natural Stamina Regen<br/>
++46.5 OOC Stamina Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+124</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Wisdom</a><br/>
+      <div style="display:none;font-style:italic">
++74.4 Magic Damage (priest/unholy for DT)<br/>
++62 Holy/Unholy Protection<br/>
++372 Mana<br/>
++8.68 Natural Mana Regen<br/>
++47.12 OOC Mana Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+1406</td>
+     <td>
+      Mana
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+36</td>
+     <td>
+      Natural Mana Regen
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+1323</td>
+     <td>
+      Heal Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+442</td>
+     <td>
+      Magic Damage
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+260</td>
+     <td>
+      Hit Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+220</td>
+     <td>
+      Critical Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+266</td>
+     <td>
+      Critical Damage Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+300</td>
+     <td>
+      Protection
+     </td>
+    </tr>
+   </tbody>
+  </table>  </div>
+ </div><!-- /armorBuilderWin -->
+</div><!-- /armorBuilder -->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+
+	var set_id = '#set-4';
+	var posX = 50 - 20;
+	var posY = 50 + 10;
+	var dimW = 450;
+	var dimH = 600;
+
+	$(set_id).css('left',posX).css('top',posY).css('width',dimW).css('height',dimH).resizable({resize:function(event,ui){$(set_id+' .armorBuilderWin').css('height',ui.size.height-45+'px');},stop:function(event,ui){$.post(script_name,{ajax:'armorBuilder',a:'resize',set_id:set_id,width:$(set_id).css('width'),height:$(set_id).css('height')});}}).draggable({handle:'h4',stop:function(e,ui){$.post(script_name,{ajax:'armorBuilder',a:'move',set_id:set_id,posx:$(set_id).css('left'),posy:$(set_id).css('top')});}});
+	$(set_id+'-items').tablesorter({sortList:[[0,0]],widgets:['zebra']});
+	$(set_id+'-attributes table').tablesorter({headers:{0:{sorter:false},1:{sorter:false}},widgets:['zebra']});
+	$(set_id+'-items a.abitem').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$(set_id+'-items a.abitem').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	addArmorBuilderItem(set_id+'-items td.head', 'a.head');
+	addArmorBuilderItem(set_id+'-items td.chest', 'a.chest');
+	addArmorBuilderItem(set_id+'-items td.shoulder', 'a.shoulder');
+	addArmorBuilderItem(set_id+'-items td.wrist', 'a.wrist');
+	addArmorBuilderItem(set_id+'-items td.hands', 'a.hands');
+	addArmorBuilderItem(set_id+'-items td.belt', 'a.belt');
+	addArmorBuilderItem(set_id+'-items td.legs', 'a.legs');
+	addArmorBuilderItem(set_id+'-items td.feet', 'a.feet');
+	addArmorBuilderItem(set_id+'-items td.back', 'a.back');
+	addArmorBuilderItem(set_id+'-items td.necklace', 'a.necklace');
+	addArmorBuilderItem(set_id+'-items td.left-ring,td.right-ring', 'a.ring');
+	addArmorBuilderItem(set_id+'-items td.main-hand', 'a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff');
+	addArmorBuilderItem(set_id+'-items td.off-hand', 'a.1hb,a.1he,a.1heranger,a.dagger,a.talisman,a.ammunition,a.shield');
+});
+
+// -->
+</script><div class="armorBuilder" id="set-5">
+ <a href="#set-5-close" onclick="closeArmorBuilder(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height=12 width=12 /></a>
+ <h4>Armor builder #5</h4>
+ <div class="armorBuilderWin">
+  <p style="margin-bottom: 15px">Drag and drop items from the armory into the corresponding slots in the armor builder to see the combined stats of your gear/setup.</p>
+  <table id="set-5-items" class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:10px">#</th>
+     <th style="width:65px">Slot</th>
+     <th>Item</th>
+    </tr>
+   </thead>
+   <tfoot>
+    <tr>
+     <th colspan="3"><a href="http://aoc.is-better-than.tv/armory.php?ab=eNotjUkOwyAQBF9kySxmmXkNhmGRCZaAKN8PVnKsUqs6kwvAjFToM40J3O448v2ugTpoyfDTy6OVxuxaGGCVwZPqBKV2rJQGCCYxEk3Q3OLp%2FLV62mAjf1XnCZg%2B1jDOrZeWQGAvKf%2BBCX7gy5W2PfH1x%2FGO8QdGfwFGIjHX&amp;ref=ab%3DeNotjUkOwyAQBF9kySxmmXkNhmGRCZaAKN8PVnKsUqs6kwvAjFToM40J3O448v2ugTpoyfDTy6OVxuxaGGCVwZPqBKV2rJQGCCYxEk3Q3OLp%252FLV62mAjf1XnCZg%252B1jDOrZeWQGAvKf%252BBCX7gy5W2PfH1x%252FGO8QdGfwFGIjHX" id="set-5-url">Link to this armor set</a> <em style="font-weight:normal">(right click & copy link)</em></th>
+    </tr>
+   </tfoot>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Head</td>
+     <td class="head" id="set-5-head"><a href="#remove" onclick="removeArmorBuilderItem('set-5-head'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-1846" href="armory/helm_of_the_crimson_fort.jpg">Helm of the Crimson Fort</a></td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Chest</td>
+     <td class="chest" id="set-5-chest"><a href="#remove" onclick="removeArmorBuilderItem('set-5-chest'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-290" href="armory/generals_chestplate_of_the_eastern_sun.jpg">General&#039;s Chestplate of the Eastern Sun</a></td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Shoulder</td>
+     <td class="shoulder" id="set-5-shoulder"><a href="#remove" onclick="removeArmorBuilderItem('set-5-shoulder'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-741" href="armory/wolfs_armguards_of_the_grasslands.jpg">Wolf&#039;s Armguards of the Grasslands</a></td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Wrist</td>
+     <td class="wrist" id="set-5-wrist"><a href="#remove" onclick="removeArmorBuilderItem('set-5-wrist'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-267" href="armory/generals_vambraces_of_dynastic_rule.jpg">General&#039;s Vambraces of Dynastic Rule</a></td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Hands</td>
+     <td class="hands" id="set-5-hands"><a href="#remove" onclick="removeArmorBuilderItem('set-5-hands'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-968" href="armory/wolfs_gauntlets_of_the_grasslands.jpg">Wolf&#039;s Gauntlets of the Grasslands</a></td>
+    </tr>
+    <tr>
+     <td>6</td>
+     <td>Belt</td>
+     <td class="belt" id="set-5-belt"><a href="#remove" onclick="removeArmorBuilderItem('set-5-belt'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-660" href="armory/tigers_belt_of_the_roaring_jungle.jpg">Tiger&#039;s Belt of the Roaring Jungle</a></td>
+    </tr>
+    <tr>
+     <td>7</td>
+     <td>Legs</td>
+     <td class="legs" id="set-5-legs"><a href="#remove" onclick="removeArmorBuilderItem('set-5-legs'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-314" href="armory/generals_legguards_of_the_battlements.jpg">General&#039;s Legguards of the Battlements</a></td>
+    </tr>
+    <tr>
+     <td>8</td>
+     <td>Feet</td>
+     <td class="feet" id="set-5-feet"><a href="#remove" onclick="removeArmorBuilderItem('set-5-feet'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-729" href="armory/wolfs_boots_of_the_khan.jpg">Wolf&#039;s Boots of the Khan</a></td>
+    </tr>
+    <tr>
+     <td>9</td>
+     <td>Back</td>
+     <td class="back" id="set-5-back"><a href="#remove" onclick="removeArmorBuilderItem('set-5-back'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-1878" href="armory/valkas_illimitable_aegis.jpg">Valka&#039;s Illimitable Aegis</a></td>
+    </tr>
+    <tr>
+     <td>10</td>
+     <td>Necklace</td>
+     <td class="necklace" id="set-5-necklace"><a href="#remove" onclick="removeArmorBuilderItem('set-5-necklace'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-175" href="armory/kakaba_guide.jpg">Kakaba Guide</a></td>
+    </tr>
+    <tr>
+     <td>11</td>
+     <td>Left Ring</td>
+     <td class="left-ring" id="set-5-left-ring"><a href="#remove" onclick="removeArmorBuilderItem('set-5-left-ring'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-3" href="armory/deaths_ward.jpg">Death&#039;s Ward</a></td>
+    </tr>
+    <tr>
+     <td>12</td>
+     <td>Right Ring</td>
+     <td class="right-ring" id="set-5-right-ring"><a href="#remove" onclick="removeArmorBuilderItem('set-5-right-ring'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-1325" href="armory/cang_jeis_laugh.jpg">Cang-Jei&#039;s Laugh</a></td>
+    </tr>
+    <tr>
+     <td>13</td>
+     <td>Main Hand</td>
+     <td class="main-hand" id="set-5-main-hand"><a href="#remove" onclick="removeArmorBuilderItem('set-5-main-hand'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-742" href="armory/blossoming_death.jpg">Blossoming Death</a></td>
+    </tr>
+    <tr>
+     <td>14</td>
+     <td>Off Hand</td>
+     <td class="off-hand" id="set-5-off-hand"><a href="#remove" onclick="removeArmorBuilderItem('set-5-off-hand'); return false" class="remove"><img src="//static.is-better-than.tv/img/delete.gif" alt="Remove" width="12" height="12" style="float: right" /></a><a class="abitem Epic" id="ab-set-5-87" href="armory/the_enduring_hate.jpg">The Enduring Hate</a></td>
+    </tr>
+   </tbody>
+  </table>
+  <div id="set-5-attributes">
+  <table class="tablesorter" cellpadding="0" cellspacing="1">
+   <thead>
+    <tr>
+     <th style="width:40px">Value</th>
+     <th>Attribute <a href="#merge" onclick="toggleArmorBuilderCalculation('set-5', 1); return false" style="float:right;font-weight:normal;font-style:italic">Merge stats</a></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td style="text-align:right">8202</td>
+     <td>
+      Armor
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">1935</td>
+     <td>
+      Critigation Amount
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">110.8</td>
+     <td>
+      DPS
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+822</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Strength</a><br/>
+      <div style="display:none;font-style:italic">
++2466 Combat Rating (-daggers)<br/>
++1644 Armor<br/>
++123.3 OOC Health Regen<br/>
++1644 Stamina<br/>
++41.1 Natural Stamina Regen<br/>
++123.3 OOC Stamina Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+910</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Constitution</a><br/>
+      <div style="display:none;font-style:italic">
++7280 Health<br/>
++136.5 OOC Health Regen<br/>
++1820 Stamina<br/>
++45.5 Natural Stamina Regen<br/>
++136.5 OOC Stamina Regen<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+8.2</td>
+     <td>
+      Natural Stamina Regen
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+527</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Combat Rating</a><br/>
+      <div style="display:none;font-style:italic">
++14.64 DPS<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+104</td>
+     <td>
+      <a href="#toggle" onclick="toggleNextDiv(this); return false" title="Click to show attribute calculation">Combat Rating (1HB)</a><br/>
+      <div style="display:none;font-style:italic">
++2.89 DPS<br/>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+333</td>
+     <td>
+      Hit Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+246</td>
+     <td>
+      Critical Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+231</td>
+     <td>
+      Hate Increase Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+254</td>
+     <td>
+      Critical Damage Rating
+     </td>
+    </tr>
+    <tr>
+     <td style="text-align:right">+110</td>
+     <td>
+      Protection
+     </td>
+    </tr>
+   </tbody>
+  </table>  </div>
+ </div><!-- /armorBuilderWin -->
+</div><!-- /armorBuilder -->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function(){
+
+	var set_id = '#set-5';
+	var posX = 50 - 20;
+	var posY = 50 + 10;
+	var dimW = 450;
+	var dimH = 600;
+
+	$(set_id).css('left',posX).css('top',posY).css('width',dimW).css('height',dimH).resizable({resize:function(event,ui){$(set_id+' .armorBuilderWin').css('height',ui.size.height-45+'px');},stop:function(event,ui){$.post(script_name,{ajax:'armorBuilder',a:'resize',set_id:set_id,width:$(set_id).css('width'),height:$(set_id).css('height')});}}).draggable({handle:'h4',stop:function(e,ui){$.post(script_name,{ajax:'armorBuilder',a:'move',set_id:set_id,posx:$(set_id).css('left'),posy:$(set_id).css('top')});}});
+	$(set_id+'-items').tablesorter({sortList:[[0,0]],widgets:['zebra']});
+	$(set_id+'-attributes table').tablesorter({headers:{0:{sorter:false},1:{sorter:false}},widgets:['zebra']});
+	$(set_id+'-items a.abitem').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$(set_id+'-items a.abitem').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	addArmorBuilderItem(set_id+'-items td.head', 'a.head');
+	addArmorBuilderItem(set_id+'-items td.chest', 'a.chest');
+	addArmorBuilderItem(set_id+'-items td.shoulder', 'a.shoulder');
+	addArmorBuilderItem(set_id+'-items td.wrist', 'a.wrist');
+	addArmorBuilderItem(set_id+'-items td.hands', 'a.hands');
+	addArmorBuilderItem(set_id+'-items td.belt', 'a.belt');
+	addArmorBuilderItem(set_id+'-items td.legs', 'a.legs');
+	addArmorBuilderItem(set_id+'-items td.feet', 'a.feet');
+	addArmorBuilderItem(set_id+'-items td.back', 'a.back');
+	addArmorBuilderItem(set_id+'-items td.necklace', 'a.necklace');
+	addArmorBuilderItem(set_id+'-items td.left-ring,td.right-ring', 'a.ring');
+	addArmorBuilderItem(set_id+'-items td.main-hand', 'a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff');
+	addArmorBuilderItem(set_id+'-items td.off-hand', 'a.1hb,a.1he,a.1heranger,a.dagger,a.talisman,a.ammunition,a.shield');
+});
+
+// -->
+</script></div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2021<br/>
+<span class="stats">Page generated in 0.958 seconds using 5 queries, consuming 2116.188 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

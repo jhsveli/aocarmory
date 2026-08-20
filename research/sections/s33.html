@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - World Boss</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the World Boss section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=33';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=33;40">Item Store</a></li>
+ <li><a href="armory.php?s=33;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=33;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=33;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=33;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=33;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=33;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=33;4">Last Legion</a></li>
+ <li><a href="armory.php?s=33;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=33;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=33;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=33;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=33;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=33;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=33;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=33;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=33;28">House of Crom</a></li>
+ <li><a href="armory.php?s=33;23">Stygia</a></li>
+ <li><a href="armory.php?s=33;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=33;19">Khitai</a></li>
+ <li><a href="armory.php?s=33;25">Turan</a></li>
+ <li><a href="armory.php?s=33;32">Unchained</a></li>
+ <li class="selected"><a href="armory.php?s=">World Boss</a></li>
+ <li><a href="armory.php?s=33;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=33;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=33;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=33;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=33;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=33;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=33;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=33;31">Bags</a></li>
+ <li><a href="armory.php?s=33;29">Recipes</a></li>
+ <li><a href="armory.php?s=33;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=33;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=33;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=33;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=33;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=33;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=33;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-world-boss">
+<legend>World Boss</legend>
+<ul class="locations">
+ <li class="collapsible boss"><a href="#" onclick="toggleList(this); return false"><strong>Multiple Zones :: World Boss</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Companion</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_black_dragon.jpg" id="item-3840-1" class="Legendary pet">Mini-Pet: Black Dragon</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_dark_beast_alpha.jpg" id="item-4518-2" class="Epic pet">Mini-Pet: Dark Beast Alpha</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_drowned_one.jpg" id="item-3922-3" class="Epic pet">Mini-Pet: Drowned One</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_dust_fiend.jpg" id="item-4516-4" class="Epic pet">Mini-Pet: Dust Fiend</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_frost_king.jpg" id="item-3839-5" class="Epic pet">Mini-Pet: Frost King</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_inferno_lord.jpg" id="item-4122-6" class="Epic pet">Mini-Pet: Inferno Lord</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_obsidian_basilisk.jpg" id="item-3868-7" class="Epic pet">Mini-Pet: Obsidian Basilisk</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_remnant_of_the_lurker.jpg" id="item-3989-8" class="Epic pet">Mini-Pet: Remnant of the Lurker</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_serpent_man_oldblood.jpg" id="item-3913-9" class="Epic pet">Mini-Pet: Serpent Man Oldblood</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mini_pet_spawn_of_nergal.jpg" id="item-3981-10" class="Epic pet">Mini-Pet: Spawn of Nergal</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pet_banshee_queen.jpg" id="item-4023-11" class="Epic pet">Pet: Banshee Queen</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pet_executioner.jpg" id="item-3987-12" class="Epic pet">Pet: Executioner</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pet_ice_worm.jpg" id="item-3960-13" class="Epic pet">Pet: Ice Worm</a> [Pet]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pet_leviathus_spawn.jpg" id="item-3985-14" class="Epic pet">Pet: Leviathus Spawn</a> [Pet]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> mage</span><a href="//static.is-better-than.tv/armory/ash_mantle_of_the_living_legend.jpg" id="item-3995-15" class="Legendary back">Ash Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> priest</span><a href="//static.is-better-than.tv/armory/beast_hunters_mantle_of_the_living_legend.jpg" id="item-3991-16" class="Legendary back">Beast Hunter's Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> rogue, soldier</span><a href="//static.is-better-than.tv/armory/conversant_mantle_of_the_living_legend.jpg" id="item-4001-17" class="Legendary back">Conversant Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> mage</span><a href="//static.is-better-than.tv/armory/demon_mantle_of_the_living_legend.jpg" id="item-3996-18" class="Legendary back">Demon Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> soldier</span><a href="//static.is-better-than.tv/armory/dragon_scale_mantle_of_the_living_legend.jpg" id="item-3999-19" class="Legendary back">Dragon Scale Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> rogue, soldier</span><a href="//static.is-better-than.tv/armory/fallen_leviathans_mantle_of_the_living_legend.jpg" id="item-4000-20" class="Legendary back">Fallen Leviathan's Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> mage, soldier</span><a href="//static.is-better-than.tv/armory/infernal_mantle_of_the_living_legend.jpg" id="item-3997-21" class="Legendary back">Infernal Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> priest</span><a href="//static.is-better-than.tv/armory/saviors_mantle_of_the_living_legend.jpg" id="item-3990-22" class="Legendary back">Savior's Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> rogue</span><a href="//static.is-better-than.tv/armory/slayers_mantle_of_the_living_legend.jpg" id="item-3994-23" class="Legendary back">Slayer's Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> priest</span><a href="//static.is-better-than.tv/armory/star_touched_mantle_of_the_living_legend.jpg" id="item-3992-24" class="Legendary back">Star Touched Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> rogue</span><a href="//static.is-better-than.tv/armory/terminators_mantle_of_the_living_legend.jpg" id="item-3993-25" class="Legendary back">Terminator's Mantle of the Living Legend</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> mage, priest</span><a href="//static.is-better-than.tv/armory/thunder_mantle_of_the_living_legend.jpg" id="item-3998-26" class="Legendary back">Thunder Mantle of the Living Legend</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Raid Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/all_seeing_eye_of_mystical_supremacy.jpg" id="item-3847-27" class="Epic necklace">All-Seeing-Eye of Mystical Supremacy</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/amethyst_ring_of_wisdom.jpg" id="item-3866-28" class="Epic ring">Amethyst Ring of Wisdom</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/asp_of_mystical_supremacy.jpg" id="item-3810-29" class="Epic ring">Asp of Mystical Supremacy</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bear_claws_of_divine_might.jpg" id="item-3880-30" class="Epic necklace">Bear Claws of Divine Might</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/emerald_barbs_of_subtle_striking.jpg" id="item-3833-31" class="Epic necklace">Emerald Barbs of Subtle Striking</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/golden_ring_of_dexterity.jpg" id="item-3917-32" class="Epic ring">Golden Ring of Dexterity</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hallowed_ring_of_divine_blessings.jpg" id="item-3915-33" class="Epic ring">Hallowed Ring of Divine Blessings</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/iron_band_of_constitution.jpg" id="item-3807-34" class="Epic ring">Iron Band of Constitution</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ironclad_trinket_of_eternal_resilience.jpg" id="item-3816-35" class="Epic necklace">Ironclad Trinket of Eternal Resilience</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mitras_mark_of_divine_blessings.jpg" id="item-3914-36" class="Epic necklace">Mitra's Mark of Divine Blessings</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pearl_ring_of_assault.jpg" id="item-3838-37" class="Epic ring">Pearl Ring of Assault</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ruby_ring_of_strength.jpg" id="item-3870-38" class="Epic ring">Ruby Ring of Strength</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/runic_band_of_inherent_hatred.jpg" id="item-3797-39" class="Epic ring">Runic Band of Inherent Hatred</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/scorched_band_of_the_inferno.jpg" id="item-3918-40" class="Epic ring">Scorched Band of the Inferno</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/skull_clasp_of_bloody_carnage.jpg" id="item-3798-41" class="Epic ring">Skull Clasp of Bloody Carnage</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/snakehead_of_intelligence.jpg" id="item-3835-42" class="Epic ring">Snakehead of Intelligence</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tribal_necklace_of_bloody_carnage.jpg" id="item-3808-43" class="Epic necklace">Tribal Necklace of Bloody Carnage</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Raid Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/beast_hunters_barbs.jpg" id="item-3869-44" class="Epic ammunition">Beast Hunter's Barbs</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/beast_hunters_malice_breaker.jpg" id="item-3982-45" class="Epic 2hb">Beast Hunter's Malice Breaker</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/beast_hunters_reaper_crossbow.jpg" id="item-3963-46" class="Epic crossbow">Beast Hunter's Reaper Crossbow</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bounty_hunters_dirk.jpg" id="item-3811-47" class="Epic dagger">Bounty Hunter's Dirk</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_clan_blade.jpg" id="item-3837-48" class="Epic 1he">Hero's Clan Blade</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heros_hellglaive.jpg" id="item-3871-49" class="Epic polearm">Hero's Hellglaive</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/paladins_baneblade.jpg" id="item-3796-50" class="Epic 1he">Paladin's Baneblade</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/paladins_siege_shield.jpg" id="item-3834-51" class="Epic shield">Paladin's Siege Shield</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/paladins_widowmaker.jpg" id="item-3812-52" class="Epic 2he">Paladin's Widowmaker</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/repressors_codex.jpg" id="item-3832-53" class="Epic talisman">Repressor's Codex</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/repressors_dagger.jpg" id="item-3813-54" class="Epic dagger">Repressor's Dagger</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/repressors_flamebrand.jpg" id="item-3809-55" class="Epic 2he">Repressor's Flamebrand</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/repressors_trident.jpg" id="item-3947-56" class="Epic staff">Repressor's Trident</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/saviors_shield_eternal.jpg" id="item-3983-57" class="Epic shield">Savior's Shield Eternal</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/saviors_sky_piercer.jpg" id="item-3961-58" class="Epic polearm">Savior's Sky Piercer</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/saviors_spite_hammer.jpg" id="item-4339-59" class="Epic 1hb">Savior's Spite Hammer</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/saviors_totem_pole.jpg" id="item-3916-60" class="Epic staff">Savior's Totem Pole</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/terminators_diremaul.jpg" id="item-3817-61" class="Epic 1hb">Terminator's Diremaul</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/terminators_dreadmaul.jpg" id="item-3836-62" class="Epic 2hb">Terminator's Dreadmaul</a> [2HB]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.997 seconds using 5 queries, consuming 1612.820 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

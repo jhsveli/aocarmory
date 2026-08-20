@@ -1,0 +1,1066 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Khitai</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Khitai section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=19';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=19;40">Item Store</a></li>
+ <li><a href="armory.php?s=19;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=19;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=19;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=19;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=19;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=19;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=19;4">Last Legion</a></li>
+ <li><a href="armory.php?s=19;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=19;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=19;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=19;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=19;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=19;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=19;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=19;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=19;28">House of Crom</a></li>
+ <li><a href="armory.php?s=19;23">Stygia</a></li>
+ <li><a href="armory.php?s=19;30">Dragon&#039;s Spine</a></li>
+ <li class="selected"><a href="armory.php?s=">Khitai</a></li>
+ <li><a href="armory.php?s=19;25">Turan</a></li>
+ <li><a href="armory.php?s=19;32">Unchained</a></li>
+ <li><a href="armory.php?s=19;33">World Boss</a></li>
+ <li><a href="armory.php?s=19;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=19;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=19;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=19;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=19;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=19;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=19;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=19;31">Bags</a></li>
+ <li><a href="armory.php?s=19;29">Recipes</a></li>
+ <li><a href="armory.php?s=19;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=19;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=19;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=19;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=19;44">Kutchemes</a></li>
+ <li><a href="armory.php?s=19;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=19;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-khitai">
+<legend>Khitai</legend>
+<ul class="locations">
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Location :: Unknown</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Miscellaneous</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/the_subtle_disguise.jpg" id="item-3952-1" class="Rare legs">The Subtle Disguise</a> [Legs]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Gateway to Khitai :: Li-min</strong></a> (1422,608)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/scarlet_fighters_ring.jpg" id="item-4259-2" class="Rare ring">Scarlet Fighters Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/scarlet_necklace.jpg" id="item-4260-3" class="Rare necklace">Scarlet Necklace</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/scarlet_spellwarders_ring.jpg" id="item-4261-4" class="Rare ring">Scarlet Spellwarders Ring</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Gateway to Khitai :: Taichu</strong></a> (1414,594)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/legion_fighters_ring.jpg" id="item-4299-5" class="Rare ring">Legion Fighters Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/legion_necklace.jpg" id="item-4300-6" class="Rare necklace">Legion Necklace</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/legion_spellwarders_ring.jpg" id="item-4301-7" class="Rare ring">Legion Spellwarders Ring</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khitai :: Milestones Quest Rewards</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cang_jeis_grin.jpg" id="item-1324-8" class="Epic ring">Cang-Jei's Grin</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cang_jeis_laugh.jpg" id="item-1325-9" class="Epic ring">Cang-Jei's Laugh</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cang_jeis_smile.jpg" id="item-1326-10" class="Epic ring">Cang-Jei's Smile</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cang_jeis_whisper.jpg" id="item-1327-11" class="Epic ring">Cang-Jei's Whisper</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Khitai :: The Eleven Sacred Weapons of Hwanung</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Konggee, Purple Lotus Swamp</span><a href="//static.is-better-than.tv/armory/chang.jpg" id="item-3848-12" class="Rare staff">Chang</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Nam Woo Gun, Wild Lands of Zelata</span><a href="//static.is-better-than.tv/armory/dan_sang_gum.jpg" id="item-3849-13" class="Rare 1he">Dan Sang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Geo Boogi, Khemi</span><a href="//static.is-better-than.tv/armory/dang_pa.jpg" id="item-3850-14" class="Rare staff">Dang Pa</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Choi Chul Ho, Wild Lands of Zelata</span><a href="//static.is-better-than.tv/armory/do_kki.jpg" id="item-3851-15" class="Rare 2he">Do Kki</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Lee Ho-Chil, Field of the Dead</span><a href="//static.is-better-than.tv/armory/gung_si.jpg" id="item-3852-16" class="Rare bow">Gung Si</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Hong Gildong, Kheshatta</span><a href="//static.is-better-than.tv/armory/jang_bong.jpg" id="item-3853-17" class="Rare staff">Jang Bong</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Wren, Eiglophian Mountains</span><a href="//static.is-better-than.tv/armory/jang_gum.jpg" id="item-3854-18" class="Rare 1he">Jang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Bae Man-Sik, Poitain</span><a href="//static.is-better-than.tv/armory/jang_ssang_gum.jpg" id="item-3855-19" class="Rare 1he">Jang Ssang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Ung-Nye, Ymir's Pass</span><a href="//static.is-better-than.tv/armory/ji_pang_ee.jpg" id="item-3856-20" class="Rare 2hb">Ji Pang-Ee</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sim Hak-Gyu, Wild Lands of Zelata</span><a href="//static.is-better-than.tv/armory/kal_gum.jpg" id="item-3857-21" class="Rare dagger">Kal Gum</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Hodong, Thunder River</span><a href="//static.is-better-than.tv/armory/wol_do.jpg" id="item-3858-22" class="Rare polearm">Wol Do</a> [Polearm]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bonus Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Rogue</span><a href="//static.is-better-than.tv/armory/blessed_do_kki.jpg" id="item-3818-23" class="Rare 2he">Blessed Do Kki</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Soldier</span><a href="//static.is-better-than.tv/armory/consecrated_do_kki.jpg" id="item-3819-24" class="Rare 2he">Consecrated Do Kki</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Mage</span><a href="//static.is-better-than.tv/armory/heavens_buchae.jpg" id="item-3820-25" class="Rare dagger">Heaven's Buchae</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest</span><a href="//static.is-better-than.tv/armory/heavens_chang.jpg" id="item-3821-26" class="Rare polearm">Heaven's Chang</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Soldier</span><a href="//static.is-better-than.tv/armory/heavens_dan_sang_gum.jpg" id="item-3822-27" class="Rare 1he">Heaven's Dan Sang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Mage</span><a href="//static.is-better-than.tv/armory/heavens_dang_pa.jpg" id="item-3823-28" class="Rare staff">Heaven's Dang Pa</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Mage</span><a href="//static.is-better-than.tv/armory/heavens_do_kki.jpg" id="item-3824-29" class="Rare 2he">Heaven's Do Kki</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Rogue</span><a href="//static.is-better-than.tv/armory/heavens_gung_si.jpg" id="item-3825-30" class="Rare bow">Heaven's Gung Si</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest</span><a href="//static.is-better-than.tv/armory/heavens_jang_bong.jpg" id="item-3826-31" class="Rare staff">Heaven's Jang Bong</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest</span><a href="//static.is-better-than.tv/armory/heavens_jang_gum.jpg" id="item-3827-32" class="Rare 1he">Heaven's Jang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Rogue</span><a href="//static.is-better-than.tv/armory/heavens_jang_ssang_gum.jpg" id="item-3828-33" class="Rare 1he">Heaven's Jang Ssang Gum</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Priest</span><a href="//static.is-better-than.tv/armory/heavens_ji_pang_ee.jpg" id="item-3829-34" class="Rare 2hb">Heaven's Ji Pang-Ee</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Rogue</span><a href="//static.is-better-than.tv/armory/heavens_kal_gum.jpg" id="item-3830-35" class="Rare dagger">Heaven's Kal Gum</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Soldier</span><a href="//static.is-better-than.tv/armory/heavens_wol_do.jpg" id="item-3831-36" class="Rare polearm">Heaven's Wol Do</a> [Polearm]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible bonus"><a href="#" onclick="toggleList(this); return false"><strong>Rise of the Godslayer :: Expansion Pack Bonus</strong></a>  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bonus Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_chthonic_nightmares.jpg" id="item-1854-37" class="Epic ring">Ring of Chthonic Nightmares</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Gateway to Khitai :: The Breach</strong></a> (1336,1180)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/copper.png" alt="Copper" class="coin" height="12" width="12" title="Copper" /> Unchained mode</span><a href="//static.is-better-than.tv/armory/band_of_the_rampaging.jpg" id="item-3958-38" class="Rare ring">Band of the Rampaging</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/band_of_the_wall_guardian.jpg" id="item-2937-39" class="Rare ring">Band of the Wall Guardian</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/brawlers_cloak.jpg" id="item-2121-40" class="Enchanted back">Brawler's Cloak</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/chaldean_cloak.jpg" id="item-2670-41" class="Enchanted back">Chaldean Cloak</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_furor.jpg" id="item-3422-42" class="Rare back">Cloak of Furor</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ghostweave_drape.jpg" id="item-2671-43" class="Rare back">Ghostweave Drape</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ghostweave_drape_(unchained_version).jpg" id="item-3124-44" class="Rare back">Ghostweave Drape (Unchained Version)</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wreath_of_the_unruly.jpg" id="item-3125-45" class="Rare ring">Wreath of the Unruly</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wreath_of_vapors.jpg" id="item-2941-46" class="Enchanted ring">Wreath of Vapors</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Gateway to Khitai :: The Forgotten City</strong></a> (640,1420)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/band_of_bloodthirst.jpg" id="item-2123-47" class="Rare ring">Band of Bloodthirst</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/collar_of_havoc.jpg" id="item-2120-48" class="Rare necklace">Collar of Havoc</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/collar_of_vigor.jpg" id="item-3215-49" class="Rare necklace">Collar of Vigor</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/lacunal_nexus.jpg" id="item-2800-50" class="Rare necklace">Lacunal Nexus</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pendant_of_blessing.jpg" id="item-2942-51" class="Rare necklace">Pendant of Blessing</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pendant_of_preservation.jpg" id="item-2122-52" class="Rare necklace">Pendant of Preservation</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wreath_of_ether.jpg" id="item-2801-53" class="Rare ring">Wreath of Ether</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: The Kang Pagoda</strong></a> (241,1227)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/abyssal_hammer.jpg" id="item-3900-54" class="Rare 2hb">Abyssal Hammer</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Kang Pagoda</span><a href="//static.is-better-than.tv/armory/po_sha_longsword.jpg" id="item-2986-55" class="Rare 1he">Po-Sha Longsword</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pungent_absorber.jpg" id="item-4476-56" class="Rare shield">Pungent Absorber</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Kang Pagoda</span><a href="//static.is-better-than.tv/armory/scarlet_mark_of_manipulation.jpg" id="item-3245-57" class="Rare talisman">Scarlet Mark of Manipulation</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Coppice of the Heart</span><a href="//static.is-better-than.tv/armory/anvilrage.jpg" id="item-3909-58" class="Rare 2hb">Anvilrage</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Coppice of the Heart</span><a href="//static.is-better-than.tv/armory/deathsong.jpg" id="item-3028-59" class="Rare staff">Deathsong</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Coppice of the Heart</span><a href="//static.is-better-than.tv/armory/harrow.jpg" id="item-4162-60" class="Rare crossbow">Harrow</a> [Crossbow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Coppice of the Heart</span><a href="//static.is-better-than.tv/armory/reaper.jpg" id="item-3151-61" class="Rare dagger">Reaper</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Coppice of the Heart</span><a href="//static.is-better-than.tv/armory/tumults_veil.jpg" id="item-3841-62" class="Rare shield">Tumult's Veil</a> [Shield]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Reliquary of Flame</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Reliquary of Flame</span><a href="//static.is-better-than.tv/armory/ring_of_flaming_fury.jpg" id="item-1785-63" class="Rare ring">Ring of Flaming Fury</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Reliquary of Flames</span><a href="//static.is-better-than.tv/armory/blood_summoner.jpg" id="item-3239-64" class="Rare 2he">Blood Summoner</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Reliquary of Flames</span><a href="//static.is-better-than.tv/armory/cane_of_decay.jpg" id="item-3044-65" class="Rare staff">Cane of Decay</a> [Staff]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Reliquary of Flames</span><a href="//static.is-better-than.tv/armory/gemma_of_restoration.jpg" id="item-3924-66" class="Rare 1hb">Gemma of Restoration</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Reliquary of Flames</span><a href="//static.is-better-than.tv/armory/shadows_edge.jpg" id="item-3049-67" class="Rare 1he">Shadow's Edge</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Vortex of the Storm</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/ring_of_swift_storms.jpg" id="item-1333-68" class="Rare ring">Ring of Swift Storms</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/double_curved_hyrkanian_bow.jpg" id="item-3069-69" class="Rare bow">Double-curved Hyrkanian Bow</a> [Bow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/longblade_of_the_sea.jpg" id="item-3074-70" class="Rare 2he">Longblade of the Sea</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/second_wind.jpg" id="item-3475-71" class="Rare dagger">Second Wind</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/winds_grasp.jpg" id="item-1810-72" class="Rare polearm">Wind's Grasp</a> [Polearm]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Vortex of the Storm</span><a href="//static.is-better-than.tv/armory/yun_mark_of_immolation.jpg" id="item-1873-73" class="Rare talisman">Yun Mark of Immolation</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Warmonk Monastery</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blade_of_resilience.jpg" id="item-1819-74" class="Rare dagger">Blade of Resilience</a> [Dagger]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Pillars of Heaven</strong></a> (1431,1465)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/band_of_khan.jpg" id="item-1811-75" class="Rare ring">Band of Khan</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/stamina_of_the_wolf.jpg" id="item-1354-76" class="Rare necklace">Stamina of the Wolf</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_tamers_cloak.jpg" id="item-1841-77" class="Rare back">Wolf Tamer's Cloak</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_tooth_pendant.jpg" id="item-3286-78" class="Rare necklace">Wolf Tooth Pendant</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/aegis_of_khan.jpg" id="item-3157-79" class="Rare shield">Aegis of Khan</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/blade_of_khan.jpg" id="item-3686-80" class="Rare 1he">Blade of Khan</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/blade_of_the_pillars.jpg" id="item-3083-81" class="Rare 1he">Blade of the Pillars</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/bow_of_the_masked_hunter.jpg" id="item-2736-82" class="Rare bow">Bow of the Masked Hunter</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/fleshcarver.jpg" id="item-3529-83" class="Rare dagger">Fleshcarver</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/force_of_the_pillars.jpg" id="item-3468-84" class="Rare 2hb">Force of the Pillars</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/heavenly_repeater.jpg" id="item-4149-85" class="Rare crossbow">Heavenly Repeater</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/spear_of_the_pillars.jpg" id="item-2312-86" class="Rare polearm">Spear of the Pillars</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/talonthrust.jpg" id="item-3517-87" class="Rare dagger">Talonthrust</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_tamers_blade.jpg" id="item-3941-88" class="Rare 1he">Wolf Tamer's Blade</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_tamers_longblade.jpg" id="item-3942-89" class="Rare 2he">Wolf Tamer's Longblade</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_tamers_shield.jpg" id="item-2113-90" class="Rare shield">Wolf Tamer's Shield</a> [Shield]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Rippling Lake</a> [Demo/Necro] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLSs0psTI2NDS0TktNBbIMLC2tMxLzUopBgkbWGamJKSCWsXVOajpYzMQ6OSO1GKzHFAA2gRHu"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_rippling_lake.jpg" id="item-3111-91" class="Rare belt">Belt of the Rippling Lake</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_rippling_lake.jpg" id="item-3099-92" class="Rare feet">Boots of the Rippling Lake</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_rippling_lake.jpg" id="item-3112-93" class="Rare hands">Gloves of the Rippling Lake</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/hat_of_the_rippling_lake.jpg" id="item-3113-94" class="Rare head">Hat of the Rippling Lake</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_rippling_lake.jpg" id="item-3114-95" class="Rare legs">Leggings of the Rippling Lake</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_the_rippling_lake.jpg" id="item-3115-96" class="Rare chest">Tunic of the Rippling Lake</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Still Pond</a> [Sin] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLSs0psTK2NLKwTktNBbIMDQysM1ITU0AsQ%2BuMxLyUYitjU2MD65zU9GIrE0NTA%2BvkjNRikEpDAwA1DRHq"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_still_pond.jpg" id="item-3928-97" class="Rare belt">Belt of the Still Pond</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_still_pond.jpg" id="item-3100-98" class="Rare feet">Boots of the Still Pond</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/cap_of_the_still_pond.jpg" id="item-3101-99" class="Rare head">Cap of the Still Pond</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_still_pond.jpg" id="item-3530-100" class="Rare hands">Gloves of the Still Pond</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_still_pond.jpg" id="item-4150-101" class="Rare legs">Leggings of the Still Pond</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_the_still_pond.jpg" id="item-3110-102" class="Rare chest">Tunic of the Still Pond</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Unslaked</a> [HoX] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLSs0psTIxNLW0zkhNTLEyNrMAshLzUoqBTEtz65zUdCDL0MDCOjkjtbgExLQEAJODDzc%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_unslaked.jpg" id="item-4159-103" class="Rare belt">Belt of the Unslaked</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/cap_of_the_unslaked.jpg" id="item-3689-104" class="Rare head">Cap of the Unslaked</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_unslaked.jpg" id="item-3697-105" class="Rare hands">Gloves of the Unslaked</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_unslaked.jpg" id="item-3108-106" class="Rare legs">Leggings of the Unslaked</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_the_unslaked.jpg" id="item-3109-107" class="Rare chest">Tunic of the Unslaked</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Tranquility</a> [PoM/ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLSs0psTK2NDK3zkjMSym2MjY0MLHOSE1MsTI2sTSwzklNB4qZGppYJ2ekFgNVmlkaAwCS7g8n"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_tranquility.jpg" id="item-3927-108" class="Rare belt">Belt of Tranquility</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_tranquility.jpg" id="item-3104-109" class="Rare hands">Gloves of Tranquility</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_tranquility.jpg" id="item-3490-110" class="Rare head">Helm of Tranquility</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_tranquility.jpg" id="item-3514-111" class="Rare legs">Leggings of Tranquility</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_tranquility.jpg" id="item-3693-112" class="Rare chest">Tunic of Tranquility</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Unrest</a> [Barb] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLS00tsTK2NDa0zkjMSym2MjY0MLZOzkgtLgExzawzUhNTrEwMzQysc1LTgdJmlhYAlHUPGw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/boots_of_unrest.jpg" id="item-3931-113" class="Rare feet">Boots of Unrest</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_unrest.jpg" id="item-3103-114" class="Rare hands">Gauntlets of Unrest</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/harness_of_unrest.jpg" id="item-3106-115" class="Rare chest">Harness of Unrest</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_unrest.jpg" id="item-4160-116" class="Rare head">Helm of Unrest</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_unrest.jpg" id="item-3698-117" class="Rare legs">Leggings of Unrest</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Clarity</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNoNyUESwBAMBdArJROU5DTU1yxMN9x%2F2L7XMLcGDtkGsFWoZPP696XCiex1rKtM0Ry1q5Qn2cR3OwofPaASDg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_clarity.jpg" id="item-4148-118" class="Rare belt">Belt of Clarity</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_clarity.jpg" id="item-3098-119" class="Rare feet">Boots of Clarity</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_clarity.jpg" id="item-3160-120" class="Rare hands">Gauntlets of Clarity</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/harness_of_clarity.jpg" id="item-3105-121" class="Rare chest">Harness of Clarity</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_clarity.jpg" id="item-3976-122" class="Rare head">Helm of Clarity</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/legguards_of_clarity.jpg" id="item-3531-123" class="Rare legs">Legguards of Clarity</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Flowing Water</a> [Ranger] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLS00tsTK2MDO2zkjMSym2MjY1BDJTE1OsjA0NzK2TM1KLgfLmlgbWOanpQGlDM0MAk8gPHg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/boots_of_flowing_water.jpg" id="item-3863-124" class="Rare feet">Boots of Flowing Water</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_flowing_water.jpg" id="item-3513-125" class="Rare hands">Gloves of Flowing Water</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_flowing_water.jpg" id="item-3107-126" class="Rare head">Helm of Flowing Water</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/jerkin_of_flowing_water.jpg" id="item-3790-127" class="Rare chest">Jerkin of Flowing Water</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/legguards_of_flowing_water.jpg" id="item-3161-128" class="Rare legs">Legguards of Flowing Water</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Heavy Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Bloodlust</a> [Conq/DT/Guard] <a href="http://aoc.is-better-than.tv/armory.php?s=19&amp;ab=eNpLSs0psTI2sDS3TktNBbIsjQ2skzNSi4FMQwMj64zEvJRikKiJdUZqYoqVsbmFpXVOajpQzMzSAAA%2BIhIZ"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/belt_of_bloodlust.jpg" id="item-3097-129" class="Rare belt">Belt of Bloodlust</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_bloodlust.jpg" id="item-3930-130" class="Rare feet">Boots of Bloodlust</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/chestplate_of_bloodlust.jpg" id="item-3102-131" class="Rare chest">Chestplate of Bloodlust</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_bloodlust.jpg" id="item-3934-132" class="Rare hands">Gauntlets of Bloodlust</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_bloodlust.jpg" id="item-3789-133" class="Rare head">Helm of Bloodlust</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/legguards_of_the_bloodlust.jpg" id="item-3690-134" class="Rare legs">Legguards of the Bloodlust</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Palace of Yun Rau</strong></a> (156,1389)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/mark_of_lightning.jpg" id="item-3474-135" class="Rare talisman">Mark of Lightning</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/staff_of_kwan.jpg" id="item-3219-136" class="Rare staff">Staff of Kwan</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sunspark.jpg" id="item-3804-137" class="Rare dagger">Sunspark</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tyranny.jpg" id="item-1826-138" class="Rare 2he">Tyranny</a> [2HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Abyss of Kun Whu</strong></a> (38,538)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Abyss of Kun Whu</span><a href="//static.is-better-than.tv/armory/heavenly_rain.jpg" id="item-2719-139" class="Rare ammunition">Heavenly Rain</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Abyss of Kun Whu</span><a href="//static.is-better-than.tv/armory/petals_of_lilium.jpg" id="item-3313-140" class="Rare 1hb">Petals of Lilium</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Abyss of Kun Whu</span><a href="//static.is-better-than.tv/armory/vows_of_the_empire.jpg" id="item-2998-141" class="Rare shield">Vows of the Empire</a> [Shield]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Den of the Crowmen</strong></a> (6,575)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Den of the Crowmen</span><a href="//static.is-better-than.tv/armory/face_of_the_moon.jpg" id="item-2737-142" class="Rare talisman">Face of the Moon</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Den of the Crowmen</span><a href="//static.is-better-than.tv/armory/shield_of_yag.jpg" id="item-1824-143" class="Rare shield">Shield of Yag</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Den of the Crowmen</span><a href="//static.is-better-than.tv/armory/the_rock.jpg" id="item-3139-144" class="Rare thrown">The Rock</a> [Thrown]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Den of the Crowmen</span><a href="//static.is-better-than.tv/armory/twigs_of_the_ocean.jpg" id="item-2731-145" class="Rare ammunition">Twigs of the Ocean</a> [Ammunition]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Jade Dugout</span><a href="//static.is-better-than.tv/armory/crimson_death.jpg" id="item-3451-146" class="Rare dagger">Crimson Death</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Jade Dugout</span><a href="//static.is-better-than.tv/armory/relic_of_fallen_stars.jpg" id="item-3010-147" class="Rare talisman">Relic of Fallen Stars</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Jade Dugout</span><a href="//static.is-better-than.tv/armory/sword_of_scarlet_fire.jpg" id="item-3285-148" class="Rare 2he">Sword of Scarlet Fire</a> [2HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible boss"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Cheng-Ho Battle Commander</strong></a> (605,1020)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_blade.jpg" id="item-3175-149" class="Rare 2he">Cheng-Ho Battle Blade</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_dagger.jpg" id="item-3176-150" class="Rare dagger">Cheng-Ho Battle Dagger</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_krys.jpg" id="item-3177-151" class="Rare dagger">Cheng-Ho Battle Krys</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_mark.jpg" id="item-3178-152" class="Rare talisman">Cheng-Ho Battle Mark</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_staff.jpg" id="item-3179-153" class="Rare staff">Cheng-Ho Battle Staff</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_stave.jpg" id="item-3180-154" class="Rare 2hb">Cheng-Ho Battle Stave</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_sword.jpg" id="item-3181-155" class="Rare 2he">Cheng-Ho Battle Sword</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cheng_ho_battle_talisman.jpg" id="item-3182-156" class="Rare talisman">Cheng-Ho Battle Talisman</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/initiates_hood.jpg" id="item-3183-157" class="Superior head">Initiate's Hood</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible boss"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Tamarin Battle Commander</strong></a> (730,863)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_bow.jpg" id="item-3184-158" class="Rare bow">Tamarin Battle Bow</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_crossbow.jpg" id="item-3185-159" class="Rare crossbow">Tamarin Battle Crossbow</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_scimitar.jpg" id="item-3186-160" class="Rare 1he">Tamarin Battle Scimitar</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_shield.jpg" id="item-3187-161" class="Rare shield">Tamarin Battle Shield</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_spire.jpg" id="item-3188-162" class="Rare polearm">Tamarin Battle Spire</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_staff.jpg" id="item-3189-163" class="Rare staff">Tamarin Battle Staff</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tamarin_battle_ward.jpg" id="item-3190-164" class="Rare shield">Tamarin Battle Ward</a> [Shield]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/venturers_helm.jpg" id="item-3191-165" class="Superior head">Venturer's Helm</a> [Head]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: Refuge of the Apostate</strong></a> (1799,379)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cape_of_illusions.jpg" id="item-1809-166" class="Rare back">Cape of Illusions</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/corpse_wakers_band.jpg" id="item-1801-167" class="Rare ring">Corpse-Waker's Band</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/illusionists_longsword.jpg" id="item-1802-168" class="Rare 2he">Illusionist's Longsword</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/illusionists_staff.jpg" id="item-1798-169" class="Rare staff">Illusionist's Staff</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trappers_bolts.jpg" id="item-1795-170" class="Rare ammunition">Trapper's Bolts</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trappers_hook.jpg" id="item-1797-171" class="Rare 2hb">Trapper's Hook</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trappers_knife.jpg" id="item-1796-172" class="Rare dagger">Trapper's Knife</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trappers_sword.jpg" id="item-1794-173" class="Rare 1he">Trapper's Sword</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/bow_of_the_unseen.jpg" id="item-1749-174" class="Rare bow">Bow of the Unseen</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/branch_of_the_great_tree.jpg" id="item-1735-175" class="Rare 1hb">Branch of the Great Tree</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/nourishing_thoughts.jpg" id="item-1743-176" class="Rare staff">Nourishing Thoughts</a> [Staff]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/lotus_talisman.jpg" id="item-1718-177" class="Rare talisman">Lotus Talisman</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/meditation_rod.jpg" id="item-1726-178" class="Rare 2hb">Meditation Rod</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tigerswipe.jpg" id="item-1825-179" class="Rare 1he">Tigerswipe</a> [1HE]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/clasp_of_revival.jpg" id="item-1332-180" class="Rare necklace">Clasp of Revival</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_equivalence.jpg" id="item-1744-181" class="Rare back">Cloak of Equivalence</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_insight.jpg" id="item-1714-182" class="Rare back">Cloak of Insight</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mediators_cloak.jpg" id="item-3478-183" class="Rare back">Mediator's Cloak</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/restorative_ring.jpg" id="item-1715-184" class="Rare ring">Restorative Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_iron_skin.jpg" id="item-1800-185" class="Rare ring">Ring of Iron Skin</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/trophies_of_the_hunt.jpg" id="item-3038-186" class="Rare necklace">Trophies of the Hunt</a> [Necklace]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wrap_of_the_exuberant.jpg" id="item-1721-187" class="Rare back">Wrap of the Exuberant</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/blood_of_the_damned.jpg" id="item-1751-188" class="Rare staff">Blood of the Damned</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/concussor.jpg" id="item-1724-189" class="Rare 2hb">Concussor</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/entropy.jpg" id="item-3921-190" class="Rare talisman">Entropy</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/essence_of_courage.jpg" id="item-1775-191" class="Rare shield">Essence of Courage</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/judgement.jpg" id="item-1725-192" class="Rare 1hb">Judgement</a> [1HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/lathe_of_stars.jpg" id="item-1745-193" class="Rare 1he">Lathe of Stars</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/massacre.jpg" id="item-1720-194" class="Rare 1he">Massacre</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/nemesis.jpg" id="item-1717-195" class="Rare dagger">Nemesis</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pearl_of_heaven.jpg" id="item-1742-196" class="Rare crossbow">Pearl of Heaven</a> [Crossbow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ruthless_blade.jpg" id="item-1746-197" class="Rare 2he">Ruthless Blade</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/seal_of_divertion.jpg" id="item-1741-198" class="Rare talisman">Seal of Divertion</a> [Talisman]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shaus_reflection.jpg" id="item-1732-199" class="Rare staff">Shau's Reflection</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/skylance.jpg" id="item-3129-200" class="Rare polearm">Skylance</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sunward.jpg" id="item-1738-201" class="Rare shield">Sunward</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/the_waters_edge.jpg" id="item-1716-202" class="Rare dagger">The Water's Edge</a> [Dagger]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Sxi Ai</span><a href="//static.is-better-than.tv/armory/harbinger_of_lamentation.jpg" id="item-3859-203" class="Rare 2he">Harbinger of Lamentation</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Commander Yeng-Wang-Yeh</span><a href="//static.is-better-than.tv/armory/shrieking_wind.jpg" id="item-3893-204" class="Rare bow">Shrieking Wind</a> [Bow]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District - Commander Yeng-Wang-Yeh</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_wakening_nightmares.jpg" id="item-1833-205" class="Rare back">Cloak of Wakening Nightmares</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/pendant_of_the_legion_commander.jpg" id="item-1829-206" class="Rare necklace">Pendant of the Legion Commander</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/harbinger_of_dying_breaths.jpg" id="item-1818-207" class="Rare polearm">Harbinger of Dying Breaths</a> [Polearm]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District - Sxi Ai</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_the_ponderous_lady.jpg" id="item-1821-208" class="Rare ring">Ring of the Ponderous Lady</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/axis_of_sickening_dreams.jpg" id="item-1817-209" class="Rare staff">Axis of Sickening Dreams</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sting_of_the_repugnant.jpg" id="item-1830-210" class="Rare crossbow">Sting of the Repugnant</a> [Crossbow]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/pendant_of_tribulations_everlasting.jpg" id="item-2946-211" class="Rare necklace">Pendant of Tribulations Everlasting</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/edge_of_purgatorial_shadows.jpg" id="item-3815-212" class="Rare 1he">Edge of Purgatorial Shadows</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/faithsteel.jpg" id="item-3949-213" class="Rare 1he">Faithsteel</a> [1HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shield_of_tears_unshed.jpg" id="item-3890-214" class="Rare shield">Shield of Tears Unshed</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/spear_of_aratus.jpg" id="item-3308-215" class="Rare thrown">Spear of Aratus</a> [Thrown]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Armsmaster Uxus</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_the_arsonist.jpg" id="item-1823-216" class="Rare ring">Ring of the Arsonist</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Noztaal</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/furys_aegis.jpg" id="item-2133-217" class="Rare shield">Fury's Aegis</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/maul_of_the_veiled_moon.jpg" id="item-1832-218" class="Rare 2hb">Maul of the Veiled Moon</a> [2HB]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - The Ironwright</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/kris_of_the_star_coffin.jpg" id="item-1831-219" class="Rare dagger">Kris of the Star Coffin</a> [Dagger]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Time Trial</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/ouroboros_ring.jpg" id="item-1855-220" class="Epic ring">Ouroboros Ring</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/tigerstrike.jpg" id="item-1859-221" class="Epic ring">Tigerstrike</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wings_of_salvation.jpg" id="item-1858-222" class="Epic back">Wings of Salvation</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/wolf_snarl.jpg" id="item-1856-223" class="Epic necklace">Wolf Snarl</a> [Necklace]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/bolts_of_the_armsmaster.jpg" id="item-1857-224" class="Epic ammunition">Bolts of the Armsmaster</a> [Ammunition]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2021<br/>
+<span class="stats">Page generated in 0.978 seconds using 5 queries, consuming 1992.289 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"></a>
+</div>
+<!-- /paypal --></body>
+</html>

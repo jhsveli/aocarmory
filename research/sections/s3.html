@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Hyrkanians</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Hyrkanians section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="http://static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="http://static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="http://static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=3';
+var cookieless_domain = 'http://static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5750680-3']);
+_gaq.push(['_trackPageview']);
+
+(function(){
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+<!-- /google analytics -->
+<!-- google plusone -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<!-- /google plusone --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ Logged in as <a href="forums/ucp.php">Alexa [Bot]</a> :: <a href="forums/ucp.php?mode=logout&amp;sid=bb9f6fc9acb48d734d701f7a48846aef">Logout</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+ <li><a href="armory.php?p=profiler">Profiler</a></li>
+ <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="http://static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=12;1;2;3;11;4;5;6;7;8;9;10;21;22;19;23;25;14;15;13;24;20;16;17;18;-1">All</a></li>
+ <li><a href="armory.php?s=3;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=3;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=3;2">Children of Yag-kosha</a></li>
+ <li class="selected"><a href="armory.php?s=">Hyrkanians</a></li>
+ <li><a href="armory.php?s=3;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=3;4">Last Legion</a></li>
+ <li><a href="armory.php?s=3;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=3;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=3;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=3;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=3;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=3;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=3;21">Aquilonian Items</a></li>
+ <li><a href="armory.php?s=3;22">Cimmerian Items</a></li>
+ <li><a href="armory.php?s=3;19">Khitai Items</a></li>
+ <li><a href="armory.php?s=3;23">Stygian Items</a></li>
+ <li><a href="armory.php?s=3;25">Turan Items</a></li>
+ <li><a href="armory.php?s=3;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=3;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=3;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=3;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=3;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=3;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=3;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=3;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=3;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-hyrkanians">
+<legend>Hyrkanians</legend>
+<ul class="locations">
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Hyrkanian Camp</strong></a> (455,1410)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Faction Weapons and Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />20</span><a href="http://static.is-better-than.tv/armory/brew_of_vigorous_acumen.jpg" id="item-164-1" class="Rare potion">Brew of Vigorous Acumen</a> [Potion]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/chronicle_of_the_ancestors.jpg" id="item-165-2" class="Epic talisman">Chronicle of the Ancestors</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />735<img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />147<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/edge_of_the_night_spirits.jpg" id="item-166-3" class="Epic dagger">Edge of the Night Spirits</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_bitter_wind_biter.jpg" id="item-167-4" class="Rare mount">Hyrkanian Bitter Wind-Biter</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_dread_ash_tramper.jpg" id="item-168-5" class="Rare mount">Hyrkanian Dread Ash-Tramper</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_fleet_scream_catcher.jpg" id="item-169-6" class="Rare mount">Hyrkanian Fleet Scream-Catcher</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_grim_skull_treader.jpg" id="item-170-7" class="Rare mount">Hyrkanian Grim Skull-Treader</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_pale_ghost_chaser.jpg" id="item-171-8" class="Rare mount">Hyrkanian Pale Ghost-Chaser</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_resplendent_sun_strider.jpg" id="item-172-9" class="Rare mount">Hyrkanian Resplendent Sun-Strider</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_sable_shadow_dasher.jpg" id="item-173-10" class="Rare mount">Hyrkanian Sable Shadow-Dasher</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />800<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="http://static.is-better-than.tv/armory/hyrkanian_wicked_chaos_clapper.jpg" id="item-174-11" class="Rare mount">Hyrkanian Wicked Chaos-Clapper</a> [Mount]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />490<img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />98<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />14</span><a href="http://static.is-better-than.tv/armory/kakaba_guide.jpg" id="item-175-12" class="Epic necklace">Kakaba Guide</a> [Necklace]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />300<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />20</span><a href="http://static.is-better-than.tv/armory/the_art_of_eastern_riding.jpg" id="item-176-13" class="Superior consumable">The Art of Eastern Riding</a> [Consumable]
+     </li>
+     <li>
+ <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />1103<img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />221<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />18</span><a href="http://static.is-better-than.tv/armory/trial_of_flame.jpg" id="item-177-14" class="Epic 2he">Trial of Flame</a> [2HE]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Everlasting Sky</a> [Barb] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNrLSMxLKbYyNLewTkrNKQEyLK3TUlOBDAsD6%2FKizGIQy9C6OCO%2FNCcltQjIMbLOSU0H6rAwtk7OSAXLm1hnpCamABmmAN8GGKA%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_gauntlets_of_the_everlasting_sky.jpg" id="item-178-15" class="Rare hands">Walker's Gauntlets of the Everlasting Sky</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_girdle_of_the_everlasting_sky.jpg" id="item-179-16" class="Rare belt">Walker's Girdle of the Everlasting Sky</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_boots_of_the_everlasting_sky.jpg" id="item-180-17" class="Rare feet">Blooded Boots of the Everlasting Sky</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_bracers_of_the_everlasting_sky.jpg" id="item-181-18" class="Rare wrist">Blooded Bracers of the Everlasting Sky</a> [Wrist]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_armbands_of_the_everlasting_sky.jpg" id="item-182-19" class="Rare shoulder">Clan Bound Armbands of the Everlasting Sky</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_leggings_of_the_everlasting_sky.jpg" id="item-183-20" class="Rare legs">Clan Bound Leggings of the Everlasting Sky</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_harness_of_the_everlasting_sky.jpg" id="item-184-21" class="Epic chest">Honored Harness of the Everlasting Sky</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_helm_of_the_everlasting_sky.jpg" id="item-185-22" class="Epic head">Honored Helm of the Everlasting Sky</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Tribes</a> [PoM/ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNoVyl0KgCAQBOArZUFpcxprxzZYCrTo%2Bq1v3%2FxstGcNcYbmS5prQSF7FfHVs3UlGA%2Ff0oCm92vC6iFAmcUxYlf2Y5p%2B2aQYqg%3D%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_belt_of_the_tribes.jpg" id="item-186-23" class="Rare belt">Walker's Belt of the Tribes</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_gloves_of_the_tribes.jpg" id="item-187-24" class="Rare hands">Walker's Gloves of the Tribes</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_boots_of_the_tribes.jpg" id="item-188-25" class="Rare feet">Blooded Boots of the Tribes</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_vambraces_of_the_tribes.jpg" id="item-189-26" class="Rare wrist">Blooded Vambraces of the Tribes</a> [Wrist]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_fauld_of_the_tribes.jpg" id="item-190-27" class="Rare legs">Clan Bound Fauld of the Tribes</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_straps_of_the_tribes.jpg" id="item-191-28" class="Rare shoulder">Clan Bound Straps of the Tribes</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_helm_of_the_tribes.jpg" id="item-192-29" class="Epic head">Honored Helm of the Tribes</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_jerkin_of_the_tribes.jpg" id="item-193-30" class="Epic chest">Honored Jerkin of the Tribes</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ancestors</a> [PoM/ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNoVxtsNgCAQBMCWwPiCrQZl9UwumnAY2xfma0yeVzNL9GGE8rSWCZLu3DdjF1ptW7BRe1YIU24JOMgaB%2Bfwlcv6%2FA%2FruRii"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_arm_straps_of_the_ancestors.jpg" id="item-194-31" class="Rare shoulder">Walker's Arm-straps of the Ancestors</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_fauld_of_the_ancestors.jpg" id="item-195-32" class="Rare legs">Walker's Fauld of the Ancestors</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_gloves_of_the_ancestors.jpg" id="item-196-33" class="Rare hands">Blooded Gloves of the Ancestors</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_tunic_of_the_ancestors.jpg" id="item-197-34" class="Rare chest">Blooded Tunic of the Ancestors</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_belt_of_the_ancestors.jpg" id="item-198-35" class="Rare belt">Clan Bound Belt of the Ancestors</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_helm_of_the_ancestors.jpg" id="item-199-36" class="Rare head">Clan Bound Helm of the Ancestors</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_boots_of_the_ancestors.jpg" id="item-200-37" class="Epic feet">Honored Boots of the Ancestors</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_vambraces_of_the_ancestors.jpg" id="item-201-38" class="Epic wrist">Honored Vambraces of the Ancestors</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Greensward</a> [Barb] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNorzsgvzUlJLbIyMjCyzklNLwYyjK0zEvNSQCwT6%2BSM1OISIMvUOik1B8Qws85ITUwBMsyt01JTQSIW1uVFmWBFlgDhxxh2"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_armbands_of_the_greensward.jpg" id="item-202-39" class="Rare shoulder">Walker's Armbands of the Greensward</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_leggings_of_the_greensward.jpg" id="item-203-40" class="Rare legs">Walker's Leggings of the Greensward</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_gauntlets_of_the_greensward.jpg" id="item-204-41" class="Rare hands">Blooded Gauntlets of the Greensward</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_harness_of_the_greensward.jpg" id="item-205-42" class="Rare chest">Blooded Harness of the Greensward</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_girdle_of_the_greensward.jpg" id="item-206-43" class="Rare belt">Clan Bound Girdle of the Greensward</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_helm_of_the_greensward.jpg" id="item-207-44" class="Rare head">Clan Bound Helm of the Greensward</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_boots_of_the_greensward.jpg" id="item-208-45" class="Epic feet">Honored Boots of the Greensward</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_bracers_of_the_greensward.jpg" id="item-209-46" class="Epic wrist">Honored Bracers of the Greensward</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Passing Spirits</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNpLSs0psTIyNLDOSMxLKQayDK3TUlNBQkbW5UWZxSCWsXVOajpIzsS6OCO%2FNCcltQjIMbVOzkgFy5tZZ6QmpgAZ5gDQKhhu"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_belt_of_passing_spirits.jpg" id="item-210-47" class="Rare belt">Walker's Belt of Passing Spirits</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_gloves_of_passing_spirits.jpg" id="item-211-48" class="Rare hands">Walker's Gloves of Passing Spirits</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_boots_of_passing_spirits.jpg" id="item-212-49" class="Rare feet">Blooded Boots of Passing Spirits</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_bracers_of_passing_spirits.jpg" id="item-213-50" class="Rare wrist">Blooded Bracers of Passing Spirits</a> [Wrist]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_fauld_of_passing_spirits.jpg" id="item-214-51" class="Rare legs">Clan Bound Fauld of Passing Spirits</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_straps_of_passing_spirits.jpg" id="item-215-52" class="Rare shoulder">Clan Bound Straps of Passing Spirits</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_hauberk_of_passing_spirits.jpg" id="item-216-53" class="Epic chest">Honored Hauberk of Passing Spirits</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_helm_of_passing_spirits.jpg" id="item-217-54" class="Epic head">Honored Helm of Passing Spirits</a> [Head]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Clans</a> [Ranger] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNodyl0OQEAMBOAr2SLBnGbZoZKGZEtcX3n75memXZOkAZqP4qERKxmVNHjq7p8SjFtsInA9byusEVoocwl0WJT%2FsX8B0aQYeA%3D%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_belt_of_the_clans.jpg" id="item-218-55" class="Rare belt">Walker's Belt of the Clans</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_i.png" alt="Simple Trophy I" class="coin" height="12" width="12" title="Simple Trophy I" />72<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_gloves_of_the_clans.jpg" id="item-219-56" class="Rare hands">Walker's Gloves of the Clans</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_boots_of_the_clans.jpg" id="item-220-57" class="Rare feet">Blooded Boots of the Clans</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_ii.png" alt="Simple Trophy II" class="coin" height="12" width="12" title="Simple Trophy II" />128<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_bracers_of_the_clans.jpg" id="item-221-58" class="Rare wrist">Blooded Bracers of the Clans</a> [Wrist]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_legguards_of_the_clans.jpg" id="item-222-59" class="Rare legs">Clan Bound Legguards of the Clans</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_straps_of_the_clans.jpg" id="item-223-60" class="Rare shoulder">Clan Bound Straps of the Clans</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_helm_of_the_clans.jpg" id="item-224-61" class="Epic head">Honored Helm of the Clans</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />16</span><a href="http://static.is-better-than.tv/armory/honored_jerkin_of_the_clans.jpg" id="item-225-62" class="Epic chest">Honored Jerkin of the Clans</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Faction Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Golden Horde</a> [Ranger] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNoVylsKgDAMRNEtaQu%2BZjXVjEYICo3i9k3%2FzlzGePiS0gDX%2BzVhjTFCyyUtT9iU%2FoRmrLRA7qAsEuixk60kfPVsp5x%2F4WsYgg%3D%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_legguards_of_the_golden_horde.jpg" id="item-226-63" class="Rare legs">Walker's Legguards of the Golden Horde</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_straps_of_the_golden_horde.jpg" id="item-227-64" class="Rare shoulder">Walker's Straps of the Golden Horde</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_gloves_of_the_golden_horde.jpg" id="item-228-65" class="Rare hands">Blooded Gloves of the Golden Horde</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_jerkin_of_the_golden_horde.jpg" id="item-229-66" class="Rare chest">Blooded Jerkin of the Golden Horde</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_belt_of_the_golden_horde.jpg" id="item-230-67" class="Rare belt">Clan Bound Belt of the Golden Horde</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_helm_of_the_golden_horde.jpg" id="item-231-68" class="Rare head">Clan Bound Helm of the Golden Horde</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_boots_of_the_golden_horde.jpg" id="item-232-69" class="Epic feet">Honored Boots of the Golden Horde</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_bracers_of_the_golden_horde.jpg" id="item-233-70" class="Epic wrist">Honored Bracers of the Golden Horde</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Seven Suns</a> [BS] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNrLSU0vtjIyNrEuzsgvzUlJLQJyTK0zEvNSQMJm1skZqcUlQJa5dVJqDohhYZ2RmpgCZFhap6WmAkVMDKzLizJBikwMAeIWGIw%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_fauld_of_the_seven_suns.jpg" id="item-234-71" class="Rare legs">Walker's Fauld of the Seven Suns</a> [Legs]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />90<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />1</span><a href="http://static.is-better-than.tv/armory/walkers_straps_of_the_seven_suns.jpg" id="item-235-72" class="Rare shoulder">Walker's Straps of the Seven Suns</a> [Shoulder]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_gloves_of_the_seven_suns.jpg" id="item-236-73" class="Rare hands">Blooded Gloves of the Seven Suns</a> [Hands]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />280<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />2</span><a href="http://static.is-better-than.tv/armory/blooded_jerkin_of_the_seven_suns.jpg" id="item-237-74" class="Rare chest">Blooded Jerkin of the Seven Suns</a> [Chest]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_belt_of_the_seven_suns.jpg" id="item-238-75" class="Rare belt">Clan Bound Belt of the Seven Suns</a> [Belt]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />500<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_helm_of_the_seven_suns.jpg" id="item-239-76" class="Rare head">Clan Bound Helm of the Seven Suns</a> [Head]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_greaves_of_the_seven_suns.jpg" id="item-240-77" class="Epic feet">Honored Greaves of the Seven Suns</a> [Feet]</li>
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/mark_of_acclaim.png" alt="Mark of Acclaim" class="coin" height="12" width="12" title="Mark of Acclaim" />980<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />12</span><a href="http://static.is-better-than.tv/armory/honored_vambraces_of_the_seven_suns.jpg" id="item-241-78" class="Epic wrist">Honored Vambraces of the Seven Suns</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Palace of Yun Rau</strong></a> (156,1389)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Four Winds</a> [Barb]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_gauntlets_of_the_four_winds.jpg" id="item-242-79" class="Epic hands">Honored Gauntlets of the Four Winds</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Far Horizon</a> [BS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_gauntlets_of_the_far_horizon.jpg" id="item-840-80" class="Epic hands">Honored Gauntlets of the Far Horizon</a> [Hands]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Plains</a> [Ranger]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_belt_of_the_plains.jpg" id="item-959-81" class="Epic belt">Honored Belt of the Plains</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Far Horizon</a> [BS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/clan_bound_bracers_of_the_far_horizon.jpg" id="item-1731-82" class="Rare wrist">Clan Bound Bracers of the Far Horizon</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Four Winds</a> [Barb]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_armbands_of_the_four_winds.jpg" id="item-243-83" class="Epic shoulder">Honored Armbands of the Four Winds</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Plains</a> [Ranger]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_gloves_of_the_plains.jpg" id="item-244-84" class="Epic hands">Honored Gloves of the Plains</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Four Winds</a> [Barb]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_leggings_of_the_four_winds.jpg" id="item-245-85" class="Epic legs">Honored Leggings of the Four Winds</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Mound</a> [PoM/ToS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_fauld_of_the_mound.jpg" id="item-246-86" class="Epic legs">Honored Fauld of the Mound</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Far Horizon</a> [BS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_fauld_of_the_far_horizon.jpg" id="item-948-87" class="Epic legs">Honored Fauld of the Far Horizon</a> [Legs]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Plains</a> [Ranger]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_legguards_of_the_plains.jpg" id="item-247-88" class="Epic legs">Honored Legguards of the Plains</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Four Winds</a> [Barb]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_girdle_of_the_four_winds.jpg" id="item-248-89" class="Epic belt">Honored Girdle of the Four Winds</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Mound</a> [PoM/ToS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_belt_of_the_mound.jpg" id="item-249-90" class="Epic belt">Honored Belt of the Mound</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Reliquary of Flames</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Mound</a> [PoM/ToS] <a href="http://aoc.is-better-than.tv/armory.php?s=3&amp;ab=eNrLSMxLKbYyMjWwLs7IL81JSS0CcgwBV%2BUHUw%3D%3D"><img src="http://static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_gloves_of_the_mound.jpg" id="item-250-91" class="Epic hands">Honored Gloves of the Mound</a> [Hands]</li>
+       <li><a href="http://static.is-better-than.tv/armory/honored_straps_of_the_mound.jpg" id="item-251-92" class="Epic shoulder">Honored Straps of the Mound</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Far Horizon</a> [BS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_belt_of_the_far_horizon.jpg" id="item-252-93" class="Epic belt">Honored Belt of the Far Horizon</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: The Kang Pagoda</strong></a> (241,1227)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Far Horizon</a> [BS]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_straps_of_the_far_horizon.jpg" id="item-965-94" class="Epic shoulder">Honored Straps of the Far Horizon</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Vortex of the Storm</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Plains</a> [Ranger]      <ul class="items">
+       <li><a href="http://static.is-better-than.tv/armory/honored_straps_of_the_plains.jpg" id="item-253-95" class="Epic shoulder">Honored Straps of the Plains</a> [Shoulder]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: Ai District - Commander Yeng-Wang-Yeh</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Tribes</a> [PoM/ToS]      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_fauld_of_the_tribes.jpg" id="item-190-96" class="Rare legs">Clan Bound Fauld of the Tribes</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Paikang :: T&#039;ian&#039;an District - Shadowmaster</strong></a> (202,133)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Clans</a> [Ranger]      <ul class="items">
+       <li> <span class="price"><img src="http://static.is-better-than.tv/img/simple_trophy_iii.png" alt="Simple Trophy III" class="coin" height="12" width="12" title="Simple Trophy III" />200<img src="http://static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />3</span><a href="http://static.is-better-than.tv/armory/clan_bound_legguards_of_the_clans.jpg" id="item-222-97" class="Rare legs">Clan Bound Legguards of the Clans</a> [Legs]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="http://static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2011<br/>
+<span class="stats">Page generated in 0.428 seconds using 3 queries, consuming 1727.074 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to fund my addiction to AoC and who knows what other services I will provide in the future ;o)<br/>Thanks in advance!! Kentarii</p>
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCQ9bZOevDt3SoAszZUObHyv+FxF+rGh+T6L9hawMV26Vh0LCh8Zww6+G8ugzWXWXHVrL3BDkd0rNu2/48Cm3kBEIdp49At1oDNfpj76X0tK4HMD3izXgLNvS7qp3zsfpMNzAB8sxWmBZz3DPIMTJ6BsISQ7E2o7pEdwFE1wZ49ZDELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI8EWWjz2nd7eAgaB7We/8f6oL1LL8JfvvMotYFFiMJTINa2Mu80B4teOxB9+ZQKCNDaZlrbRWiLEYRq8VCb6Eg13apZFHypcPz4RW/xbR38pY/TO5W5+FVibgfC0IcNg5pgc4PO8elO+P4I245dMgij1fuZb7wxkyi5G3D/zlEz64bTABqNkbMRPn1G6bjLM27cQzqaOabE1H0wzHZ65gSXOsxGbo9255K7oyoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTAwNTE5MDAzODQ0WjAjBgkqhkiG9w0BCQQxFgQU9Fd/+xy8d6PBU6BD7z//L9hzy34wDQYJKoZIhvcNAQEBBQAEgYC5EAZqKFVmEmRQdtkDVnJbtcuc1Rg5v1rEQoEj+reDxHt24QBaiCG5yQj6LeruU5zqyuJ0BSSR4o7Z7iU1uNzIp26fY8ICUqUQMx/qR0lYTIaT0sVYfH/DbVic0jbtIIOquk73VmvMgjlNNA/14PxmF+qmXFQkJRD4vwCnQJSj1Q==-----END PKCS7-----" />
+<input type="image" src="http://static.is-better-than.tv/img/btn_donate_SM.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
+</div>
+</form>
+<!-- /paypal --></body>
+</html>

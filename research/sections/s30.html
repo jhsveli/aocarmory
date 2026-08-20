@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Dragon&#039;s Spine</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Dragon&#039;s Spine section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=30';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;44;45;-1">All</a></li>
+ <li><a href="armory.php?s=30;40">Item Store</a></li>
+ <li><a href="armory.php?s=30;36">Clan Vigdis</a></li>
+ <li><a href="armory.php?s=30;12">Consumable Books</a></li>
+ <li><a href="armory.php?s=30;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=30;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=30;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=30;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=30;4">Last Legion</a></li>
+ <li><a href="armory.php?s=30;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=30;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=30;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=30;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=30;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=30;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=30;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=30;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=30;28">House of Crom</a></li>
+ <li><a href="armory.php?s=30;23">Stygia</a></li>
+ <li class="selected"><a href="armory.php?s=">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=30;19">Khitai</a></li>
+ <li><a href="armory.php?s=30;25">Turan</a></li>
+ <li><a href="armory.php?s=30;32">Unchained</a></li>
+ <li><a href="armory.php?s=30;33">World Boss</a></li>
+ <li><a href="armory.php?s=30;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=30;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=30;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=30;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=30;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=30;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=30;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=30;31">Bags</a></li>
+ <li><a href="armory.php?s=30;29">Recipes</a></li>
+ <li><a href="armory.php?s=30;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=30;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=30;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=30;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=30;44">Kutchemes Temple</a></li>
+ <li><a href="armory.php?s=30;45">Skull Gate Pass</a></li>
+ <li><a href="armory.php?s=30;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-dragon's-spine">
+<legend>Dragon&#039;s Spine</legend>
+<ul class="locations">
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Dragon&#039;s Spine :: The Slithering Chaos</strong></a> (1262,321)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/mark_of_metamorphosis.jpg" id="item-4653-1" class="Epic ring">Mark of Metamorphosis</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mark_of_the_serpent_king.jpg" id="item-4652-2" class="Epic ring">Mark of the Serpent King</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/might_of_the_serpent_men.jpg" id="item-4654-3" class="Epic ring">Might of the Serpent Men</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ophidian_band.jpg" id="item-4648-4" class="Epic ring">Ophidian Band</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/ring_of_the_serpent_father.jpg" id="item-4651-5" class="Epic ring">Ring of the Serpent Father</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/serpents_scale.jpg" id="item-4650-6" class="Epic ring">Serpent's Scale</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/sigil_of_yigs_dominion.jpg" id="item-4649-7" class="Epic ring">Sigil of Yig's Dominion</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/undulating_band_of_yig.jpg" id="item-4647-8" class="Epic ring">Undulating Band of Yig</a> [Ring]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible quest"><a href="#" onclick="toggleList(this); return false"><strong>Dragons Spine :: Arch Lector Tiandal</strong></a> (1229,1289)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Quest Accessories</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/coil_of_tiandal.jpg" id="item-3307-9" class="Rare ring">Coil of Tiandal</a> [Ring]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/otherworldly_flute.jpg" id="item-4528-10" class="Epic generic">Otherworldly Flute</a> [Generic]
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible merchant"><a href="#" onclick="toggleList(this); return false"><strong>Dragon&#039;s Spine :: Collector</strong></a> (1290,1194)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Crawling Chaos</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQzsU5KzSkBssxNAGGSB1g%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_crawling_chaos.jpg" id="item-2164-11" class="Epic shoulder">Arm-straps of the Crawling Chaos</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/belt_of_the_crawling_chaos.jpg" id="item-2174-12" class="Epic belt">Belt of the Crawling Chaos</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Chaos</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQztk5KzSkBssyNAWGGB1Y%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_faceless_chaos.jpg" id="item-2163-13" class="Epic shoulder">Arm-straps of the Faceless Chaos</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/belt_of_the_faceless_chaos.jpg" id="item-2173-14" class="Epic belt">Belt of the Faceless Chaos</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Sphinx</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQzs05KzSkBssyNAGGmB1g%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_faceless_sphinx.jpg" id="item-2166-15" class="Epic shoulder">Arm-straps of the Faceless Sphinx</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/belt_of_the_faceless_sphinx.jpg" id="item-2172-16" class="Epic belt">Belt of the Faceless Sphinx</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Oxmal</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQztU5KzSkBssxNAWGeB1o%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armbands_of_the_oxmal.jpg" id="item-2165-17" class="Epic shoulder">Armbands of the Oxmal</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/girdle_of_the_oxmal.jpg" id="item-2175-18" class="Epic belt">Girdle of the Oxmal</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Shivering Stars</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjE2sE5KzSkBsowsAGF%2BB1g%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armbands_of_the_shivering_stars.jpg" id="item-3430-19" class="Epic shoulder">Armbands of the Shivering Stars</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/girdle_of_the_shivering_stars.jpg" id="item-3428-20" class="Epic belt">Girdle of the Shivering Stars</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ubah Kan</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjSzsE5KzSkBsszNAGHAB14%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armbands_of_the_ubah_kan.jpg" id="item-2168-21" class="Epic shoulder">Armbands of the Ubah Kan</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/girdle_of_the_ubah_kan.jpg" id="item-2176-22" class="Epic belt">Girdle of the Ubah Kan</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Haunter in the Dark</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQzsk5KzSkBsswNAWF5B1M%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armbands_of_the_haunter_in_the_dark.jpg" id="item-2162-23" class="Epic shoulder">Armbands of the Haunter in the Dark</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/girdle_of_the_haunter_in_the_dark.jpg" id="item-2171-24" class="Epic belt">Girdle of the Haunter in the Dark</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Howling Giant</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjGytE5KzSkBscwBYdQHXw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armbands_of_the_howling_giant.jpg" id="item-3429-25" class="Epic shoulder">Armbands of the Howling Giant</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/girdle_of_the_howling_giant.jpg" id="item-3427-26" class="Epic belt">Girdle of the Howling Giant</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Black Pharaoh</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyMjQzt05KzSkBsSwBYbYHXw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armguards_of_the_black_pharaoh.jpg" id="item-2167-27" class="Epic shoulder">Armguards of the Black Pharaoh</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/belt_of_the_black_pharaoh.jpg" id="item-2169-28" class="Epic belt">Belt of the Black Pharaoh</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Dark Messenger</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjE2tE5KzSkBsYwAYYUHVA%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/armguards_of_the_dark_messenger.jpg" id="item-3431-29" class="Epic shoulder">Armguards of the Dark Messenger</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/rare_trophy.png" alt="Rare Trophy" class="coin" height="12" width="12" title="Rare Trophy" />196<img src="//static.is-better-than.tv/img/gold.png" alt="Gold" class="coin" height="12" width="12" title="Gold" />10</span><a href="//static.is-better-than.tv/armory/belt_of_the_dark_messenger.jpg" id="item-3432-30" class="Epic belt">Belt of the Dark Messenger</a> [Belt]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Dragon&#039;s Spine :: Sepulcher of the Wyrm</strong></a> (957,208)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/necklace_of_wormfire.jpg" id="item-2183-31" class="Epic necklace">Necklace of Wormfire</a> [Necklace]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/ring_of_the_vampire_squid.jpg" id="item-2196-32" class="Epic ring">Ring of the Vampire Squid</a> [Ring]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/relic_of_the_oyster_mucus.jpg" id="item-2160-33" class="Epic talisman">Relic of the Oyster Mucus</a> [Talisman]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Social Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Shemite Exile</a> [Social] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNpLzkgtLrEyNjI3sC4vygQxLU0sAE2QBqQ%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/shemite_exile_tunic.jpg" id="item-3270-34" class="Enchanted chest">Shemite Exile Tunic</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_exile_wristguards.jpg" id="item-3948-35" class="Enchanted wrist">Shemite Exile Wristguards</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Shemite Mercenary</a> [Social] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIytjC3tE5LTS0BsUytMxLzUopBTAvrnNR0IMvIzMg6OSO1uATENLbOSE1MAbFMrMuLMiGCpgCjQBdk"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_armbands.jpg" id="item-3879-36" class="Rare shoulder">Shemite Mercenary Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_boots.jpg" id="item-3875-37" class="Rare feet">Shemite Mercenary Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_grips.jpg" id="item-3878-38" class="Rare hands">Shemite Mercenary Grips</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_leggings.jpg" id="item-3262-39" class="Rare legs">Shemite Mercenary Leggings</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_tunic.jpg" id="item-3263-40" class="Rare chest">Shemite Mercenary Tunic</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_turban.jpg" id="item-3264-41" class="Rare head">Shemite Mercenary Turban</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_mercenary_wristbands.jpg" id="item-3265-42" class="Rare wrist">Shemite Mercenary Wristbands</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Shemite Wayfarer</a> [Social] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjIzs05KzSkBscyt01JTwSwL65zU9GIQy9A6OSO1GCxoaV1elAliWpibAQCr8xQe"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_armbands.jpg" id="item-3266-43" class="Rare shoulder">Shemite Wayfarer Armbands</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_belt.jpg" id="item-3267-44" class="Rare belt">Shemite Wayfarer Belt</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_boots.jpg" id="item-3268-45" class="Rare feet">Shemite Wayfarer Boots</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_leggings.jpg" id="item-3261-46" class="Rare legs">Shemite Wayfarer Leggings</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_tunic.jpg" id="item-3269-47" class="Rare chest">Shemite Wayfarer Tunic</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/shemite_wayfarer_wristbands.jpg" id="item-3876-48" class="Rare wrist">Shemite Wayfarer Wristbands</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Crawling Chaos</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNrLSMxLKbYyMrQ0tc5JTQezzK3TUlNLQCwT6%2FKizGIQ08IIAAy2DHE%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_crawling_chaos.jpg" id="item-2195-49" class="Epic hands">Hand-wraps of the Crawling Chaos</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_crawling_chaos.jpg" id="item-2197-50" class="Rare legs">Leggings of the Crawling Chaos</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_crawling_chaos.jpg" id="item-2194-51" class="Rare feet">Sandals of the Crawling Chaos</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/wristband_of_the_crawling_chaos.jpg" id="item-2182-52" class="Rare wrist">Wristband of the Crawling Chaos</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Chaos</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNrLSMxLKbYyMjQ3t85JTQeyjAwMrdNSU0uAYhYG1uVFmcUlVsYW5uYAC1gMag%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_faceless_chaos.jpg" id="item-2177-53" class="Epic hands">Hand-wraps of the Faceless Chaos</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_faceless_chaos.jpg" id="item-2201-54" class="Rare legs">Leggings of the Faceless Chaos</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_faceless_chaos.jpg" id="item-2180-55" class="Rare feet">Sandals of the Faceless Chaos</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/wristband_of_the_faceless_chaos.jpg" id="item-3877-56" class="Rare wrist">Wristband of the Faceless Chaos</a> [Wrist]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Sphinx</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNrLSMxLKbYyMrS0tM5JTS%2B2MjY0M7dOS00tAYpZmFmXF2UWg5mWAA0cDHs%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_faceless_sphinx.jpg" id="item-2199-57" class="Epic hands">Hand-wraps of the Faceless Sphinx</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_faceless_spinx.jpg" id="item-3167-58" class="Rare legs">Leggings of the Faceless Spinx</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_faceless_sphinx.jpg" id="item-2186-59" class="Rare feet">Sandals of the Faceless Sphinx</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/wristband_of_the_faceless_sphinx.jpg" id="item-2189-60" class="Rare wrist">Wristband of the Faceless Sphinx</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Oxmal</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorL8osLrEyMrQwtc5IzEsptjIyMjCwzklNB7IMLQ2t01JTQdKWxgASkAxg"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/bracers_of_the_oxmal.jpg" id="item-2185-61" class="Rare wrist">Bracers of the Oxmal</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_oxmal.jpg" id="item-2200-62" class="Epic hands">Hand-wraps of the Oxmal</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_oxmal.jpg" id="item-2191-63" class="Rare legs">Leggings of the Oxmal</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_oxmal.jpg" id="item-2193-64" class="Rare feet">Sandals of the Oxmal</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ubah Kan</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorL8osLrEyMrSwsM5JTS8GsUys01JTQWKmltYZiXkpIEFLAwAR2Qxv"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/bracers_of_the_ubah_kan.jpg" id="item-2188-65" class="Rare wrist">Bracers of the Ubah Kan</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_ubah_kan.jpg" id="item-2184-66" class="Rare legs">Leggings of the Ubah Kan</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_ubah_kan.jpg" id="item-2159-67" class="Rare feet">Sandals of the Ubah Kan</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/grips_of_the_ubah_kan.jpg" id="item-2190-68" class="Rare hands">Grips of the Ubah Kan</a> [Hands]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Haunter in the Dark</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorL8osLrEyMrQwt85IzEspBjLNDaxzUtNBLEsL67TUVJC0uQUAE6EMcg%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/bracers_of_the_haunter_in_the_dark.jpg" id="item-2187-69" class="Rare wrist">Bracers of the Haunter in the Dark</a> [Wrist]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/grips_of_the_haunter_in_the_dark.jpg" id="item-2170-70" class="Epic hands">Grips of the Haunter in the Dark</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/leggings_of_the_haunter_in_the_dark.jpg" id="item-2198-71" class="Rare legs">Leggings of the Haunter in the Dark</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/sandals_of_the_haunter_in_the_dark.jpg" id="item-2178-72" class="Rare feet">Sandals of the Haunter in the Dark</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Black Pharaoh</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNpLS00tsTIyNLe0zkjMSykGMi2NrHNS00EsM0Pr8qLMYpC8hSEACrwMZw%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Jarl-Kosh the Lotus-Haunted</span><a href="//static.is-better-than.tv/armory/boots_of_the_black_pharaoh.jpg" id="item-2179-73" class="Rare feet">Boots of the Black Pharaoh</a> [Feet]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/gauntlets_of_the_black_pharaoh.jpg" id="item-2192-74" class="Epic hands">Gauntlets of the Black Pharaoh</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Supernal Custodian of Yoth</span><a href="//static.is-better-than.tv/armory/legguards_of_the_black_pharaoh.jpg" id="item-2161-75" class="Rare legs">Legguards of the Black Pharaoh</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Osseous Abomination</span><a href="//static.is-better-than.tv/armory/vambraces_of_the_black_pharaoh.jpg" id="item-2181-76" class="Rare wrist">Vambraces of the Black Pharaoh</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Dragon&#039;s Spine :: The Coils of Ubah Kan</strong></a> (1175,972)  <ul class="categories">
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Accessories</a>
+    <ul class="items">
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Omni-Prophet</span><a href="//static.is-better-than.tv/armory/cloak_of_the_black_pharaoh.jpg" id="item-3375-77" class="Rare back">Cloak of the Black Pharaoh</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/cloak_of_the_crawling_chaos.jpg" id="item-3370-78" class="Rare back">Cloak of the Crawling Chaos</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_the_faceless_sphinx.jpg" id="item-3336-79" class="Rare back">Cloak of the Faceless Sphinx</a> [Back]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/cloak_of_the_shivering_stars.jpg" id="item-3814-80" class="Rare back">Cloak of the Shivering Stars</a> [Back]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Omni-Prophet</span><a href="//static.is-better-than.tv/armory/cloak_of_the_ubah_kan.jpg" id="item-3369-81" class="Rare back">Cloak of the Ubah Kan</a> [Back]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Dungeon Weapons</a>
+    <ul class="items">
+     <li>
+<a href="//static.is-better-than.tv/armory/arrows_of_the_haunter_in_the_dark.jpg" id="item-3314-82" class="Rare ammunition">Arrows of the Haunter in the Dark</a> [Ammunition]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/artefact_of_the_faceless_sphinx.jpg" id="item-3357-83" class="Rare talisman">Artefact of the Faceless Sphinx</a> [Talisman]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/blade_of_the_black_pharaoh.jpg" id="item-3340-84" class="Rare 1he">Blade of the Black Pharaoh</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/bolts_of_the_haunter_in_the_dark.jpg" id="item-3361-85" class="Rare ammunition">Bolts of the Haunter in the Dark</a> [Ammunition]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/bow_of_the_haunter_in_the_dark.jpg" id="item-3346-86" class="Rare bow">Bow of the Haunter in the Dark</a> [Bow]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/brand_of_the_black_pharaoh.jpg" id="item-3390-87" class="Rare 2he">Brand of the Black Pharaoh</a> [2HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/club_of_the_ubah_kan.jpg" id="item-3341-88" class="Rare 1hb">Club of the Ubah Kan</a> [1HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/crossbow_of_the_haunter_in_the_dark.jpg" id="item-3371-89" class="Rare crossbow">Crossbow of the Haunter in the Dark</a> [Crossbow]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/dagger_of_the_faceless_sphinx.jpg" id="item-3380-90" class="Rare dagger">Dagger of the Faceless Sphinx</a> [Dagger]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/edge_of_the_ubah_kan.jpg" id="item-3323-91" class="Rare 1he">Edge of the Ubah Kan</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/greatsword_of_the_faceless_chaos.jpg" id="item-3345-92" class="Rare 2he">Greatsword of the Faceless Chaos</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/hammer_of_the_howling_giant.jpg" id="item-3343-93" class="Rare 2hb">Hammer of the Howling Giant</a> [2HB]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/knife_of_the_crawling_chaos.jpg" id="item-3338-94" class="Rare dagger">Knife of the Crawling Chaos</a> [Dagger]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/mining_axe_of_the_oxmal.jpg" id="item-3320-95" class="Rare 1he">Mining Axe of the Oxmal</a> [1HE]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/pickaxe_of_the_ubah_kan.jpg" id="item-3342-96" class="Rare 2he">Pickaxe of the Ubah Kan</a> [2HE]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/polearm_of_the_black_pharaoh.jpg" id="item-3393-97" class="Rare polearm">Polearm of the Black Pharaoh</a> [Polearm]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shield_of_the_black_pharaoh.jpg" id="item-3388-98" class="Rare shield">Shield of the Black Pharaoh</a> [Shield]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/shield_of_the_shivering_stars.jpg" id="item-3381-99" class="Rare shield">Shield of the Shivering Stars</a> [Shield]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/shovel_of_the_dark_messenger.jpg" id="item-3329-100" class="Rare 2hb">Shovel of the Dark Messenger</a> [2HB]
+     </li>
+     <li>
+ <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/staff_of_the_shivering_stars.jpg" id="item-3344-101" class="Rare staff">Staff of the Shivering Stars</a> [Staff]
+     </li>
+     <li>
+<a href="//static.is-better-than.tv/armory/totem_of_the_faceless_sphinx.jpg" id="item-3333-102" class="Rare staff">Totem of the Faceless Sphinx</a> [Staff]
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Cloth Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Crawling Chaos</a> [Sin] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNoVyEEOgCAMBMA34dqo9DXErvRANLH4f%2BE2mfDna8Y3A4foRfaMfYM21hgnol5um0RSZ7GhZdXTGX0y%2FaoHE8g%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/arm_wraps_of_the_crawling_chaos.jpg" id="item-3395-103" class="Rare shoulder">Arm-wraps of the Crawling Chaos</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_crawling_chaos.jpg" id="item-3873-104" class="Epic feet">Boots of the Crawling Chaos</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_crawling_chaos.jpg" id="item-3355-105" class="Epic legs">Breeches of the Crawling Chaos</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Unknown</span><a href="//static.is-better-than.tv/armory/gloves_of_the_crawling_chaos.jpg" id="item-3331-106" class="Rare hands">Gloves of the Crawling Chaos</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/headdress_of_the_crawling_chaos.jpg" id="item-3324-107" class="Rare head">Headdress of the Crawling Chaos</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/tunic_of_the_crawling_chaos.jpg" id="item-3321-108" class="Rare chest">Tunic of the Crawling Chaos</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Chaos</a> [HoX] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNrY0s05LTS0BsSytc1LTi0Esc%2BuM1MQUIMvU0Do5I7UYJG1sAgDeKhCJ"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/bangles_of_the_faceless_chaos.jpg" id="item-3396-109" class="Rare shoulder">Bangles of the Faceless Chaos</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_faceless_chaos.jpg" id="item-3399-110" class="Epic feet">Boots of the Faceless Chaos</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_faceless_chaos.jpg" id="item-3397-111" class="Epic legs">Breeches of the Faceless Chaos</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/hood_of_the_faceless_chaos.jpg" id="item-3351-112" class="Rare head">Hood of the Faceless Chaos</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/tunic_of_the_faceless_chaos.jpg" id="item-3334-113" class="Rare chest">Tunic of the Faceless Chaos</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Faceless Sphinx</a> [Demo/Necro] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNoVysENgEAIBMCaBDE5qeaUVR5EE9H%2B5X7zmPT7C8OzMs9ND%2BAtTaKBM0ss6v2yQWnq6FYi0Q0x4sK6O3KQ6Ad%2FNxaz"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/bangles_of_the_faceless_sphinx.jpg" id="item-3349-114" class="Rare shoulder">Bangles of the Faceless Sphinx</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_faceless_sphinx.jpg" id="item-3315-115" class="Epic feet">Boots of the Faceless Sphinx</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_faceless_sphinx.jpg" id="item-3335-116" class="Epic legs">Breeches of the Faceless Sphinx</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Unknown</span><a href="//static.is-better-than.tv/armory/grips_of_the_faceless_sphinx.jpg" id="item-3359-117" class="Rare hands">Grips of the Faceless Sphinx</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/hood_of_the_faceless_sphinx.jpg" id="item-3325-118" class="Rare head">Hood of the Faceless Sphinx</a> [Head]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shadow Spider Matriarch</span><a href="//static.is-better-than.tv/armory/sash_of_the_faceless_sphinx.jpg" id="item-3363-119" class="Rare belt">Sash of the Faceless Sphinx</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/tunic_of_the_faceless_sphinx.jpg" id="item-3322-120" class="Rare chest">Tunic of the Faceless Sphinx</a> [Chest]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Light Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Oxmal</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjY1sU5LTS0BsizMrHNS04tBYmbWGYl5KWCmhXVGamIKkGVmZJ2ckVoMVGliYGadlJoD0mNkAQCByRa%2B"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_straps_of_the_oxmal.jpg" id="item-3354-121" class="Rare shoulder">Arm-straps of the Oxmal</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/boots_of_the_oxmal.jpg" id="item-3386-122" class="Epic feet">Boots of the Oxmal</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_oxmal.jpg" id="item-3356-123" class="Epic legs">Breeches of the Oxmal</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_oxmal.jpg" id="item-3358-124" class="Rare hands">Gloves of the Oxmal</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/helm_of_the_oxmal.jpg" id="item-3362-125" class="Rare head">Helm of the Oxmal</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_the_oxmal.jpg" id="item-3406-126" class="Rare chest">Tunic of the Oxmal</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shadow Spider Matriarch</span><a href="//static.is-better-than.tv/armory/wrap_of_the_oxmal.jpg" id="item-3328-127" class="Rare belt">Wrap of the Oxmal</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Shivering Stars</a> [PoM/ToS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNo9yzESgCAMBdErKUEI5DQoH1MwOiN6f6Ghe8Vu0%2FurGU8k2owU4O0KRirO1kVBNF15cOVJt4gi5Ujs7Szn7VkORRvkIDvqkLM%2F2y0f8A%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shadow Spider Matriarch</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_shivering_stars.jpg" id="item-3352-128" class="Rare shoulder">Arm-straps of the Shivering Stars</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Omni-Prophet</span><a href="//static.is-better-than.tv/armory/boots_of_the_shivering_stars.jpg" id="item-3392-129" class="Epic feet">Boots of the Shivering Stars</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_shivering_stars.jpg" id="item-3339-130" class="Epic legs">Breeches of the Shivering Stars</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_shivering_stars.jpg" id="item-3318-131" class="Rare hands">Gloves of the Shivering Stars</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_shivering_stars.jpg" id="item-3360-132" class="Epic hands">Hand-wraps of the Shivering Stars</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_shivering_stars.jpg" id="item-3874-133" class="Rare head">Helm of the Shivering Stars</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_shivering_stars.jpg" id="item-3332-134" class="Rare legs">Leggings of the Shivering Stars</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/sandals_of_the_shivering_stars.jpg" id="item-3378-135" class="Rare feet">Sandals of the Shivering Stars</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/tunic_of_the_shivering_stars.jpg" id="item-3389-136" class="Rare chest">Tunic of the Shivering Stars</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shadow Spider Matriarch</span><a href="//static.is-better-than.tv/armory/wrap_of_the_shivering_stars.jpg" id="item-3364-137" class="Rare belt">Wrap of the Shivering Stars</a> [Belt]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Ubah Kan</a> [Barb] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNoVy1sOgCAMRNEtiSXy6GrQDvLRaGJx%2F9a%2FkzsZG%2FergqcSpcI7dFYqYeUOuHLcWHGar5l4tEuccQl8DNj8P17RxBXTB4MvFsA%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/arm_straps_of_the_ubah_kan.jpg" id="item-3379-138" class="Rare shoulder">Arm-straps of the Ubah Kan</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/belt_of_the_ubah_kan.jpg" id="item-3912-139" class="Rare belt">Belt of the Ubah Kan</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_ubah_kan.jpg" id="item-3846-140" class="Epic feet">Boots of the Ubah Kan</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_ubah_kan.jpg" id="item-3383-141" class="Epic legs">Breeches of the Ubah Kan</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Unknown</span><a href="//static.is-better-than.tv/armory/grips_of_the_ubah_kan.jpg" id="item-3401-142" class="Rare hands">Grips of the Ubah Kan</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/harness_of_the_ubah_kan.jpg" id="item-3373-143" class="Rare chest">Harness of the Ubah Kan</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Hierophant</span><a href="//static.is-better-than.tv/armory/helm_of_the_ubah_kan.jpg" id="item-3347-144" class="Rare head">Helm of the Ubah Kan</a> [Head]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Medium Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Haunter in the Dark</a> [Ranger] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNorzsgvzUlJLbIyNjEytU5LTS2xMjY2s7DOSU0vtjK2MDG1TkrNAYkZmltnJOalAAVNDIyskzNSi0Gi5kYAqZoT4Q%3D%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/armguards_of_the_haunter_in_the_dark.jpg" id="item-3425-145" class="Rare shoulder">Armguards of the Haunter in the Dark</a> [Shoulder]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Omni-Prophet</span><a href="//static.is-better-than.tv/armory/boots_of_the_haunter_in_the_dark.jpg" id="item-3368-146" class="Epic feet">Boots of the Haunter in the Dark</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_haunter_in_the_dark.jpg" id="item-3845-147" class="Epic legs">Breeches of the Haunter in the Dark</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/clasp_of_the_haunter_in_the_dark.jpg" id="item-3317-148" class="Rare belt">Clasp of the Haunter in the Dark</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Unknown</span><a href="//static.is-better-than.tv/armory/hand_wraps_of_the_haunter_in_the_dark.jpg" id="item-3402-149" class="Rare hands">Hand-wraps of the Haunter in the Dark</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Genealogist</span><a href="//static.is-better-than.tv/armory/harness_of_the_haunter_in_the_dark.jpg" id="item-3372-150" class="Rare chest">Harness of the Haunter in the Dark</a> [Chest]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Howling Giant</a> [BS] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNotjFsKgDAMBK9UmvSBOU210QpFoVG8vgn0bxh2Vtr99spjAfCJduZHKSF94xRFhESdD1EZA63czTlHrVzVZPa0NbYlBLVcqjV5NujjvMTofutaIAU%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/armguards_of_the_howling_giant.jpg" id="item-3327-151" class="Rare shoulder">Armguards of the Howling Giant</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_howling_giant.jpg" id="item-3374-152" class="Epic feet">Boots of the Howling Giant</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/bracers_of_the_howling_giant.jpg" id="item-3437-153" class="Rare wrist">Bracers of the Howling Giant</a> [Wrist]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_howling_giant.jpg" id="item-3365-154" class="Epic legs">Breeches of the Howling Giant</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/clasp_of_the_howling_giant.jpg" id="item-3400-155" class="Rare belt">Clasp of the Howling Giant</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/grips_of_the_howling_giant.jpg" id="item-3382-156" class="Epic hands">Grips of the Howling Giant</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/harness_of_the_howling_giant.jpg" id="item-3350-157" class="Rare chest">Harness of the Howling Giant</a> [Chest]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_howling_giant.jpg" id="item-3438-158" class="Rare head">Helm of the Howling Giant</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/leggings_of_the_howling_giant.jpg" id="item-3426-159" class="Rare legs">Leggings of the Howling Giant</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/sandals_of_the_howling_giant.jpg" id="item-3460-160" class="Rare feet">Sandals of the Howling Giant</a> [Feet]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Full Plate Armor</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Black Pharaoh</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNrLSU0vtjI2NjO3Ts5ILS4BMg3NrJNSc0AsU2PrjMS8FJC8sYF1RmpiCpBlYmGdlppaYmViYm4CAEBAEg0%3D"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Omni-Prophet</span><a href="//static.is-better-than.tv/armory/breeches_of_the_black_pharaoh.jpg" id="item-3367-161" class="Epic legs">Breeches of the Black Pharaoh</a> [Legs]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/chestplate_of_the_black_pharaoh.jpg" id="item-3316-162" class="Rare chest">Chestplate of the Black Pharaoh</a> [Chest]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Shadow Spider Matriarch</span><a href="//static.is-better-than.tv/armory/girdle_of_the_black_pharaoh.jpg" id="item-3353-163" class="Rare belt">Girdle of the Black Pharaoh</a> [Belt]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> The Unknown</span><a href="//static.is-better-than.tv/armory/gloves_of_the_black_pharaoh.jpg" id="item-3330-164" class="Rare hands">Gloves of the Black Pharaoh</a> [Hands]</li>
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/silver.png" alt="Silver" class="coin" height="12" width="12" title="Silver" /> Serpent Man Grand Vizier</span><a href="//static.is-better-than.tv/armory/helm_of_the_black_pharaoh.jpg" id="item-3348-165" class="Rare head">Helm of the Black Pharaoh</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_pads_of_the_black_pharaoh.jpg" id="item-4474-166" class="Epic feet">Shin-pads of the Black Pharaoh</a> [Feet]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">The Dark Messenger</a> [Conq/DT/Guard] <a href="https://aoc.is-better-than.tv/armory.php?s=30&amp;ab=eNo9zOEKgCAMBOBnstmW7mmMrQykQI1ePy3q38cddyUeZxLNHmBAXlSrt5aAk66lZRNxDLs8tDxrql3jH1LrNUiTM9%2FGuPcHAJGvvJVOwhveFCAd"><img src="//static.is-better-than.tv/img/12-em-link.png" width="16" height="12" alt="Open in Armor builder" title="Open in Armor builder" /></a>      <ul class="items">
+       <li><a href="//static.is-better-than.tv/armory/arm_bands_of_the_dark_messenger.jpg" id="item-3326-167" class="Rare shoulder">Arm-bands of the Dark Messenger</a> [Shoulder]</li>
+       <li><a href="//static.is-better-than.tv/armory/boots_of_the_dark_messenger.jpg" id="item-4473-168" class="Rare feet">Boots of the Dark Messenger</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/breeches_of_the_dark_messenger.jpg" id="item-3387-169" class="Epic legs">Breeches of the Dark Messenger</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/gauntlets_of_the_dark_messenger.jpg" id="item-3384-170" class="Epic hands">Gauntlets of the Dark Messenger</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/girdle_of_the_dark_messenger.jpg" id="item-3385-171" class="Rare belt">Girdle of the Dark Messenger</a> [Belt]</li>
+       <li><a href="//static.is-better-than.tv/armory/gloves_of_the_dark_messenger.jpg" id="item-3377-172" class="Rare hands">Gloves of the Dark Messenger</a> [Hands]</li>
+       <li><a href="//static.is-better-than.tv/armory/helm_of_the_dark_messenger.jpg" id="item-3391-173" class="Rare head">Helm of the Dark Messenger</a> [Head]</li>
+       <li><a href="//static.is-better-than.tv/armory/legguards_of_the_dark_messenger.jpg" id="item-3319-174" class="Rare legs">Legguards of the Dark Messenger</a> [Legs]</li>
+       <li><a href="//static.is-better-than.tv/armory/shin_pads_of_the_dark_messenger.jpg" id="item-3366-175" class="Epic feet">Shin-pads of the Dark Messenger</a> [Feet]</li>
+       <li><a href="//static.is-better-than.tv/armory/vambraces_of_the_dark_messenger.jpg" id="item-3376-176" class="Rare wrist">Vambraces of the Dark Messenger</a> [Wrist]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+Created by Kentarii [Ragnarok] @ EN Fury PvP 2008-2024<br/>
+<span class="stats">Page generated in 0.993 seconds using 5 queries, consuming 1883.320 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the yearly costs.<br/>This will be used to pay the bills and keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<a href="https://www.paypal.me/phuc77"><img src="//static.is-better-than.tv/img/btn_donate_SM.gif" alt="Donate using PayPal" title="Donate using PayPal"/></a>
+</div>
+<!-- /paypal --></body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>AoC&gt;TV: Armory - Consumable Books</title>
+ <meta name="description" content="Complete overview of all endgame armors which can be obtained in Age of Conan. List of items in the Consumable Books section(s)." />
+ <meta name="keywords" content="aoc,age of conan,mmorpg,faction,factions,armor,weapons,accessories,merchants,rise of the godslayer,rotgs,raid,tier,pvp,bori" />
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/default.css?31" type="text/css" media="screen" />
+<!--[if IE 7]>
+ <link rel="stylesheet" href="//static.is-better-than.tv/css/ie7.css?31" type="text/css" media="screen" />
+<![endif]-->
+ <script type="text/javascript" src="//static.is-better-than.tv/js/combined.js?31"></script>
+<script type="text/javascript">
+<!--
+var script_name = '/armory.php';
+var request_uri = '/armory.php?s=12';
+var cookieless_domain = '//static.is-better-than.tv/';
+var fieldset_state = false;
+
+$(document).ready(function(){
+	$('#armorBuilderTrigger').click(function(e){$.post(script_name,{ajax:'armorBuilder',a:'add',posx:e.pageX,posy:e.pageY},function(data){$('#armorBuilderSets').append(data.content);},'json');return false;});
+	$('#attrCalcTrigger').click(function(e){$('#attrCalc').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable({handle:'h4'}).show();return false});
+	$('#attrCalcForm').submit(function(){$.post(script_name,{ajax:'attrCalc',attr:$('#f-attr').val(),amount:$('#f-amount').attr('value')},function(data){$('#attrCalc>div.attrWin>div.result').empty().append(data.result);},'json');return false;});
+	$('#armorySearchForm').submit(function(){if($('#q').val()!=''){$.post(script_name,{ajax:'itemSearch',q:$('#q').val()},function(data){if(data.result){$('#armorySearchResult div.items').empty().append(data.content); $('#armorySearchResult').show();}else{$('#armorySearchResult div.items').empty().append('Your search did not match any items.'); $('#armorySearchResult').show();}},'json');}else{$('#armorySearchResult div.items').empty().append('Please enter a search string.'); $('#armorySearchResult').show();}return false;});
+	$('#q').focus(function(){$(this).select();});
+	$('ul.items li').hover(function(e){$(this).addClass('hover');},function(e){$(this).removeClass('hover');});
+	$('ul.items li a').hover(function(e){$('#itemTooltip').empty().append('<img src="'+ $(this).attr('href') +'" alt="" />') . css('left',(e.pageX+20)).css('top',(e.pageY+25)).show();},function(){$('#itemTooltip').hide().empty();});
+	$('ul.items li a').click(function(e){var $itemid='popup-'+$(this).attr('id');$('#'+$itemid).remove();$('#content').append('<div class="itemTooltip" id="'+$itemid+'"></div>');$('#'+$itemid).empty().append('<a href="#close" onclick="closePopup(this); return false" class="close"><img src="'+cookieless_domain+'img/12-em-cross.png" alt="Close" height="12" width="12" /> Close</a><br/><img src="'+ $(this).attr('href') +'" alt="" />').css('left',(e.pageX-20)).css('top',(e.pageY-10)).draggable().show();return false;});
+	$('a.head,a.chest,a.shoulder,a.wrist,a.hands,a.belt,a.legs,a.feet').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.back,a.necklace,a.ring').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+	$('a.1hb,a.1he,a.1heranger,a.2hb,a.2he,a.bow,a.crossbow,a.dagger,a.talisman,a.polearm,a.staff,a.ammunition,a.shield').draggable({addClasses:false,helper:'clone',revert:'invalid',zIndex:11000});
+});
+
+// -->
+</script>
+<!-- google analytics -->
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5750680-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- /google analytics --></head>
+<body>
+<div id="menuBar">
+-=[
+<a href="index.php">AoC>TV</a> :: 
+<a href="api.php">API</a> :: 
+<a href="armory.php" class="selected">Armory</a> :: 
+<a href="aamon.php">AAMon</a> :: 
+<a href="bebot.php">Bebot</a> :: 
+<a href="belaui.php">BelaUI</a> :: 
+<a href="forums/">Forums</a> :: 
+<a href="scripts.php">Scripts</a> :: 
+<a href="onyx.php">The Onyx Chambers</a> :: 
+<a href="veteran.php">Veteran Rewards</a> 
+][ <a href="forums/ucp.php?mode=register">Register</a> :: <a href="forums/ucp.php?mode=login">Login</a> ]=-
+</div><div class="aoc-armory container clearfix" id="top">
+<div class="topmenu">
+<ul id="mainmenu">
+ <li><a href="armory.php">Home</a></li>
+ <li><a href="armory.php?p=armorsets">Armor Sets</a></li>
+ <li><a href="armory.php?p=factions">Factions</a></li>
+ <li><a href="armory.php?p=links">Links</a></li>
+  <li><a href="armory.php?p=about">About</a></li>
+ <li><a href="#" id="armorBuilderTrigger">Armor builder</a></li>
+ <li><a href="#" id="attrCalcTrigger">Attribute calculator</a></li>
+</ul>
+<form id="armorySearchForm" method="post" action="/armory.php">
+<div class="search"><input type="text" name="q" id="q" value="Enter search query..." size="40" maxlength="128" /><input type="submit" value="SEARCH" /></div>
+</form>
+</div>
+<a href="armory.php"><img src="//static.is-better-than.tv/images/armory.png" alt="Faction Armory" height="200" width="800" /></a>
+<div class="bottommenu">
+<ul id="sectionmenu">
+ <li><a href="armory.php?s=40;36;12;1;2;3;11;4;5;6;7;8;9;10;21;22;28;23;30;19;25;32;33;14;15;13;24;20;35;38;31;29;16;17;18;39;-1">All</a></li>
+ <li><a href="armory.php?s=12;40">Item Store</a></li>
+ <li><a href="armory.php?s=12;36">Clan Vigdis</a></li>
+ <li class="selected"><a href="armory.php?s=">Consumable Books</a></li>
+ <li><a href="armory.php?s=12;1">Brittle Blade</a></li>
+ <li><a href="armory.php?s=12;2">Children of Yag-kosha</a></li>
+ <li><a href="armory.php?s=12;3">Hyrkanians</a></li>
+ <li><a href="armory.php?s=12;11">Jiang Shi</a></li>
+ <li><a href="armory.php?s=12;4">Last Legion</a></li>
+ <li><a href="armory.php?s=12;5">Scarlet Circle</a></li>
+ <li><a href="armory.php?s=12;6">Scholars of Cheng-Ho</a></li>
+ <li><a href="armory.php?s=12;7">Shadows of Jade</a></li>
+ <li><a href="armory.php?s=12;8">Tamarin&#039;s Tigers</a></li>
+ <li><a href="armory.php?s=12;9">Wolves of the Steppes</a></li>
+ <li><a href="armory.php?s=12;10">Yellow Priests of Yun</a></li>
+ <li><a href="armory.php?s=12;21">Aquilonia</a></li>
+ <li><a href="armory.php?s=12;22">Cimmeria</a></li>
+ <li><a href="armory.php?s=12;28">House of Crom</a></li>
+ <li><a href="armory.php?s=12;23">Stygia</a></li>
+ <li><a href="armory.php?s=12;30">Dragon&#039;s Spine</a></li>
+ <li><a href="armory.php?s=12;19">Khitai</a></li>
+ <li><a href="armory.php?s=12;25">Turan</a></li>
+ <li><a href="armory.php?s=12;32">Unchained</a></li>
+ <li><a href="armory.php?s=12;33">World Boss</a></li>
+ <li><a href="armory.php?s=12;14">PvE Tier 1</a></li>
+ <li><a href="armory.php?s=12;15">PvE Tier 2</a></li>
+ <li><a href="armory.php?s=12;13">PvE Tier 3</a></li>
+ <li><a href="armory.php?s=12;24">PvE Tier 3.5</a></li>
+ <li><a href="armory.php?s=12;20">PvE Tier 4</a></li>
+ <li><a href="armory.php?s=12;35">PvE Tier 5</a></li>
+ <li><a href="armory.php?s=12;38">PvE Tier 6</a></li>
+ <li><a href="armory.php?s=12;31">Bags</a></li>
+ <li><a href="armory.php?s=12;29">Recipes</a></li>
+ <li><a href="armory.php?s=12;16">PvP Tier 1</a></li>
+ <li><a href="armory.php?s=12;17">PvP Tier 2</a></li>
+ <li><a href="armory.php?s=12;18">PvP Tier 3</a></li>
+ <li><a href="armory.php?s=12;39">Raidfinder</a></li>
+ <li><a href="armory.php?s=12;-1">Unsorted Items</a></li>
+</ul>
+</div>
+<div id="content">
+<fieldset id="armorySearchResult" class="collapsible" style="display:none"><legend>Search results</legend><div class="items"></div></fieldset>
+<fieldset class="collapsible" id="fs-consumable-books">
+<legend>Consumable Books</legend>
+<ul class="locations">
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Coppice of the Heart</strong></a> (189,172)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: Winning By Other Means</a> [Hox/Barb/Bs]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Molten Steel Slash VI<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Clobber V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Ursine Brawl IV</span><a href="//static.is-better-than.tv/armory/book_winning_by_other_means.jpg" id="item-837-1" class="Rare consumable">Book: Winning By Other Means</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Northern Grasslands :: Pillars of Heaven</strong></a> (1431,1465)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: Of Security and Opportunity</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Feint Attack IX<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Unhallowed Blight IV<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Guard Destroyer IV</span><a href="//static.is-better-than.tv/armory/book_of_security_and_opportunity.jpg" id="item-838-2" class="Rare consumable">Book: Of Security and Opportunity</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Palace of Yun Rau</strong></a> (156,1389)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: Conquering Your Foe</a> [Sin/Ranger/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Grim Corruption V<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Deft Stabs III<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Stagger V</span><a href="//static.is-better-than.tv/armory/book_conquering_your_foe.jpg" id="item-830-3" class="Rare consumable">Book: Conquering Your Foe</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Abyss of Kun Whu</strong></a> (38,538)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: Forcing the Engagement</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Bloodbath VII<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Aura of Dread Fury V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Disable IV</span><a href="//static.is-better-than.tv/armory/book_forcing_the_engagement.jpg" id="item-1028-4" class="Rare consumable">Book: Forcing the Engagement</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: Den of the Crowmen</strong></a> (6,575)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Five Ways of War</a> [Necro/Demo/Pom/Tos]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Pestilential Blast VII<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Hellfire Stream VI<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Rebuke VI<img src="//static.is-better-than.tv/img/tin.png" alt="tin" class="coin" height="12" width="12" title="tin" />Call Lightning III</span><a href="//static.is-better-than.tv/armory/book_the_five_ways_of_war.jpg" id="item-829-5" class="Rare consumable">Book: The Five Ways of War</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Chosain Province :: The Jade Dugout</strong></a> (33,533)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Direct and the Indirect</a> [Hox/Barb/Sin]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Body and Spirit Wrack IV<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Slow Death Strike V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Wreck Armor IV</span><a href="//static.is-better-than.tv/armory/book_the_direct_and_the_indirect.jpg" id="item-839-6" class="Rare consumable">Book: The Direct and the Indirect</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Cavern of Malice</strong></a> (1653,1398)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Practice of Dissimulation</a> [Bs/Hox/Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Ferocious Smack V<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Burn to Death VI<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Stunning Punch V</span><a href="//static.is-better-than.tv/armory/book_the_practice_of_dissimulation.jpg" id="item-831-7" class="Rare consumable">Book: The Practice of Dissimulation</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Celestial Necropolis</strong></a> (1660,1081)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Five Dangerous Faults</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Batter Asside V<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />A Soul for our Feast V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Shield Sweep V</span><a href="//static.is-better-than.tv/armory/book_the_five_dangerous_faults.jpg" id="item-832-8" class="Rare consumable">Book: The Five Dangerous Faults</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="collapsible dungeon"><a href="#" onclick="toggleList(this); return false"><strong>Kara Korum :: The Enigmata of Yag</strong></a> (1540,1149)  <ul class="categories">
+   <li class="collapsible"><a href="#" onclick="toggleList(this); return false">Dungeon Books</a>
+    <ul class="sets">
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Five Kinds of Spies</a> [Ranger/Sin/Barb]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Cripple III<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Impede Life II<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Whirlwind V</span><a href="//static.is-better-than.tv/armory/book_the_five_kinds_of_spies.jpg" id="item-833-9" class="Epic consumable">Book: The Five Kinds of Spies</a> [Consumable]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Nine Situations</a> [Pom/Tos/Bs]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Repulse VI<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Storm Field V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Shrewd Blow VI</span><a href="//static.is-better-than.tv/armory/book_the_nine_situations.jpg" id="item-834-10" class="Epic consumable">Book: The Nine Situations</a> [Consumable]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: The Road to Victory, through Discipline</a> [Conq/DT/Guard]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Overwhelm VI<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Mystical Bane V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Dulling Blow V</span><a href="//static.is-better-than.tv/armory/book_the_road_to_victory_through_discipline.jpg" id="item-835-11" class="Epic consumable">Book: The Road to Victory, through Discipline</a> [Consumable]</li>
+      </ul>
+     </li>
+     <li class="collapsible collapsed"><a href="#" onclick="toggleList(this); return false">Book: Well Laid Plans</a> [Necro/Demo/Hox]      <ul class="items">
+       <li> <span class="price"><img src="//static.is-better-than.tv/img/gold.png" alt="gold" class="coin" height="12" width="12" title="gold" />Chill VI<img src="//static.is-better-than.tv/img/silver.png" alt="silver" class="coin" height="12" width="12" title="silver" />Shock V<img src="//static.is-better-than.tv/img/copper.png" alt="copper" class="coin" height="12" width="12" title="copper" />Hellfire Breath VI</span><a href="//static.is-better-than.tv/armory/book_well_laid_plans.jpg" id="item-836-12" class="Epic consumable">Book: Well Laid Plans</a> [Consumable]</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</fieldset>
+<div id="itemTooltip" style="display: none;"></div>
+<div id="armorBuilderSets">
+</div>
+</div><!-- /content -->
+</div><!-- /container -->
+<!-- attribute calculator -->
+<div id="attrCalc" style="display: none;">
+ <a href="#close" onclick="hidePopup(this); return false" class="close"><img src="//static.is-better-than.tv/img/12-em-cross.png" alt="Close" height="12" width="12" /></a>
+ <div class="attrWin">
+  <h4>Attribute trickle-down calculator</h4>
+  <hr />
+  <form id="attrCalcForm" method="post" action="/armory.php">
+   <div class="attrForm">
+    <input type="text" name="amount" id="f-amount" value="1" size="4" maxlength="4" />
+    <select name="attr" id="f-attr">
+     <option value="Combat Rating">Combat Rating</option>
+     <option value="Constitution">Constitution</option>
+     <option value="Dexterity">Dexterity</option>
+     <option value="Intelligence">Intelligence</option>
+     <option value="Strength">Strength</option>
+     <option value="Wisdom">Wisdom</option>
+    </select>
+    <input type="submit" value="Calculate" />
+   </div>
+  </form>
+  <hr />
+  <div class="result"></div>
+ </div>
+</div>
+<!-- /attribute calculator --><!-- footer -->
+<div class="footer">
+<div style="float:right"><g:plusone size="small"></g:plusone></div>
+<a href="http://validator.w3.org/check/referer">xhtml</a> :: <a href="http://jigsaw.w3.org/css-validator/check/referer">css</a> :: Created by Kentarii [<a href="http://forum.rr-guild.com/">Ragnarok</a>] @ EN Fury PvP 2008-2017<br/>
+<span class="stats">Page generated in 0.940 seconds using 5 queries, consuming 1574.188 kB of memory.</span><br/>
+</div>
+<!-- /footer --><!-- paypal -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<div class="paypal">
+<p>If you like the content on this website, feel free to donate a few $ for the work I've done.<br/>This will be used to keep this site running free of any ads ;o)<br/>Thanks in advance!! Kentarii</p>
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----" />
+<input type="image" src="//static.is-better-than.tv/img/btn_donate_SM.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
+</div>
+</form>
+<!-- /paypal --></body>
+</html>
