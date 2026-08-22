@@ -1,0 +1,95 @@
+.builderHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.builderHeadBtns { display: flex; gap: 0.5rem; }
+.builderBtn {
+  background: var(--panel-2);
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--ink);
+  cursor: pointer;
+}
+.builderBtn:hover { border-color: var(--crimson); color: var(--crimson); }
+.builderBtn.primary { background: var(--crimson); border-color: var(--crimson-dark); color: #fff; }
+.builderBtn.primary:hover { background: var(--crimson-dark); color: #fff; }
+.builderBtn:disabled { opacity: 0.5; cursor: default; }
+
+.builderLayout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+.builderSide {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+.builderSide input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  padding: 0.4rem;
+  background: #fffbe8;
+  margin-bottom: 0.6rem;
+}
+.builderSearchList { max-height: 520px; overflow-y: auto; }
+.builderSearchList li { cursor: grab; padding: 0.12rem 0.2rem; border-radius: 3px; display: flex; align-items: center; gap: 0.3rem; }
+.builderSearchList li:hover { background: rgba(0,0,0,0.06); }
+.builderSearchList li:active { cursor: grabbing; }
+/* passed to ItemName (was .builderSearchList .itemName) */
+.searchItem { flex: 1; }
+.equipMini {
+  background: none;
+  border: 1px solid var(--line-dark);
+  border-radius: 3px;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0.08rem 0.35rem;
+}
+.equipMini:hover { border-color: var(--crimson); color: var(--crimson); }
+
+.slotGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.6rem;
+}
+.slotCell {
+  background: var(--panel-2);
+  border: 1px dashed var(--line-dark);
+  border-radius: 6px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.35rem;
+  text-align: center;
+}
+.slotCell.dropHover { background: #f7f1d4; border-color: var(--gold); box-shadow: inset 0 0 0 2px rgba(201, 162, 39, 0.35); }
+.slotCell .slotName { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); font-weight: bold; }
+.slotCell .equipped { margin-top: 0.3rem; }
+.slotCell .equippedName { font-size: 0.72rem; margin-top: 0.25rem; }
+.slotCell .emptySlot { margin-top: 0.6rem; font-size: 0.75rem; }
+.slotCell .removeBtn {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--crimson);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .builderLayout { grid-template-columns: 1fr; }
+}

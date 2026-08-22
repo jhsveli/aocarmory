@@ -1,0 +1,5 @@
+.searchResults { margin-top: 0.4rem; }
+.searchResults ol { margin: 0.4rem 0; padding-left: 1.4rem; }
+.searchResults li { margin: 0.35rem 0; font-size: 0.9rem; }
+.searchMeta { color: var(--ink-soft); font-size: 0.85rem; }
+.searchExamples { color: var(--ink-soft); font-size: 0.85rem; margin-top: 0.8rem; }

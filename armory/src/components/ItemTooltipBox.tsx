@@ -1,9 +1,12 @@
 import type { Item, ItemStats, StatValue } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
+import styles from "./ItemTooltipBox.module.css";
 
 interface Props {
   item: Item;
+  /** extra class names (e.g. the panel's in-box override) */
+  className?: string;
   /** compact variant for small slots (armor builder) */
   compact?: boolean;
 }
@@ -55,9 +58,9 @@ function statLines(stats: ItemStats): string[] {
  * (dark panel, rarity-colored item name, stat lines) — rendered from the
  * OCR-extracted text instead of a hotlinked image.
  */
-export default function ItemTooltipBox({ item, compact }: Props) {
+export default function ItemTooltipBox({ item, compact, className }: Props) {
   const nameCls = [
-    "tooltipName",
+    styles.tooltipName,
     item.rarity ? RARITY_CLASS[item.rarity] : "",
   ].filter(Boolean).join(" ");
 
@@ -67,19 +70,25 @@ export default function ItemTooltipBox({ item, compact }: Props) {
       ? item.tooltip.split("\n").map((l) => l.trim()).filter(Boolean)
       : null;
 
+  const boxCls = [
+    styles.tooltipBox,
+    compact ? styles.compact : "",
+    className ?? "",
+  ].filter(Boolean).join(" ");
+
   return (
-    <div className={`tooltipBox${compact ? " compact" : ""}`}>
+    <div className={boxCls}>
       <div className={nameCls}>{item.name}</div>
       {lines ? (
-        <div className="tooltipBody">
+        <div className={styles.tooltipBody}>
           {lines.map((line, i) => (
-            <div key={i} className="line">
+            <div key={i} className={styles.line}>
               {line}
             </div>
           ))}
         </div>
       ) : (
-        <div className="missing">No tooltip data available for {item.name}</div>
+        <div className={styles.missing}>No tooltip data available for {item.name}</div>
       )}
     </div>
   );

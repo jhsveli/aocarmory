@@ -10,6 +10,8 @@ import ItemName from "../components/ItemName";
 import ItemTooltipBox from "../components/ItemTooltipBox";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import AttributeCalculator from "../components/AttributeCalculator";
+import layoutStyles from "../styles/layout.module.css";
+import styles from "./BuilderPage.module.css";
 
 /** The builder slot grid (mirrors the original site's draggable slot groups). */
 const SLOT_GROUPS: Array<{ group: string; slots: string[] }> = [
@@ -104,14 +106,18 @@ export default function BuilderPage() {
   const totalEquipped = Object.keys(equipped).length;
 
   return (
-    <div className="content">
-      <div className="builderHead">
+    <div className={layoutStyles.content}>
+      <div className={styles.builderHead}>
         <h1>Armor builder</h1>
-        <div className="builderHeadBtns">
-          <button className="builderBtn" onClick={() => setCalcOpen(true)}>
+        <div className={styles.builderHeadBtns}>
+          <button className={styles.builderBtn} onClick={() => setCalcOpen(true)}>
             Attribute calculator
           </button>
-          <button className="builderBtn primary" onClick={share} disabled={totalEquipped === 0}>
+          <button
+            className={`${styles.builderBtn} ${styles.primary}`}
+            onClick={share}
+            disabled={totalEquipped === 0}
+          >
             {copied ? "Link copied!" : "Copy share link"}
           </button>
         </div>
@@ -121,21 +127,22 @@ export default function BuilderPage() {
         uses the original site's format, so it works with the classic armory too.
       </p>
 
-      <div className="builderLayout">
-        <div className="builderSide">
+      <div className={styles.builderLayout}>
+        <div className={styles.builderSide}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Find items to equip..."
           />
-          <ul className="builderSearchList" style={{ listStyle: "none", paddingLeft: 0 }}>
+          <ul className={styles.builderSearchList} style={{ listStyle: "none", paddingLeft: 0 }}>
             {results.map((r) => {
               const it = r.item.item;
               return (
                 <li key={`${it.id}-${it.name}`}>
                   <ItemName
                     item={it}
+                    className={styles.searchItem}
                     draggable
                     onDragStart={(e) => {
                       e.dataTransfer.setData("text/item-id", String(it.id));
@@ -143,7 +150,7 @@ export default function BuilderPage() {
                     }}
                   />
                   {it.slot && <span className="itemSlot"> [{SLOT_LABEL[it.slot] ?? it.slot}]</span>}
-                  <button className="equipMini" onClick={() => equip(it)} title={`Equip ${it.name}`}>
+                  <button className={styles.equipMini} onClick={() => equip(it)} title={`Equip ${it.name}`}>
                     equip
                   </button>
                 </li>
@@ -163,7 +170,7 @@ export default function BuilderPage() {
           {SLOT_GROUPS.map((g) => (
             <div key={g.group} style={{ marginBottom: "0.8rem" }}>
               <h2 style={{ fontSize: "1rem", margin: "0.4rem 0" }}>{g.group}</h2>
-              <div className="slotGrid">
+              <div className={styles.slotGrid}>
                 {g.slots.map((slotKey) => {
                   const item = equipped[slotKey];
                   const label = slotKey.startsWith("ring")
@@ -172,7 +179,7 @@ export default function BuilderPage() {
                   return (
                     <div
                       key={slotKey}
-                      className={`slotCell${dragOver === slotKey ? " dropHover" : ""}`}
+                      className={`${styles.slotCell}${dragOver === slotKey ? ` ${styles.dropHover}` : ""}`}
                       onDragOver={(e) => {
                         e.preventDefault();
                         setDragOver(slotKey);
@@ -180,21 +187,21 @@ export default function BuilderPage() {
                       onDragLeave={() => setDragOver((s) => (s === slotKey ? null : s))}
                       onDrop={handleDrop}
                     >
-                      <span className="slotName">{label}</span>
+                      <span className={styles.slotName}>{label}</span>
                       {item ? (
                         <>
-                          <div className="equipped">
+                          <div className={styles.equipped}>
                             <ItemTooltipBox item={item} compact />
                           </div>
-                          <div className="equippedName">
+                          <div className={styles.equippedName}>
                             <ItemName item={item} />
                           </div>
-                          <button className="removeBtn" onClick={() => unequip(slotKey)}>
+                          <button className={styles.removeBtn} onClick={() => unequip(slotKey)}>
                             remove
                           </button>
                         </>
                       ) : (
-                        <span className="page-intro emptySlot">empty</span>
+                        <span className={`page-intro ${styles.emptySlot}`}>empty</span>
                       )}
                     </div>
                   );

@@ -1,5 +1,6 @@
 import { useItemDetails } from "./item-details.ts";
 import ItemTooltipBox from "./ItemTooltipBox";
+import styles from "./ItemDetailsPanel.module.css";
 
 /**
  * The docked item-detail panel, rendered in-flow where a page places it
@@ -11,13 +12,13 @@ export default function ItemDetailsPanel() {
   const { panelItem, clear } = useItemDetails();
 
   return (
-    <aside className="itemPanel" aria-label="Item details">
-      <div className="panelHeader">
-        <span className="panelTitle">Item details</span>
+    <aside className={styles.itemPanel} aria-label="Item details">
+      <div className={styles.panelHeader}>
+        <span className={styles.panelTitle}>Item details</span>
         {panelItem && (
           <button
             type="button"
-            className="panelClose"
+            className={styles.panelClose}
             onClick={clear}
             aria-label="Close item details"
           >
@@ -27,10 +28,10 @@ export default function ItemDetailsPanel() {
       </div>
       {panelItem ? (
         <>
-          <ItemTooltipBox item={panelItem} />
+          <ItemTooltipBox item={panelItem} className={styles.inPanel} />
           {panelItem.image && (
-            <div className="panelImage">
-              <div className="panelImageLabel">Original screenshot</div>
+            <div className={styles.panelImage}>
+              <div className={styles.panelImageLabel}>Original screenshot</div>
               <img
                 src={panelItem.image}
                 alt={`Original screenshot: ${panelItem.name}`}
@@ -41,7 +42,7 @@ export default function ItemDetailsPanel() {
           )}
         </>
       ) : (
-        <div className="panelEmpty">Click an item to view its details.</div>
+        <div className={styles.panelEmpty}>Click an item to view its details.</div>
       )}
     </aside>
   );

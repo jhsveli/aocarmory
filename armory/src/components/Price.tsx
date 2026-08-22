@@ -1,5 +1,6 @@
 import type { Price } from "../types";
 import { COIN_TITLES, coinSrc, hasPrice } from "../lib/format";
+import styles from "./Price.module.css";
 
 /** Renders a price using the original coin icons (mark/trophy/gold). */
 export default function Price({ price }: { price: Price | null }) {
@@ -10,11 +11,11 @@ export default function Price({ price }: { price: Price | null }) {
   if (price.gold > 0) parts.push(["gold", price.gold]);
   if (price.silver > 0) parts.push(["silver", price.silver]);
   return (
-    <span className="itemPrice">
+    <span className={styles.itemPrice}>
       {parts.map(([kind, amount]) => (
         <span key={kind}>
           <img
-            className="coin"
+            className={styles.coin}
             src={coinSrc(kind)}
             alt={COIN_TITLES[kind]}
             title={COIN_TITLES[kind]}

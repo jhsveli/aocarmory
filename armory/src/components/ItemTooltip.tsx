@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { Item } from "../types";
 import { ItemDetails } from "./item-details.ts";
 import ItemTooltipBox from "./ItemTooltipBox";
+import styles from "./ItemTooltip.module.css";
 
 interface TooltipState {
   item: Item;
@@ -48,7 +49,7 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
       {children}
       {tip && (
         <div
-          className="itemTooltip"
+          className={styles.itemTooltip}
           role="tooltip"
           style={{
             left: Math.min(tip.x + 16, window.innerWidth - 360),

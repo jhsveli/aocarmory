@@ -91,20 +91,23 @@ src/pages/<Name>.module.css        # one per page
   `AttributeCalculator`, `HomePage`, `ArmorSetsPage`, `FactionsPage`,
   `AboutPage`, `SectionPage` moved to colocated `*.module.css`; rules removed
   from `armory.css` (594 → 431 lines).
-- **Phase 3 — Cross-cutting (next):** `ItemTooltipBox` + `className` prop, then
-  `ItemDetailsPanel`, `ItemTooltip`, `layout.module.css` (`content`,
-  `contentWrap`, `rightColumn`), `Layout`, `SectionTree`/`ClassTree`,
-  `SearchPage`, `BuilderPage` — order matters because of the seams (e.g.
-  `ItemTooltipBox`'s prop must land with its consumers).
-- **Phase 4 — Delete `armory.css`** once the last rule moves; final full
-  verification + browser pass of every page.
+- **Phase 3 — Cross-cutting (done):** `ItemTooltipBox` gained a `className`
+  prop (the panel passes its `inPanel` override); `ItemDetailsPanel`,
+  `ItemTooltip`, `styles/layout.module.css` (`content`/`contentWrap`/
+  `rightColumn`, used by Home/Section/Search/Builder), `Layout`,
+  `SectionTree`/`ClassTree`, `Price`, `SearchPage`, and `BuilderPage` all moved
+  to modules. `armory.css` left with zero rules.
+- **Phase 4 — Delete `armory.css` (done):** file deleted, import removed from
+  `App.tsx` (only `global.css` remains global). Final state: 18 `*.module.css`
+  files + `global.css`. Full verification green.
 
 ### Deviations from the original plan (discovered during execution)
 
 - **No `ItemName.module.css`** — there are no standalone `.itemName` rules in
-  `armory.css` (rarity colors come from the global `.r-*` utilities). The
+  the stylesheet (rarity colors come from the global `.r-*` utilities). The
   class only appears in BuilderPage's `.builderSearchList .itemName` seam,
-  which Phase 3 handles.
+  which became the `searchItem` module class passed via `ItemName`'s
+  `className` prop.
 - **`.nodeLabel` base → global** — shared by `Collapsible` and `SectionTree`
   (SectionTree's no-sets label and its `.locations > li > .nodeLabel`
   descendant rules). The open/closed arrow/state rules went into
@@ -113,8 +116,13 @@ src/pages/<Name>.module.css        # one per page
   `LinksPage.module.css` was created.
 - **`rightBox`/`header`/`body`/`statsTable` → `HomePage.module.css`** — only
   HomePage uses them now (the Section-page info box is gone).
-- **Phase 4 — Delete `armory.css`** once the last rule moves; final full
-  verification + browser pass of every page.
+- **Tree structure base → `global.css`** — `.locations`, `.sets`,
+  `.setClasses`, and the `.locations > li > .nodeLabel` bold rule are shared
+  by SectionTree + ClassTree (and HomePage for `.locations`), so they live in
+  `global.css`; SectionTree's merchant/dungeon/raid label colors and the
+  `.items`/`.categories` rules are module-scoped.
+- **`.tooltipBox` rarity overrides use `:global(.r-*)`** inside
+  `ItemTooltipBox.module.css` (the lightened colors on the dark panel).
 
 Each phase: move rules → remove from `armory.css` → tests + `tsc` + lint +
 build + eyeball the affected pages. Rollback is a per-phase revert.

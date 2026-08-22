@@ -95,3 +95,11 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
 /* link list (shared by About + Links pages) */
 .linksList { margin: 0.4rem 0 0; padding-left: 1.2rem; }
 .linksList li { margin: 0.3rem 0; }
+
+/* section tree structure (shared by SectionTree + ClassTree; HomePage also
+   uses .locations for its link list) */
+.locations { margin: 0.2rem 0 0.6rem; padding-left: 1.1rem; list-style: none; }
+.locations > li { margin: 0.15rem 0; }
+.locations > li > .nodeLabel { font-weight: bold; }
+.sets { margin: 0.1rem 0 0.3rem 0.9rem; list-style: none; }
+.setClasses { color: var(--ink-soft); font-size: 0.82rem; }

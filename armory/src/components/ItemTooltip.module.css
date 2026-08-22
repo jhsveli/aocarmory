@@ -1,0 +1,5 @@
+.itemTooltip {
+  position: fixed;
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+}

@@ -2,6 +2,7 @@ import type { Section } from "../types";
 import { groupSectionByClass, NO_CLASS_TAG } from "../lib/classView";
 import Collapsible from "./Collapsible";
 import { SetItems, SetLabel } from "./SectionTree";
+import styles from "./ClassTree.module.css";
 
 /**
  * Class-usability view of a section: Section -> Class tag -> Set -> Item.
@@ -41,7 +42,7 @@ export default function ClassTree({ section }: { section: Section }) {
                   label={
                     <>
                       <SetLabel set={entry.set} />
-                      <span className="setContext">
+                      <span className={styles.setContext}>
                         {" "}
                         {[entry.category, entry.location].filter(Boolean).join(" · ")}
                       </span>

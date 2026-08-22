@@ -5,6 +5,8 @@ import { searchArmory } from "../lib/search";
 import ItemName from "../components/ItemName";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import { SLOT_LABEL } from "../lib/format";
+import layoutStyles from "../styles/layout.module.css";
+import styles from "./SearchPage.module.css";
 
 export default function SearchPage() {
   const [params] = useSearchParams();
@@ -12,11 +14,11 @@ export default function SearchPage() {
   const results = useMemo(() => (q ? searchArmory(q) : []), [q]);
 
   return (
-    <div className="contentWrap">
-      <div className="content">
+    <div className={layoutStyles.contentWrap}>
+      <div className={layoutStyles.content}>
         <h1>Search results</h1>
         {!q && (
-          <p className="searchExamples">
+          <p className={styles.searchExamples}>
             Type a search in the box at the top: an item, set, location, category or section name,
             or a class tag (<em>sin</em>, <em>hox</em>), slot (<em>hands</em>) or rarity (
             <em>rare</em>). Examples: <em>the+grasslands belt</em>, <em>pillars+of+heaven</em>,{" "}
@@ -26,11 +28,11 @@ export default function SearchPage() {
         {q && results.length === 0 && <p>Your search did not match any items.</p>}
         {q && results.length > 0 && (
           <>
-            <p className="searchMeta">
+            <p className={styles.searchMeta}>
               {results.length} match{results.length === 1 ? "" : "es"} for “
               {q}” (showing up to 300).
             </p>
-            <ol className="searchResults">
+            <ol className={styles.searchResults}>
               {results.map((r) => {
                 const it = r.item.item;
                 return (
@@ -55,7 +57,7 @@ export default function SearchPage() {
           </>
         )}
       </div>
-      <aside className="rightColumn">
+      <aside className={layoutStyles.rightColumn}>
         <ItemDetailsPanel />
       </aside>
     </div>

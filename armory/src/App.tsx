@@ -10,7 +10,6 @@ import AboutPage from "./pages/AboutPage";
 import SearchPage from "./pages/SearchPage";
 import BuilderPage from "./pages/BuilderPage";
 import "./styles/global.css";
-import "./styles/armory.css";
 
 /** Routes only — used by the app and by tests (which supply their own router). */
 export function AppRoutes() {

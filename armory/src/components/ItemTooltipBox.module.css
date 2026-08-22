@@ -1,0 +1,47 @@
+.tooltipBox {
+  background: #1a1512;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
+  padding: 0.6rem 0.75rem;
+  max-width: 340px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #d8c9a8;
+}
+.tooltipBox .tooltipName {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 0.35rem;
+}
+.tooltipBox .line { white-space: normal; }
+.tooltipBox .missing {
+  color: #cbb98f;
+  font-size: 0.8rem;
+  max-width: 300px;
+}
+/* rarity colors lightened for the dark panel (readable on #1a1512);
+   the .r-* classes themselves are global utilities */
+.tooltipBox :global(.r-mundane) { color: #b4b4b2; }
+.tooltipBox :global(.r-superior) { color: #c6c6c6; }
+.tooltipBox :global(.r-enchanted) { color: #7cc258; }
+.tooltipBox :global(.r-rare) { color: #4da8dd; }
+.tooltipBox :global(.r-epic) { color: #c46ae0; }
+.tooltipBox :global(.r-legendary) { color: #f0a94f; }
+
+/* compact variant (armor builder slots) */
+.compact {
+  max-width: 100%;
+  max-height: 86px;
+  overflow: hidden;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  padding: 0.35rem 0.45rem;
+}
+.compact .tooltipName {
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

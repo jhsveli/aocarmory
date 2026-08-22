@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { meta } from "../data";
 import { fmtNumber } from "../lib/format";
+import layoutStyles from "../styles/layout.module.css";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   return (
-    <div className="contentWrap">
-      <div className="content">
+    <div className={layoutStyles.contentWrap}>
+      <div className={layoutStyles.content}>
         <h1>Welcome to the Age of Conan Armory</h1>
         <p>
           Here you'll find information about some of the endgame gear which you can obtain.
@@ -61,7 +62,7 @@ export default function HomePage() {
         </p>
       </div>
 
-      <aside className="rightColumn">
+      <aside className={layoutStyles.rightColumn}>
         <div className={styles.rightBox}>
           <div className={styles.header}>Statistics</div>
           <div className={styles.body}>

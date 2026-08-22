@@ -1,0 +1,2 @@
+.itemPrice { float: right; color: var(--ink-soft); font-size: 0.8rem; margin-left: 0.8rem; }
+.itemPrice img.coin { vertical-align: text-bottom; margin: 0 2px; }

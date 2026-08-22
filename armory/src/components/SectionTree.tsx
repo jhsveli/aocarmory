@@ -4,6 +4,7 @@ import { IMG_BASE } from "../lib/format";
 import Collapsible from "./Collapsible";
 import ItemName from "./ItemName";
 import Price from "./Price";
+import styles from "./SectionTree.module.css";
 
 /** The full Section -> Location -> Category -> Set -> Item browsing tree. */
 export default function SectionTree({ section }: { section: Section }) {
@@ -22,7 +23,7 @@ export default function SectionTree({ section }: { section: Section }) {
 function LocationNode({ loc }: { loc: Location }) {
   return (
     <Collapsible
-      className={loc.type ?? ""}
+      className={loc.type ? styles[loc.type] : undefined}
       label={
         <>
           <strong>{loc.name ?? "Unknown location"}</strong>
@@ -30,7 +31,7 @@ function LocationNode({ loc }: { loc: Location }) {
         </>
       }
     >
-      <ul className="categories">
+      <ul className={styles.categories}>
         {loc.categories.map((cat, i) => (
           <CategoryNode key={`${cat.name}-${i}`} cat={cat} />
         ))}
@@ -72,7 +73,7 @@ function SetNode({ set }: { set: Set }) {
 /** The item list of a set (prices, drop locations, rarity-colored names, slots). */
 export function SetItems({ set }: { set: Set }) {
   return (
-    <ul className="items">
+    <ul className={styles.items}>
       {set.items.map((item) => (
         <li key={`${item.id}-${item.name}`}>
           <Price price={item.price} />
@@ -94,7 +95,7 @@ export function SetLabel({ set }: { set: Set }) {
       )}
       {set.builder && (
         <a
-          className="builderLink"
+          className={styles.builderLink}
           href={`/builder?ab=${set.builder}`}
           title="Open in Armor builder"
         >
