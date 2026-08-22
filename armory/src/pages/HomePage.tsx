@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { meta } from "../data";
 import { fmtNumber } from "../lib/format";
+import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   return (
@@ -61,10 +62,10 @@ export default function HomePage() {
       </div>
 
       <aside className="rightColumn">
-        <div className="rightBox">
-          <div className="header">Statistics</div>
-          <div className="body">
-            <table className="statsTable">
+        <div className={styles.rightBox}>
+          <div className={styles.header}>Statistics</div>
+          <div className={styles.body}>
+            <table className={styles.statsTable}>
               <tbody>
                 <tr>
                   <th>Sections</th>

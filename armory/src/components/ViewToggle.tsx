@@ -1,3 +1,5 @@
+import styles from "./ViewToggle.module.css";
+
 export type SectionView = "location" | "class";
 
 interface Props {
@@ -8,10 +10,10 @@ interface Props {
 /** Segmented control switching between the drop-location and class-usability views. */
 export default function ViewToggle({ view, onChange }: Props) {
   return (
-    <div className="viewToggle" role="group" aria-label="Section view">
+    <div className={styles.viewToggle} role="group" aria-label="Section view">
       <button
         type="button"
-        className={view === "location" ? "active" : ""}
+        className={view === "location" ? styles.active : undefined}
         aria-pressed={view === "location"}
         onClick={() => onChange("location")}
       >
@@ -19,7 +21,7 @@ export default function ViewToggle({ view, onChange }: Props) {
       </button>
       <button
         type="button"
-        className={view === "class" ? "active" : ""}
+        className={view === "class" ? styles.active : undefined}
         aria-pressed={view === "class"}
         onClick={() => onChange("class")}
       >

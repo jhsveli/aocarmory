@@ -1,0 +1,5 @@
+/* Collapsible open/closed state. The .nodeLabel class itself is global
+   (shared with SectionTree), so it is referenced via :global() here. */
+.collapsed > :global(.nodeLabel)::before { content: "\25B8"; }
+.expanded > :global(.nodeLabel)::before { content: "\25BE"; }
+.collapsed > .children { display: none; }

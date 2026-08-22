@@ -85,16 +85,34 @@ src/pages/<Name>.module.css        # one per page
   `role="tooltip"` on the floating tooltip, `role="button"` +
   `aria-expanded` on collapsible labels (with keyboard support),
   `data-testid="item-name"` on item links.
-- **Phase 1 — `global.css`:** extract tokens/resets/utilities. Zero visual
-  change; `armory.css` keeps the rest.
-- **Phase 2 — Leaf modules** (no shared-class consumers): `ItemName`,
-  `ViewToggle`, `Collapsible`, `AttributeCalculator`, and the unique-class
-  pages (`Home`, `ArmorSets`, `Factions`, `About`, `Links`, `SectionPage`).
-- **Phase 3 — Cross-cutting:** `ItemTooltipBox` + `className` prop, then
-  `ItemDetailsPanel`, `ItemTooltip`, `layout.module.css`, `Layout`,
-  `SectionTree`/`ClassTree`, `SearchPage`, `BuilderPage` — order matters
-  because of the seams (e.g. `ItemTooltipBox`'s prop must land with its
-  consumers).
+- **Phase 1 — `global.css` (done):** tokens, resets, `.page-intro`, `.itemSlot`,
+  `.r-*` extracted; `armory.css` keeps the rest.
+- **Phase 2 — Leaf modules (done):** `ViewToggle`, `Collapsible`,
+  `AttributeCalculator`, `HomePage`, `ArmorSetsPage`, `FactionsPage`,
+  `AboutPage`, `SectionPage` moved to colocated `*.module.css`; rules removed
+  from `armory.css` (594 → 431 lines).
+- **Phase 3 — Cross-cutting (next):** `ItemTooltipBox` + `className` prop, then
+  `ItemDetailsPanel`, `ItemTooltip`, `layout.module.css` (`content`,
+  `contentWrap`, `rightColumn`), `Layout`, `SectionTree`/`ClassTree`,
+  `SearchPage`, `BuilderPage` — order matters because of the seams (e.g.
+  `ItemTooltipBox`'s prop must land with its consumers).
+- **Phase 4 — Delete `armory.css`** once the last rule moves; final full
+  verification + browser pass of every page.
+
+### Deviations from the original plan (discovered during execution)
+
+- **No `ItemName.module.css`** — there are no standalone `.itemName` rules in
+  `armory.css` (rarity colors come from the global `.r-*` utilities). The
+  class only appears in BuilderPage's `.builderSearchList .itemName` seam,
+  which Phase 3 handles.
+- **`.nodeLabel` base → global** — shared by `Collapsible` and `SectionTree`
+  (SectionTree's no-sets label and its `.locations > li > .nodeLabel`
+  descendant rules). The open/closed arrow/state rules went into
+  `Collapsible.module.css` via `:global(.nodeLabel)`.
+- **`.linksList` → global** — shared by `AboutPage` and `LinksPage`, so no
+  `LinksPage.module.css` was created.
+- **`rightBox`/`header`/`body`/`statsTable` → `HomePage.module.css`** — only
+  HomePage uses them now (the Section-page info box is gone).
 - **Phase 4 — Delete `armory.css`** once the last rule moves; final full
   verification + browser pass of every page.
 

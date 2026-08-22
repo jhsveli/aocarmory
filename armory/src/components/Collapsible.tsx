@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
+import styles from "./Collapsible.module.css";
 
 interface Props {
   label: ReactNode;
@@ -13,7 +14,7 @@ interface Props {
 export default function Collapsible({ label, defaultOpen = true, className, children }: Props) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <li className={`${open ? "expanded" : "collapsed"} ${className ?? ""}`.trim()}>
+    <li className={`${open ? styles.expanded : styles.collapsed} ${className ?? ""}`.trim()}>
       <span
         className="nodeLabel"
         role="button"
@@ -29,7 +30,7 @@ export default function Collapsible({ label, defaultOpen = true, className, chil
       >
         {label}
       </span>
-      {open && <div className="children">{children}</div>}
+      {open && <div className={styles.children}>{children}</div>}
     </li>
   );
 }

@@ -81,3 +81,17 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
 .r-rare { color: var(--r-rare); font-weight: bold; }
 .r-epic { color: var(--r-epic); font-weight: bold; }
 .r-legendary { color: var(--r-legendary); font-weight: bold; }
+
+/* collapsible tree label (shared by Collapsible + SectionTree; the open/closed
+   arrow states are scoped in Collapsible.module.css) */
+.nodeLabel { cursor: pointer; user-select: none; }
+.nodeLabel::before {
+  content: "\25B8";
+  display: inline-block;
+  width: 1em;
+  color: var(--line-dark);
+}
+
+/* link list (shared by About + Links pages) */
+.linksList { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.linksList li { margin: 0.3rem 0; }

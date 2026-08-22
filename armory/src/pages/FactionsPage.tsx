@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styles from "./FactionsPage.module.css";
 
 // Rise of the Godslayer faction content from the archived Factions page.
 const OPPOSITIONS: Array<[string, string]> = [
@@ -44,14 +45,14 @@ export default function FactionsPage() {
       </p>
 
       <h2>The opposing factions in Rise of the Godslayer are:</h2>
-      <div className="factionOppositions">
+      <div className={styles.factionOppositions}>
         {OPPOSITIONS.map(([a, b]) => (
           <div key={a} style={{ display: "contents" }}>
-            <span className="side">
+            <span className={styles.side}>
               <Link to={`/s/${FACTION_IDS[a]}`}>{a}</Link>
             </span>
-            <span className="vs">vs</span>
-            <span className="side">
+            <span className={styles.vs}>vs</span>
+            <span className={styles.side}>
               <Link to={`/s/${FACTION_IDS[b]}`}>{b}</Link>
             </span>
           </div>

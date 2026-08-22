@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./AttributeCalculator.module.css";
 import {
   ATTRIBUTE_KEYS, ATTRIBUTES, calculateAttribute, type AttributeKey,
 } from "../lib/attributes";
@@ -28,13 +29,13 @@ export default function AttributeCalculator({ open, onClose }: Props) {
   const def = ATTRIBUTES.find((a) => a.key === attr);
 
   return (
-    <div className="calcOverlay" onClick={onClose}>
-      <div className="calcCard" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Attribute trickle-down calculator">
-        <button className="closeBtn" onClick={onClose} aria-label="Close calculator">✕ close</button>
+    <div className={styles.calcOverlay} onClick={onClose}>
+      <div className={styles.calcCard} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Attribute trickle-down calculator">
+        <button className={styles.closeBtn} onClick={onClose} aria-label="Close calculator">✕ close</button>
         <h2 style={{ marginTop: 0 }}>Attribute trickle-down calculator</h2>
         <p className="page-intro">{def?.blurb}</p>
         <form
-          className="calcForm"
+          className={styles.calcForm}
           onSubmit={(e) => e.preventDefault()}
         >
           <input
@@ -50,7 +51,7 @@ export default function AttributeCalculator({ open, onClose }: Props) {
             ))}
           </select>
         </form>
-        <div className="calcResults">
+        <div className={styles.calcResults}>
           <table>
             <tbody>
               {result.rows.map((row) => (
@@ -65,7 +66,7 @@ export default function AttributeCalculator({ open, onClose }: Props) {
             </tbody>
           </table>
         </div>
-        <p className="calcNote">
+        <p className={styles.calcNote}>
           Per the officially documented attribute effects (combat revamp). Health from
           Constitution varies roughly 5–8 per point by class; 6.5 is used here.
         </p>

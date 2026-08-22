@@ -1,3 +1,5 @@
+import styles from "./AboutPage.module.css";
+
 // Milestones and credits reproduced from the archived About page.
 
 const MILESTONES: Array<[string, string]> = [
@@ -54,10 +56,10 @@ export default function AboutPage() {
       </p>
 
       <h2>Milestones</h2>
-      <ul className="milestones">
+      <ul className={styles.milestones}>
         {MILESTONES.map(([date, text]) => (
           <li key={date}>
-            <span className="date">{date}</span> — {text}
+            <span className={styles.date}>{date}</span> — {text}
           </li>
         ))}
       </ul>

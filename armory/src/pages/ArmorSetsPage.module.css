@@ -1,0 +1,14 @@
+.armorSetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+.armorSetCard {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.7rem 0.9rem;
+}
+.armorSetCard h3 { margin-top: 0; }
+.armorSetCard ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
+.armorSetCard li { margin: 0.12rem 0; font-size: 0.88rem; }

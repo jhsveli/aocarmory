@@ -4,6 +4,7 @@ import SectionTree from "../components/SectionTree";
 import ClassTree from "../components/ClassTree";
 import ViewToggle, { type SectionView } from "../components/ViewToggle";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
+import styles from "./SectionPage.module.css";
 
 export default function SectionPage() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function SectionPage() {
     return (
       <div className="contentWrap">
         <div className="content">
-          <div className="sectionHead">
+          <div className={styles.sectionHead}>
             <h1>All sections</h1>
             <ViewToggle view={view} onChange={setView} />
           </div>
@@ -54,7 +55,7 @@ export default function SectionPage() {
   return (
     <div className="contentWrap">
       <div className="content">
-        <div className="sectionHead">
+        <div className={styles.sectionHead}>
           <h1>{section.name}</h1>
           <ViewToggle view={view} onChange={setView} />
         </div>
