@@ -1,22 +1,25 @@
 import { createContext, useContext } from "react";
 import type { Item } from "../types";
 
-interface TooltipApi {
-  /** Hover preview — the panel shows this item until the pointer leaves. */
-  show: (item: Item) => void;
-  /** Pointer left the item/panel — clears the preview unless the item is pinned. */
+interface ItemDetailsApi {
+  /** Hover — shows the floating tooltip near the cursor. */
+  show: (item: Item, x: number, y: number) => void;
+  /** Pointer left the item — hides the floating tooltip. */
   hide: () => void;
-  /** Click/tap — pins the item in the panel (click/tap again to unpin). */
+  /** Click/tap — pins the item in the right-side panel (click/tap again to unpin). */
   toggle: (item: Item) => void;
-  /** Closes the panel entirely (pinned or not). */
+  /** Closes the right-side panel. */
   clear: () => void;
+  /** The click-pinned item shown in the docked panel (null when empty). */
+  panelItem: Item | null;
 }
 
-export const ItemDetails = createContext<TooltipApi>({
+export const ItemDetails = createContext<ItemDetailsApi>({
   show: () => {},
   hide: () => {},
   toggle: () => {},
   clear: () => {},
+  panelItem: null,
 });
 
 export function useItemDetails() {

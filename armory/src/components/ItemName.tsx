@@ -12,9 +12,9 @@ interface Props {
 }
 
 /**
- * Rarity-colored item name. Hovering (or focusing) previews the item in the
- * right-side detail panel; clicking/tapping pins it there — click/tap again
- * to unpin.
+ * Rarity-colored item name. Hovering shows a floating tooltip near the
+ * cursor; clicking/tapping pins the item in the right-side detail panel
+ * (click/tap again to unpin).
  */
 export default function ItemName({ item, className, draggable, onDragStart }: Props) {
   const tip = useItemDetails();
@@ -28,15 +28,19 @@ export default function ItemName({ item, className, draggable, onDragStart }: Pr
     <a
       href="#"
       className={cls}
+      data-testid="item-name"
       draggable={draggable}
       onDragStart={onDragStart}
       onClick={(e) => {
         e.preventDefault();
         tip.toggle(item);
       }}
-      onMouseEnter={() => tip.show(item)}
+      onMouseMove={(e) => tip.show(item, e.clientX, e.clientY)}
       onMouseLeave={tip.hide}
-      onFocus={() => tip.show(item)}
+      onFocus={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        tip.show(item, r.left, r.top);
+      }}
       onBlur={tip.hide}
     >
       {item.name}

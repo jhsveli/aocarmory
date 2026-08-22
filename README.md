@@ -15,11 +15,13 @@ for Last Legion 2021 and Consumable Books 2017).
 - **Home** — welcome text and live statistics
 - **Browse** — collapsible Section → Location → Category → Set → Item trees,
   with rarity-colored item names, prices (Mark of Acclaim / Rare Trophy / Gold),
-  dungeon drop locations, and a right-side **item detail panel**: hovering an
-  item previews its stats there; clicking/tapping pins them (works with mouse,
-  touch and keyboard). The panel mimics the original tooltip screenshot, filled
-  with the item's stats OCR-extracted from it (no hotlinked images). A **view
-  toggle** switches between *By drop /
+  dungeon drop locations, a near-cursor **hover tooltip**, and a docked
+  **item detail panel** in the page's right column that pins an item's stats on
+  click/tap (works with mouse, touch and keyboard; the panel only changes on
+  click). Both render the OCR-extracted stats in the original
+  tooltip-screenshot style, and the panel also shows the original tooltip
+  screenshot underneath for side-by-side comparison. A **view toggle** switches
+  between *By drop /
   location* (default) and *By class* (Section → class tag → Set → Item, with
   category + drop-location context labels; combined tags like [Demo/Necro] stay
   combined; untagged sets appear under "No class tag"). The view lives in the
@@ -80,7 +82,8 @@ The `scripts/` folder contains the Python tooling used to recover the data:
    (`static.is-better-than.tv/armory/*.jpg`), OCRs them with Tesseract, parses
    the text into structured stats, and bakes `tooltip` + `stats` into the
    dataset. `research/armory_data.json` keeps the `image` url as provenance;
-   the app dataset drops it. Resumable: re-runs skip finished work, and
+   the app dataset keeps it too, so the detail panel can hotlink the original
+   screenshot. Resumable: re-runs skip finished work, and
    `--reparse` re-runs only the structured parse over cached OCR text.
 
 To regenerate the app dataset after re-running the parser:
@@ -91,19 +94,25 @@ python scripts/extract_tooltips.py          # download + OCR -> research/tooltip
 python scripts/extract_tooltips.py --merge  # bake tooltip/stats into both datasets
 ```
 
-(`--merge` writes the minified app dataset `armory/src/data/armory_data.json`
-without the `image` field; `research/tooltips_report.json` records the counts.)
+(`--merge` writes the minified app dataset `armory/src/data/armory_data.json`,
+keeping the `image` url; `research/tooltips_report.json` records the counts.)
 
 ## Notes & limitations
 
-- Item stats are OCR-extracted text rendered in a right-side detail panel —
-  the app no longer hotlinks the tooltip screenshots. `research/images/` holds the
+- Item stats are OCR-extracted text rendered in a right-side detail panel;
+  the panel hotlinks the original tooltip screenshot from the static host for
+  side-by-side comparison. `research/images/` holds the
   downloaded screenshots and `research/tooltips.json` the OCR text (raw
   `tooltip` + structured `stats`); `research/tooltips_report.json` records
   per-stage counts (downloads ok/failed, OCR empty, merged). OCR quality on the
   stylized colored game text is imperfect; the raw text is always preserved so
   misreads can be fixed with `--reparse` without re-running OCR. Coin icons are
   still hotlinked from the original static host (`static.is-better-than.tv`).
+- Structured tooltip stats use normalized property keys (`itemLevel`,
+  `requiresLevel`, `values: [{armor: N}, {critigation: N}]`, and
+  `attributes: [{strength: N}, ...]`). The panel resolves display labels
+  through the language file `armory/src/lib/stat-labels.ts` — add any new OCR
+  attribute names there.
 - A handful of `ab=` builder links captured from the 2023 armorsets page are
   corrupt in the archive; those decode to an empty builder (handled gracefully).
 - The attribute calculator uses the officially documented per-point effects

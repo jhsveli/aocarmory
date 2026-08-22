@@ -165,17 +165,24 @@ function filtered() {
 
 function statsRows(stats) {
   const rows = [];
-  if (stats.level) rows.push(["Level", String(stats.level)]);
+  if (stats.itemLevel) rows.push(["Item level", String(stats.itemLevel)]);
   if (stats.type) rows.push(["Type", stats.type]);
-  if (stats.armor) rows.push(["Armor", String(stats.armor)]);
+  if (stats.requiresLevel) rows.push(["Requires level", String(stats.requiresLevel)]);
+  if (stats.requires) rows.push(["Requires", stats.requires]);
+  for (const v of stats.values || []) {
+    const e = Object.entries(v)[0];
+    rows.push([e[0], String(e[1])]);
+  }
   if (stats.damage) rows.push(["Damage", stats.damage.min + " - " + stats.damage.max]);
   if (stats.dps) rows.push(["DPS", String(stats.dps)]);
-  if (stats.requires) rows.push(["Requires", stats.requires]);
   if (stats.binds) rows.push(["Binds", BIND_LABEL[stats.binds] || stats.binds]);
   if (stats.set) rows.push(["Set", stats.set]);
   for (const b of stats.setBonuses || []) rows.push(["Set bonus", b]);
-  for (const a of stats.attributes || []) rows.push(["Attribute", a]);
-  for (const e of stats.effects || []) rows.push(["Effect", e]);
+  for (const a of stats.attributes || []) {
+    const e = Object.entries(a)[0];
+    rows.push(["Attribute", (e[1] >= 0 ? "+" : "") + e[1] + " " + e[0]]);
+  }
+  for (const f of stats.effects || []) rows.push(["Effect", f]);
   if (stats.description) rows.push(["Description", stats.description]);
   for (const l of stats.lines || []) rows.push(["Line", l]);
   return rows;

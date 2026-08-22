@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { TooltipProvider } from "../components/ItemTooltip";
 import { AppRoutes } from "../App";
@@ -113,46 +113,57 @@ describe("App rendering", () => {
   });
 });
 
-describe("Item detail panel", () => {
+describe("Item hover tooltip and detail panel", () => {
   /** Renders a section page and expands the first set so item names show. */
   function renderWithItems() {
-    const view = renderAt("/s/1");
-    const setLabel = view.container.querySelector<HTMLElement>(".sets .nodeLabel");
-    expect(setLabel).not.toBeNull();
-    fireEvent.click(setLabel!);
-    const name = view.container.querySelector<HTMLElement>(".itemName");
-    expect(name).not.toBeNull();
-    return { name: name!, itemLabel: name!.textContent! };
+    renderAt("/s/1");
+    // set labels start collapsed — expand the first one to render its items
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const name = screen.getAllByTestId("item-name")[0] as HTMLElement;
+    return { name, itemLabel: name.textContent! };
   }
 
-  it("previews an item on hover, pins it on click, and closes via the close button", async () => {
+  it("shows a floating tooltip on hover and hides it on leave", async () => {
     const { name, itemLabel } = renderWithItems();
-    const inPanel = () => screen.queryByText(itemLabel, { selector: ".itemPanel .tooltipName" });
 
-    // hover previews the item in the right-side panel
-    fireEvent.mouseEnter(name);
-    expect(await screen.findByText(itemLabel, { selector: ".itemPanel .tooltipName" }))
-      .toBeInTheDocument();
+    // hover shows the floating near-cursor tooltip
+    fireEvent.mouseMove(name, { clientX: 120, clientY: 80 });
+    const tip = await screen.findByRole("tooltip");
+    expect(within(tip).getByText(itemLabel)).toBeInTheDocument();
 
-    // clicking pins it — it survives mouse leave
-    fireEvent.click(name);
+    // leaving hides it — and hover never touches the right-side panel
     fireEvent.mouseLeave(name);
-    expect(inPanel()).toBeInTheDocument();
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+    const panel = screen.getByRole("complementary", { name: "Item details" });
+    expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
+  });
+
+  it("pins an item in the right-side panel on click and closes via the close button", async () => {
+    const { name, itemLabel } = renderWithItems();
+
+    fireEvent.click(name);
+    const panel = await screen.findByRole("complementary", { name: "Item details" });
+    expect(within(panel).getByText(itemLabel)).toBeInTheDocument();
+
+    // the original tooltip screenshot is shown below the stats for comparison
+    const img = within(panel).getByRole("img");
+    expect(img.getAttribute("src")).toMatch(
+      /^https:\/\/static\.is-better-than\.tv\/armory\//,
+    );
 
     // the close button clears the panel
-    fireEvent.click(screen.getByRole("button", { name: "Close item details" }));
-    expect(inPanel()).not.toBeInTheDocument();
+    fireEvent.click(within(panel).getByRole("button", { name: "Close item details" }));
+    expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
   });
 
   it("unpins an item when it is clicked again", async () => {
     const { name, itemLabel } = renderWithItems();
-    const inPanel = () => screen.queryByText(itemLabel, { selector: ".itemPanel .tooltipName" });
 
     fireEvent.click(name); // pin
-    expect(await screen.findByText(itemLabel, { selector: ".itemPanel .tooltipName" }))
-      .toBeInTheDocument();
+    const panel = await screen.findByRole("complementary", { name: "Item details" });
+    expect(within(panel).getByText(itemLabel)).toBeInTheDocument();
 
     fireEvent.click(name); // unpin
-    expect(inPanel()).not.toBeInTheDocument();
+    expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
   });
 });

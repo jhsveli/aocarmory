@@ -8,6 +8,7 @@ import { searchArmory } from "../lib/search";
 import { decodeBuilder, encodeBuilder } from "../lib/builder";
 import ItemName from "../components/ItemName";
 import ItemTooltipBox from "../components/ItemTooltipBox";
+import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import AttributeCalculator from "../components/AttributeCalculator";
 
 /** The builder slot grid (mirrors the original site's draggable slot groups). */
@@ -155,6 +156,7 @@ export default function BuilderPage() {
               <li className="page-intro">Search by name, slot, class or rarity above.</li>
             )}
           </ul>
+          <ItemDetailsPanel />
         </div>
 
         <div>

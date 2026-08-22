@@ -3,6 +3,7 @@ import { sections } from "../data";
 import SectionTree from "../components/SectionTree";
 import ClassTree from "../components/ClassTree";
 import ViewToggle, { type SectionView } from "../components/ViewToggle";
+import ItemDetailsPanel from "../components/ItemDetailsPanel";
 
 export default function SectionPage() {
   const { id } = useParams();
@@ -18,19 +19,24 @@ export default function SectionPage() {
 
   if (!id || id === "all") {
     return (
-      <div className="content">
-        <div className="sectionHead">
-          <h1>All sections</h1>
-          <ViewToggle view={view} onChange={setView} />
-        </div>
-        {sections.map((s) => (
-          <div key={s.id} style={{ marginBottom: "1.2rem" }}>
-            <h2>
-              <Link to={`/s/${s.id}`}>{s.name}</Link>
-            </h2>
-            {tree(s)}
+      <div className="contentWrap">
+        <div className="content">
+          <div className="sectionHead">
+            <h1>All sections</h1>
+            <ViewToggle view={view} onChange={setView} />
           </div>
-        ))}
+          {sections.map((s) => (
+            <div key={s.id} style={{ marginBottom: "1.2rem" }}>
+              <h2>
+                <Link to={`/s/${s.id}`}>{s.name}</Link>
+              </h2>
+              {tree(s)}
+            </div>
+          ))}
+        </div>
+        <aside className="rightColumn">
+          <ItemDetailsPanel />
+        </aside>
       </div>
     );
   }
@@ -52,22 +58,14 @@ export default function SectionPage() {
           <h1>{section.name}</h1>
           <ViewToggle view={view} onChange={setView} />
         </div>
+        <p className="page-intro">
+          {section.locations.length} location{section.locations.length === 1 ? "" : "s"} in
+          this section.
+        </p>
         {tree(section)}
       </div>
       <aside className="rightColumn">
-        <div className="rightBox">
-          <div className="header">Section info</div>
-          <div className="body" style={{ fontSize: "0.85rem" }}>
-            <p>
-              {section.locations.length} location{section.locations.length === 1 ? "" : "s"} in
-              this section.
-            </p>
-            <p>
-              Hover an item to see its tooltip. Use the <strong>builder</strong> link next to a
-              set to load it into the armor builder.
-            </p>
-          </div>
-        </div>
+        <ItemDetailsPanel />
       </aside>
     </div>
   );

@@ -14,7 +14,14 @@ This script:
   4. caches the result in research/tooltips.json,
   5. --merge bakes tooltip/stats into research/armory_data.json (which keeps
      the image url as provenance) and regenerates the minified app dataset
-     armory/src/data/armory_data.json WITHOUT the image field.
+     armory/src/data/armory_data.json (image kept for the panel's
+     original-screenshot comparison view).
+
+Stats schema: scalar stats use explicit properties (itemLevel, requiresLevel);
+armor/critigation are { "<name>": <number> } entries in stats["values"];
+attribute bonuses are { "<name>": <number> } entries in stats["attributes"].
+Property names are normalized OCR keys; the client resolves their display
+labels from armory/src/lib/stat-labels.ts.
 
 Run stages:
     python scripts/extract_tooltips.py --sample 25        # tune preprocessing
@@ -180,8 +187,10 @@ def ocr_image(path, pytesseract, binarize=False, psm=6):
 RE_BINDS = re.compile(r"^Binds (when Picked Up|on Pickup|on Equip|on Acquire)\b", re.I)
 RE_LEVEL = re.compile(r"^Level[: ]?\s*(\d+)$", re.I)
 RE_ITEM_LEVEL = re.compile(r"^Item Level[: ]?\s*(\d+)", re.I)
+RE_REQUIRES_LEVEL = re.compile(r"^Requires Level[: ]?\s*(\d+)", re.I)
 RE_ARMOR_A = re.compile(r"^Armor[: ]?\s*(\d+)$", re.I)
 RE_ARMOR_B = re.compile(r"^(\d+)\s*Armor$", re.I)
+RE_CRITIGATION = re.compile(r"^(\d+)\s*Critigation Amount$", re.I)
 RE_DAMAGE = re.compile(r"^Damage[: ]?\s*([\d\s,]+)\s*-\s*([\d\s,]+)$", re.I)
 RE_DPS = re.compile(r"^DPS[: ]?\s*([\d.]+)$", re.I)
 RE_DPS_WITH_DMG = re.compile(r"^([\d.]+)\s*DPS\s*\((\d+)\s*-\s*(\d+)\)$", re.I)
@@ -205,6 +214,33 @@ def _norm_name(name):
 def _strip_decor(line):
     """Remove tooltip-frame decoration characters from a line."""
     return DECOR_TAIL.sub("", DECOR_LEAD.sub("", line)).strip()
+
+
+# OCR reads the small "v" in "PvP" as 'y' or a yen sign (U+00A5 / U+FFFD),
+# and commonly mangles a few other words. Normalize so attribute property
+# names are stable keys for the display language file (stat-labels.ts).
+ATTR_OCR_FIXES = (
+    ("PyP", "PvP"),
+    ("Py\u00a5P", "PvP"), ("P\u00a5P", "PvP"),
+    ("Py\ufffdP", "PvP"), ("P\ufffdP", "PvP"),
+    ("Darnage", "Damage"), ("Darmage", "Damage"), ("Darnmage", "Damage"),
+    ("Darmnage", "Damage"), ("Darnnage", "Damage"),
+    ("Strenath", "Strength"), ("Wisdorn", "Wisdom"),
+    ("Combst", "Combat"), ("Cambat", "Combat"),
+    ("Mansa", "Mana"), ("Mans", "Mana"),
+    ("Starnina", "Stamina"), ("Starmina", "Stamina"),
+)
+
+
+def _norm_attr_name(name):
+    """Normalize an OCR'd attribute label into a stable lowercase property key."""
+    name = name.strip().strip(" .|'\"!")
+    name = name.replace("{", "(").replace("}", ")")
+    for bad, good in ATTR_OCR_FIXES:
+        name = name.replace(bad, good)
+    if name.count("(") < name.count(")"):
+        name = name.rstrip(")")
+    return name.lower()
 # Weapon-ish / slot type lines that OCR commonly mangles slightly.
 TYPE_HINTS = ("sword", "axe", "mace", "staff", "bow", "shield", "dagger",
               "talisman", "polearm", "hammer", "blade", "claw", "whip",
@@ -236,6 +272,7 @@ def parse_stats(lines, name=None):
         "attributes": [],
         "effects": [],
         "setBonuses": [],
+        "values": [],
         "lines": [],
     }
     pending = []  # unrecognized lines, awaiting description/type classification
@@ -293,10 +330,21 @@ def parse_stats(lines, name=None):
             continue
         m = RE_LEVEL.match(line) or RE_ITEM_LEVEL.match(line)
         if m:
-            flush_pending(); stats["level"] = int(m.group(1)); continue
+            flush_pending(); stats["itemLevel"] = int(m.group(1)); continue
+        m = RE_REQUIRES_LEVEL.match(line)
+        if m:
+            flush_pending()
+            if "requiresLevel" not in stats:
+                stats["requiresLevel"] = int(m.group(1))
+            else:
+                pending.append(line)
+            continue
         m = RE_ARMOR_A.match(line) or RE_ARMOR_B.match(line)
         if m:
-            flush_pending(); stats["armor"] = int(m.group(1)); continue
+            flush_pending(); stats["values"].append({"armor": int(m.group(1))}); continue
+        m = RE_CRITIGATION.match(line)
+        if m:
+            flush_pending(); stats["values"].append({"critigation": int(m.group(1))}); continue
         m = RE_DAMAGE.match(line)
         if m:
             flush_pending()
@@ -312,8 +360,11 @@ def parse_stats(lines, name=None):
         m = RE_DPS.match(line)
         if m:
             flush_pending(); stats["dps"] = float(m.group(1)); continue
-        if RE_ATTR.match(line):
-            flush_pending(); stats["attributes"].append(line); continue
+        m = RE_ATTR.match(line)
+        if m:
+            flush_pending()
+            stats["attributes"].append({_norm_attr_name(m.group(2)): int(m.group(1))})
+            continue
         m = RE_REQUIRES.match(line)
         if m:
             flush_pending()
@@ -395,7 +446,7 @@ def unique_image_jobs(data):
 
 
 def merge(cache):
-    """Bake tooltip/stats into research + app datasets (app drops image)."""
+    """Bake tooltip/stats into research + app datasets (app keeps image)."""
     with open(SRC_DATA, encoding="utf-8") as fh:
         data = json.load(fh)
 
@@ -435,13 +486,8 @@ def merge(cache):
     with open(SRC_DATA, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=1)
 
-    # app dataset: minified, no image field
-    for section in data["sections"]:
-        for loc in section.get("locations", []):
-            for cat in loc.get("categories", []):
-                for set_ in cat.get("sets", []):
-                    for item in set_.get("items", []):
-                        item.pop("image", None)
+    # app dataset: minified; the image url is kept so the item-detail panel
+    # can show the original tooltip screenshot next to the scraped stats
     os.makedirs(os.path.dirname(APP_DATA), exist_ok=True)
     with open(APP_DATA, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))

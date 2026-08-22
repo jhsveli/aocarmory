@@ -4,81 +4,59 @@ import type { Item } from "../types";
 import { ItemDetails } from "./item-details.ts";
 import ItemTooltipBox from "./ItemTooltipBox";
 
-interface PanelState {
+interface TooltipState {
   item: Item;
-  /** Clicked/tapped — stays visible until closed, unpinned, or replaced. */
-  pinned: boolean;
+  x: number;
+  y: number;
 }
 
 const SHOW_DELAY = 120; // ms — avoids flashing when the cursor just passes over a name
-const HIDE_GRACE = 200; // ms — lets the pointer reach the panel before a preview clears
 
 /**
- * Provides the single right-side item-detail panel (replaces the old
- * near-cursor tooltip). Hovering an item previews it in the panel; clicking
- * or tapping pins it there so it survives until closed, unpinned, or replaced.
+ * Provides the near-cursor hover tooltip and the click-pinned item state for
+ * the docked item-detail panel. The panel itself is rendered in-flow by
+ * ItemDetailsPanel (pages place it in their right column); only the floating
+ * tooltip lives here.
  */
 export function TooltipProvider({ children }: { children: ReactNode }) {
-  const [panel, setPanel] = useState<PanelState | null>(null);
+  const [tip, setTip] = useState<TooltipState | null>(null);
+  const [panel, setPanel] = useState<Item | null>(null);
   const showTimer = useRef<number | null>(null);
-  const hideTimer = useRef<number | null>(null);
 
-  const show = useCallback((item: Item) => {
+  const show = useCallback((item: Item, x: number, y: number) => {
     if (showTimer.current) window.clearTimeout(showTimer.current);
-    if (hideTimer.current) window.clearTimeout(hideTimer.current);
-    showTimer.current = window.setTimeout(() => {
-      setPanel((p) =>
-        p?.pinned && p.item.id === item.id ? p : { item, pinned: false },
-      );
-    }, SHOW_DELAY);
+    showTimer.current = window.setTimeout(() => setTip({ item, x, y }), SHOW_DELAY);
   }, []);
 
   const hide = useCallback(() => {
     if (showTimer.current) window.clearTimeout(showTimer.current);
-    hideTimer.current = window.setTimeout(() => {
-      setPanel((p) => (p?.pinned ? p : null));
-    }, HIDE_GRACE);
+    setTip(null);
   }, []);
 
   const toggle = useCallback((item: Item) => {
     if (showTimer.current) window.clearTimeout(showTimer.current);
-    if (hideTimer.current) window.clearTimeout(hideTimer.current);
-    setPanel((p) =>
-      p?.pinned && p.item.id === item.id ? null : { item, pinned: true },
-    );
+    setTip(null); // a tap shouldn't leave the hover tooltip lingering
+    setPanel((p) => (p?.id === item.id ? null : item));
   }, []);
 
   const clear = useCallback(() => {
-    if (showTimer.current) window.clearTimeout(showTimer.current);
-    if (hideTimer.current) window.clearTimeout(hideTimer.current);
     setPanel(null);
   }, []);
 
   return (
-    <ItemDetails.Provider value={{ show, hide, toggle, clear }}>
+    <ItemDetails.Provider value={{ show, hide, toggle, clear, panelItem: panel }}>
       {children}
-      {panel && (
-        <aside
-          className="itemPanel"
-          aria-label="Item details"
-          onMouseEnter={() => {
-            if (hideTimer.current) window.clearTimeout(hideTimer.current);
+      {tip && (
+        <div
+          className="itemTooltip"
+          role="tooltip"
+          style={{
+            left: Math.min(tip.x + 16, window.innerWidth - 360),
+            top: tip.y + 12,
           }}
-          onMouseLeave={hide}
         >
-          <div className="panelHeader">
-            <span className="panelTitle">Item details</span>
-            <button
-              type="button"
-              className="panelClose"
-              onClick={clear}
-              aria-label="Close item details"
-            >
-              ✕
-            </button>
-          </div>
-          <ItemTooltipBox item={panel.item} />
-        </aside>
+          <ItemTooltipBox item={tip.item} />
+        </div>
       )}
     </ItemDetails.Provider>
   );

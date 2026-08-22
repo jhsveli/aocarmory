@@ -1,5 +1,6 @@
-import type { Item, ItemStats } from "../types";
+import type { Item, ItemStats, StatValue } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
+import { statLabel } from "../lib/stat-labels";
 
 interface Props {
   item: Item;
@@ -7,10 +8,16 @@ interface Props {
   compact?: boolean;
 }
 
+/** The single key/value pair of a StatValue (e.g. { armor: 512 }). */
+function statEntry(v: StatValue): [string, number] {
+  return Object.entries(v)[0];
+}
+
 /**
  * Flatten the structured parse into display lines, in the order the original
- * in-game tooltip shows them. Raw OCR lines not covered by the structure
- * (vendor price, faction/rank requirements, sockets, ...) are kept in `lines`.
+ * in-game tooltip shows them. Property labels come from the language file
+ * (stat-labels.ts). Raw OCR lines not covered by the structure (vendor price,
+ * faction/rank requirements, sockets, ...) are kept in `lines`.
  */
 function statLines(stats: ItemStats): string[] {
   const out: string[] = [];
@@ -18,16 +25,24 @@ function statLines(stats: ItemStats): string[] {
   // the original tooltip screenshots never show a "No Bind" line.
   if (stats.binds !== "NO_BIND") out.push(BIND_LABEL[stats.binds]);
   if (stats.type) out.push(stats.type);
-  if (stats.level) out.push(`Item Level ${stats.level}`);
+  if (stats.itemLevel) out.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
+  if (stats.requiresLevel) out.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
   if (stats.requires) out.push(stats.requires);
-  if (stats.armor) out.push(`Armor: ${stats.armor}`);
+  for (const v of stats.values) {
+    const [name, value] = statEntry(v);
+    out.push(`${statLabel(name)}: ${value}`);
+  }
   if (stats.damage && stats.dps) {
     out.push(`${stats.dps} DPS (${stats.damage.min} - ${stats.damage.max})`);
   } else {
     if (stats.damage) out.push(`Damage: ${stats.damage.min} - ${stats.damage.max}`);
     if (stats.dps) out.push(`DPS: ${stats.dps}`);
   }
-  out.push(...stats.attributes, ...stats.effects);
+  for (const a of stats.attributes) {
+    const [name, value] = statEntry(a);
+    out.push(`${value >= 0 ? "+" : ""}${value} ${statLabel(name)}`);
+  }
+  out.push(...stats.effects);
   if (stats.set) out.push(stats.set);
   out.push(...stats.setBonuses);
   if (stats.description) out.push(...stats.description.split("\n"));

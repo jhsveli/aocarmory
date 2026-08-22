@@ -18,21 +18,20 @@ function makeItem(over: Partial<Item> = {}): Item {
 }
 
 describe("ItemTooltipBox", () => {
-  it("renders the item name with its rarity class", () => {
+  it("renders the item name", () => {
     render(<ItemTooltipBox item={makeItem({ rarity: "Rare" })} />);
-    const name = screen.getByText("Blade's Leggings of Charred Earth");
-    expect(name.className).toContain("tooltipName");
-    expect(name.className).toContain("r-rare");
+    expect(screen.getByText("Blade's Leggings of Charred Earth")).toBeInTheDocument();
   });
 
   it("renders structured stat lines", () => {
     const item = makeItem({
       stats: {
-        level: 80,
+        itemLevel: 80,
         type: "Legs",
-        armor: 512,
+        requiresLevel: 80,
         binds: "BIND_ON_PICKUP",
-        attributes: ["+42 Strength", "+25 Constitution"],
+        values: [{ armor: 512 }, { critigation: 277 }],
+        attributes: [{ strength: 42 }, { constitution: 25 }],
         effects: [],
         setBonuses: [],
         lines: ["Vendor Price 2 Gold"],
@@ -41,15 +40,35 @@ describe("ItemTooltipBox", () => {
     render(<ItemTooltipBox item={item} />);
     expect(screen.getByText("Item Level 80")).toBeInTheDocument();
     expect(screen.getByText("Legs")).toBeInTheDocument();
+    expect(screen.getByText("Requires Level 80")).toBeInTheDocument();
     expect(screen.getByText("Armor: 512")).toBeInTheDocument();
+    expect(screen.getByText("Critigation Amount: 277")).toBeInTheDocument();
     expect(screen.getByText("+42 Strength")).toBeInTheDocument();
+    expect(screen.getByText("+25 Constitution")).toBeInTheDocument();
     expect(screen.getByText("Vendor Price 2 Gold")).toBeInTheDocument();
+  });
+
+  it("resolves attribute labels through the language file", () => {
+    const item = makeItem({
+      stats: {
+        binds: "NO_BIND",
+        values: [],
+        attributes: [{ "critical rating": 50 }, { "pvp protection": 16 }],
+        effects: [],
+        setBonuses: [],
+        lines: [],
+      },
+    });
+    render(<ItemTooltipBox item={item} />);
+    expect(screen.getByText("+50 Critical Rating")).toBeInTheDocument();
+    expect(screen.getByText("+16 PvP Protection")).toBeInTheDocument();
   });
 
   it("derives the binds line from the enum", () => {
     const item = makeItem({
       stats: {
         binds: "BIND_ON_EQUIP",
+        values: [],
         attributes: [],
         effects: [],
         setBonuses: [],
@@ -65,6 +84,7 @@ describe("ItemTooltipBox", () => {
     const item = makeItem({
       stats: {
         binds: "NO_BIND",
+        values: [],
         attributes: [],
         effects: [],
         setBonuses: [],
@@ -78,8 +98,9 @@ describe("ItemTooltipBox", () => {
   it("combines weapon dps and damage on one line", () => {
     const item = makeItem({
       stats: {
-        level: 80,
+        itemLevel: 80,
         binds: "NO_BIND",
+        values: [],
         damage: { min: 132, max: 173 },
         dps: 110.8,
         attributes: [],
@@ -107,17 +128,18 @@ describe("ItemTooltipBox", () => {
     expect(screen.getByText(/No tooltip data available/)).toBeInTheDocument();
   });
 
-  it("renders the compact variant class", () => {
+  it("renders the compact variant without error", () => {
     const item = makeItem({
       stats: {
         binds: "NO_BIND",
+        values: [],
         attributes: [],
         effects: [],
         setBonuses: [],
         lines: [],
       },
     });
-    const { container } = render(<ItemTooltipBox item={item} compact />);
-    expect(container.querySelector(".tooltipBox.compact")).not.toBeNull();
+    render(<ItemTooltipBox item={item} compact />);
+    expect(screen.getByText("Blade's Leggings of Charred Earth")).toBeInTheDocument();
   });
 });

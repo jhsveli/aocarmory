@@ -20,16 +20,20 @@ export interface Price {
 /** How an item binds, normalized from the tooltip's "Binds …" line. */
 export type BindType = "BIND_ON_PICKUP" | "BIND_ON_EQUIP" | "NO_BIND";
 
+/** A stat value keyed by normalized property name, e.g. { armor: 512 }. */
+export type StatValue = Record<string, number>;
+
 /** Structured stats extracted (via OCR) from the item's tooltip screenshot. */
 export interface ItemStats {
-  level?: number;
+  itemLevel?: number;
   type?: string;             // e.g. "Legs", "Two-handed Sword"
-  armor?: number;
+  requiresLevel?: number;    // "Requires Level 80"
+  requires?: string;         // other requirement text, e.g. "Requires PvP Level 4"
+  values: StatValue[];       // e.g. [{ armor: 512 }, { critigation: 277 }]
   damage?: { min: number; max: number };
   dps?: number;
-  attributes: string[];      // e.g. ["+42 Strength"]
+  attributes: StatValue[];   // e.g. [{ strength: 42 }, { "critical rating": 50 }]
   effects: string[];         // "Equip: ..." lines
-  requires?: string;
   binds: BindType;           // normalized bind state (NO_BIND = unbound)
   set?: string;
   setBonuses: string[];      // "(2) Set Bonus: ..."
@@ -44,6 +48,7 @@ export interface Item {
   slot: Slot | null;
   price: Price | null;
   drop: string | null; // dungeon drop location (for dungeon items)
+  image?: string | null; // original tooltip screenshot URL (provenance / comparison)
   tooltip: string | null; // raw OCR text of the tooltip screenshot
   stats: ItemStats | null; // best-effort structured parse of the tooltip
 }

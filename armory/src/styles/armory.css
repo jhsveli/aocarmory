@@ -1,72 +1,5 @@
-/* ============================================================
-   AoC>TV Armory — modern take on the original design
-   Original: fixed menu bar, 800px container, rarity colors,
-   crimson headings, silver borders. We keep the identity
-   (rarity colors, red headings, coin icons, the wolf-mount
-   backdrop) but rebuild layout for modern screens.
-   ============================================================ */
-
-:root {
-  /* palette */
-  --bg-deep: #17120d;
-  --bg-mid: #221a12;
-  --panel: #f6efe2;           /* parchment */
-  --panel-2: #efe5d2;
-  --panel-head: #d9c9a8;
-  --ink: #2b2116;
-  --ink-soft: #5c4d3a;
-  --line: #b7a37e;
-  --line-dark: #8a744f;
-  --crimson: #b3222a;
-  --crimson-dark: #7d141a;
-  --gold: #c9a227;
-  --link: #9a3412;
-
-  /* rarity colors (kept from the original stylesheet) */
-  --r-mundane: #8a8a89;
-  --r-superior: #9a9a9a;
-  --r-enchanted: #5b933d;
-  --r-rare: #006ea7;
-  --r-epic: #8d11be;
-  --r-legendary: #e38f35;
-
-  --header-h: 2.2rem;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: Verdana, Tahoma, Arial, sans-serif;
-
-  /* layer scale: menu -> dropdown -> sticky -> modal -> tooltip */
-  --z-menu: 100;
-  --z-tooltip: 200;
-  --z-overlay: 300;
-}
-
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background:
-    radial-gradient(1200px 500px at 50% -10%, rgba(201, 162, 39, 0.14), transparent 60%),
-    linear-gradient(180deg, var(--bg-mid), var(--bg-deep) 40%);
-  background-attachment: fixed;
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-h1, h2, h3, h4 { font-family: var(--serif); color: var(--crimson); line-height: 1.2; }
-h1 { font-size: 1.7rem; margin: 0.4em 0; }
-h2 { font-size: 1.35rem; margin: 1em 0 0.4em; }
-h3 { font-size: 1.1rem; margin: 0.8em 0 0.3em; }
-
-hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
+/* Component/page styles. Global tokens, element resets and shared utilities
+   live in global.css (imported before this file in App.tsx). */
 
 /* ---------- top menu bar (fixed, like the original) ---------- */
 .menuBar {
@@ -299,31 +232,23 @@ ul.locations, ul.categories, ul.sets, ul.items { list-style: none; }
 .items li { position: relative; padding: 0.08rem 0; }
 .itemPrice { float: right; color: var(--ink-soft); font-size: 0.8rem; margin-left: 0.8rem; }
 .itemPrice img.coin { vertical-align: text-bottom; margin: 0 2px; }
-.itemSlot { color: var(--ink-soft); font-size: 0.82rem; }
-
-/* rarity colors on item names */
-.r-mundane { color: var(--r-mundane); font-weight: bold; }
-.r-superior { color: var(--r-superior); font-weight: bold; }
-.r-enchanted { color: var(--r-enchanted); font-weight: bold; }
-.r-rare { color: var(--r-rare); font-weight: bold; }
-.r-epic { color: var(--r-epic); font-weight: bold; }
-.r-legendary { color: var(--r-legendary); font-weight: bold; }
 .items li:hover { background: rgba(0,0,0,0.05); }
 
-/* ---------- item detail panel (right side) ---------- */
-/* Replaces the old near-cursor tooltip: a fixed inspector on the right edge.
-   Hovering an item previews it; clicking/tapping pins it (see TooltipProvider). */
-.itemPanel {
+/* ---------- item hover tooltip (floating, near cursor) ---------- */
+.itemTooltip {
   position: fixed;
-  top: calc(var(--header-h) + 1.2rem);
-  right: 1rem;
-  width: 320px;
-  max-width: calc(100vw - 2rem);
   z-index: var(--z-tooltip);
+  pointer-events: none;
+}
+
+/* ---------- item detail panel (right side) ---------- */
+/* Docked in the page's right column by ItemDetailsPanel. It changes only on
+   click/tap (pinned); hovering shows the floating tooltip above instead. */
+.itemPanel {
   background: #1a1512;
   border: 1px solid var(--gold);
   border-radius: 8px;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
   animation: itemPanelIn 0.16s ease-out;
 }
 @keyframes itemPanelIn {
@@ -355,6 +280,33 @@ ul.locations, ul.categories, ul.sets, ul.items { list-style: none; }
   cursor: pointer;
 }
 .itemPanel .panelClose:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.itemPanel .panelEmpty {
+  padding: 0.6rem 0.75rem;
+  color: #cbb98f;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.itemPanel .panelImage {
+  border-top: 1px solid var(--line-dark);
+  padding: 0.6rem 0.75rem 0.75rem;
+}
+.itemPanel .panelImageLabel {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.45rem;
+}
+.itemPanel .panelImage img {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: #000;
+}
 
 /* CSS mock of the original tooltip screenshot: dark panel, rarity-colored
    name, stat lines — rendered from OCR-extracted text, no hotlinked image.
@@ -367,19 +319,6 @@ ul.locations, ul.categories, ul.sets, ul.items { list-style: none; }
   max-width: none;
   max-height: min(58vh, 420px);
   overflow-y: auto;
-}
-
-/* narrow screens: dock the panel as a bottom sheet so it stays usable on touch */
-@media (max-width: 640px) {
-  .itemPanel {
-    top: auto;
-    bottom: 0.75rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    width: auto;
-    max-width: none;
-  }
-  .itemPanel .tooltipBox { max-height: 38vh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -433,8 +372,6 @@ ul.locations, ul.categories, ul.sets, ul.items { list-style: none; }
 }
 
 /* ---------- pages ---------- */
-.page-intro { color: var(--ink-soft); }
-
 .armorSetsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -14,7 +14,19 @@ export default function Collapsible({ label, defaultOpen = true, className, chil
   const [open, setOpen] = useState(defaultOpen);
   return (
     <li className={`${open ? "expanded" : "collapsed"} ${className ?? ""}`.trim()}>
-      <span className="nodeLabel" onClick={() => setOpen(!open)}>
+      <span
+        className="nodeLabel"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen(!open);
+          }
+        }}
+      >
         {label}
       </span>
       {open && <div className="children">{children}</div>}
