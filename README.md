@@ -109,8 +109,10 @@ keeping the `image` url; `research/tooltips_report.json` records the counts.)
   misreads can be fixed with `--reparse` without re-running OCR. Coin icons are
   still hotlinked from the original static host (`static.is-better-than.tv`).
 - Structured tooltip stats use normalized property keys (`itemLevel`,
-  `requiresLevel`, `values: [{armor: N}, {critigation: N}]`, and
-  `attributes: [{strength: N}, ...]`). The panel resolves display labels
+  `requiresLevel`, `requiresPvpLevel`, `requiresRenownLevel`,
+  `requiresItemLevel`, `values: [{armor: N}, {critigation: N}]`,
+  `attributes: [{strength: N}, ...]`, and `classes: ["Barbarian"]` for class
+  restrictions, omitted when unclassed). The panel resolves display labels
   through the language file `armory/src/lib/stat-labels.ts` — add any new OCR
   attribute names there.
 - A handful of `ab=` builder links captured from the 2023 armorsets page are

@@ -29,6 +29,8 @@ describe("ItemTooltipBox", () => {
         itemLevel: 80,
         type: "Legs",
         requiresLevel: 80,
+        requiresPvpLevel: 9,
+        classes: ["Priest of Mitra", "Tempest of Set"],
         binds: "BIND_ON_PICKUP",
         values: [{ armor: 512 }, { critigation: 277 }],
         attributes: [{ strength: 42 }, { constitution: 25 }],
@@ -40,7 +42,9 @@ describe("ItemTooltipBox", () => {
     render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("Item Level 80")).toBeInTheDocument();
     expect(screen.getByText("Legs")).toBeInTheDocument();
+    expect(screen.getByText("Classes: Priest of Mitra, Tempest of Set")).toBeInTheDocument();
     expect(screen.getByText("Requires Level 80")).toBeInTheDocument();
+    expect(screen.getByText("Requires PvP Level 9")).toBeInTheDocument();
     expect(screen.getByText("Armor: 512")).toBeInTheDocument();
     expect(screen.getByText("Critigation Amount: 277")).toBeInTheDocument();
     expect(screen.getByText("+42 Strength")).toBeInTheDocument();

@@ -17,9 +17,12 @@ This script:
      armory/src/data/armory_data.json (image kept for the panel's
      original-screenshot comparison view).
 
-Stats schema: scalar stats use explicit properties (itemLevel, requiresLevel);
+Stats schema: scalar stats use explicit properties (itemLevel, requiresLevel,
+requiresPvpLevel, requiresRenownLevel, requiresItemLevel — all numeric);
 armor/critigation are { "<name>": <number> } entries in stats["values"];
-attribute bonuses are { "<name>": <number> } entries in stats["attributes"].
+attribute bonuses and penalties are { "<name>": <number> } entries in
+stats["attributes"] (penalties negative, e.g. { "pvp magic damage": -66 });
+class restrictions are a stats["classes"] list (omitted when unclassed).
 Property names are normalized OCR keys; the client resolves their display
 labels from armory/src/lib/stat-labels.ts.
 
@@ -188,17 +191,21 @@ RE_BINDS = re.compile(r"^Binds (when Picked Up|on Pickup|on Equip|on Acquire)\b"
 RE_LEVEL = re.compile(r"^Level[: ]?\s*(\d+)$", re.I)
 RE_ITEM_LEVEL = re.compile(r"^Item Level[: ]?\s*(\d+)", re.I)
 RE_REQUIRES_LEVEL = re.compile(r"^Requires Level[: ]?\s*(\d+)", re.I)
+RE_PVP_LEVEL = re.compile(r"^Requires PvP Level[: ]?\s*(\d+)", re.I)
+RE_RENOWN_LEVEL = re.compile(r"^Requires Renown Level[: ]?\s*(\d+)", re.I)
+RE_ITEM_LEVEL_REQ = re.compile(r"^Requires a Level[: ]?\s*(\d+)\s*Item", re.I)
 RE_ARMOR_A = re.compile(r"^Armor[: ]?\s*(\d+)$", re.I)
 RE_ARMOR_B = re.compile(r"^(\d+)\s*Armor$", re.I)
 RE_CRITIGATION = re.compile(r"^(\d+)\s*Critigation Amount$", re.I)
 RE_DAMAGE = re.compile(r"^Damage[: ]?\s*([\d\s,]+)\s*-\s*([\d\s,]+)$", re.I)
 RE_DPS = re.compile(r"^DPS[: ]?\s*([\d.]+)$", re.I)
 RE_DPS_WITH_DMG = re.compile(r"^([\d.]+)\s*DPS\s*\((\d+)\s*-\s*(\d+)\)$", re.I)
-RE_ATTR = re.compile(r"^\+(\d+)\s+(.+)$")
-RE_REQUIRES = re.compile(r"^Requires\s+(.+)$", re.I)
+RE_ATTR = re.compile(r"^([+-])\s*(\d+)\s+(.+)$")
+RE_ATTR_NO_SIGN = re.compile(r"^(\d+)\s+(.+)$")
 RE_EQUIP = re.compile(r"^Equip:\s*(.+)$", re.I)
 RE_SET = re.compile(r"^Set:\s*(.+)$", re.I)
 RE_SET_BONUS = re.compile(r"^\(\s*(\d+)\s*\)\s*Set Bonus:\s*(.+)$", re.I)
+RE_CLASSES = re.compile(r"^Classes[: ]?\s*(.+)$", re.I)
 
 # The tooltip screenshots draw a frame around the text; OCR picks up the
 # decoration chars (| _ ' / - : .) on the left/right of lines.
@@ -213,6 +220,10 @@ def _norm_name(name):
 
 def _strip_decor(line):
     """Remove tooltip-frame decoration characters from a line."""
+    # A leading '-' before a digit is a value sign (attribute penalty), not
+    # frame decoration — keep it so negative attributes survive the parse.
+    if line[:1] in "-–—" and len(line) > 1 and line[1].isdigit():
+        return "-" + DECOR_TAIL.sub("", DECOR_LEAD.sub("", line[1:])).strip()
     return DECOR_TAIL.sub("", DECOR_LEAD.sub("", line)).strip()
 
 
@@ -229,6 +240,7 @@ ATTR_OCR_FIXES = (
     ("Combst", "Combat"), ("Cambat", "Combat"),
     ("Mansa", "Mana"), ("Mans", "Mana"),
     ("Starnina", "Stamina"), ("Starmina", "Stamina"),
+    ("Inmrnunity", "Immunity"),
 )
 
 
@@ -238,9 +250,32 @@ def _norm_attr_name(name):
     name = name.replace("{", "(").replace("}", ")")
     for bad, good in ATTR_OCR_FIXES:
         name = name.replace(bad, good)
-    if name.count("(") < name.count(")"):
-        name = name.rstrip(")")
+    opens, closes = name.count("("), name.count(")")
+    if closes > opens:
+        # OCR merged the closing brace into a double close, e.g.
+        # "Combat Rating (2HE})" -> "(2HE))"; drop just the unmatched trailing ')'
+        name = name[: len(name) - (closes - opens)]
+    elif opens > closes:
+        name += ")" * (opens - closes)  # OCR dropped the closing paren, e.g. "(2HE"
     return name.lower()
+
+
+# Attribute-family words used to disambiguate bare "N <name>" lines (penalties
+# whose '-' OCR dropped, e.g. "66 P¥P Magic Damage") from junk like "2 a".
+ATTR_TAIL_HINTS = frozenset((
+    "rating", "damage", "strength", "strenath", "constitution", "dexterity",
+    "intelligence", "wisdom", "stamina", "health", "mana", "tenacity",
+    "ferocity", "protection", "regen", "skill", "modifier", "combat",
+    "evade", "immunity", "fatality", "offhand", "hate", "heal", "tap",
+))
+
+
+# OCR typos in class names on "Classes:" restriction lines.
+CLASS_OCR_FIXES = {
+    "Dark Ternplar": "Dark Templar",
+    "Dark Termplar": "Dark Templar",
+    "Ternpest of Set": "Tempest of Set",
+}
 # Weapon-ish / slot type lines that OCR commonly mangles slightly.
 TYPE_HINTS = ("sword", "axe", "mace", "staff", "bow", "shield", "dagger",
               "talisman", "polearm", "hammer", "blade", "claw", "whip",
@@ -363,15 +398,39 @@ def parse_stats(lines, name=None):
         m = RE_ATTR.match(line)
         if m:
             flush_pending()
-            stats["attributes"].append({_norm_attr_name(m.group(2)): int(m.group(1))})
+            value = -int(m.group(2)) if m.group(1) == "-" else int(m.group(2))
+            stats["attributes"].append({_norm_attr_name(m.group(3)): value})
             continue
-        m = RE_REQUIRES.match(line)
+        m = RE_ATTR_NO_SIGN.match(line)
+        if m and any(h in m.group(2).lower() for h in ATTR_TAIL_HINTS):
+            # Positives always carry '+', so a bare "N <attribute>" line is a
+            # penalty whose '-' OCR dropped (e.g. "66 P¥P Magic Damage").
+            flush_pending()
+            stats["attributes"].append({_norm_attr_name(m.group(2)): -int(m.group(1))})
+            continue
+        m = RE_PVP_LEVEL.match(line)
         if m:
             flush_pending()
-            if "requires" not in stats:
-                stats["requires"] = line
+            if "requiresPvpLevel" not in stats:
+                stats["requiresPvpLevel"] = int(m.group(1))
             else:
-                pending.append(line)  # e.g. "Requires PvP Level 3"
+                pending.append(line)
+            continue
+        m = RE_RENOWN_LEVEL.match(line)
+        if m:
+            flush_pending()
+            if "requiresRenownLevel" not in stats:
+                stats["requiresRenownLevel"] = int(m.group(1))
+            else:
+                pending.append(line)
+            continue
+        m = RE_ITEM_LEVEL_REQ.match(line)
+        if m:
+            flush_pending()
+            if "requiresItemLevel" not in stats:
+                stats["requiresItemLevel"] = int(m.group(1))
+            else:
+                pending.append(line)
             continue
         m = RE_EQUIP.match(line)
         if m:
@@ -382,6 +441,14 @@ def parse_stats(lines, name=None):
         m = RE_SET.match(line)
         if m:
             flush_pending(); stats["set"] = line; continue
+        m = RE_CLASSES.match(line)
+        if m:
+            flush_pending()
+            stats["classes"] = [
+                CLASS_OCR_FIXES.get(c.strip(), c.strip())
+                for c in m.group(1).split(",") if c.strip()
+            ]
+            continue
         pending.append(line)
     flush_pending()
     if "binds" not in stats:

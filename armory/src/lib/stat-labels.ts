@@ -11,6 +11,9 @@ export const STAT_LABELS: Record<string, string> = {
   // scalar stat properties
   itemLevel: "Item Level",
   requiresLevel: "Requires Level",
+  requiresPvpLevel: "Requires PvP Level",
+  requiresRenownLevel: "Requires Renown Level",
+  classes: "Classes",
   armor: "Armor",
   critigation: "Critigation Amount",
 
@@ -79,9 +82,13 @@ export const STAT_LABELS: Record<string, string> = {
   "combat rating (fire)": "Combat Rating (Fire)",
   "combat rating (cold)": "Combat Rating (Cold)",
   "combat rating (holy)": "Combat Rating (Holy)",
+  "combat rating holy": "Combat Rating (Holy)", // OCR lost the opening paren
   "combat rating (electrical)": "Combat Rating (Electrical)",
   "combat rating (unholy)": "Combat Rating (Unholy)",
 };
+
+/** Known stat property names — derived from the label map (single source of truth). */
+export type StatProperty = keyof typeof STAT_LABELS;
 
 /** Resolve a normalized property name to its display label. */
 export function statLabel(key: string): string {

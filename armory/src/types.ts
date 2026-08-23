@@ -1,5 +1,7 @@
 // Data model matching research/armory_data.json (parsed from the archived site).
 
+import type { StatProperty } from "./lib/stat-labels";
+
 export type Rarity = "Mundane" | "Superior" | "Enchanted" | "Rare" | "Epic" | "Legendary";
 
 export type Slot =
@@ -20,15 +22,22 @@ export interface Price {
 /** How an item binds, normalized from the tooltip's "Binds …" line. */
 export type BindType = "BIND_ON_PICKUP" | "BIND_ON_EQUIP" | "NO_BIND";
 
-/** A stat value keyed by normalized property name, e.g. { armor: 512 }. */
-export type StatValue = Record<string, number>;
+/**
+ * A stat value keyed by a known property name, e.g. { armor: 512 }.
+ * Keys are the StatProperty union derived from the stat-labels language file,
+ * so unknown/typo'd names fail type-checking.
+ */
+export type StatValue = Partial<Record<StatProperty, number>>;
 
 /** Structured stats extracted (via OCR) from the item's tooltip screenshot. */
 export interface ItemStats {
   itemLevel?: number;
   type?: string;             // e.g. "Legs", "Two-handed Sword"
   requiresLevel?: number;    // "Requires Level 80"
-  requires?: string;         // other requirement text, e.g. "Requires PvP Level 4"
+  requiresPvpLevel?: number; // "Requires PvP Level 9"
+  requiresRenownLevel?: number; // "Requires Renown Level 19"
+  requiresItemLevel?: number;   // "Requires a Level 80 Item" (socket requirement)
+  classes?: string[];        // class restrictions, e.g. ["Barbarian"] (omitted when unclassed)
   values: StatValue[];       // e.g. [{ armor: 512 }, { critigation: 277 }]
   damage?: { min: number; max: number };
   dps?: number;

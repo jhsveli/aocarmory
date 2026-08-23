@@ -13,7 +13,10 @@ interface Props {
 
 /** The single key/value pair of a StatValue (e.g. { armor: 512 }). */
 function statEntry(v: StatValue): [string, number] {
-  return Object.entries(v)[0];
+  const [name, value] = Object.entries(v)[0];
+  // StatValue is Partial to allow single-key entries, but a present key
+  // always carries a number in the generated data.
+  return [name, value as number];
 }
 
 /**
@@ -25,9 +28,12 @@ function statEntry(v: StatValue): [string, number] {
 function statLines(stats: ItemStats): string[] {
   const out: string[] = [];
   if (stats.type) out.push(stats.type);
+  if (stats.classes?.length) out.push(`${statLabel("classes")}: ${stats.classes.join(", ")}`);
   if (stats.itemLevel) out.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
   if (stats.requiresLevel) out.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
-  if (stats.requires) out.push(stats.requires);
+  if (stats.requiresPvpLevel) out.push(`${statLabel("requiresPvpLevel")} ${stats.requiresPvpLevel}`);
+  if (stats.requiresRenownLevel) out.push(`${statLabel("requiresRenownLevel")} ${stats.requiresRenownLevel}`);
+  if (stats.requiresItemLevel) out.push(`Requires a Level ${stats.requiresItemLevel} Item`);
   for (const v of stats.values) {
     const [name, value] = statEntry(v);
     out.push(`${statLabel(name)}: ${value}`);

@@ -10,7 +10,7 @@
   color: #d8c9a8;
 }
 .tooltipBox .tooltipName {
-  font-family: var(--serif);
+  font-family: var(--sans-serif);
   font-size: 0.95rem;
   font-weight: bold;
   margin-bottom: 0.1rem;

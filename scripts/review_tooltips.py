@@ -167,8 +167,11 @@ function statsRows(stats) {
   const rows = [];
   if (stats.itemLevel) rows.push(["Item level", String(stats.itemLevel)]);
   if (stats.type) rows.push(["Type", stats.type]);
+  if (stats.classes && stats.classes.length) rows.push(["Classes", stats.classes.join(", ")]);
   if (stats.requiresLevel) rows.push(["Requires level", String(stats.requiresLevel)]);
-  if (stats.requires) rows.push(["Requires", stats.requires]);
+  if (stats.requiresPvpLevel) rows.push(["Requires PvP level", String(stats.requiresPvpLevel)]);
+  if (stats.requiresRenownLevel) rows.push(["Requires Renown level", String(stats.requiresRenownLevel)]);
+  if (stats.requiresItemLevel) rows.push(["Requires item level", String(stats.requiresItemLevel)]);
   for (const v of stats.values || []) {
     const e = Object.entries(v)[0];
     rows.push([e[0], String(e[1])]);
