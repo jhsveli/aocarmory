@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import ItemTooltipBox from "./ItemTooltipBox";
+import ItemDetailsBox from "./ItemDetailsBox.tsx";
 import type { Item } from "../types";
 
 function makeItem(over: Partial<Item> = {}): Item {
@@ -19,7 +19,7 @@ function makeItem(over: Partial<Item> = {}): Item {
 
 describe("ItemTooltipBox", () => {
   it("renders the item name", () => {
-    render(<ItemTooltipBox item={makeItem({ rarity: "Rare" })} />);
+    render(<ItemDetailsBox item={makeItem({ rarity: "Rare" })} />);
     expect(screen.getByText("Blade's Leggings of Charred Earth")).toBeInTheDocument();
   });
 
@@ -37,7 +37,7 @@ describe("ItemTooltipBox", () => {
         lines: ["Vendor Price 2 Gold"],
       },
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("Item Level 80")).toBeInTheDocument();
     expect(screen.getByText("Legs")).toBeInTheDocument();
     expect(screen.getByText("Requires Level 80")).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe("ItemTooltipBox", () => {
         lines: [],
       },
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("+50 Critical Rating")).toBeInTheDocument();
     expect(screen.getByText("+16 PvP Protection")).toBeInTheDocument();
   });
@@ -75,7 +75,7 @@ describe("ItemTooltipBox", () => {
         lines: [],
       },
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("Binds when Equipped")).toBeInTheDocument();
     expect(screen.queryByText("BIND_ON_EQUIP")).not.toBeInTheDocument();
   });
@@ -91,7 +91,7 @@ describe("ItemTooltipBox", () => {
         lines: [],
       },
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.queryByText("No Bind")).not.toBeInTheDocument();
   });
 
@@ -109,7 +109,7 @@ describe("ItemTooltipBox", () => {
         lines: [],
       },
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("110.8 DPS (132 - 173)")).toBeInTheDocument();
   });
 
@@ -118,13 +118,13 @@ describe("ItemTooltipBox", () => {
       stats: null,
       tooltip: "Binds when Picked Up\n+42 Strength",
     });
-    render(<ItemTooltipBox item={item} />);
+    render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("Binds when Picked Up")).toBeInTheDocument();
     expect(screen.getByText("+42 Strength")).toBeInTheDocument();
   });
 
   it("shows the missing-data fallback when there is no tooltip", () => {
-    render(<ItemTooltipBox item={makeItem()} />);
+    render(<ItemDetailsBox item={makeItem()} />);
     expect(screen.getByText(/No tooltip data available/)).toBeInTheDocument();
   });
 
@@ -139,7 +139,7 @@ describe("ItemTooltipBox", () => {
         lines: [],
       },
     });
-    render(<ItemTooltipBox item={item} compact />);
+    render(<ItemDetailsBox item={item} compact />);
     expect(screen.getByText("Blade's Leggings of Charred Earth")).toBeInTheDocument();
   });
 });

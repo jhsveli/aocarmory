@@ -23,6 +23,7 @@
   --crimson-dark: #7d141a;
   --gold: #c9a227;
   --link: #9a3412;
+  --t-binds: #FBFCFE;
 
   /* rarity colors (kept from the original stylesheet) */
   --r-mundane: #8a8a89;
@@ -33,6 +34,7 @@
   --r-legendary: #e38f35;
 
   --header-h: 2.2rem;
+  --page-max-width: 1180px;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Verdana, Tahoma, Arial, sans-serif;
 

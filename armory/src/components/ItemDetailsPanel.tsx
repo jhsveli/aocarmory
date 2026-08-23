@@ -1,5 +1,5 @@
 import { useItemDetails } from "./item-details.ts";
-import ItemTooltipBox from "./ItemTooltipBox";
+import ItemDetailsBox from "./ItemDetailsBox.tsx";
 import styles from "./ItemDetailsPanel.module.css";
 
 /**
@@ -28,7 +28,7 @@ export default function ItemDetailsPanel() {
       </div>
       {panelItem ? (
         <>
-          <ItemTooltipBox item={panelItem} className={styles.inPanel} />
+          <ItemDetailsBox item={panelItem} className={styles.inPanel} />
           {panelItem.image && (
             <div className={styles.panelImage}>
               <div className={styles.panelImageLabel}>Original screenshot</div>

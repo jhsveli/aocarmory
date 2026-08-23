@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import type { Item } from "../types";
 import { ItemDetails } from "./item-details.ts";
-import ItemTooltipBox from "./ItemTooltipBox";
+import ItemDetailsBox from "./ItemDetailsBox.tsx";
 import styles from "./ItemTooltip.module.css";
 
 interface TooltipState {
@@ -56,7 +56,7 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
             top: tip.y + 12,
           }}
         >
-          <ItemTooltipBox item={tip.item} />
+          <ItemDetailsBox item={tip.item} />
         </div>
       )}
     </ItemDetails.Provider>

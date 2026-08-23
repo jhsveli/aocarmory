@@ -22,7 +22,7 @@
 .menuBar .authLinks { white-space: nowrap; color: #cbb98f; }
 
 .page {
-  max-width: 1180px;
+  max-width: var(--page-max-width);
   margin: calc(var(--header-h) + 1.2rem) auto 0;
   padding: 0 1rem 2rem;
 }
@@ -119,7 +119,7 @@
 .sectionmenu li.selected a { color: var(--crimson); font-weight: bold; text-decoration: underline; }
 
 .footer, .paypal {
-  max-width: 1180px;
+  max-width: var(--page-max-width);
   margin: 1.2rem auto 0;
   text-align: center;
   color: #d8cbb0;
@@ -130,10 +130,10 @@
 .footer a { color: #9db4ff; }
 .paypal a img { margin-top: 0.4rem; border: 0; }
 
-@media (max-width: 900px) {
+@media (--screen-narrow) {
   .menuBar { position: static; }
   .page { margin-top: 1rem; }
 }
-@media (max-width: 560px) {
+@media (--screen-mobile) {
   .searchForm input[type="text"] { width: 150px; }
 }

@@ -16,6 +16,6 @@
 
 .rightColumn { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 
-@media (max-width: 900px) {
+@media (--screen-narrow) {
   .contentWrap { grid-template-columns: 1fr; }
 }

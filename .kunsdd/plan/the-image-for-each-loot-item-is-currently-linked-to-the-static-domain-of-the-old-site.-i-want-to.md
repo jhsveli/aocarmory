@@ -94,7 +94,7 @@ export interface ItemStats {
   stats: ItemStats | null;   // best-effort structured parse
 ```
 
-### 5. New component — `armory/src/components/ItemTooltipBox.tsx`
+### 5. New component — `../../armory/src/components/ItemDetailsBox.tsx`
 
 Renders the **CSS mock of the tooltip screenshot**:
 
@@ -116,7 +116,7 @@ Renders the **CSS mock of the tooltip screenshot**:
 ### 8. Tests
 
 - `armory/src/lib/classView.test.ts` — fixture: `image: null` → `tooltip: null, stats: null`.
-- New `armory/src/components/ItemTooltipBox.test.tsx` (vitest + testing-library, already in the stack): renders rarity-colored name; renders a parsed stat line; renders fallback message when `tooltip`/`stats` are null.
+- New `../../armory/src/components/ItemDetailsBox.test.tsx` (vitest + testing-library, already in the stack): renders rarity-colored name; renders a parsed stat line; renders fallback message when `tooltip`/`stats` are null.
 
 ### 9. Docs
 

@@ -13,7 +13,12 @@
   font-family: var(--serif);
   font-size: 0.95rem;
   font-weight: bold;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.1rem;
+  text-align: center;
+}
+.tooltipBox .binds {
+  text-align: center;
+  color: var(--t-binds);
 }
 .tooltipBox .line { white-space: normal; }
 .tooltipBox .missing {
@@ -29,6 +34,8 @@
 .tooltipBox :global(.r-rare) { color: #4da8dd; }
 .tooltipBox :global(.r-epic) { color: #c46ae0; }
 .tooltipBox :global(.r-legendary) { color: #f0a94f; }
+
+
 
 /* compact variant (armor builder slots) */
 .compact {

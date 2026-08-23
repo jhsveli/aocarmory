@@ -7,7 +7,7 @@ import { SLOT_LABEL } from "../lib/format";
 import { searchArmory } from "../lib/search";
 import { decodeBuilder, encodeBuilder } from "../lib/builder";
 import ItemName from "../components/ItemName";
-import ItemTooltipBox from "../components/ItemTooltipBox";
+import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import AttributeCalculator from "../components/AttributeCalculator";
 import layoutStyles from "../styles/layout.module.css";
@@ -191,7 +191,7 @@ export default function BuilderPage() {
                       {item ? (
                         <>
                           <div className={styles.equipped}>
-                            <ItemTooltipBox item={item} compact />
+                            <ItemDetailsBox item={item} compact />
                           </div>
                           <div className={styles.equippedName}>
                             <ItemName item={item} />

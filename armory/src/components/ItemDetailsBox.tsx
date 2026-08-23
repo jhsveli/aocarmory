@@ -1,7 +1,7 @@
 import type { Item, ItemStats, StatValue } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
-import styles from "./ItemTooltipBox.module.css";
+import styles from "./ItemDetailsBox.module.css";
 
 interface Props {
   item: Item;
@@ -24,9 +24,6 @@ function statEntry(v: StatValue): [string, number] {
  */
 function statLines(stats: ItemStats): string[] {
   const out: string[] = [];
-  // Display text is derived from the bind enum. NO_BIND is not rendered:
-  // the original tooltip screenshots never show a "No Bind" line.
-  if (stats.binds !== "NO_BIND") out.push(BIND_LABEL[stats.binds]);
   if (stats.type) out.push(stats.type);
   if (stats.itemLevel) out.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
   if (stats.requiresLevel) out.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
@@ -54,15 +51,16 @@ function statLines(stats: ItemStats): string[] {
 }
 
 /**
- * A CSS-drawn box that mimics the look of the original tooltip screenshot
- * (dark panel, rarity-colored item name, stat lines) — rendered from the
- * OCR-extracted text instead of a hotlinked image.
+ * Mimics the look of the original tooltip screenshot
+ * (dark panel, rarity-coloration, armor location and stats extracted with OCR from OG screenshot)
  */
-export default function ItemTooltipBox({ item, compact, className }: Props) {
+export default function ItemDetailsBox({ item, compact, className }: Props) {
   const nameCls = [
     styles.tooltipName,
     item.rarity ? RARITY_CLASS[item.rarity] : "",
   ].filter(Boolean).join(" ");
+
+  const bindText = item.stats?.binds && item.stats.binds !== "NO_BIND" ? BIND_LABEL[item.stats.binds] : null;
 
   const lines = item.stats
     ? statLines(item.stats)
@@ -78,7 +76,8 @@ export default function ItemTooltipBox({ item, compact, className }: Props) {
 
   return (
     <div className={boxCls}>
-      <div className={nameCls}>{item.name}</div>
+      <h2 className={nameCls}>{item.name}</h2>
+      {bindText && (<div className={styles.binds}>{bindText}</div>)}
       {lines ? (
         <div className={styles.tooltipBody}>
           {lines.map((line, i) => (

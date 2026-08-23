@@ -1,0 +1,6 @@
+/* Responsive breakpoints — single source of truth.
+   Wired into Vite via postcss-custom-media (importFrom in vite.config.ts),
+   so modules can write `@media (--screen-narrow)` instead of duplicating
+   the pixel values. Keep the pixel values in sync here only. */
+@custom-media --screen-narrow (max-width: 900px);
+@custom-media --screen-mobile (max-width: 560px);

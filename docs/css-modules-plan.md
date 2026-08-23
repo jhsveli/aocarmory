@@ -27,7 +27,7 @@ global rules in a small `global.css`.
    need explicit seams.
 4. **Tests query raw class names** — `app.test.tsx` uses
    `.itemPanel .tooltipName`, `.itemTooltip .tooltipName`, `.sets .nodeLabel`,
-   `.itemName`, `.itemPanel .panelImage img`; `ItemTooltipBox.test.tsx` checks
+   `.itemName`, `.itemPanel .panelImage img`; `ItemDetailsBox.test.tsx` checks
    `className` and `.tooltipBox.compact`. Under Vitest's default (`css: false`)
    module class lookups are `undefined`; with `css: true` the names are hashed.
    Tests must move to role/text queries first (Phase 0).
@@ -46,7 +46,7 @@ src/pages/<Name>.module.css        # one per page
 | `global.css` | `:root` vars, `body`/`a`/`h*`/`hr` resets, `.page-intro`, `.item-slot`, `.r-*` (+ lightened tooltip variants via `:global`) |
 | `layout.module.css` | `content`, `contentWrap`, `rightColumn`, `rightBox` (+ `.header`/`.body`) |
 | `Layout.module.css` | `menuBar`, `menuLinks`, `sep`, `authLinks`, `page`, `topmenu`, `mainmenu`, `searchForm`, `banner`, `bottommenu`, `sectionmenu`, `footer`, `paypal` |
-| `ItemTooltipBox.module.css` | `tooltipBox`, `tooltipName`, `line`, `missing`, `compact`, `.tooltipBox :global(.r-*)` lightened |
+| `ItemDetailsBox.module.css` | `tooltipBox`, `tooltipName`, `line`, `missing`, `compact`, `.tooltipBox :global(.r-*)` lightened |
 | `ItemDetailsPanel.module.css` | `itemPanel`, `panelHeader`, `panelTitle`, `panelClose`, `panelEmpty`, `panelImage`, `panelImageLabel`, `itemPanelIn` keyframes, in-panel tooltip override |
 | `ItemTooltip.module.css` | `itemTooltip` |
 | `SectionTree.module.css` | `locations`, `categories`, `sets`, `items`, `nodeLabel` context, `merchant/dungeon/raid`, `builderLink`, `itemPrice`, `coin`, `setClasses` |
@@ -61,7 +61,7 @@ src/pages/<Name>.module.css        # one per page
 ## The four tricky seams (solve up front)
 
 1. **Cross-component overrides → component seams, not descendant selectors**:
-   - `ItemTooltipBox` gets an optional `className` prop; `ItemDetailsPanel`
+   - `ItemDetailsBox` gets an optional `className` prop; `ItemDetailsPanel`
      passes its panel override class (precedent: `ItemName` accepts
      `className`).
    - `BuilderPage` passes a module class to `ItemName` for `flex: 1`;
@@ -91,7 +91,7 @@ src/pages/<Name>.module.css        # one per page
   `AttributeCalculator`, `HomePage`, `ArmorSetsPage`, `FactionsPage`,
   `AboutPage`, `SectionPage` moved to colocated `*.module.css`; rules removed
   from `armory.css` (594 → 431 lines).
-- **Phase 3 — Cross-cutting (done):** `ItemTooltipBox` gained a `className`
+- **Phase 3 — Cross-cutting (done):** `ItemDetailsBox` gained a `className`
   prop (the panel passes its `inPanel` override); `ItemDetailsPanel`,
   `ItemTooltip`, `styles/layout.module.css` (`content`/`contentWrap`/
   `rightColumn`, used by Home/Section/Search/Builder), `Layout`,
@@ -122,7 +122,7 @@ src/pages/<Name>.module.css        # one per page
   `global.css`; SectionTree's merchant/dungeon/raid label colors and the
   `.items`/`.categories` rules are module-scoped.
 - **`.tooltipBox` rarity overrides use `:global(.r-*)`** inside
-  `ItemTooltipBox.module.css` (the lightened colors on the dark panel).
+  `ItemDetailsBox.module.css` (the lightened colors on the dark panel).
 
 Each phase: move rules → remove from `armory.css` → tests + `tsc` + lint +
 build + eyeball the affected pages. Rollback is a per-phase revert.
