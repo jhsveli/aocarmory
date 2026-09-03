@@ -1,6 +1,6 @@
 import type { Category, Location, Section, Set } from "../types";
-import { SLOT_LABEL } from "../lib/format";
 import { IMG_BASE } from "../lib/format";
+import { slotDisplay } from "../lib/equip";
 import Collapsible from "./Collapsible";
 import ItemName from "./ItemName";
 import Price from "./Price";
@@ -74,14 +74,17 @@ function SetNode({ set }: { set: Set }) {
 export function SetItems({ set }: { set: Set }) {
   return (
     <ul className={styles.items}>
-      {set.items.map((item) => (
-        <li key={`${item.id}-${item.name}`}>
-          <Price price={item.price} />
-          {item.drop && <span className="itemSlot"> {item.drop} — </span>}
-          <ItemName item={item} />
-          {item.slot && <span className="itemSlot"> [{SLOT_LABEL[item.slot] ?? item.slot}]</span>}
-        </li>
-      ))}
+      {set.items.map((item) => {
+        const slotLabel = slotDisplay(item.stats);
+        return (
+          <li key={`${item.id}-${item.name}`}>
+            <Price price={item.price} />
+            {item.drop && <span className="itemSlot"> {item.drop} — </span>}
+            <ItemName item={item} />
+            {slotLabel && <span className="itemSlot"> [{slotLabel}]</span>}
+          </li>
+        );
+      })}
     </ul>
   );
 }

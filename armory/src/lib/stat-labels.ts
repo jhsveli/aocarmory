@@ -16,6 +16,13 @@ export const STAT_LABELS: Record<string, string> = {
   classes: "Classes",
   armor: "Armor",
   critigation: "Critigation Amount",
+  "additional slots": "Additional Slots",
+  "staggering chance": "Staggering Chance",
+  "out of combat movement speed": "Out of Combat Movement Speed",
+  "hate modifier": "Hate Modifier",
+  "fatality chance": "Fatality Chance",
+  "spell fatality chance": "Spell Fatality Chance",
+  "increase to damage or healing": "Increase to Damage or Healing",
 
   // attribute names
   constitution: "Constitution",

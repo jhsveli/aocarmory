@@ -166,7 +166,7 @@ function filtered() {
 function statsRows(stats) {
   const rows = [];
   if (stats.itemLevel) rows.push(["Item level", String(stats.itemLevel)]);
-  if (stats.type) rows.push(["Type", stats.type]);
+  if (stats.type) rows.push(["Type", stats.type + (stats.slots && stats.slots.length ? " - " + stats.slots.join(", ") : "")]);
   if (stats.classes && stats.classes.length) rows.push(["Classes", stats.classes.join(", ")]);
   if (stats.requiresLevel) rows.push(["Requires level", String(stats.requiresLevel)]);
   if (stats.requiresPvpLevel) rows.push(["Requires PvP level", String(stats.requiresPvpLevel)]);

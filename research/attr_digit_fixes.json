@@ -1,0 +1,470 @@
+[
+  {
+    "id": 1382,
+    "name": "Belt of Vicious Frenzy",
+    "line": "+4? Constitution",
+    "fixed": "+47 Constitution"
+  },
+  {
+    "id": 1425,
+    "name": "Harness of Rapturous Battle",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1521,
+    "name": "Harness of Bestial Rage",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1522,
+    "name": "Leggings of Bestial Rage",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1578,
+    "name": "Tasset of the Doomsayer",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1586,
+    "name": "Leggings of the Precursor",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1594,
+    "name": "Leggings of the Harbinger",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1609,
+    "name": "Bindings of the Reanimator",
+    "line": "S74 Armor",
+    "fixed": "574 Armor"
+  },
+  {
+    "id": 1610,
+    "name": "Loincloth of the Reanimator",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 1618,
+    "name": "Loincloth of the Darkwretch",
+    "line": "S501 Armor",
+    "fixed": "501 Armor"
+  },
+  {
+    "id": 1642,
+    "name": "Leggings of Intricate Spite",
+    "line": "S501 Armor",
+    "fixed": "501 Armor"
+  },
+  {
+    "id": 1775,
+    "name": "Essence of Courage",
+    "line": "#10 Armor",
+    "fixed": "710 Armor"
+  },
+  {
+    "id": 1779,
+    "name": "Boots of the Dragon King",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 1842,
+    "name": "Headband of the Kozak Slayer",
+    "line": "S74 Armor",
+    "fixed": "574 Armor"
+  },
+  {
+    "id": 1843,
+    "name": "Headdress of the Grand Monarch",
+    "line": "S74 Armor",
+    "fixed": "574 Armor"
+  },
+  {
+    "id": 1866,
+    "name": "Boots of the Milites Templi",
+    "line": "77? Armor",
+    "fixed": "777 Armor"
+  },
+  {
+    "id": 1891,
+    "name": "Staff of Erlik",
+    "line": "67.3 DPS (5? - 135)",
+    "fixed": "67.3 DPS (57 - 135)"
+  },
+  {
+    "id": 1924,
+    "name": "Sandals of Indomitable Souls",
+    "line": "77? Armor",
+    "fixed": "777 Armor"
+  },
+  {
+    "id": 2124,
+    "name": "Bandit's Gauntlets of the Grasslands",
+    "line": "S74 Armor",
+    "fixed": "574 Armor"
+  },
+  {
+    "id": 2180,
+    "name": "Sandals of the Faceless Chaos",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 2242,
+    "name": "Literatus Hood",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 2243,
+    "name": "Majestic Gloves",
+    "line": "+? Hate Decrease Rating",
+    "fixed": "+7 Hate Decrease Rating"
+  },
+  {
+    "id": 2249,
+    "name": "Unerring Crossfire",
+    "line": "+? Stamina Tap Rating",
+    "fixed": "+7 Stamina Tap Rating"
+  },
+  {
+    "id": 2318,
+    "name": "Antillian Leggings",
+    "line": "+4? Critical Darnage Rating",
+    "fixed": "+47 Critical Darnage Rating"
+  },
+  {
+    "id": 2384,
+    "name": "Canach Breeches",
+    "line": "$30 Armor",
+    "fixed": "530 Armor"
+  },
+  {
+    "id": 2407,
+    "name": "Spectral Cape",
+    "line": "+? Evade Rating",
+    "fixed": "+7 Evade Rating"
+  },
+  {
+    "id": 2407,
+    "name": "Spectral Cape",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 2500,
+    "name": "Darkrend Tunic",
+    "line": "+4? Critical Darnage Rating",
+    "fixed": "+47 Critical Damage Rating"
+  },
+  {
+    "id": 2642,
+    "name": "Skyshear Bracers",
+    "line": "+? Hate Decrease Rating",
+    "fixed": "+7 Hate Decrease Rating"
+  },
+  {
+    "id": 2663,
+    "name": "Blackmarrow Chest",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 2667,
+    "name": "Vashian Tunic",
+    "line": "+2? Dexterity",
+    "fixed": "+27 Dexterity"
+  },
+  {
+    "id": 2691,
+    "name": "Mortiferous Boots",
+    "line": "+? Evade Rating",
+    "fixed": "+7 Evade Rating"
+  },
+  {
+    "id": 2695,
+    "name": "Vashian Schenti",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 2710,
+    "name": "Vyre",
+    "line": "+? Health Tap Rating",
+    "fixed": "+7 Health Tap Rating"
+  },
+  {
+    "id": 2710,
+    "name": "Vyre",
+    "line": "+? Stamina Tap Rating",
+    "fixed": "+7 Stamina Tap Rating"
+  },
+  {
+    "id": 2720,
+    "name": "Savant's Gloves of the Crescent",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 2721,
+    "name": "Savant's Gloves of the Effulgent Blade",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 2726,
+    "name": "Mystic's Bracers of the Crumbling Tower",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 2729,
+    "name": "Savant's Regalia of the Moon",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 2749,
+    "name": "Serpentscale Belt",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 2750,
+    "name": "Soulwound Gloves",
+    "line": "+? Critical Rating",
+    "fixed": "+7 Critical Rating"
+  },
+  {
+    "id": 2754,
+    "name": "Wildmight Gloves",
+    "line": "+? Critical Rating",
+    "fixed": "+7 Critical Rating"
+  },
+  {
+    "id": 2783,
+    "name": "Nogg's Club of Hate",
+    "line": "+? Fatality Rating",
+    "fixed": "+7 Fatality Rating"
+  },
+  {
+    "id": 2819,
+    "name": "Shadow's Bane",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 2963,
+    "name": "Ancient Kukri",
+    "line": "+? Fatality Rating",
+    "fixed": "+7 Fatality Rating"
+  },
+  {
+    "id": 3040,
+    "name": "Acolyte's Boots of the Nine Springs",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3059,
+    "name": "Mystic's Gauntlets of the Crumbling Tower",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3091,
+    "name": "Monk's Legguards of the Abyss",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3153,
+    "name": "Savant's Robes of the Crescent",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 3230,
+    "name": "Pureblood Girdle",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3374,
+    "name": "Boots of the Howling Giant",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 3382,
+    "name": "Grips of the Howling Giant",
+    "line": "+? Natural Mana Regen",
+    "fixed": "+7 Natural Mana Regen"
+  },
+  {
+    "id": 3392,
+    "name": "Boots of the Shivering Stars",
+    "line": "+47? Magic Darmnage",
+    "fixed": "+47 Magic Darmnage"
+  },
+  {
+    "id": 3408,
+    "name": "Grimshaker",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3431,
+    "name": "Armguards of the Dark Messenger",
+    "line": "S74 Armor",
+    "fixed": "574 Armor"
+  },
+  {
+    "id": 3457,
+    "name": "Consecrated Mace",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3524,
+    "name": "Diviner's Gloves of Secret Doors",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3580,
+    "name": "Partizan of Red Ruin",
+    "line": "+7?.7 Natural Stamina Regen",
+    "fixed": "+7.7 Natural Stamina Regen"
+  },
+  {
+    "id": 3707,
+    "name": "Gauntlets of the Fallen Empire (nm)",
+    "line": "+? Hate Increase Rating",
+    "fixed": "+7 Hate Increase Rating"
+  },
+  {
+    "id": 3748,
+    "name": "Arm-straps of the Blood God (nm)",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3782,
+    "name": "Mystic's Boots of the Crumbling Tower",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3792,
+    "name": "Monk's Helm of the Abyss",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3793,
+    "name": "Thug's Tunic of the Hidden Tomb",
+    "line": "+4? Critical Damage Rating",
+    "fixed": "+47 Critical Damage Rating"
+  },
+  {
+    "id": 3891,
+    "name": "Sorcerer's Gauntlets of Imperial Assent",
+    "line": "+2? Constitution",
+    "fixed": "+27 Constitution"
+  },
+  {
+    "id": 3896,
+    "name": "Savant's Wristbands of the Effulgent Blade",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 3903,
+    "name": "Conscript's Boots of the Watchtowers",
+    "line": "$575 Armor",
+    "fixed": "575 Armor"
+  },
+  {
+    "id": 3905,
+    "name": "Monk's Straps of the Abyss",
+    "line": "+? Natural Stamina Regen",
+    "fixed": "+7 Natural Stamina Regen"
+  },
+  {
+    "id": 4065,
+    "name": "Gida of the First Circle",
+    "line": "$01 Armor",
+    "fixed": "501 Armor"
+  },
+  {
+    "id": 4127,
+    "name": "Captain's Armguards of the Battlements",
+    "line": "+4? Constitution",
+    "fixed": "+47 Constitution"
+  },
+  {
+    "id": 4182,
+    "name": "Ytoth",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 4183,
+    "name": "Angerwake Helm",
+    "line": "+? Hate Increase Rating",
+    "fixed": "+7 Hate Increase Rating"
+  },
+  {
+    "id": 4188,
+    "name": "Ieb",
+    "line": "+? Constitution",
+    "fixed": "+7 Constitution"
+  },
+  {
+    "id": 4188,
+    "name": "Ieb",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 4229,
+    "name": "Carbasa Cingulum",
+    "line": "5S? Armor",
+    "fixed": "57 Armor"
+  },
+  {
+    "id": 4248,
+    "name": "Cat's Eye Ring",
+    "line": "+? Hit Rating",
+    "fixed": "+7 Hit Rating"
+  },
+  {
+    "id": 4255,
+    "name": "Ring of Intent",
+    "line": "+? Constitution",
+    "fixed": "+7 Constitution"
+  },
+  {
+    "id": 4302,
+    "name": "Frostspike",
+    "line": "+? Critical Rating",
+    "fixed": "+7 Critical Rating"
+  },
+  {
+    "id": 4489,
+    "name": "Khanjar of the Faceless Man",
+    "line": "+77? Critical Damage Rating",
+    "fixed": "+77 Critical Damage Rating"
+  }
+]

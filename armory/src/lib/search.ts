@@ -6,6 +6,7 @@
 import { flatItems, CLASS_NAMES, expandClassTags } from "../data";
 import type { FlatItem } from "../data";
 import type { Rarity } from "../types";
+import { equipSlotKey, slotDisplay } from "./equip";
 
 export const RARITIES: Rarity[] = ["Mundane", "Superior", "Enchanted", "Rare", "Epic", "Legendary"];
 
@@ -46,6 +47,7 @@ export function searchArmory(query: string): SearchMatch[] {
 
   for (const fi of flatItems) {
     const it = fi.item;
+    const slotKey = equipSlotKey(it.stats);
     const hay = {
       name: it.name?.toLowerCase() ?? "",
       section: fi.section.toLowerCase(),
@@ -53,8 +55,9 @@ export function searchArmory(query: string): SearchMatch[] {
       category: fi.category.toLowerCase(),
       set: fi.set.toLowerCase(),
       rarity: it.rarity?.toLowerCase() ?? "",
-      slot: it.slot?.toLowerCase() ?? "",
-      slotAlias: it.slot ? (SLOT_ALIASES[it.slot] ?? "") : "",
+      slot: slotKey ?? "",
+      slotAlias: slotKey ? (SLOT_ALIASES[slotKey] ?? "") : "",
+      slotText: slotDisplay(it.stats)?.toLowerCase() ?? "",
       classes: expandClassTags(fi.setClasses).map((c) => c.toLowerCase()),
       drop: it.drop?.toLowerCase() ?? "",
     };
@@ -68,7 +71,8 @@ export function searchArmory(query: string): SearchMatch[] {
       if (hay.category.includes(tok)) { hit = true; score += 2; }
       if (hay.section.includes(tok)) { hit = true; score += 2; }
       if (hay.rarity === tok) { hit = true; score += 3; reasons.push("rarity"); }
-      if (hay.slot === tok || hay.slotAlias === tok || SLOT_ALIASES[tok] === hay.slot) {
+      if (hay.slot === tok || hay.slotAlias === tok || SLOT_ALIASES[tok] === hay.slot
+          || hay.slotText.includes(tok)) {
         hit = true; score += 3; reasons.push("slot");
       }
       if (CLASS_NAMES[tok] && hay.classes.includes(CLASS_NAMES[tok].toLowerCase())) {

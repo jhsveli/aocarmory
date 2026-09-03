@@ -1,0 +1,498 @@
+[
+  {
+    "id": 1,
+    "name": "Brew of Acute Brawn",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Brew of Acute Aptitude",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Pet: Idol of Yag",
+    "lines": [
+      "Companions"
+    ],
+    "fixed": [
+      "Companions"
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Brew of Vigorous Acumen",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 167,
+    "name": "Hyrkanian Bitter Wind-Biter",
+    "lines": [
+      "Mount : Description:"
+    ],
+    "fixed": [
+      "Mount : Description:"
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Hyrkanian Dread Ash-Tramper",
+    "lines": [
+      "Mount Description:"
+    ],
+    "fixed": [
+      "Mount Description:"
+    ]
+  },
+  {
+    "id": 169,
+    "name": "Hyrkanian Fleet Scream-Catcher",
+    "lines": [
+      "Mount : Description:"
+    ],
+    "fixed": [
+      "Mount : Description:"
+    ]
+  },
+  {
+    "id": 170,
+    "name": "Hyrkanian Grim Skull-Treader",
+    "lines": [
+      "Mount Description:"
+    ],
+    "fixed": [
+      "Mount Description:"
+    ]
+  },
+  {
+    "id": 171,
+    "name": "Hyrkanian Pale Ghost-Chaser",
+    "lines": [
+      "Mount Description:"
+    ],
+    "fixed": [
+      "Mount Description:"
+    ]
+  },
+  {
+    "id": 172,
+    "name": "Hyrkanian Resplendent Sun-Strider",
+    "lines": [
+      "Mount : Description:"
+    ],
+    "fixed": [
+      "Mount : Description:"
+    ]
+  },
+  {
+    "id": 173,
+    "name": "Hyrkanian Sable Shadow-Dasher",
+    "lines": [
+      "Mount : Description:"
+    ],
+    "fixed": [
+      "Mount : Description:"
+    ]
+  },
+  {
+    "id": 174,
+    "name": "Hyrkanian Wicked Chaos-Clapper",
+    "lines": [
+      "Mount : Description:"
+    ],
+    "fixed": [
+      "Mount : Description:"
+    ]
+  },
+  {
+    "id": 254,
+    "name": "Brew of Acute Foresight",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 258,
+    "name": "Pet: War Machine",
+    "lines": [
+      "Companions",
+      "Putting siege technology into a vicious,",
+      "personal package, this stationary device",
+      "offers ranged combat aid to the",
+      "legionnaire."
+    ],
+    "fixed": [
+      "Companions",
+      "Putting siege technology into a vicious,",
+      "personal package, this stationary device",
+      "offers ranged combat aid to the",
+      "legionnaire."
+    ]
+  },
+  {
+    "id": 404,
+    "name": "Brew of Vigorous Brawn",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 479,
+    "name": "Brew of Acute Fortitude",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 580,
+    "name": "Brew of Vigorous Aptitude",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 583,
+    "name": "Horsehair Blanket",
+    "lines": [
+      "Generic"
+    ],
+    "fixed": [
+      "Generic"
+    ]
+  },
+  {
+    "id": 583,
+    "name": "Horsehair Blanket",
+    "lines": [
+      "Generic"
+    ],
+    "fixed": [
+      "Generic"
+    ]
+  },
+  {
+    "id": 663,
+    "name": "Brew of Vigorous Foresight",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 744,
+    "name": "Brew of Acute Acumen",
+    "lines": [
+      "Duration: 1 hour"
+    ],
+    "fixed": [
+      "Duration: 1 hour"
+    ]
+  },
+  {
+    "id": 747,
+    "name": "Pet: Golden Lotus",
+    "lines": [
+      "Companions",
+      "Description:",
+      "Summons 4 golden lotus, growing from",
+      "the ground. The flower's mystical",
+      "properties heal the Yun priest."
+    ],
+    "fixed": [
+      "Companions",
+      "Description:",
+      "Summons 4 golden lotus, growing from",
+      "the ground. The flower's mystical",
+      "properties heal the Yun priest."
+    ]
+  },
+  {
+    "id": 749,
+    "name": "Pet: Yellow Lotus",
+    "lines": [
+      "Companions",
+      "Description:",
+      "Summons a yellow lotus, growing from the",
+      "ground. The flower's phantasmal pollen",
+      "stuns the nearby enemies of the Yun"
+    ],
+    "fixed": [
+      "Companions",
+      "Description:",
+      "Summons a yellow lotus, growing from the",
+      "ground. The flower's phantasmal pollen",
+      "stuns the nearby enemies of the Yun"
+    ]
+  },
+  {
+    "id": 828,
+    "name": "Path of the Enlightened",
+    "lines": [
+      "Consumable",
+      "This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to"
+    ],
+    "fixed": [
+      "Consumable",
+      "This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to"
+    ]
+  },
+  {
+    "id": 1349,
+    "name": "Mystic's Delight",
+    "lines": [
+      "xe SoS"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 1473,
+    "name": "Chestguard of Reckless Challenge",
+    "lines": [
+      "7 wen"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 1716,
+    "name": "The Water's Edge",
+    "lines": [
+      "Peres aie ie 2) at gts"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 1885,
+    "name": "Furious Spirit",
+    "lines": [
+      "Casting Time 2 seconds",
+      "F Recast 10 seconds",
+      "room of the Atlantean ruins, summons a"
+    ],
+    "fixed": [
+      "Casting Time 2 seconds",
+      "Recast 10 seconds",
+      "This spell, learned in the ceremonial skull",
+      "room of the Atlantean ruins, summons a",
+      "Furious Spirit to fight beside you in battle."
+    ]
+  },
+  {
+    "id": 1956,
+    "name": "Megalith : Tooth and Claw of Dynasties",
+    "lines": [
+      "Generic"
+    ],
+    "fixed": [
+      "Generic"
+    ]
+  },
+  {
+    "id": 2753,
+    "name": "Wildguard Girdle",
+    "lines": [
+      "7 ie"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 2795,
+    "name": "Mercenary's Chestguard of the Roaring Jungle",
+    "lines": [
+      "{ided\\~"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 2898,
+    "name": "Warglory Boots",
+    "lines": [
+      "7 Fy",
+      "of r"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 2951,
+    "name": "Arcane Shield",
+    "lines": [
+      "eX \\¢"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 3547,
+    "name": "Curio of the Archaeologian",
+    "lines": [
+      "bail"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 3579,
+    "name": "Heater-Shield of the Fallen Empire",
+    "lines": [
+      "iPyr"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 3645,
+    "name": "Harness of the Blood Drinker",
+    "lines": [
+      "ade)"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 3921,
+    "name": "Entropy",
+    "lines": [
+      "Entrop"
+    ],
+    "fixed": [
+      "Entropy"
+    ]
+  },
+  {
+    "id": 4340,
+    "name": "Warmonger's Mask",
+    "lines": [
+      "he 2"
+    ],
+    "fixed": [
+      ""
+    ]
+  },
+  {
+    "id": 4528,
+    "name": "Otherworldly Flute",
+    "lines": [
+      "Generic"
+    ],
+    "fixed": [
+      "Generic"
+    ]
+  },
+  {
+    "id": 4533,
+    "name": "Facemarking: Ferocity",
+    "lines": [
+      "Generic"
+    ],
+    "fixed": [
+      "Generic"
+    ]
+  },
+  {
+    "id": 4536,
+    "name": "Permanent Travelling Merchant Contract",
+    "lines": [
+      "Generic",
+      "Must be used out of combat"
+    ],
+    "fixed": [
+      "Generic",
+      "Must be used out of combat"
+    ]
+  },
+  {
+    "id": 4629,
+    "name": "Major Rune Stone of the Second Wind",
+    "lines": [
+      "Mana Potions",
+      "Stamina Potions"
+    ],
+    "fixed": [
+      "Mana Potions",
+      "Stamina Potions"
+    ]
+  },
+  {
+    "id": 4639,
+    "name": "Pharoh's Guard Cache",
+    "lines": [
+      "Description",
+      "Opening this cache will",
+      "grant the full 7 piece",
+      "Pharaoh's Guard social",
+      "set."
+    ],
+    "fixed": [
+      "Description",
+      "Opening this cache will",
+      "grant the full 7 piece",
+      "Pharaoh's Guard social",
+      "set."
+    ]
+  },
+  {
+    "id": 4685,
+    "name": "Fatal Hyperborean Sentinel Gem",
+    "lines": [
+      "Hyperborean Gem"
+    ],
+    "fixed": [
+      "Hyperborean Gem"
+    ]
+  },
+  {
+    "id": 4686,
+    "name": "Fatal Hyperborean Hierophant Gem",
+    "lines": [
+      "ba >",
+      "Hyperborean Gem"
+    ],
+    "fixed": [
+      "Hyperborean Gem"
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+== [283] General's Vambraces of the Warring State ==
+  stats: type=None slots=None classes=None itemLevel=80 vendorPrice={'gold': 2, 'silver': 50}
+  tooltip: "PC i i ne, Sa) i Ti cei Unpleasant\nf =\ni |\n| General's Vambraces of the Warring States |\nBinds when Picked Up |\n| Heavy Armor = Wrist |\n_ Item Level 80 - Epic |\n| Requires Level 80 |\n|\n| Buying requires Rank |\n| General (Rank 4) in Last Legion |\n| 363 Armor\n| 113 Critigation Amount |\n+66 Strength\n_ +45 Constitution |\n+6.5 Natural Stamina Regen\n| +120 Combat Rating |\n| +30 Hit Rating |\nVendor Price 2 Gald 50 Silver |"
+
+== [285] Conscript's Gauntlets of the Eastern Sun ==
+  stats: type=None slots=None classes=None itemLevel=80 vendorPrice={'silver': 10}
+  tooltip: "Conscript's Gauntlets of the Eastern Sun\nBinds when Picked Up\ni: Full Plate Armor - Hands\nItem Level 80 - Rare\nRequires Level 80\n| 467 Armor\n65 Critigation Amount\n+39 Strength\n| +56 Constitution\n+15 Hit Rating\nVendor Price 10 Silver"
+
+== [4291] Ghostfang ==
+  stats: type=None slots=None classes=None itemLevel=50 vendorPrice={'copper': 5, 'tin': 80}
+  tooltip: 'Binds when Picked Up\nDsaagger - Main Hand, Off Hand\nItem Level 50 -\nGan not use\n34.9 DPS (33 - 57)\n+31 Intelligence\n+115 Mana\n+11 Magic Damage\n+17 Hit Rating\nVendor Price 5 Copper 80 Tin'
+
+== [2102] The Mouth of Barbed Promises ==
+  stats: type=None slots=None classes=None itemLevel=80 vendorPrice={'gold': 1}
+  tooltip: 'Binds when Picked Up\nArmunition - Off Hand\nItem Level 80 -\nRequires Level 80\n150 Armor\n+100 Dexterity\n+225 Combat Rating (Bow)\n+60 Hit Rating\n+62 Critical Rating\n+30 Hate Decrease Rating\n+70 Critical Darnage Rating\nVendor Price 1 Gold'
+
+== [4445] Gloves of the Warded Brute ==
+  stats: type=None slots=None classes=None itemLevel=80 vendorPrice={'gold': 1, 'silver': 50}
+  tooltip: 'Binds when Picked Up\nFull Plate Arrnor - Hands\nItem Level 80 -\nRequires Level 80\n625 Armor\n225 Critigation Amount\n+60 Strength\n+50 Combat Rating\n+45 Hit Rating\n+47 Critical Rating\n+35 Hate Increase Rating\n+108 Protection\nVendor Price 1 Gold 50 Silver'
+
+== [611] Venturer's Gloves of the Yellow Spring ==
+  stats: type='Medium Armor' slots=['Hands'] classes=None itemLevel=None vendorPrice={'silver': 10}
+  tooltip: 'a a a ee, a bh eRe eon el\nes a, Se\n| P\n| F\n| Venturer\'s Gloves of the Yellow Spring\nBinds when Picked Up\nMedium Armor - Hands |\n|" Item Level 80 - Rare\nRequires Level 80\n| 299 Armor\n| 60 Critigation Amount\n| +21 Constitution\n| +21 Dexterity |\n+110 Combat Rating\n+38 Hit Rating\n+38 Critical Rating\n| endor Price 10 Silver |\n| fal'
+
+== [258] Pet: War Machine ==
+  stats: type=None slots=None classes=None itemLevel=None vendorPrice=None
+  tooltip: 'Sine as ee es ee (rte ee ae Ae. a oy\ni zlb a\n; TN ! Pet: War Machine\n—— | | Targeting Mode Friendly Personal Spell\nYN by |} 5 e\n~~ i} Casting Time Instant |\n| \\ Recast 120 seconds\nPet: War Machine | Description:\nBinds when Picked Up Putting siege technology into a vicious,\n; | personal package, this stationary device\n_ Companions | offers ranged combat aid to the\n| Item/Vevell1 - Rare | legionnaire. |\nRequires Level 80 i} |\n| Buying requires Rank }\n| General (Rank 4) in Last Legion i |\nCan Only Have One }\nLearn Spell: Pet: WerMachine We Tee ee eT ie\nae ee eG'
+
+== [838] Book: Of Security and Opportunity ==
+  stats: type='Consumable' slots=None classes=['Conqueror', 'Dark Templar', 'Guardian'] itemLevel=80 vendorPrice=None
+  tooltip: 'Book: Of Security and Opportunity\nBinds when Picked Up\nConsumable\n| Classes: Conqueror, Dark Templar, Guardian\nItem Level 80 - Rare\nRequires Level 80\nCan Only Have One\noe 2 Silver 50 Copper'
+
+== [836] Book: Well Laid Plans ==
+  stats: type='Consumable' slots=None classes=None itemLevel=80 vendorPrice={'silver': 5}
+  tooltip: 'Book: Well Laid Plans\nBinds when Picked Up\n| Consumable\n| Glasses: Necromancer, Demonologist, Herald of Xotli\nItem Level 80 - Epic\nRequires Level 80\n€an not use\nCan Only Have One\nVendor Price 5 Silver'
+
+== [4489] Khanjar of the Faceless Man ==
+  stats: type='Dagger' slots=['Main Hand', 'Off Hand'] classes=None itemLevel=80 vendorPrice={'gold': 1, 'silver': 50}
+  tooltip: 'Khanjar of the Faceless Man\nBinds when Picked Up\nDagger - Main Hand, Off Hand\nGlasses: Necromancer, Demonologist\nItem Level 80 - Ep\nRequires Level 80\n81.7 DPS (79 - 133)\n+50 Constitution\n+82 Intelligence\n+64 Magic Damage\n+34 Hit Rating\n+63 Critical Rating\n+77? Critical Damage Rating\n-56 PvP Magic Damage\n-500 P¥P Hit Rating\nVendor Price 1 Gold 50 Silver\nDescription:\nRune Engravings\nAshur'
+
+== [4491] Sagaris of the Twelfth Dynasty ==
+  stats: type='One-Handed Blunt' slots=['Main Hand', 'Off Hand'] classes=None itemLevel=80 vendorPrice={'gold': 1, 'silver': 50}
+  tooltip: 'Binds when Picked Up\nOne-Handed Blunt - Main Hand, Off Hand\nGlasses: Priest of Mitra, Tempest of Set\nItem Level 80 -\nRequires Level 80\n121.7 DPS (145 - 190)\n+37 Constitution\n+104 Wisdom\n+28 Magic Damage\n+62 Hit Rating\n+62 Critical Rating\n+30 Hate Decrease Rating\n+74 Critical Damage Rating\n-45 PyP Magic Damage\n-500 P¥P Hit Rating\nVendor Price 1 Gold 50 Silver\nDescription:\nRune Engravings\n4shur'
+
+== [4674] Kuthcheman Flamberge ==
+  stats: type='Two-Handed Edged' slots=['Main Hand'] classes=None itemLevel=80 vendorPrice=None
+  tooltip: 'NN 3\nBinds when Picked Up\nTwo-Handed Edged - Main Hand\nGlasses: Herald of Xotli\nItem Level 80 -\nRequires Level 80\n155.0 DPS (160 - 257)\n+60 Strength\n+32 Intelligence\n+20 Ferocity\n+90 Magic Damage (Fire)\n+200 Combat Rating (2HE)\n+80 Hit Rating\n+65 Critical Rating\n+60 Fatality Rating\n+22 Hate Decrease Rating\n+145 Critical Damage Rating\n+140 Combat Rating (Fire)\n-210 PvP Combat Rating\n-92 PvP Magic Damage\n-1000 PvP Hit Rating\nDescription:\nBuy Requirement: Must have defeated wave\n15 or greater in Kuthchemes Onslaught in\norder to purchase this item.\nGem Slots\nOnslaught Kuthcheman 22? 22?'
+
+== [4683] Kuthcheman War Blade ==
+  stats: type='One-Handed Edged' slots=['Main Hand', 'Off Hand'] classes=None itemLevel=80 vendorPrice=None
+  tooltip: '| x\nBinds when Picked Up\nOne-Handed Edged - Main Hand, Off Hand\nGlasses: Guardian, Dark Templar\nItem Level 80 -\nRequires Level 80\n127.5 DPS (135 - 216)\n+92 Strength\n+10 Ferocity\n+60 Hit Rating\n+30 Critical Rating\n+10 Fatality Rating\n+26 Hate Increase Rating\n+65 Critical Damage Rating\n-142 PvP Combat Rating\n-500 PvP Hit Rating\nDescription:\nBuy Requirement: Must have defeated\nwave 15 or greater in Kuthchemes\nOnslaught in order to purchase this item.\nGem Slots\nOnslaught 22?'
+
+== [4675] Zugite Sacrificial Poniard ==
+  stats: type='Dagger' slots=['Main Hand', 'Off Hand'] classes=None itemLevel=80 vendorPrice=None
+  tooltip: '> x\nBinds when Picked Up\nDagger - Main Hand, Off Hand\nGlasses: Necromancer, Demonologist\nItem Level 80 -\nRequires Level 80\n81.7 DPS (79 - 133)\n+20 Constitution\n+70 Intelligence\n+10 Ferocity\n+95 Magic Damage\n+80 Hit Rating\n+30 Critical Rating\n+65 Fatality Rating\n+60 Critical Damage Rating\n-56 PvP Magic Damage\n-500 PvP Hit Rating\nDescription:\nBuy Requirement: Must have\ndefeated wave 15 or greater in\nKuthchemes Onslaught in order to\npurchase this item.\nGem Slots\nOnslaught 22?'

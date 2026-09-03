@@ -4,6 +4,7 @@ import type { DragEvent } from "react";
 import type { Item } from "../types";
 import { flatItems } from "../data";
 import { SLOT_LABEL } from "../lib/format";
+import { equipSlotKey, slotDisplay } from "../lib/equip";
 import { searchArmory } from "../lib/search";
 import { decodeBuilder, encodeBuilder } from "../lib/builder";
 import ItemName from "../components/ItemName";
@@ -25,13 +26,14 @@ const SLOT_GROUPS: Array<{ group: string; slots: string[] }> = [
 
 /** Choose a builder slot key for an item. Rings get the first free ring slot. */
 function slotKeyFor(item: Item, prev: Record<string, Item>): string | null {
-  if (!item.slot) return null;
-  if (item.slot === "ring") {
+  const key = equipSlotKey(item.stats);
+  if (!key) return null;
+  if (key === "ring") {
     if (!prev.ring1) return "ring1";
     if (!prev.ring2) return "ring2";
     return "ring2"; // replace the second ring
   }
-  return item.slot;
+  return key;
 }
 
 export default function BuilderPage() {
@@ -149,7 +151,9 @@ export default function BuilderPage() {
                       e.dataTransfer.setData("text/plain", it.name ?? "");
                     }}
                   />
-                  {it.slot && <span className="itemSlot"> [{SLOT_LABEL[it.slot] ?? it.slot}]</span>}
+                  {slotDisplay(it.stats) && (
+                    <span className="itemSlot"> [{slotDisplay(it.stats)}]</span>
+                  )}
                   <button className={styles.equipMini} onClick={() => equip(it)} title={`Equip ${it.name}`}>
                     equip
                   </button>

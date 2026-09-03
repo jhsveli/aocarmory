@@ -1,0 +1,110 @@
+== [829] Book: The Five Ways of War ==
+Book: The Five Ways of War
+Binds when Picked Up
+Consumable
+| Classes: Necromancer, Demonologist, Priest of Mitra, Tempest of Set
+Iter Level 80 - Rare
+Requires Level 80
+€an not use
+Can Only Have One
+Vendor Price 2 Silver 50 Copper
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [1926] Bluefury War Wolf ==
+[ x
+Bluefury War Wolf
+Binds when Picked Up
+Consumable
+Item Level 80 - Enchanted
+Requires Level 1
+Can Only Have One
+Learn Spell: Bluefury War Wolf
+Description:
+Teaches you how to summon a
+Bluefury War Wolf. Requires
+Exotic Creature Handling to
+use.
+  stats type='Consumable' learnSpell='Bluefury War Wolf' lines=[]
+
+== [176] The Art of Eastern Riding ==
+The Art of Eastern Riding
+Binds when Picked Up
+Consumable
+Item Level 80 - Superior
+Requires Level 80
+Can Only Have One
+Vendor Price 6 Gold
+Description:
+Trains you in Eastern Riding.
+This allows you to use Khitan
+mounts,
+You must have Advanced
+Riding to be able to train
+Eastern Riding.
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [1960] Architect: Overgrown Royalty ==
+Architect: Overgrown Royalty
+Binds when Picked Up
+Consumable
+Item Level 40 - Enchanted
+Requires Renown Level 17
+Requires Level 1
+Gan not.use
+Vendor Price 10 Silver
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [1955] Phial of Heavenly Knowledge ==
+E x
+Phial of Heavenly Knowledge
+Binds when Picked Up
+Consumable
+Item Level 80 - Ef
+Requires Level 20
+Description:
+This item grants 3 Expertise points.
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [4523] Dragon Tear ==
+Binds when Picked Up
+Consumable
+Item Level 1 - Epic
+Vendor Price 15 Silver
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [4632] Vanir Warriors Cache ==
+Vanir Warrior's Cache
+Binds when Picked Up
+Consumable
+Item Level 1 - Enchanted
+Description:
+Opening this cache will
+grant the user with the full
+8 piece Vanir Warrior
+social set.
+  stats type='Consumable' learnSpell=None lines=[]
+
+== [828] Path of the Enlightened ==
+Ei x ie x
+J Path of the Enlightened
+rout Targeting Mode Friendly Personal Spell
+; Casting Time 1.5 seconds
+Duration 60 seconds
+Recast 10 minutes
+Path of the Enlightened
+Binds when Picked Up Effect +20 Magic Damage
+Gonsumable +5 Natural Health Regen
+oi bevalleue pare +180 Combat Rating (Unholy)
+Requires Level 80 < A “
+Buying requires Rank Chance on hit Chance on damage, Path of the Gnilhitetiesd on self, 1 Procs per Minute
+Enlightened (Rank 4) in Jiang Shi Chance on spell damage, Path of the Enlightened on self, 1 Procs per Minute
+Can Only Have One Description:
+This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to
+Learn Spell: Path of the Enlightened gain way to the rarest of delicacies - the consumption of souls.
+Description:
+This esoteric ritual unlocks the E
+refined hunger of the Enlightened
+Jiang Shi and allows one to gain
+way to the rarest of delicacies -
+the consumption of souls.
+  stats type=None learnSpell='Path of the Enlightened' lines=['Consumable', 'This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to']

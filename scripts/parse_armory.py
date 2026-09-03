@@ -24,6 +24,15 @@ SLOTS = {
     "bow", "crossbow", "dagger", "talisman", "polearm", "staff",
     "ammunition", "shield",
 }
+
+# Item-kind tokens from the HTML that are NOT worn equipment slots (mounts,
+# consumables, potions, pets, backpacks, generic items). These stay slot-less;
+# the tooltip provides their type instead (e.g. "Consumable").
+NON_SLOT_TOKENS = frozenset(("mount", "consumable", "potion", "pet", "generic", "backpack"))
+
+# NOTE: Item.slot was removed from the data model — slot info is derived from
+# the tooltip stats (see armory/src/lib/equip.ts). The SLOTS/NON_SLOT_TOKENS
+# sets above are kept only to document the original HTML slot tokens.
 RARITIES = {"Mundane", "Superior", "Enchanted", "Rare", "Epic", "Legendary"}
 
 # ---------------------------------------------------------------------------
@@ -269,8 +278,8 @@ def parse_set(set_li: dict):
 
 
 def parse_item(item_li: dict):
-    """Parse an item <li>: optional price span + <a class='Rarity slot'>Name</a> + [Slot]."""
-    item = {"id": None, "name": None, "rarity": None, "slot": None,
+    """Parse an item <li>: optional price span + <a class='Rarity'>Name</a>."""
+    item = {"id": None, "name": None, "rarity": None,
             "price": None, "drop": None, "image": None}
     # price span
     for span in walk(item_li, "span", "price"):
@@ -292,11 +301,6 @@ def parse_item(item_li: dict):
         for c in cls:
             if c in RARITIES:
                 item["rarity"] = c
-            elif c in SLOTS:
-                item["slot"] = c
-            elif c and c.islower() and not c.startswith("item"):
-                # unknown slot token (e.g. "generic")
-                item["slot"] = c
         if href:
             # normalize wayback-rewritten urls back to the live static host
             m = re.search(r"static\.is-better-than\.tv(/armory/[a-z0-9_()\-]+\.(?:jpg|png|gif))", href)

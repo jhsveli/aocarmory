@@ -81,10 +81,12 @@ The `scripts/` folder contains the Python tooling used to recover the data:
 4. `extract_tooltips.py` — downloads the per-item tooltip screenshots
    (`static.is-better-than.tv/armory/*.jpg`), OCRs them with Tesseract, parses
    the text into structured stats, and bakes `tooltip` + `stats` into the
-   dataset. `research/armory_data.json` keeps the `image` url as provenance;
-   the app dataset keeps it too, so the detail panel can hotlink the original
-   screenshot. Resumable: re-runs skip finished work, and
-   `--reparse` re-runs only the structured parse over cached OCR text.
+   dataset. The raw OCR `tooltip` text is kept in `research/armory_data.json`
+   and `research/tooltips.json` (ground truth for re-parsing); the shipped app
+   dataset carries only the structured `stats`, plus the `image` url so the
+   detail panel can hotlink the original screenshot. Resumable: re-runs skip
+   finished work, and `--reparse` re-runs only the structured parse over
+   cached OCR text.
 
 To regenerate the app dataset after re-running the parser:
 
@@ -94,8 +96,9 @@ python scripts/extract_tooltips.py          # download + OCR -> research/tooltip
 python scripts/extract_tooltips.py --merge  # bake tooltip/stats into both datasets
 ```
 
-(`--merge` writes the minified app dataset `armory/src/data/armory_data.json`,
-keeping the `image` url; `research/tooltips_report.json` records the counts.)
+(`--merge` writes the minified app dataset `armory/src/data/armory_data.json`
+without the raw tooltip text but keeping the `image` url;
+`research/tooltips_report.json` records the counts.)
 
 ## Notes & limitations
 
@@ -115,6 +118,51 @@ keeping the `image` url; `research/tooltips_report.json` records the counts.)
   restrictions, omitted when unclassed). The panel resolves display labels
   through the language file `armory/src/lib/stat-labels.ts` — add any new OCR
   attribute names there.
+- Faction-gated items store the requirement as
+  `requiresFactionRank: { "<faction key>": <rank> }` (e.g.
+  `{"last legion": 1}`) instead of raw tooltip lines; display names and the
+  per-rank titles (which differ per faction) live in the language file
+  `armory/src/lib/faction-ranks.ts`. `scripts/extract_faction_ranks.py` lifted
+  these out of `stats.lines` in one pass over `research/armory_data.json`.
+- Character-specific OCR lines ("Can not use") are dropped from `stats.lines`
+  and the raw tooltip — they reflect the character the screenshot was taken
+  on, not the item. `scripts/drop_can_not_use.py` performed the cleanup across
+  the dataset and the OCR cache. All JSON datasets are written as UTF-8
+  (`ensure_ascii=False`), including the non-ASCII OCR artifacts (quotes,
+  dashes, ¥ in "PvP" misreads).
+- Attribute lines OCR'd with decimal commas or stray punctuation
+  ("+4,3 Natural Stamina Regen") fell into `stats.lines`; `scripts/move_lines_to_stats.py`
+  recovered 497 of them into `stats.attributes`, plus 13 comma-decimal weapon
+  DPS lines into `stats.dps`/`stats.damage` and one OCR-mangled armor line
+  ("874 Armar"). Values normalize commas to decimal points ("4,3" -> 4.3).
+- "Vendor Price 2 Gold 50 Silver" tooltip lines are decoded into
+  `stats.vendorPrice = { gold: 2, silver: 50 }` (denominations gold/silver/
+  copper/tin) by `scripts/extract_vendor_prices.py`, tolerating OCR variants
+  (V read as M/W/Y/¥, "Gald"/"Gopper", S/O/i digit confusions). 4,595 of 4,652
+  lines parsed; the 57 with genuinely unreadable amounts (a "?" digit or
+  mangled text) can be fixed by hand via
+  `scripts/review_vendor_prices.py --export` (writes
+  `research/vendor_price_fixes.json`) then `--apply`.
+- "Description:" tooltip blocks are extracted into
+  `stats.description` as an **array of lines** (one per tooltip line) by
+  `scripts/extract_descriptions.py`; the "Gem Slots" section is treated as a
+  separate block and stays in `stats.lines`.
+- Redundant "Binds …" lines ("Character Bound : Binds when Picked Up",
+  "Binds when Equipped", ...) are removed from `stats.lines` by
+  `scripts/clean_binds_lines.py`, which also syncs `stats.binds` from the
+  line text (a bare "Character Bound" means bound on acquire).
+- "Rune Engravings" names and "Gem Slots" values are extracted into
+  `stats.engravings` / `stats.gemSlots` (both arrays with bounded value types
+  in `armory/src/types.ts`) by `scripts/extract_gems_engravings.py`; gem
+  values are socket colors or named slots (Kuthcheman, Onslaught, White Hand,
+  Hyperborean, Eldritch, Occult, Chaos) and may be mixed in one item. Pure
+  color lists are split into individual colors; composite OCR values were
+  re-split by `scripts/split_gem_slot_names.py` and the unreadable blocks
+  were fixed visually via `scripts/review_gem_slots.py --review` / `--apply`.
+- The unique-item restriction "Can Only Have One" is extracted into
+  `stats.canOnlyHaveOne` (boolean) by `scripts/extract_can_only_have_one.py`;
+  socketed-gem content (gem names and their stat bonuses) is player-specific
+  and excluded from the database.
 - A handful of `ab=` builder links captured from the 2023 armorsets page are
   corrupt in the archive; those decode to an empty builder (handled gracefully).
 - The attribute calculator uses the officially documented per-point effects

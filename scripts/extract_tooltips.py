@@ -19,6 +19,8 @@ This script:
 
 Stats schema: scalar stats use explicit properties (itemLevel, requiresLevel,
 requiresPvpLevel, requiresRenownLevel, requiresItemLevel — all numeric);
+the tooltip "Type - Slot(s)" line is split into stats["type"] (e.g. "Dagger")
+and stats["slots"] (e.g. ["Main Hand", "Off Hand"], omitted when slotless);
 armor/critigation are { "<name>": <number> } entries in stats["values"];
 attribute bonuses and penalties are { "<name>": <number> } entries in
 stats["attributes"] (penalties negative, e.g. { "pvp magic damage": -66 });
@@ -189,14 +191,16 @@ def ocr_image(path, pytesseract, binarize=False, psm=6):
 
 RE_BINDS = re.compile(r"^Binds (when Picked Up|on Pickup|on Equip|on Acquire)\b", re.I)
 RE_LEVEL = re.compile(r"^Level[: ]?\s*(\d+)$", re.I)
-RE_ITEM_LEVEL = re.compile(r"^Item Level[: ]?\s*(\d+)", re.I)
+RE_ITEM_LEVEL = re.compile(r"^Ite[rm]n?\s*Level[: ]?\s*(\d+)", re.I)
 RE_REQUIRES_LEVEL = re.compile(r"^Requires Level[: ]?\s*(\d+)", re.I)
 RE_PVP_LEVEL = re.compile(r"^Requires PvP Level[: ]?\s*(\d+)", re.I)
 RE_RENOWN_LEVEL = re.compile(r"^Requires Renown Level[: ]?\s*(\d+)", re.I)
 RE_ITEM_LEVEL_REQ = re.compile(r"^Requires a Level[: ]?\s*(\d+)\s*Item", re.I)
 RE_ARMOR_A = re.compile(r"^Armor[: ]?\s*(\d+)$", re.I)
-RE_ARMOR_B = re.compile(r"^(\d+)\s*Armor$", re.I)
-RE_CRITIGATION = re.compile(r"^(\d+)\s*Critigation Amount$", re.I)
+# 'Armor' with the leading A misread by OCR as & / 4 / S
+RE_ARMOR_B = re.compile(r"^(\d+)\s*[A&4S]rmor$", re.I)
+# 'Critigation Amount' with OCR typos: Gritigation, Armount, stray '?' digit
+RE_CRITIGATION = re.compile(r"^(\d+)\??\s*[CG]ritigation\s*(?:Amount|Armount)$", re.I)
 RE_DAMAGE = re.compile(r"^Damage[: ]?\s*([\d\s,]+)\s*-\s*([\d\s,]+)$", re.I)
 RE_DPS = re.compile(r"^DPS[: ]?\s*([\d.]+)$", re.I)
 RE_DPS_WITH_DMG = re.compile(r"^([\d.]+)\s*DPS\s*\((\d+)\s*-\s*(\d+)\)$", re.I)
@@ -208,8 +212,8 @@ RE_SET_BONUS = re.compile(r"^\(\s*(\d+)\s*\)\s*Set Bonus:\s*(.+)$", re.I)
 RE_CLASSES = re.compile(r"^Classes[: ]?\s*(.+)$", re.I)
 
 # The tooltip screenshots draw a frame around the text; OCR picks up the
-# decoration chars (| _ ' / - : .) on the left/right of lines.
-DECOR_LEAD = re.compile(r"^[\s|_'`/.:*\-\u2013\u2014]+")
+# decoration chars (| _ ' / - : . ,) on the left/right of lines.
+DECOR_LEAD = re.compile(r"^[\s|_'`/.:*,\-\u2013\u2014]+")
 DECOR_TAIL = re.compile(r"[\s|_'`/\-\u2013\u2014]+$")
 
 
@@ -235,7 +239,7 @@ ATTR_OCR_FIXES = (
     ("Py\u00a5P", "PvP"), ("P\u00a5P", "PvP"),
     ("Py\ufffdP", "PvP"), ("P\ufffdP", "PvP"),
     ("Darnage", "Damage"), ("Darmage", "Damage"), ("Darnmage", "Damage"),
-    ("Darmnage", "Damage"), ("Darnnage", "Damage"),
+    ("Darmmage", "Damage"), ("Darmnage", "Damage"), ("Darnnage", "Damage"),
     ("Strenath", "Strength"), ("Wisdorn", "Wisdom"),
     ("Combst", "Combat"), ("Cambat", "Combat"),
     ("Mansa", "Mana"), ("Mans", "Mana"),
@@ -270,6 +274,42 @@ ATTR_TAIL_HINTS = frozenset((
 ))
 
 
+# Equipment kinds from the tooltip "Type - Slot(s)" line. Only lines whose
+# cleaned left token is one of these are split into type + slots.
+TYPE_TOKENS = frozenset((
+    "Cloth Armor", "Light Armor", "Medium Armor", "Heavy Armor",
+    "Full Plate Armor", "Ring", "Back", "Social",
+    "Dagger", "One-Handed Edged", "One-Handed Blunt", "Two-Handed Edged",
+    "Two-Handed Blunt", "Talisman", "Shield", "Staff", "Polearm", "Bow",
+    "Crossbow", "Ammunition", "Thrown",
+))
+
+# OCR typos in type tokens on "Type - Slot(s)" lines.
+TYPE_TOKEN_FIXES = {
+    "Mediurn Armor": "Medium Armor",
+    "Light Arrnor": "Light Armor",
+    "Cloth Arrnor": "Cloth Armor",
+    "Full Plate Arrnor": "Full Plate Armor",
+    "Talisrnan": "Talisman",
+    "Daager": "Dagger",
+    "Dsaagger": "Dagger",
+    "Arnmunition": "Ammunition",
+    "Armunition": "Ammunition",
+    "Aromunition": "Ammunition",
+    "mmunition": "Ammunition",
+}
+
+
+def _clean_type_token(tok):
+    """Canonicalize an OCR'd type token on a 'Type - Slot(s)' line."""
+    tok = tok.strip().strip("\"'`")
+    tok = re.sub(r"^[^A-Za-z]+", "", tok)          # leading decor noise: 'i ', '+ ', '} ', '� '
+    tok = re.sub(r"^i\s+", "", tok)                # stray 'i ' prefix
+    tok = tok.replace("4rmor", "Armor")            # OCR reads A as 4 in 'Armor'
+    tok = re.sub(r"\s*\(Level \d+\)$", "", tok)    # 'Ammunition (Level 80)'
+    return TYPE_TOKEN_FIXES.get(tok, tok)
+
+
 # OCR typos in class names on "Classes:" restriction lines.
 CLASS_OCR_FIXES = {
     "Dark Ternplar": "Dark Templar",
@@ -284,7 +324,8 @@ TYPE_HINTS = ("sword", "axe", "mace", "staff", "bow", "shield", "dagger",
               "ring", "bracers", "vambraces", "wrist", "shoulders", "epaulets",
               "cuirass", "breastplate", "leggings", "greaves", "sabatons",
               "girdle", "head", "chest", "hands", "feet", "back", "weapon",
-              "one-handed", "two-handed", "ranged", "thrown", "polearm")
+              "one-handed", "two-handed", "ranged", "thrown", "polearm",
+              "consumable", "potion", "pet", "companions", "backpack")
 
 
 def _prose_like(line: str) -> bool:
@@ -317,16 +358,17 @@ def parse_stats(lines, name=None):
         nonlocal pending
         if not pending:
             return
-        # A run of prose-like lines is a description paragraph; pull it out.
+        # A run of prose-like lines is a description paragraph; pull it out,
+        # keeping each tooltip line as its own element (see ItemStats.description).
         prose = [ln for ln in pending if _prose_like(ln)]
         if len(prose) >= 2 and len(prose) == len(pending):
-            stats["description"] = "\n".join(prose)
+            stats["description"] = prose
         else:
             for ln in pending:
                 n_words = len([w for w in ln.split() if w != "-"])
                 if stats.get("type") is None and n_words <= 3 \
                         and not re.search(r"\d", ln) \
-                        and any(h in ln.lower() for h in TYPE_HINTS):
+                        and any(re.search(rf"\b{re.escape(h)}\b", ln.lower()) for h in TYPE_HINTS):
                     stats["type"] = ln
                 else:
                     stats["lines"].append(ln)
@@ -363,6 +405,21 @@ def parse_stats(lines, name=None):
             if rest:
                 pending.append(rest)
             continue
+        # "Type - Slot(s)" line, e.g. "Cloth Armor - Hands",
+        # "Dagger - Main Hand, Off Hand", "Ring - Left/Right Finger".
+        if " - " in line:
+            left, right = line.split(" - ", 1)
+            t = _clean_type_token(left)
+            if t in TYPE_TOKENS:
+                flush_pending()
+                slots = [s.strip() for s in right.split(",") if s.strip()]
+                if t == "Back" and slots == ["Cloak"]:
+                    # cloaks print slot-first in-game ("Back - Cloak")
+                    t, slots = "Cloak", ["Back"]
+                stats["type"] = t
+                if slots:
+                    stats["slots"] = slots
+                continue
         m = RE_LEVEL.match(line) or RE_ITEM_LEVEL.match(line)
         if m:
             flush_pending(); stats["itemLevel"] = int(m.group(1)); continue
@@ -456,11 +513,11 @@ def parse_stats(lines, name=None):
         # one that OCR merged onto another label ("Character Bound : Binds …"),
         # otherwise the item is unbound.
         joined = "\n".join(stats["lines"])
-        if re.search(r"Binds (?:when Picked Up|on Pickup|when Equipped|on Equip|on Acquire)",
-                     joined, re.I):
-            stats["binds"] = ("BIND_ON_PICKUP"
-                               if re.search(r"Picked Up|Pickup|Acquire", joined, re.I)
-                               else "BIND_ON_EQUIP")
+        if re.search(r"Binds when (?:Equipped|on Equip)", joined, re.I):
+            stats["binds"] = "BIND_ON_EQUIP"
+        elif re.search(r"Binds (?:when Picked\s*['\u2018\u2019]?\s*Up|on Pickup|on Acquire)"
+                       r"|\bCharacter Bound\b", joined, re.I):
+            stats["binds"] = "BIND_ON_PICKUP"
         else:
             stats["binds"] = "NO_BIND"
     return stats
@@ -512,6 +569,25 @@ def unique_image_jobs(data):
     return jobs
 
 
+def app_payload(data):
+    """Copy of the dataset without each item's raw tooltip text.
+
+    The shipped app dataset only needs the structured stats (plus the image
+    url for the screenshot hotlink); the raw OCR text stays research-side in
+    research/armory_data.json and research/tooltips.json.
+    """
+    import copy
+
+    payload = copy.deepcopy(data)
+    for section in payload["sections"]:
+        for loc in section.get("locations", []):
+            for cat in loc.get("categories", []):
+                for set_ in cat.get("sets", []):
+                    for item in set_.get("items", []):
+                        item.pop("tooltip", None)
+    return payload
+
+
 def merge(cache):
     """Bake tooltip/stats into research + app datasets (app keeps image)."""
     with open(SRC_DATA, encoding="utf-8") as fh:
@@ -553,11 +629,12 @@ def merge(cache):
     with open(SRC_DATA, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=1)
 
-    # app dataset: minified; the image url is kept so the item-detail panel
-    # can show the original tooltip screenshot next to the scraped stats
+    # app dataset: minified and without the raw tooltip text (stats + image
+    # url are enough for rendering; the detail panel hotlinks the original
+    # tooltip screenshot from the image url)
     os.makedirs(os.path.dirname(APP_DATA), exist_ok=True)
     with open(APP_DATA, "w", encoding="utf-8") as fh:
-        json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))
+        json.dump(app_payload(data), fh, ensure_ascii=False, separators=(",", ":"))
 
     return merged, missing
 

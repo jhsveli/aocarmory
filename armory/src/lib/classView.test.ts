@@ -7,10 +7,8 @@ function makeSet(name: string, classes: string[], itemId = 1): Set {
     id: itemId,
     name: `${name} Item`,
     rarity: "Rare",
-    slot: "head",
     price: null,
     drop: null,
-    tooltip: null,
     stats: null,
   };
   return { name, classes, builder: null, items: [item] };

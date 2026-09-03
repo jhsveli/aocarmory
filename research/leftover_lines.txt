@@ -1,0 +1,758 @@
+items with non-empty stats.lines: 316
+total leftover lines: 439
+
+[1] Brew of Acute Brawn
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[4] Pet: Tree of Death
+      'Learn Spell: Pet: Tree of Death'
+[83] Brew of Acute Aptitude
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[84] Pet: Idol of Yag
+      'Companions'
+      'Learn Spell: Pet: Idol of Ya'
+[85] Ring of Memory
+      '52 Fatality Rating'
+[90] Believer's Gauntlets of the Bloody Stone
+      '231 Armor'
+[93] Mystic's Helm of the Bloody Stone
+      '+7 Natural Stamina Regen'
+[164] Brew of Vigorous Acumen
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[167] Hyrkanian Bitter Wind-Biter
+      '-35 Staggering Chance'
+      'Mount : Description:'
+      'Learn Spell: Hyrkanian Bitter Wind-Biter'
+[168] Hyrkanian Dread Ash-Tramper
+      '-35 Staggering Chance'
+      'Mount Description:'
+      'Learn Spell: Hyrkanian Dread Ash-Tramper'
+[169] Hyrkanian Fleet Scream-Catcher
+      '-35 Staggering Chance'
+      'Mount : Description:'
+      'Learn Spell: Hyrkanian Fleet Scream-Catcher'
+[170] Hyrkanian Grim Skull-Treader
+      '-35 Staggering Chance'
+      'Mount Description:'
+      'Learn Spell: Hyrkanian Grim Skull-Treader'
+[171] Hyrkanian Pale Ghost-Chaser
+      '-35 Staggering Chance'
+      'Mount Description:'
+      'Learn Spell: Hyrkanian Pale Ghost-Chaser'
+[172] Hyrkanian Resplendent Sun-Strider
+      '-35 Staggering Chance'
+      'Mount : Description:'
+      'Learn Spell: Hyrkanian Resplendent Sun-Strider'
+[173] Hyrkanian Sable Shadow-Dasher
+      '-35 Staggering Chance'
+      'Mount : Description:'
+      'Learn Spell: Hyrkanian Sable Shadow-Dasher'
+[174] Hyrkanian Wicked Chaos-Clapper
+      '-35 Staggering Chance'
+      'Mount : Description:'
+      'Learn Spell: Hyrkanian Wicked Chaos-Clapper'
+[242] Honored Gauntlets of the Four Winds
+      '+72 Strength'
+[254] Brew of Acute Foresight
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[258] Pet: War Machine
+      'Companions'
+      'Item Level 1 - Rare'
+      'Putting siege technology into a vicious,'
+      'personal package, this stationary device'
+      'offers ranged combat aid to the'
+      'legionnaire.'
+      'Learn Spell: Pet: WarMachine'
+[260] Conscript's Armguards of Dynastic Rule
+      '58 Critigation Amount'
+[283] General's Vambraces of the Warring States
+      'Heavy Armor - Wrist'
+[285] Conscript's Gauntlets of the Eastern Sun
+      'Full Plate Armor - Hands'
+[320] Pet: Kang-Zai
+      'Learn Spell: Pet: Kang-Zai'
+[404] Brew of Vigorous Brawn
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[406] Pet: Moon Child
+      'Learn Spell: Pet: Moon Child'
+[426] Reader's Bracers of Twining Smoke
+      '142 Combat Rating (2HE)'
+[467] Savant's Mantle of the Heavens
+      '+7 Natural Mana Regen'
+[479] Brew of Acute Fortitude
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[480] Pet: The Sixth Con of Cang-Jei
+      'Learn Spell: Pet: The Sixth Con of Cang-Jei'
+[509] Pickpocket's Leggings of the Fifth Stage
+      '+212 Combat Rating (2HB)'
+[516] Pickpocket's Legguards of the Stolen Kingdom
+      '+25 Immunity Rating'
+[518] Footpad's Gloves of the Stolen Kingdom
+      '+26 Constitution'
+[580] Brew of Vigorous Aptitude
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[583] Horsehair Blanket
+      'Generic'
+[583] Horsehair Blanket
+      'Generic'
+[585] The Tiger's Will
+      '+123 Intelligence'
+[586] Venturer's Gauntlets of the Primeval
+      '227 Armor'
+[605] Freebooter's Treads of the Painted Claw
+      '+120 Mana'
+[611] Venturer's Gloves of the Yellow Spring
+      'Item Level 80 - Rare'
+[621] Freebooter's Vest of Grinning Skulls
+      '+42 Critical Damage Rating'
+[628] Freebooter's Gloves of the Elder Bond
+      '+23 Dexterity'
+[663] Brew of Vigorous Foresight
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[664] Club of the Wolf Rider
+      '+165 Strength'
+      '+92 Critical Rating'
+[667] Brigand's Belt of a Hundred Eyes
+      '54 Critigation Amount'
+[723] Brigand's Armguards of the Khan
+      '42 Critigation Amount'
+[744] Brew of Acute Acumen
+      'Potion (Level 80)'
+      'Duration: 1 hour'
+[746] Pet: Black Lotus
+      'Learn Spell: Pet: Black Lotus'
+[747] Pet: Golden Lotus
+      'Companions'
+      'Description:'
+      'Summons 4 golden lotus, growing from'
+      "the ground. The flower's mystical"
+      'properties heal the Yun priest.'
+      'Learn Spell: Pet: Golden Lotus'
+[748] Pet: Grey Lotus
+      'Learn Spell: Pet: Grey Lotus 3 a'
+[749] Pet: Yellow Lotus
+      'Companions'
+      'Description:'
+      'Summons a yellow lotus, growing from the'
+      "ground. The flower's phantasmal pollen"
+      'stuns the nearby enemies of the Yun'
+      'Learn Spell: Pet: Yellow Lotus'
+[801] Monk's Bracers of the Hallow Worlds
+      '+7 Natural Stamina Regen'
+[827] Body Bag
+      '72 additional slots'
+[828] Path of the Enlightened
+      '+20 Magic Damage'
+      'Consumable'
+      '+5 Natural Health Regen'
+      '+180 Combat Rating (Unholy)'
+      'This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to'
+      'Learn Spell: Path of the Enlightened gain way to the rarest of delicacies - the consumption of souls.'
+[836] Book: Well Laid Plans
+      'Classes: Necromancer, Demonologist, Herald of Xotli'
+[838] Book: Of Security and Opportunity
+      'Vendor Price 2 Silver 50 Copper'
+[915] Boots of Celestial Radiance
+      '+5% Out of Combat Movement Speed'
+[921] Poderes of Celestial Radiance
+      '+7 Natural Mana Regen'
+[941] Bracers of Dark Malice
+      '+7 Natural Stamina Regen'
+[964] Sage's Sash of the Eldritch
+      '+47 Magic Darmmage'
+[1155] Boots of Illuminant Conviction
+      '+5% Out of Combat Movement Speed'
+[1163] Boots of Effulgent Devotion
+      '+5% Out of Combat Movement Speed'
+[1322] Feather of Ibis
+      'Chance on damage, Vision of Ibis on target, 120 Procs per Minute'
+[1323] Quill of Ibis
+      'Chance on damage, Vision of Ibis on target, 120 Procs per Minute'
+[1334] Canvas Pack
+      '32 additional slots'
+[1335] Commander's Haversack
+      '64 additional slots'
+[1337] Ring of Protection
+      '+140 Protection'
+[1338] Adventurer's Pack-Bag
+      '40 additional slots'
+[1340] Necklace of Relentless Bellicosity
+      '+7 Natural Stamina Regen'
+[1342] Veteran's Bag
+      '35 additional slots'
+[1349] Mystic's Delight
+      'xe SoS'
+[1351] Bag of Engulfment
+      '48 additional slots'
+[1382] Belt of Vicious Frenzy
+      '+4? Constitution'
+[1425] Harness of Rapturous Battle
+      '+? Natural Mana Regen'
+[1473] Chestguard of Reckless Challenge
+      '7 wen'
+[1521] Harness of Bestial Rage
+      '+? Natural Mana Regen'
+[1522] Leggings of Bestial Rage
+      '+? Natural Mana Regen'
+[1578] Tasset of the Doomsayer
+      '+? Natural Mana Regen'
+[1586] Leggings of the Precursor
+      '+? Natural Mana Regen'
+[1594] Leggings of the Harbinger
+      '+? Natural Mana Regen'
+[1609] Bindings of the Reanimator
+      'S74 Armor'
+[1610] Loincloth of the Reanimator
+      '+? Natural Mana Regen'
+[1618] Loincloth of the Darkwretch
+      'S501 Armor'
+[1642] Leggings of Intricate Spite
+      'S501 Armor'
+[1714] Cloak of Insight
+      'Chance of getting damage, Sacrarial Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Sacrarial Guard on self, 3 percent chance'
+[1716] The Water's Edge
+      'Peres aie ie 2) at gts'
+[1775] Essence of Courage
+      '#10 Armor'
+[1779] Boots of the Dragon King
+      '+2? Constitution'
+[1779] Boots of the Dragon King
+      '+2? Constitution'
+[1783] Tongue of the Vengeful Serpent
+      'Chance on damage, Arcing Strike on target, 3 Procs per Minute'
+[1842] Headband of the Kozak Slayer
+      'S74 Armor'
+[1843] Headdress of the Grand Monarch
+      'S74 Armor'
+[1866] Boots of the Milites Templi
+      '77? Armor'
+[1866] Boots of the Milites Templi
+      '77? Armor'
+[1879] Alchemist's Pendant
+      '4 Iter Level 80 - Rare'
+[1881] Ring of the Hierophant
+      'Chance of getting damage, Vengeful Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Vengeful Revenge on self, 1 percent chance'
+[1885] Furious Spirit
+      'Casting Time 2 seconds'
+      'F Recast 10 seconds'
+      'room of the Atlantean ruins, summons a'
+      'Learn Spell: Pet: Furious Spirit'
+[1891] Staff of Erlik
+      '67.3 DPS (5? - 135)'
+[1924] Sandals of Indomitable Souls
+      '77? Armor'
+[1924] Sandals of Indomitable Souls
+      '77? Armor'
+[1926] Bluefury War Wolf
+      'Learn Spell: Bluefury War Wolf'
+[1933] Ymirish Frostband
+      'Chance of getting damage, Icy Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Icy Revenge on self, 1 percent chance'
+[1956] Megalith : Tooth and Claw of Dynasties
+      'Generic'
+[1959] Imperial Bluesteel Slaughter Steed
+      'Learn Spell: Imperial Bluesteel Slaughter Steed'
+[2102] The Mouth of Barbed Promises
+      'Armunition - Off Hand'
+[2124] Bandit's Gauntlets of the Grasslands
+      'S74 Armor'
+[2180] Sandals of the Faceless Chaos
+      '+2? Constitution'
+[2208] Corruptor's Tasset
+      'Chance of getting damage, Ripping Revenge on target, 1 percent chance'
+      'Chance on receiving spell damage, Ripping Revenge on target, 1 percent chance'
+[2210] Renato's Bow
+      'Chance on damage, Rupturing Strike on target, 3 Procs per Minute'
+[2211] Soulmark Belt
+      'Chance of getting damage, Vengeful Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Vengeful Revenge on self, 1 percent chance'
+[2212] Viridian Arrows
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2213] Viridian Bolts
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2215] Dark Eternal
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[2216] Redblood Cloak
+      'Chance of getting damage, Vengeful Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Vengeful Revenge on self, 1 percent chance'
+[2220] Drazgal's Fabled Shield
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[2234] Underdweller's Spear
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2236] Renato's Crossbow
+      'Chance on damage, Rupturing Strike on target, 3 Procs per Minute'
+[2242] Literatus Hood
+      '+2? Constitution'
+[2243] Majestic Gloves
+      '+? Hate Decrease Rating'
+[2247] Martial Cloak
+      'Chance of getting damage, Secular Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Secular Guard on self, 3 percent chance'
+[2248] Marcelin Pike
+      'Chance on damage, Rupturing Strike on target, 3 Procs per Minute'
+[2249] Unerring Crossfire
+      '+? Stamina Tap Rating'
+      'Chance on damage, Destructive Strike on target, 3 Procs per Minute'
+[2257] Emerald-hide Shoes
+      '+4% Out of Combat Movement Speed'
+[2259] Covert Leggings
+      '+4% Out of Combat Movement Speed'
+[2260] Darkcraft Vesture
+      'Chance of getting damage, Ripping Revenge on target, 1 percent chance'
+      'Chance on receiving spell damage, Ripping Revenge on target, 1 percent chance'
+[2271] Deathmaven Heavy Helm
+      'Chance of getting damage, Corruptive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Corruptive Revenge on self, 1 percent chance'
+[2274] Mammuthus Shield
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[2275] Skyhawk's Edge
+      'Chance on damage, Rending Strike on target, 3 Procs per Minute'
+[2276] Putharjath's Legacy
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[2289] Bonecleave
+      'Chance on damage, Rending Strike on target, 3 Procs per Minute'
+[2297] Queen Blade
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2301] Rustic Fauld
+      '+4% Out of Combat Movement Speed'
+[2311] Harness of Insanity
+      'Chance of getting damage, Ripping Revenge on target, 1 percent chance'
+      'Chance on receiving spell damage, Ripping Revenge on target, 1 percent chance'
+[2318] Antillian Leggings
+      '+4? Critical Darnage Rating'
+[2362] Companion: Corrupted Self
+      'Learn Spell: Companion: Corrupted Self'
+[2374] Darksun
+      'Chance on damage, Strike of Tia Shar on target, 3 Procs per Minute'
+[2384] Canach Breeches
+      '$30 Armor'
+[2407] Spectral Cape
+      '+? Evade Rating'
+      '+? Hit Rating'
+      'Chance of getting damage, Secular Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Secular Guard on self, 3 percent chance'
+[2420] Anvilstrike
+      'Chance on damage, Flaring Strike on target, 3 Procs per Minute'
+[2421] Artisan's Tunic
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[2422] Fireforge Axe
+      'Chance on damage, Rending Strike on target, 3 Procs per Minute'
+[2423] Forgehammer
+      'Chance on damage, Flaring Strike on target, 3 Procs per Minute'
+[2424] Ironsmiter
+      'Chance on damage, Destructive Strike on target, 3 Procs per Minute'
+[2444] Frostram
+      'Chance on damage, Gelid Strike on target, 3 Procs per Minute'
+[2445] Frostwall
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[2449] Nithing Fang
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2450] Northern Frostcape
+      'Chance of getting damage, Icy Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Icy Revenge on self, 1 percent chance'
+[2471] Flametemper Arrows
+      'Chance on damage, Flaring Strike on target, 3 Procs per Minute'
+[2477] Quicksilvered Leggings
+      '+5% Out of Combat Movement Speed'
+[2496] Blighted Halberd
+      "Chance on damage, Balko's Curse on target, 3 Procs per Minute"
+[2500] Darkrend Tunic
+      '+4? Critical Darnage Rating'
+[2541] Leggings of Insanity
+      'Chance of getting damage, Ripping Revenge on target, 1 percent chance'
+      'Chance on receiving spell damage, Ripping Revenge on target, 1 percent chance'
+[2642] Skyshear Bracers
+      '+? Hate Decrease Rating'
+[2650] Nithing Beheader
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2663] Blackmarrow Chest
+      '+? Hit Rating'
+[2667] Vashian Tunic
+      '+2? Dexterity'
+[2681] Cloak of Hugin
+      'Chance of getting damage, Sacrarisl Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Sacrarial Guard on self, 3 percent chance'
+[2682] Cloak of Munin
+      'Chance of getting damage, Secular Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Secular Guard on self, 3 percent chance'
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell damage, Pulsing Guard on self, 2 percent chance'
+[2691] Mortiferous Boots
+      '+? Evade Rating'
+[2695] Vashian Schenti
+      '+2? Constitution'
+[2710] Vyre
+      '+? Health Tap Rating'
+      '+? Stamina Tap Rating'
+[2720] Savant's Gloves of the Crescent
+      '+? Natural Mana Regen'
+[2721] Savant's Gloves of the Effulgent Blade
+      '+? Natural Stamina Regen'
+[2726] Mystic's Bracers of the Crumbling Tower
+      '+? Natural Stamina Regen'
+[2729] Savant's Regalia of the Moon
+      '+? Natural Mana Regen'
+[2743] Firesoul Helm
+      'Chance of getting damage, Scalding Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Scalding Revenge on self, 1 percent chance'
+[2749] Serpentscale Belt
+      '+? Hit Rating'
+[2750] Soulwound Gloves
+      '+? Critical Rating'
+[2753] Wildguard Girdle
+      '7 ie'
+[2754] Wildmight Gloves
+      '+? Critical Rating'
+[2755] Waspsting Bolts
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2783] Nogg's Club of Hate
+      '+? Fatality Rating'
+[2792] Nithing Crossbow
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2795] Mercenary's Chestguard of the Roaring Jungle
+      '{ided\\~'
+[2797] Ring of Scalding
+      'Chance of getting damage, 7 Re 2 on self, 1 percent chance'
+      'Chance on receiving spell damage, on self, 1 percent chance'
+[2798] Bolts of Conflagration
+      'Chance on damage, Flar Strike on target, 3 Procs per Minute'
+[2819] Shadow's Bane
+      '+? Natural Mana Regen'
+[2841] Leggings of Reflection
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[2844] Battlewarden
+      'Chance of getting damage, Secular Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Secular Guard on self, 3 percent chance'
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell damage, Pulsing Guard on self, 2 percent chance'
+[2853] Snowcloud Cloak
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell damage, Pulsing Guard on self, 2 percent chance'
+[2858] Flameweave Sash
+      'Chance of getting damage, Scalding Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Scalding Revenge on self, 1 percent chance'
+[2859] Gargantuan Fist
+      'Chance on damage, Destructive Strike on target, 3 Procs per Minute'
+[2861] Shah Stinger
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2881] Shocksand Belt
+      'Chance of getting damage, Shocking Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Shocking Revenge on self, 1 percent chance'
+[2898] Warglory Boots
+      '7 Fy'
+      'of r'
+[2951] Arcane Shield
+      'eX \\¢'
+[2962] Ancient Blade
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[2963] Ancient Kukri
+      '+? Fatality Rating'
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[2964] Ancient Mace
+      'Chance on damage, Wrathful Strike on target, 3 Procs per Minute'
+[2966] Ancient Shield
+      'Chance of getting damage, Retributive Revenge on target, 1 percent chance'
+      'Chance on receiving spell damage, Retributive Revenge on target, 1 percent chance'
+[2969] Ancient Warhammer
+      'Chance on damage, Destructive Strike on target, 3 Procs per Minute'
+[2976] Tekesh
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[3040] Acolyte's Boots of the Nine Springs
+      '+2? Constitution'
+[3059] Mystic's Gauntlets of the Crumbling Tower
+      '+? Natural Stamina Regen'
+[3091] Monk's Legguards of the Abyss
+      '+? Natural Stamina Regen'
+[3143] Boneshadow Mask
+      'Chance of getting damage, Corruptive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Corruptive Revenge on self, 1 percent chance'
+[3153] Savant's Robes of the Crescent
+      '+? Natural Mana Regen'
+[3226] Deathgird
+      'Chance of getting damage, Scalding Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Scalding Revenge on self, 1 percent chance'
+[3230] Pureblood Girdle
+      '+? Natural Stamina Regen'
+      'Chance of getting damage, Envenoming Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Envenoming Revenge on self, 1 percent chance'
+[3236] Frostmist Cloak
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell damage, Pulsing Guard on self, 2 percent chance'
+[3255] Sinstrike
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[3258] Vanir Fleshcarver
+      'Chance on damage, Gelid Strike on target, 3 Procs per Minute'
+[3271] Aegis of Five Mercies
+      'Chance of getting damage, Secular Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Secular Guard on self, 3 percent chance'
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell darmage, Pulsing Guard on self, 2 percent chance'
+      'Chance of getting darmage, Sacrarial Guard on self, 3 percent chance'
+      'Chance on receiving spell damage, Sacraris| Guard on self, 3 percent chance'
+[3307] Coil of Tiandal
+      'Chance of getting damage, Pulsing Guard on self, 2 percent chance'
+      'Chance on receiving spell damage, Pulsing Guard on self, 2 percent chance'
+[3374] Boots of the Howling Giant
+      '+? Natural Mana Regen'
+[3382] Grips of the Howling Giant
+      '+? Natural Mana Regen'
+[3392] Boots of the Shivering Stars
+      '+47? Magic Darmnage'
+[3394] Quickness of the Katari
+      '+5% Out of Combat Movement Speed'
+[3405] Shatterfist
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[3408] Grimshaker
+      '+2? Constitution'
+[3414] Rattlecurse
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[3431] Armguards of the Dark Messenger
+      'S74 Armor'
+[3444] Bladebarrier Girdle
+      'Chance of getting darnage, Shocking Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Shocking Revenge on self, 1 percent chance'
+[3446] Magewalk Slippers
+      '+5% Out of Combat Movement Speed'
+[3457] Consecrated Mace
+      '+2? Constitution'
+[3524] Diviner's Gloves of Secret Doors
+      '+2? Constitution'
+[3528] Snaketooth Dagger
+      'Chance on damage, Venomous Strike on target, 3 Procs per Minute'
+[3547] Curio of the Archaeologian
+      'bail'
+[3579] Heater-Shield of the Fallen Empire
+      'iPyr'
+[3580] Partizan of Red Ruin
+      '+7?.7 Natural Stamina Regen'
+[3645] Harness of the Blood Drinker
+      'ade)'
+[3707] Gauntlets of the Fallen Empire (nm)
+      '+? Hate Increase Rating'
+[3748] Arm-straps of the Blood God (nm)
+      '+2? Constitution'
+[3782] Mystic's Boots of the Crumbling Tower
+      '+? Natural Stamina Regen'
+[3792] Monk's Helm of the Abyss
+      '+? Natural Stamina Regen'
+[3793] Thug's Tunic of the Hidden Tomb
+      '+4? Critical Damage Rating'
+[3839] Mini-Pet: Frost King
+      'Learn Spell: Mini-Pet: Frost King'
+[3840] Mini-Pet: Black Dragon
+      'Learn Spell: Mini-Pet: Black Dragon'
+[3868] Mini-Pet: Obsidian Basilisk
+      'Learn Spell: Mini-Pet: Obsidian Basilisk'
+[3891] Sorcerer's Gauntlets of Imperial Assent
+      '+2? Constitution'
+[3896] Savant's Wristbands of the Effulgent Blade
+      '+? Natural Stamina Regen'
+[3903] Conscript's Boots of the Watchtowers
+      '$575 Armor'
+[3905] Monk's Straps of the Abyss
+      '+? Natural Stamina Regen'
+[3913] Mini-Pet: Serpent Man Oldblood
+      'Learn Spell: Mini-Pet: Serpent Man Oldblood'
+[3919] Fireguard Mantle
+      'Chance of getting damage, Scalding Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Scalding Revenge on self, 1 percent chance'
+[3921] Entropy
+      'Entrop'
+[3922] Mini-Pet: Drowned One
+      'Learn Spell: Mini-Pet: Drowned One'
+[3935] Monk's Mask of the Nine Springs
+      'Medium: Armor = Head'
+[3960] Pet: Ice Worm
+      'Learn Spell: Companion: Ice Worm'
+[3981] Mini-Pet: Spawn of Nergal
+      'Learn Spell: Companion: Spawn of Nergal'
+[3985] Pet: Leviathus Spawn
+      'Learn Spell: Mini-Pet: Leviathus Spawn'
+[3987] Pet: Executioner
+      'Learn Spell: Companion: Executioner'
+[3989] Mini-Pet: Remnant of the Lurker
+      'Learn Spell: Mini-Pet: Remnant of the Lurker'
+[3990] Savior's Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3991] Beast Hunter's Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3992] Star Touched Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3993] Terminator's Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3994] Slayer's Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3995] Ash Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3996] Demon Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3997] Infernal Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3998] Thunder Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[3999] Dragon Scale Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[4000] Fallen Leviathan's Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[4001] Conversant Mantle of the Living Legend
+      '+5% Out of Combat Movement Speed'
+[4023] Pet: Banshee Queen
+      'Learn Spell: Companion: Banshee Queen'
+[4041] Chestguard of the Proven Champion
+      '+1% Hate Modifier'
+[4044] Armguards of the Tireless Defender
+      '+1% Hate Modifier'
+[4046] Gauntlets of the Tireless Defender
+      '+1% Hate Modifier'
+[4048] Vambraces of the Tireless Defender
+      '+1% Hate Modifier'
+[4049] Chestguard of the Tireless Defender
+      '+1% Hate Modifier'
+[4050] Helm of the Tireless Defender
+      '+1% Hate Modifier'
+[4051] Tasset of the Tireless Defender
+      '+1% Hate Modifier'
+[4065] Gida of the First Circle
+      '$01 Armor'
+[4113] Chestguard of the Chaos Agent
+      '+1% Hate Modifier'
+[4114] Helm of the Chaos Agent
+      '+1% Hate Modifier'
+[4115] Tasset of the Chaos Agent
+      '+1% Hate Modifier'
+[4122] Mini-Pet: Inferno Lord
+      'Learn Spell: Mini-Pet: Inferno Lord'
+[4127] Captain's Armguards of the Battlements
+      '+4? Constitution'
+[4182] Ytoth
+      '35,9 DPS (42 - 75}'
+      '+? Hit Rating'
+[4183] Angerwake Helm
+      '+? Hate Increase Rating'
+[4188] Ieb
+      '+? Constitution'
+      '+? Hit Rating'
+[4205] Liberator's Trinket
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[4220] Recruit's Cloak
+      'Chance of getting damage, Corruptive Revenge on self, 1 percent chance'
+      'Chance on receiving spell darnage, Corruptive Revenge on self, 1 percent chance'
+[4226] Bloodbeggar Bolts
+      'Chance on damage, Rupturing Strike on target, 3 Procs per Minute'
+[4227] Bloodbeggar Shafts
+      'Chance on damage, Rupturing Strike on target, 3 Procs per Minute'
+[4229] Carbasa Cingulum
+      '5S? Armor'
+[4236] Tesso's Glory
+      '+3% Out of Combat Movement Speed'
+[4248] Cat's Eye Ring
+      '+? Hit Rating'
+[4255] Ring of Intent
+      '+? Constitution'
+[4264] Soulsplitter
+      'Chance on damage, strike on target, 3 Procs per Minute'
+[4291] Ghostfang
+      'Dsaagger - Main Hand, Off Hand'
+[4297] Soulguard
+      'Chance of getting damage, Retortive Revenge on self, 1 percent chance'
+      'Chance on receiving spell damage, Retortive Revenge on self, 1 percent chance'
+[4302] Frostspike
+      '+? Critical Rating'
+[4321] Cobrastrike Band
+      'Chance on damage, Venomous Strike an target, 3 Procs per Minute'
+[4328] Snakeswift Padsoles
+      '+5% Out of Combat Movement Speed'
+[4335] Dark Heart
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[4340] Warmonger's Mask
+      'he 2'
+[4445] Gloves of the Warded Brute
+      'Full Plate Arrnor - Hands'
+[4483] Needles of Bone and Horn
+      'S00 P¥P Hit Rating'
+[4489] Khanjar of the Faceless Man
+      'Glasses: Necromancer, Demonologist'
+      '+77? Critical Damage Rating'
+[4491] Sagaris of the Twelfth Dynasty
+      'Glasses: Priest of Mitra, Tempest of Set'
+[4515] Talisman of Death
+      'Chance on damage, Defiling Strike on target, 3 Procs per Minute'
+[4516] Mini-Pet: Dust Fiend
+      'Learn Spell: Companion: Dust Fiend'
+[4518] Mini-Pet: Dark Beast Alpha
+      'Learn Spell: Mini-Pet: Dark Beast Alpha'
+[4519] Mini-Pet: Acid-Hide Yothian
+      'Learn Spell: Mini-Pet: Acid-Hide Yothian'
+[4520] Mini-Pet: Archfiend of Gore
+      'Learn Spell: Mini-Pet: Archfiend of Gore'
+[4521] Pet: Dominion of Set
+      'Learn Spell: Pet: Dominion of Set'
+[4522] Pet: Swelter
+      'Learn Spell: Pet: Swelter'
+[4527] Companion: Attendant
+      'Learn Spell: Companion: Attendant'
+[4528] Otherworldly Flute
+      'Generic'
+[4530] Royal War Steed
+      'Learn Spell: Royal War Steed'
+[4532] Mini-Pet: The Devourer
+      'Learn Spell: Pet: The Devourer'
+[4533] Facemarking: Ferocity
+      'Generic'
+[4534] Shadow of Zath
+      'Learn Spell: Shadow of Zath'
+[4536] Permanent Travelling Merchant Contract
+      'Generic'
+      'Must be used out of combat'
+[4628] Major Rune Stone of the Pit Fighter
+      'Increases your Constitution by +3%'
+[4629] Major Rune Stone of the Second Wind
+      'Increases your Constitution by +3%'
+      '+10% Increase to damage or healing'
+      'Mana Potions'
+      'Stamina Potions'
+[4630] Rune Stone of Shared Bloodshed
+      '+10% Fatality Chance'
+      '+10% Spell Fatality Chance'
+[4639] Pharoh's Guard Cache
+      'Description'
+      'Opening this cache will'
+      'grant the full 7 piece'
+      "Pharaoh's Guard social"
+      'set.'
+[4674] Kuthcheman Flamberge
+      'Glasses: Herald of Xotli'
+[4675] Zugite Sacrificial Poniard
+      'Glasses: Necromancer, Demonologist'
+[4683] Kuthcheman War Blade
+      'Glasses: Guardian, Dark Templar'
+[4685] Fatal Hyperborean Sentinel Gem
+      'Hyperborean Gem'
+      'Tier 10: 30 Critigation Amount'
+      'Tier 10: +60 Fatality Rating'
+      'Tier 10: +6 Hate Increase Rating'
+      'Tier 10: +25 Protection'
+[4686] Fatal Hyperborean Hierophant Gem
+      'ba >'
+      'Hyperborean Gem'
+      'Tier 10: +150 Heal Rating'
+      'Tier 10: +60 Fatality Rating'
+      'Tier 10: +10 Protection'
+[4687] White Hand Gem of Unholy Strike
+      'Tier 10: Chance on damage, Unholy Strike on target, 10 Procs per Minute'
+[4688] White Hand Gem of Holy Storm
+      'Tier 10: Chance on damage, Holy Storm on target, 10 Procs per Minute'

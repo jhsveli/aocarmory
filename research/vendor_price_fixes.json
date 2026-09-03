@@ -1,0 +1,458 @@
+[
+  {
+    "id": 4,
+    "name": "Pet: Tree of Death",
+    "location": "Paikang :: Cove of the Blade",
+    "set": null,
+    "line": "Vendor Price 3 Gold 5 Silver ee : SE Ae or .",
+    "fixed": "Vendor Price 3 Gold 5 Silver"
+  },
+  {
+    "id": 84,
+    "name": "Pet: Idol of Yag",
+    "location": "Paikang :: Glade of the Elephant God",
+    "set": null,
+    "line": "Mendor Price 3 Gold 5 Silver Pere",
+    "fixed": "Vendor Price 3 Gold 5 Silver"
+  },
+  {
+    "id": 3486,
+    "name": "Reader's Leggings of the Effulgent Blade",
+    "location": "Chosain Province :: Palace of Yun Rau",
+    "set": "The Effulgent Blade",
+    "line": "Vendor Price 41 Copper #5 Tin",
+    "fixed": "Vendor Price 41 Copper 75 Tin"
+  },
+  {
+    "id": 480,
+    "name": "Pet: The Sixth Con of Cang-Jei",
+    "location": "Kara Korum :: Fengdu",
+    "set": null,
+    "line": "Vendor Price 3 Gold 5 Silver tas :",
+    "fixed": "Vendor Price 3 Gold 5 Silver"
+  },
+  {
+    "id": 2716,
+    "name": "Bandit's Vambraces of the Grasslands",
+    "location": "Chosain Province :: Abyss of Kun Whu",
+    "set": "The Grasslands",
+    "line": "Vendor Price 42 Copper 7? Tin",
+    "fixed": "Vendor Price 42 Copper 77 Tin"
+  },
+  {
+    "id": 733,
+    "name": "Wolf's Gloves of the Covert Trail",
+    "location": "Kara Korum :: The Celestial Necropolis",
+    "set": "The Covert Trail",
+    "line": "Vendor Price 55 Copper 31 Tin 4",
+    "fixed": "Vendor Price 55 Copper 31 Tin"
+  },
+  {
+    "id": 815,
+    "name": "Archdeacon's Girdle of the Eighteen Pits",
+    "location": "Kara Korum :: The Cavern of Malice",
+    "set": "The Eighteen Pits",
+    "line": "Vendor Price 55 Copper 2? Tin",
+    "fixed": "Vendor Price 55 Copper 27 Tin"
+  },
+  {
+    "id": 4201,
+    "name": "Cloak of Ibis",
+    "location": "Multiple Zones :: Destiny quests",
+    "set": null,
+    "line": "Vendor Price 5 Copper 7? Tin",
+    "fixed": "Vendor Price 5 Copper 77 Tin"
+  },
+  {
+    "id": 3305,
+    "name": "Whispersilk Drape",
+    "location": "Tarantia Noble District :: Armsman's Tavern - Armsman's Arena",
+    "set": null,
+    "line": "Vendor Price ? Copper 21 Tin",
+    "fixed": "Vendor Price 7 Copper 21 Tin"
+  },
+  {
+    "id": 2216,
+    "name": "Redblood Cloak",
+    "location": "Tarantia Noble District :: The Cistern",
+    "set": null,
+    "line": "Vendor Price 8 Copper 7? Tin",
+    "fixed": "Vendor Price 8 Copper 77 Tin"
+  },
+  {
+    "id": 2205,
+    "name": "Shadowbrood Gloves",
+    "location": "Tarantia Noble District :: The Cistern",
+    "set": null,
+    "line": "Vendor Price 8 Copper 7? Tin",
+    "fixed": "Vendor Price 8 Copper 77 Tin"
+  },
+  {
+    "id": 2204,
+    "name": "Fiercelord Straps",
+    "location": "Tarantia Noble District :: The Cistern",
+    "set": null,
+    "line": "Vendor Price 8 Copper 7? Tin",
+    "fixed": "Vendor Price 8 Copper 77 Tin"
+  },
+  {
+    "id": 1790,
+    "name": "Ring of Anarchy",
+    "location": "Tarantia Common District :: Muriela",
+    "set": null,
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 1337,
+    "name": "Ring of Protection",
+    "location": "Tarantia Common District :: Crows' Nest",
+    "set": null,
+    "line": "Wendor Price 39 Copper S2Tin",
+    "fixed": "Wendor Price 39 Copper S2 Tin"
+  },
+  {
+    "id": 1762,
+    "name": "Lost Soul of Jovus",
+    "location": "Tarantia Common District :: Crows' Nest",
+    "set": null,
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2385,
+    "name": "Antillian Jerkin",
+    "location": "Tarantia Common District :: The Iron Tower",
+    "set": "Antillian",
+    "line": "Vendor Price 41 Copper 8? Tin",
+    "fixed": "Vendor Price 41 Copper 87 Tin"
+  },
+  {
+    "id": 2993,
+    "name": "Savage Death Belt",
+    "location": "Tarantia Common District :: The Iron Tower",
+    "set": "Savage Death",
+    "line": "Vendor Price 42 Copper ? Tin",
+    "fixed": "Vendor Price 42 Copper 7 Tin"
+  },
+  {
+    "id": 2384,
+    "name": "Canach Breeches",
+    "location": "Tarantia Common District :: The Iron Tower",
+    "set": "Canach",
+    "line": "Vendor Price 41 Copper 7? Tin",
+    "fixed": "Vendor Price 41 Copper 77 Tin"
+  },
+  {
+    "id": 2878,
+    "name": "Hellspawned Wristguard",
+    "location": "Thunder River :: Xibaluku",
+    "set": null,
+    "line": "Vendor Price 42 Copper & Tin",
+    "fixed": "Vendor Price 42 Copper 8 Tin"
+  },
+  {
+    "id": 3945,
+    "name": "Pitiless Arm-strap",
+    "location": "Thunder River :: Xibaluku",
+    "set": null,
+    "line": "Vendor Price 42 Copper ? Tin",
+    "fixed": "Vendor Price 42 Copper 7 Tin"
+  },
+  {
+    "id": 2503,
+    "name": "Bloodweasel Boots",
+    "location": "Thunder River :: Xibaluku",
+    "set": null,
+    "line": "Vendor Price 41 Copper 9? Tin",
+    "fixed": "Vendor Price 41 Copper 97 Tin"
+  },
+  {
+    "id": 2381,
+    "name": "Vigortouch Harness",
+    "location": "Thunder River :: Xibaluku",
+    "set": null,
+    "line": "Vendor Price 41 Copper 7? Tin",
+    "fixed": "Vendor Price 41 Copper 77 Tin"
+  },
+  {
+    "id": 4193,
+    "name": "Spike Shield",
+    "location": "Eiglophian Mountains :: Cian",
+    "set": null,
+    "line": "Vendor Price ? Copper 5 Tin",
+    "fixed": "Vendor Price 7 Copper 5 Tin"
+  },
+  {
+    "id": 3978,
+    "name": "Will of Atali",
+    "location": "Ymir's Pass :: Atali",
+    "set": null,
+    "line": "Vendor Price 13 Copper 8? Tin",
+    "fixed": "Vendor Price 13 Copper 87 Tin"
+  },
+  {
+    "id": 3420,
+    "name": "Siegebreaker",
+    "location": "Atzel's Approach :: Halls of Eternal Frost",
+    "set": null,
+    "line": "Vendor Price 31 Copper & Tin",
+    "fixed": "Vendor Price 31 Copper 8 Tin"
+  },
+  {
+    "id": 2417,
+    "name": "Bossonian Sovereign Ring",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": null,
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2456,
+    "name": "Ring of Mordec",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": null,
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2471,
+    "name": "Flametemper Arrows",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": null,
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2449,
+    "name": "Nithing Fang",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": null,
+    "line": "Vendor Price 41 Copper ? Tin",
+    "fixed": "Vendor Price 41 Copper 7 Tin"
+  },
+  {
+    "id": 2451,
+    "name": "Bloodseer's Armbands",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": "Bloodseer",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2428,
+    "name": "Gunderland Bracers",
+    "location": "Atzel's Approach :: Atzel's Fortress",
+    "set": "Gunderland",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 1908,
+    "name": "Helm of the Atlantean",
+    "location": "Field of the Dead :: The Vile Nativity",
+    "set": "The Atlantean",
+    "line": "Vendor Price 41 Copper 8? Tin",
+    "fixed": "Vendor Price 41 Copper 87 Tin"
+  },
+  {
+    "id": 2954,
+    "name": "Crusher",
+    "location": "Khopshef Province :: Pyramid of the Ancients",
+    "set": null,
+    "line": "Vendor Price 2 Copper 7? Tin",
+    "fixed": "Vendor Price 2 Copper 77 Tin"
+  },
+  {
+    "id": 3730,
+    "name": "Facemask of the Bloodhunter (nm)",
+    "location": "Kheshatta :: Caravan Raider Camp",
+    "set": "Bloodhunter (nm)",
+    "line": "Vendor Price 41 Copper 5? Tin",
+    "fixed": "Vendor Price 41 Copper 57 Tin"
+  },
+  {
+    "id": 3701,
+    "name": "Belt of Crimson Slaughter (nm)",
+    "location": "Kheshatta :: Caravan Raider Camp",
+    "set": "Crimson Slaughter (nm)",
+    "line": "Vendor Price 40 Copper 8? Tin",
+    "fixed": "Vendor Price 40 Copper 87 Tin"
+  },
+  {
+    "id": 3754,
+    "name": "Cuisse of the Blood Drinker (nm)",
+    "location": "Kheshatta :: Caravan Raider Camp",
+    "set": "Blood Drinker (nm)",
+    "line": "Vendor Price 41 Copper 8? Tin",
+    "fixed": "Vendor Price 41 Copper 87 Tin"
+  },
+  {
+    "id": 3753,
+    "name": "Cuirass of the Sanguine Disciple (nm)",
+    "location": "Kheshatta :: Caravan Raider Camp",
+    "set": "Sanguine Disciple (nm)",
+    "line": "Vendor Price 41 Copper 8? Tin",
+    "fixed": "Vendor Price 41 Copper 87 Tin"
+  },
+  {
+    "id": 3758,
+    "name": "Gloves of the Sanguine Disciple (nm)",
+    "location": "Kheshatta :: Caravan Raider Camp",
+    "set": "Sanguine Disciple (nm)",
+    "line": "Vendor Price 42 Copper ? Tin",
+    "fixed": "Vendor Price 42 Copper 7 Tin"
+  },
+  {
+    "id": 2890,
+    "name": "Bloodseer's Boots",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Bloodseer",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2807,
+    "name": "Bloodseer's Gloves",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Bloodseer",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2891,
+    "name": "Bloodseer's Sash",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Bloodseer",
+    "line": "Vendor Price 40 Copper 77? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2914,
+    "name": "Goremonger's Bracers",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Goremonger",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2915,
+    "name": "Goremonger's Gauntlets",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Goremonger",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2916,
+    "name": "Goremonger's Helm",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Goremonger",
+    "line": "Vendor Price 42 Copper 7? Tin",
+    "fixed": "Vendor Price 42 Copper 77 Tin"
+  },
+  {
+    "id": 2645,
+    "name": "Skyshear Gauntlets",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Skyshear",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2809,
+    "name": "Bloodseraph's Armguards",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Bloodseraph",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2899,
+    "name": "Warglory Girdle",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Warglory",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2677,
+    "name": "Steelspirit Vambraces",
+    "location": "Kheshatta :: The Onyx Chambers",
+    "set": "Steelspirit",
+    "line": "Vendor Price 40 Copper 7? Tin",
+    "fixed": "Vendor Price 40 Copper 77 Tin"
+  },
+  {
+    "id": 2193,
+    "name": "Sandals of the Oxmal",
+    "location": "Dragon's Spine :: Sepulcher of the Wyrm",
+    "set": "The Oxmal",
+    "line": "Vendor Price 42 Copper 7? Tin",
+    "fixed": "Vendor Price 42 Copper 77 Tin"
+  },
+  {
+    "id": 3854,
+    "name": "Jang Gum",
+    "location": "Khitai :: The Eleven Sacred Weapons of Hwanung",
+    "set": null,
+    "line": "Vendor Price 6 Copper 7? Tin",
+    "fixed": "Vendor Price 6 Copper 7 Tin"
+  },
+  {
+    "id": 4162,
+    "name": "Harrow",
+    "location": "Northern Grasslands :: Coppice of the Heart",
+    "set": null,
+    "line": "Vendor Price 42 Copper ? Tin",
+    "fixed": "Vendor Price 42 Copper 7 Tin"
+  },
+  {
+    "id": 3841,
+    "name": "Tumult's Veil",
+    "location": "Northern Grasslands :: Coppice of the Heart",
+    "set": null,
+    "line": "Vendor Price 41 Copper 7? Tin",
+    "fixed": "Vendor Price 41 Copper 77 Tin"
+  },
+  {
+    "id": 3955,
+    "name": "Armguards of the Crimson Fort",
+    "location": "Coast of Ardashir :: Ardashir Arena - Marjan of Kara-Shehr/Tomb King",
+    "set": "The Crimson Fort",
+    "line": "Vendor Price 42 Copper 7? Tin",
+    "fixed": "Vendor Price 42 Copper 77 Tin"
+  },
+  {
+    "id": 3995,
+    "name": "Ash Mantle of the Living Legend",
+    "location": "Multiple Zones :: World Boss",
+    "set": null,
+    "line": "Vendor Price 3 Silyer 15 Copper 5? Tin",
+    "fixed": "Vendor Price 3 Silver 15 Copper 57 Tin"
+  },
+  {
+    "id": 1055,
+    "name": "Wavebreaker",
+    "location": "Kheshatta :: Thoth Amon's Stronghold",
+    "set": null,
+    "line": "Vendor Price 59 Copper SiTin",
+    "fixed": "Vendor Price 59 Copper 51 Tin"
+  },
+  {
+    "id": 4027,
+    "name": "Ring of the Astral Step",
+    "location": "Dragon's Spine :: Yakhmar/Vistrix/Kyllikki - Unchained",
+    "set": null,
+    "line": "Vendor Price 3 Silver 15 Copper 5? Tin",
+    "fixed": "Vendor Price 3 Silver 15 Copper 57 Tin"
+  },
+  {
+    "id": 1644,
+    "name": "Band of Power",
+    "location": "PvP :: General",
+    "set": null,
+    "line": "Vendor Price ? Silver 50 Copper",
+    "fixed": "Vendor Price 7 Silver 50 Copper"
+  }
+]

@@ -1,6 +1,7 @@
-import type { Item, ItemStats, StatValue } from "../types";
+import type { Duration, Item, ItemStats, PercentValue, Proc, StatValue } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
+import { factionRankText } from "../lib/faction-ranks";
 import styles from "./ItemDetailsBox.module.css";
 
 interface Props {
@@ -12,31 +13,89 @@ interface Props {
 }
 
 /** The single key/value pair of a StatValue (e.g. { armor: 512 }). */
-function statEntry(v: StatValue): [string, number] {
+type StatValueEntry = [string, number | PercentValue];
+
+function statEntry(v: StatValue): StatValueEntry {
   const [name, value] = Object.entries(v)[0];
   // StatValue is Partial to allow single-key entries, but a present key
-  // always carries a number in the generated data.
-  return [name, value as number];
+  // always carries a value in the generated data.
+  return [name, value as number | PercentValue];
+}
+
+/** "1 hour 45 minutes" / "10 seconds" from a Duration value. */
+function durationText(d: Duration): string {
+  const parts = [
+    d.hours ? `${d.hours} ${d.hours === 1 ? "hour" : "hours"}` : "",
+    d.minutes ? `${d.minutes} ${d.minutes === 1 ? "minute" : "minutes"}` : "",
+    d.seconds ? `${d.seconds} ${d.seconds === 1 ? "second" : "seconds"}` : "",
+  ].filter(Boolean);
+  return parts.join(" ");
+}
+
+/** "+42 Strength" / "+5% Out of Combat Movement Speed". */
+function statLabelValue(name: string, value: number | PercentValue): string {
+  if (typeof value === "object") {
+    const p = value.percent;
+    return `${p >= 0 ? "+" : ""}${p}% ${statLabel(name)}`;
+  }
+  return `${value >= 0 ? "+" : ""}${value} ${statLabel(name)}`;
+}
+
+/** "Tier 10: +150 Heal Rating" — one bonus line under a gem tier. */
+function tierBonusLine(entry: StatValue | Proc, kind: "values" | "attributes" | "procs"): string {
+  if (kind === "procs" || "trigger" in entry) {
+    const p = entry as Proc;
+    return `Chance ${p.trigger}, ${p.spell} on ${p.target}, ${p.rate} ${
+      p.rateUnit === "ppm" ? "Procs per Minute" : "percent chance"
+    }`;
+  }
+  const [name, value] = statEntry(entry);
+  if (kind === "attributes") {
+    return statLabelValue(name, value);
+  }
+  if (typeof value === "object") {
+    return `${statLabel(name)}: ${value.percent}%`;
+  }
+  return `${statLabel(name)}: ${value}`;
 }
 
 /**
  * Flatten the structured parse into display lines, in the order the original
  * in-game tooltip shows them. Property labels come from the language file
  * (stat-labels.ts). Raw OCR lines not covered by the structure (vendor price,
- * faction/rank requirements, sockets, ...) are kept in `lines`.
+ * sockets, ...) are kept in `lines`.
  */
 function statLines(stats: ItemStats): string[] {
   const out: string[] = [];
-  if (stats.type) out.push(stats.type);
+  if (stats.type) {
+    // the tooltip prints "Type - Slot(s)"; slots is the split-off part
+    out.push(stats.type + (stats.slots?.length ? ` - ${stats.slots.join(", ")}` : ""));
+  }
+  if (stats.gemKind) out.push(`${stats.gemKind} Gem`);
   if (stats.classes?.length) out.push(`${statLabel("classes")}: ${stats.classes.join(", ")}`);
   if (stats.itemLevel) out.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
   if (stats.requiresLevel) out.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
   if (stats.requiresPvpLevel) out.push(`${statLabel("requiresPvpLevel")} ${stats.requiresPvpLevel}`);
   if (stats.requiresRenownLevel) out.push(`${statLabel("requiresRenownLevel")} ${stats.requiresRenownLevel}`);
   if (stats.requiresItemLevel) out.push(`Requires a Level ${stats.requiresItemLevel} Item`);
+  if (stats.mustBeUsedOutOfCombat) out.push("Must be used out of combat");
+  if (stats.targetingMode) out.push(`Targeting Mode: ${stats.targetingMode}`);
+  if (stats.castingTime) out.push(`Casting Time: ${durationText(stats.castingTime)}`);
+  if (stats.recast) out.push(`Recast: ${durationText(stats.recast)}`);
+  if (stats.duration) out.push(`Duration: ${durationText(stats.duration)}`);
+  if (stats.requiresFactionRank) {
+    for (const [faction, rank] of Object.entries(stats.requiresFactionRank)) {
+      out.push(factionRankText(faction, rank));
+    }
+  }
+  if (stats.canOnlyHaveOne) out.push("Can Only Have One");
   for (const v of stats.values) {
     const [name, value] = statEntry(v);
-    out.push(`${statLabel(name)}: ${value}`);
+    if (typeof value === "object") {
+      out.push(`${statLabel(name)}: ${value.percent}%`);
+    } else {
+      out.push(`${statLabel(name)}: ${value}`);
+    }
   }
   if (stats.damage && stats.dps) {
     out.push(`${stats.dps} DPS (${stats.damage.min} - ${stats.damage.max})`);
@@ -46,12 +105,45 @@ function statLines(stats: ItemStats): string[] {
   }
   for (const a of stats.attributes) {
     const [name, value] = statEntry(a);
-    out.push(`${value >= 0 ? "+" : ""}${value} ${statLabel(name)}`);
+    out.push(statLabelValue(name, value));
+    if (typeof value === "object" && value.appliesTo?.length) {
+      for (const target of value.appliesTo) out.push(target);
+    }
+  }
+  for (const p of stats.procs ?? []) {
+    // reconstruct the original tooltip line, e.g.
+    // "Chance on damage, Defiling Strike on target, 3 Procs per Minute"
+    out.push(`Chance ${p.trigger}, ${p.spell} on ${p.target}, ${p.rate} ${
+      p.rateUnit === "ppm" ? "Procs per Minute" : "percent chance"
+    }`);
+  }
+  if (stats.tierBonuses) {
+    for (const [tier, bonus] of Object.entries(stats.tierBonuses)) {
+      const groups: [string, (StatValue | Proc)[]][] = [
+        ["values", bonus.values ?? []],
+        ["attributes", bonus.attributes ?? []],
+        ["procs", bonus.procs ?? []],
+      ];
+      for (const [kind, entries] of groups) {
+        for (const entry of entries) {
+          out.push(`Tier ${tier}: ${tierBonusLine(entry, kind as "values" | "attributes" | "procs")}`);
+        }
+      }
+    }
   }
   out.push(...stats.effects);
   if (stats.set) out.push(stats.set);
   out.push(...stats.setBonuses);
-  if (stats.description) out.push(...stats.description.split("\n"));
+  if (stats.description) out.push(...stats.description);
+  if (stats.learnSpell) out.push(`Learn Spell: ${stats.learnSpell}`);
+  if (stats.engravings?.length) out.push(`Rune Engravings: ${stats.engravings.join(", ")}`);
+  if (stats.gemSlots?.length) out.push(`Gem Slots: ${stats.gemSlots.join(", ")}`);
+  if (stats.vendorPrice) {
+    const parts = Object.entries(stats.vendorPrice).map(
+      ([currency, amount]) => `${amount} ${currency.charAt(0).toUpperCase()}${currency.slice(1)}`,
+    );
+    out.push(`Vendor Price ${parts.join(" ")}`);
+  }
   out.push(...stats.lines);
   return out;
 }
@@ -68,11 +160,7 @@ export default function ItemDetailsBox({ item, compact, className }: Props) {
 
   const bindText = item.stats?.binds && item.stats.binds !== "NO_BIND" ? BIND_LABEL[item.stats.binds] : null;
 
-  const lines = item.stats
-    ? statLines(item.stats)
-    : item.tooltip
-      ? item.tooltip.split("\n").map((l) => l.trim()).filter(Boolean)
-      : null;
+  const lines = item.stats ? statLines(item.stats) : null;
 
   const boxCls = [
     styles.tooltipBox,

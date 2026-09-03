@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { searchArmory } from "../lib/search";
+import { slotDisplay } from "../lib/equip";
 import ItemName from "../components/ItemName";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
-import { SLOT_LABEL } from "../lib/format";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./SearchPage.module.css";
 
@@ -35,10 +35,11 @@ export default function SearchPage() {
             <ol className={styles.searchResults}>
               {results.map((r) => {
                 const it = r.item.item;
+                const slotLabel = slotDisplay(it.stats);
                 return (
                   <li key={`${r.item.sectionId}-${it.id}-${it.name}`}>
                     <ItemName item={it} />
-                    {it.slot && <span className="itemSlot"> [{SLOT_LABEL[it.slot] ?? it.slot}]</span>}
+                    {slotLabel && <span className="itemSlot"> [{slotLabel}]</span>}
                     {" — "}
                     <Link to={`/s/${r.item.sectionId}`}>{r.item.section}</Link>
                     {r.item.set && (

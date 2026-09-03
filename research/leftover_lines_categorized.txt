@@ -1,0 +1,207 @@
+AoC armory — leftover stats.lines categorization (275 unique lines, 275 pairs)
+============================================================
+
+## proc effect (Chance ...) — 129 instances, 47 unique texts
+     12  spell=Retortive Revenge on self, 1 percent chance
+     12  spell=Pulsing Guard on self, 2 percent chance
+     11  spell=Venomous Strike on target, 3 Procs per Minute
+     10  spell=Defiling Strike on target, 3 Procs per Minute
+     10  spell=Secular Guard on self, 3 percent chance
+      8  spell=Ripping Revenge on target, 1 percent chance
+      8  spell=Scalding Revenge on self, 1 percent chance
+      6  spell=Corruptive Revenge on self, 1 percent chance
+      6  spell=Vengeful Revenge on self, 1 percent chance
+      5  spell=Rupturing Strike on target, 3 Procs per Minute
+      4  spell=Destructive Strike on target, 3 Procs per Minute
+      4  spell=Sacrarial Guard on self, 3 percent chance
+      4  spell=Icy Revenge on self, 1 percent chance
+      4  spell=Shocking Revenge on self, 1 percent chance
+      3  spell=Rending Strike on target, 3 Procs per Minute
+      3  spell=Flaring Strike on target, 3 Procs per Minute
+      2  spell=Gelid Strike on target, 3 Procs per Minute
+      2  spell=Retributive Revenge on target, 1 percent chance
+      2  spell=Envenoming Revenge on self, 1 percent chance
+      2  spell=Vision of Ibis on target, 120 Procs per Minute
+      1  spell=Venomous Strike an target, 3 Procs per Minute
+      1  spell=Balko's Curse on target, 3 Procs per Minute
+      1  spell=Strike of Tia Shar on target, 3 Procs per Minute
+      1  spell=Sacrarisl Guard on self, 3 percent chance
+      1  spell=strike on target, 3 Procs per Minute
+      1  spell=7 Re 2 on self, 1 percent chance
+      1  Chance on receiving spell damage
+      1  spell=Flar Strike on target, 3 Procs per Minute
+      1  spell=Wrathful Strike on target, 3 Procs per Minute
+      1  spell=Arcing Strike on target, 3 Procs per Minute
+      1  spell=Sacraris| Guard on self, 3 percent chance
+
+## Learn Spell / use — 48 instances, 48 unique texts
+  [4530] Royal War Steed                        'Learn Spell: Royal War Steed'
+  [4534] Shadow of Zath                         'Learn Spell: Shadow of Zath'
+  [4] Pet: Tree of Death                     'Learn Spell: Pet: Tree of Death'
+  [84] Pet: Idol of Yag                       'Learn Spell: Pet: Idol of Ya'
+  [167] Hyrkanian Bitter Wind-Biter            'Learn Spell: Hyrkanian Bitter Wind-Biter'
+  [168] Hyrkanian Dread Ash-Tramper            'Learn Spell: Hyrkanian Dread Ash-Tramper'
+  [169] Hyrkanian Fleet Scream-Catcher         'Learn Spell: Hyrkanian Fleet Scream-Catcher'
+  [170] Hyrkanian Grim Skull-Treader           'Learn Spell: Hyrkanian Grim Skull-Treader'
+  [171] Hyrkanian Pale Ghost-Chaser            'Learn Spell: Hyrkanian Pale Ghost-Chaser'
+  [172] Hyrkanian Resplendent Sun-Strider      'Learn Spell: Hyrkanian Resplendent Sun-Strider'
+  [173] Hyrkanian Sable Shadow-Dasher          'Learn Spell: Hyrkanian Sable Shadow-Dasher'
+  [174] Hyrkanian Wicked Chaos-Clapper         'Learn Spell: Hyrkanian Wicked Chaos-Clapper'
+  [828] Path of the Enlightened                'Consumable'
+  [828] Path of the Enlightened                'Learn Spell: Path of the Enlightened gain way to the rarest of delicacies - the consumption of souls.'
+  [258] Pet: War Machine                       'Learn Spell: Pet: WarMachine'
+  [320] Pet: Kang-Zai                          'Learn Spell: Pet: Kang-Zai'
+  [406] Pet: Moon Child                        'Learn Spell: Pet: Moon Child'
+  [480] Pet: The Sixth Con of Cang-Jei         'Learn Spell: Pet: The Sixth Con of Cang-Jei'
+  [746] Pet: Black Lotus                       'Learn Spell: Pet: Black Lotus'
+  [747] Pet: Golden Lotus                      'Summons 4 golden lotus, growing from'
+  [747] Pet: Golden Lotus                      'Learn Spell: Pet: Golden Lotus'
+  [748] Pet: Grey Lotus                        'Learn Spell: Pet: Grey Lotus 3 a'
+  [749] Pet: Yellow Lotus                      'Summons a yellow lotus, growing from the'
+  [749] Pet: Yellow Lotus                      'Learn Spell: Pet: Yellow Lotus'
+  [2362] Companion: Corrupted Self              'Learn Spell: Companion: Corrupted Self'
+  [1885] Furious Spirit                         'Learn Spell: Pet: Furious Spirit'
+  [4527] Companion: Attendant                   'Learn Spell: Companion: Attendant'
+  [3840] Mini-Pet: Black Dragon                 'Learn Spell: Mini-Pet: Black Dragon'
+  [4518] Mini-Pet: Dark Beast Alpha             'Learn Spell: Mini-Pet: Dark Beast Alpha'
+  [3922] Mini-Pet: Drowned One                  'Learn Spell: Mini-Pet: Drowned One'
+  [4516] Mini-Pet: Dust Fiend                   'Learn Spell: Companion: Dust Fiend'
+  [3839] Mini-Pet: Frost King                   'Learn Spell: Mini-Pet: Frost King'
+  [4122] Mini-Pet: Inferno Lord                 'Learn Spell: Mini-Pet: Inferno Lord'
+  [3868] Mini-Pet: Obsidian Basilisk            'Learn Spell: Mini-Pet: Obsidian Basilisk'
+  [3989] Mini-Pet: Remnant of the Lurker        'Learn Spell: Mini-Pet: Remnant of the Lurker'
+  [3913] Mini-Pet: Serpent Man Oldblood         'Learn Spell: Mini-Pet: Serpent Man Oldblood'
+  [3981] Mini-Pet: Spawn of Nergal              'Learn Spell: Companion: Spawn of Nergal'
+  [4023] Pet: Banshee Queen                     'Learn Spell: Companion: Banshee Queen'
+  [3987] Pet: Executioner                       'Learn Spell: Companion: Executioner'
+  [3960] Pet: Ice Worm                          'Learn Spell: Companion: Ice Worm'
+  [3985] Pet: Leviathus Spawn                   'Learn Spell: Mini-Pet: Leviathus Spawn'
+  [1926] Bluefury War Wolf                      'Learn Spell: Bluefury War Wolf'
+  [1959] Imperial Bluesteel Slaughter Steed     'Learn Spell: Imperial Bluesteel Slaughter Steed'
+  [4519] Mini-Pet: Acid-Hide Yothian            'Learn Spell: Mini-Pet: Acid-Hide Yothian'
+  [4520] Mini-Pet: Archfiend of Gore            'Learn Spell: Mini-Pet: Archfiend of Gore'
+  [4521] Pet: Dominion of Set                   'Learn Spell: Pet: Dominion of Set'
+  [4522] Pet: Swelter                           'Learn Spell: Pet: Swelter'
+  [4532] Mini-Pet: The Devourer                 'Learn Spell: Pet: The Devourer'
+
+## noise fragment — 24 instances, 16 unique texts
+  [4536] Permanent Travelling Merchant Contra   'Generic'
+  [84] Pet: Idol of Yag                       'Companions'
+  [258] Pet: War Machine                       'Companions'
+  [258] Pet: War Machine                       'legionnaire.'
+  [583] Horsehair Blanket                      'Generic'
+  [2795] Mercenary's Chestguard of the Roarin   '{ided\\~'
+  [747] Pet: Golden Lotus                      'Companions'
+  [747] Pet: Golden Lotus                      'Description:'
+  [749] Pet: Yellow Lotus                      'Companions'
+  [749] Pet: Yellow Lotus                      'Description:'
+  [1349] Mystic's Delight                       'xe SoS'
+  [4629] Major Rune Stone of the Second Wind    'Mana Potions'
+  [2951] Arcane Shield                          'eX \\¢'
+  [2898] Warglory Boots                         'of r'
+  [4528] Otherworldly Flute                     'Generic'
+  [3921] Entropy                                'Entrop'
+  [3547] Curio of the Archaeologian             'bail'
+  [3579] Heater-Shield of the Fallen Empire     'iPyr'
+  [3645] Harness of the Blood Drinker           'ade)'
+  [1956] Megalith : Tooth and Claw of Dynasti   'Generic'
+  [4686] Fatal Hyperborean Hierophant Gem       'ba >'
+  [4533] Facemarking: Ferocity                  'Generic'
+  [4639] Pharoh's Guard Cache                   'Description'
+  [4639] Pharoh's Guard Cache                   'set.'
+
+## other — 20 instances, 16 unique texts
+  [167] Hyrkanian Bitter Wind-Biter            'Mount : Description:'
+  [169] Hyrkanian Fleet Scream-Catcher         'Mount : Description:'
+  [172] Hyrkanian Resplendent Sun-Strider      'Mount : Description:'
+  [173] Hyrkanian Sable Shadow-Dasher          'Mount : Description:'
+  [174] Hyrkanian Wicked Chaos-Clapper         'Mount : Description:'
+  [258] Pet: War Machine                       'personal package, this stationary device'
+  [747] Pet: Golden Lotus                      "the ground. The flower's mystical"
+  [747] Pet: Golden Lotus                      'properties heal the Yun priest.'
+  [749] Pet: Yellow Lotus                      "ground. The flower's phantasmal pollen"
+  [3935] Monk's Mask of the Nine Springs        'Medium: Armor = Head'
+  [4340] Warmonger's Mask                       'he 2'
+  [4629] Major Rune Stone of the Second Wind    'Stamina Potions'
+  [1885] Furious Spirit                         'F Recast 10 seconds'
+  [2753] Wildguard Girdle                       '7 ie'
+  [2898] Warglory Boots                         '7 Fy'
+  [4483] Needles of Bone and Horn               'S00 P¥P Hit Rating'
+  [1473] Chestguard of Reckless Challenge       '7 wen'
+  [4639] Pharoh's Guard Cache                   'Opening this cache will'
+  [4639] Pharoh's Guard Cache                   'grant the full 7 piece'
+  [4639] Pharoh's Guard Cache                   "Pharaoh's Guard social"
+
+## spell metadata — 10 instances, 2 unique texts
+  [1] Brew of Acute Brawn                    'Duration: 1 hour'
+  [83] Brew of Acute Aptitude                 'Duration: 1 hour'
+  [164] Brew of Vigorous Acumen                'Duration: 1 hour'
+  [254] Brew of Acute Foresight                'Duration: 1 hour'
+  [404] Brew of Vigorous Brawn                 'Duration: 1 hour'
+  [479] Brew of Acute Fortitude                'Duration: 1 hour'
+  [580] Brew of Vigorous Aptitude              'Duration: 1 hour'
+  [663] Brew of Vigorous Foresight             'Duration: 1 hour'
+  [744] Brew of Acute Acumen                   'Duration: 1 hour'
+  [1885] Furious Spirit                         'Casting Time 2 seconds'
+
+## potion type line — 9 instances, 1 unique texts
+  [1] Brew of Acute Brawn                    'Potion (Level 80)'
+  [83] Brew of Acute Aptitude                 'Potion (Level 80)'
+  [164] Brew of Vigorous Acumen                'Potion (Level 80)'
+  [254] Brew of Acute Foresight                'Potion (Level 80)'
+  [404] Brew of Vigorous Brawn                 'Potion (Level 80)'
+  [479] Brew of Acute Fortitude                'Potion (Level 80)'
+  [580] Brew of Vigorous Aptitude              'Potion (Level 80)'
+  [663] Brew of Vigorous Foresight             'Potion (Level 80)'
+  [744] Brew of Acute Acumen                   'Potion (Level 80)'
+
+## gem tier bonus — 9 instances, 8 unique texts
+  [4686] Fatal Hyperborean Hierophant Gem       'Tier 10: +150 Heal Rating'
+  [4686] Fatal Hyperborean Hierophant Gem       'Tier 10: +60 Fatality Rating'
+  [4686] Fatal Hyperborean Hierophant Gem       'Tier 10: +10 Protection'
+  [4685] Fatal Hyperborean Sentinel Gem         'Tier 10: 30 Critigation Amount'
+  [4685] Fatal Hyperborean Sentinel Gem         'Tier 10: +60 Fatality Rating'
+  [4685] Fatal Hyperborean Sentinel Gem         'Tier 10: +6 Hate Increase Rating'
+  [4685] Fatal Hyperborean Sentinel Gem         'Tier 10: +25 Protection'
+  [4688] White Hand Gem of Holy Storm           'Tier 10: Chance on damage, Holy Storm on target, 10 Procs per Minute'
+  [4687] White Hand Gem of Unholy Strike        'Tier 10: Chance on damage, Unholy Strike on target, 10 Procs per Minute'
+
+## prose/description — 7 instances, 7 unique texts
+  [4536] Permanent Travelling Merchant Contra   'Must be used out of combat'
+  [828] Path of the Enlightened                'This esoteric ritual unlocks the refined hunger of the Enlightened Jiang Shi and allows one to'
+  [258] Pet: War Machine                       'Putting siege technology into a vicious,'
+  [258] Pet: War Machine                       'offers ranged combat aid to the'
+  [749] Pet: Yellow Lotus                      'stuns the nearby enemies of the Yun'
+  [1885] Furious Spirit                         'room of the Atlantean ruins, summons a'
+  [1716] The Water's Edge                       'Peres aie ie 2) at gts'
+
+## class restriction — 6 instances, 5 unique texts
+  [836] Book: Well Laid Plans                  'Classes: Necromancer, Demonologist, Herald of Xotli'
+  [4489] Khanjar of the Faceless Man            'Glasses: Necromancer, Demonologist'
+  [4491] Sagaris of the Twelfth Dynasty         'Glasses: Priest of Mitra, Tempest of Set'
+  [4674] Kuthcheman Flamberge                   'Glasses: Herald of Xotli'
+  [4683] Kuthcheman War Blade                   'Glasses: Guardian, Dark Templar'
+  [4675] Zugite Sacrificial Poniard             'Glasses: Necromancer, Demonologist'
+
+## mangled type-slot — 5 instances, 5 unique texts
+  [283] General's Vambraces of the Warring S   'Heavy Armor - Wrist'
+  [285] Conscript's Gauntlets of the Eastern   'Full Plate Armor - Hands'
+  [4291] Ghostfang                              'Dsaagger - Main Hand, Off Hand'
+  [2102] The Mouth of Barbed Promises           'Armunition - Off Hand'
+  [4445] Gloves of the Warded Brute             'Full Plate Arrnor - Hands'
+
+## mount description header — 3 instances, 1 unique texts
+  [168] Hyrkanian Dread Ash-Tramper            'Mount Description:'
+  [170] Hyrkanian Grim Skull-Treader           'Mount Description:'
+  [171] Hyrkanian Pale Ghost-Chaser            'Mount Description:'
+
+## item-level echo — 2 instances, 2 unique texts
+  [258] Pet: War Machine                       'Item Level 1 - Rare'
+  [611] Venturer's Gloves of the Yellow Spri   'Item Level 80 - Rare'
+
+## gem kind line — 2 instances, 1 unique texts
+  [4686] Fatal Hyperborean Hierophant Gem       'Hyperborean Gem'
+  [4685] Fatal Hyperborean Sentinel Gem         'Hyperborean Gem'
+
+## vendor price echo — 1 instances, 1 unique texts
+  [838] Book: Of Security and Opportunity      'Vendor Price 2 Silver 50 Copper'

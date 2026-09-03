@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1345,
+    "name": "Dreamer's Keepsake",
+    "line": "Yellow\nPon 8 tag ORR eg Reo LN",
+    "fixed": "Yellow"
+  },
+  {
+    "id": 1348,
+    "name": "Eye of the Watcher",
+    "line": "Black\neste",
+    "fixed": "Black"
+  },
+  {
+    "id": 4682,
+    "name": "Etched Kuthcheman Poniard",
+    "line": "Kuthcheman 22?",
+    "fixed": "\"Kuthcheman\", \"White Hand\""
+  },
+  {
+    "id": 4677,
+    "name": "Eyes of Zug",
+    "line": "Kuthcheman 22?",
+    "fixed": "\"Kuthcheman\", \"White Hand\""
+  },
+  {
+    "id": 4664,
+    "name": "Kuthcheman Claymore",
+    "line": "Onslaught Kuthcheman 2??? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4671,
+    "name": "Kuthcheman Cultist Shield",
+    "line": "Kuthcheman 22?",
+    "fixed": "\"Kuthcheman\", \"White Hand\""
+  },
+  {
+    "id": 4674,
+    "name": "Kuthcheman Flamberge",
+    "line": "Onslaught Kuthcheman 22? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4665,
+    "name": "Kuthcheman Great Hammer",
+    "line": "Onslaught Kuthcheman 22? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4669,
+    "name": "Kuthcheman Guardsman Pike",
+    "line": "Onslaught Kuthcheman 22? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4670,
+    "name": "Kuthcheman Pernach",
+    "line": "Onslaught 22?",
+    "fixed": "Onslaught Hyperborean"
+  },
+  {
+    "id": 4684,
+    "name": "Kuthcheman Tower Shield",
+    "line": "Kuthcheman 22?",
+    "fixed": "\"Kuthcheman\", \"White Hand\""
+  },
+  {
+    "id": 4663,
+    "name": "Kuthcheman War Axe",
+    "line": "Onslaught 22?",
+    "fixed": "Onslaught Hyperborean"
+  },
+  {
+    "id": 4683,
+    "name": "Kuthcheman War Blade",
+    "line": "Onslaught 22?",
+    "fixed": "Onslaught Hyperborean"
+  },
+  {
+    "id": 4672,
+    "name": "Kuthcheman Zugite Staff",
+    "line": "Onslaught Kuthcheman 22? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4681,
+    "name": "Shevatas Jewel-Hiked Blade",
+    "line": "Onslaught 22?",
+    "fixed": "Onslaught Hyperborean"
+  },
+  {
+    "id": 4676,
+    "name": "Zugite Heretic Staff",
+    "line": "Onslaught Kuthcheman 22? 22?",
+    "fixed": "\"Onslaught\", \"Kuthcheman\", \"Hyperborean\", \"White Hand\""
+  },
+  {
+    "id": 4668,
+    "name": "Zugite Knight Totem",
+    "line": "Kuthcheman 22?",
+    "fixed": "\"Kuthcheman\", \"White Hand\""
+  },
+  {
+    "id": 4675,
+    "name": "Zugite Sacrificial Poniard",
+    "line": "Onslaught 22?",
+    "fixed": "Onslaught Hyperborean"
+  }
+]
