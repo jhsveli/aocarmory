@@ -1,29 +1,6 @@
-.menuBar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: var(--z-menu);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.35rem 1rem;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px),
-    linear-gradient(180deg, #2c2418, #1c1610);
-  border-bottom: 2px solid var(--gold);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.55);
-  color: #e8e0d0;
-  font-size: 0.8rem;
-}
-.menuBar a { color: #9db4ff; }
-.menuBar a.selected { color: #fff; font-weight: bold; text-decoration: underline; }
-.menuBar .menuLinks { display: flex; flex-wrap: wrap; gap: 0.1rem 0.7rem; }
-.menuBar .menuLinks .sep { color: #8a744f; }
-.menuBar .authLinks { white-space: nowrap; color: #cbb98f; }
-
 .page {
   max-width: var(--page-max-width);
-  margin: calc(var(--header-h) + 1.2rem) auto 0;
+  margin: 1.2rem auto 0;
   padding: 0 1rem 2rem;
 }
 
@@ -131,7 +108,6 @@
 .paypal a img { margin-top: 0.4rem; border: 0; }
 
 @media (--screen-narrow) {
-  .menuBar { position: static; }
   .page { margin-top: 1rem; }
 }
 @media (--screen-mobile) {

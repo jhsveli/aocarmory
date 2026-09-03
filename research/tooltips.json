@@ -71176,8 +71176,25 @@
    }
   },
   "3872": {
-   "tooltip": null,
-   "stats": null
+   "tooltip": "Mask of the Master Gaoler\nBinds when Picked Up\nSocial - Head\nItem Level 1 - Rare\nRequires Level 1\nDescription:\nThis is a Social item, and can be\nworn by any Class.",
+   "stats": {
+    "attributes": [],
+    "effects": [],
+    "setBonuses": [],
+    "values": [],
+    "binds": "BIND_ON_PICKUP",
+    "type": "Social",
+    "slots": [
+     "Head"
+    ],
+    "itemLevel": 1,
+    "requiresLevel": 1,
+    "description": [
+     "This is a Social item, and can be",
+     "worn by any Class."
+    ],
+    "lines": []
+   }
   },
   "2366": {
    "tooltip": "Abyssal Shroud\nBinds when Picked Up\nCloth Armor - Chest\nItem Level 80 - Rar\nRequires Level 80\n477 Armor\n+45 Constitution\n+46 Intelligence\n+136 Mana\n+20 Magic Damage\n+28 Immunity Rating\nVendor Price 41 Copper 67 Tin",
@@ -195625,6 +195642,67 @@
     "vendorPrice": {
      "silver": 5
     }
+   }
+  },
+  "4690": {
+   "tooltip": "White Hand Gem of Lightning Storm\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Epic\nRequires a Level 80 Item\nTier 10: Chance on damage, Lightning Storm on target, 10 Procs per Minute\nVendor Price 50 Copper",
+   "stats": {
+    "attributes": [],
+    "effects": [],
+    "setBonuses": [],
+    "values": [],
+    "lines": [],
+    "itemLevel": 80,
+    "requiresItemLevel": 80,
+    "binds": "BIND_ON_EQUIP",
+    "vendorPrice": {
+     "copper": 50
+    },
+    "tierBonuses": {
+     "10": {
+      "values": [],
+      "attributes": [],
+      "procs": [
+       {
+        "trigger": "on damage",
+        "spell": "Lightning Storm",
+        "target": "target",
+        "rate": 10,
+        "rateUnit": "ppm"
+       }
+      ]
+     }
+    },
+    "gemKind": "White Hand"
+   }
+  },
+  "4691": {
+   "tooltip": "White Hand Gem of Lightning Cloak\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Epic\nRequires a Level 80 Item\nTier 10: Chance of getting damage, Lightning Cloak on target, 10 percent chance\nTier 10: Chance of getting damage, Lightning Cloak on target, 10 percent chance",
+   "stats": {
+    "attributes": [],
+    "effects": [],
+    "setBonuses": [],
+    "values": [],
+    "lines": [],
+    "itemLevel": 80,
+    "requiresItemLevel": 80,
+    "binds": "BIND_ON_EQUIP",
+    "tierBonuses": {
+     "10": {
+      "values": [],
+      "attributes": [],
+      "procs": [
+       {
+        "trigger": "of getting damage",
+        "spell": "Lightning Cloak",
+        "target": "target",
+        "rate": 10,
+        "rateUnit": "percent"
+       }
+      ]
+     }
+    },
+    "gemKind": "White Hand"
    }
   }
  },

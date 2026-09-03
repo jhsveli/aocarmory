@@ -5,8 +5,7 @@ import HomePage from "./pages/HomePage";
 import SectionPage from "./pages/SectionPage";
 import ArmorSetsPage from "./pages/ArmorSetsPage";
 import FactionsPage from "./pages/FactionsPage";
-import LinksPage from "./pages/LinksPage";
-import AboutPage from "./pages/AboutPage";
+
 import SearchPage from "./pages/SearchPage";
 import BuilderPage from "./pages/BuilderPage";
 import "./styles/global.css";
@@ -20,8 +19,6 @@ export function AppRoutes() {
         <Route path="s/:id" element={<SectionPage />} />
         <Route path="sets" element={<ArmorSetsPage />} />
         <Route path="factions" element={<FactionsPage />} />
-        <Route path="links" element={<LinksPage />} />
-        <Route path="about" element={<AboutPage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="builder" element={<BuilderPage />} />
         <Route path="*" element={<HomePage />} />

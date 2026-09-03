@@ -33,13 +33,11 @@
   --r-epic: #8d11be;
   --r-legendary: #e38f35;
 
-  --header-h: 2.2rem;
   --page-max-width: 1180px;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Verdana, Tahoma, Arial, sans-serif;
 
-  /* layer scale: menu -> dropdown -> sticky -> modal -> tooltip */
-  --z-menu: 100;
+  /* layer scale: dropdown -> sticky -> modal -> tooltip */
   --z-tooltip: 200;
   --z-overlay: 300;
 }

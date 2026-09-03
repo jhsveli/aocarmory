@@ -78,11 +78,6 @@ describe("App rendering", () => {
     expect(screen.getByRole("heading", { name: "Barbarian" })).toBeInTheDocument();
   });
 
-  it("renders the about page with milestones", () => {
-    renderAt("/about");
-    expect(screen.getByRole("heading", { name: "Milestones" })).toBeInTheDocument();
-  });
-
   it("renders the factions page with oppositions", () => {
     renderAt("/factions");
     expect(screen.getByRole("heading", { name: "Rise of the Godslayer Factions" })).toBeInTheDocument();

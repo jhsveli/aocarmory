@@ -16,43 +16,12 @@ export default function Layout() {
 
   return (
     <div>
-      {/* fixed top bar — a modern take on the original -=[ ... ]=- menu */}
-      <div className={styles.menuBar}>
-        <div className={styles.menuLinks}>
-          <Link to="/">AoC&gt;TV</Link>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/api.php">API</a>
-          <span className={styles.sep}>::</span>
-          <Link to="/" className={styles.selected}>Armory</Link>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/aamon.php">AAMon</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/bebot.php">Bebot</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/belaui.php">BelaUI</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/forums/">Forums</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/scripts.php">Scripts</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/onyx.php">The Onyx Chambers</a>
-          <span className={styles.sep}>::</span>
-          <a href="https://aoc.is-better-than.tv/veteran.php">Veteran Rewards</a>
-        </div>
-        <div className={styles.authLinks}>
-          [ <a href="https://aoc.is-better-than.tv/forums/ucp.php?mode=register">Register</a>
-          {" "}:: <a href="https://aoc.is-better-than.tv/forums/ucp.php?mode=login">Login</a> ]
-        </div>
-      </div>
-
       <div className={styles.page}>
         <div className={styles.topmenu}>
           <ul className={styles.mainmenu}>
             <li><NavLink to="/" end>Home</NavLink></li>
             <li><NavLink to="/sets">Armor Sets</NavLink></li>
             <li><NavLink to="/factions">Factions</NavLink></li>
-            <li><NavLink to="/links">Links</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>
             <li><NavLink to="/builder">Armor builder</NavLink></li>
           </ul>
           <form className={styles.searchForm} onSubmit={submit}>

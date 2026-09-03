@@ -97146,8 +97146,25 @@
            "price": null,
            "drop": null,
            "image": "https://static.is-better-than.tv/armory/mask_of_the_master_gaoler.jpg",
-           "tooltip": null,
-           "stats": null
+           "tooltip": "Mask of the Master Gaoler\nBinds when Picked Up\nSocial - Head\nItem Level 1 - Rare\nRequires Level 1\nDescription:\nThis is a Social item, and can be\nworn by any Class.",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "binds": "BIND_ON_PICKUP",
+            "type": "Social",
+            "slots": [
+             "Head"
+            ],
+            "itemLevel": 1,
+            "requiresLevel": 1,
+            "description": [
+             "This is a Social item, and can be",
+             "worn by any Class."
+            ],
+            "lines": []
+           }
           }
          ]
         }
@@ -262149,6 +262166,79 @@
             },
             "gemKind": "White Hand"
            }
+          },
+          {
+           "id": 4690,
+           "name": "White Hand Gem of Lightning Storm",
+           "rarity": "Epic",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/white_hand_gem_of_lightning_storm.jpg",
+           "tooltip": "White Hand Gem of Lightning Storm\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Epic\nRequires a Level 80 Item\nTier 10: Chance on damage, Lightning Storm on target, 10 Procs per Minute\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [],
+              "procs": [
+               {
+                "trigger": "on damage",
+                "spell": "Lightning Storm",
+                "target": "target",
+                "rate": 10,
+                "rateUnit": "ppm"
+               }
+              ]
+             }
+            },
+            "gemKind": "White Hand"
+           }
+          },
+          {
+           "id": 4691,
+           "name": "White Hand Gem of Lightning Cloak",
+           "rarity": "Epic",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/white_hand_gem_of_lightning_cloak.jpg",
+           "tooltip": "White Hand Gem of Lightning Cloak\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Epic\nRequires a Level 80 Item\nTier 10: Chance of getting damage, Lightning Cloak on target, 10 percent chance\nTier 10: Chance of getting damage, Lightning Cloak on target, 10 percent chance",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [],
+              "procs": [
+               {
+                "trigger": "of getting damage",
+                "spell": "Lightning Cloak",
+                "target": "target",
+                "rate": 10,
+                "rateUnit": "percent"
+               }
+              ]
+             }
+            },
+            "gemKind": "White Hand"
+           }
           }
          ]
         }
@@ -263788,8 +263878,8 @@
   "sections": 39,
   "sets": 1150,
   "uniqueSets": 366,
-  "items": 4744,
-  "uniqueItems": 4539,
-  "generated": "2026-09-03T12:59:47"
+  "items": 4746,
+  "uniqueItems": 4541,
+  "generated": "2026-09-03T14:39:17"
  }
 }
