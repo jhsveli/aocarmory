@@ -262071,6 +262071,358 @@
             },
             "gemKind": "Hyperborean"
            }
+          },
+          {
+           "id": 4692,
+           "name": "Fatal Hyperborean Hierophant Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fatal_hyperborean_hierophant_gem_legendary.jpg",
+           "tooltip": "Fatal Hyperborean Hierophant Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +350 Heal Rating\nTier 10: +15 Magic Damage\nTier 10: +180 Fatality Rating\nTier 10: +20 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "heal rating": 350
+               },
+               {
+                "magic damage": 15
+               },
+               {
+                "fatality rating": 180
+               },
+               {
+                "protection": 20
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4693,
+           "name": "Fatal Hyperborean Mystic Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fatal_hyperborean_mystic_gem.jpg",
+           "tooltip": "Fatal Hyperborean Mystic Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +350 Mana\nTier 10: +25 Magic Damage\nTier 10: +180 Fatality Rating\nTier 10: +50 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "mana": 350
+               },
+               {
+                "magic damage": 25
+               },
+               {
+                "fatality rating": 180
+               },
+               {
+                "protection": 50
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4694,
+           "name": "Fatal Hyperborean Nightblade Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fatal_hyperborean_nightblade_gem.jpg",
+           "tooltip": "Fatal Hyperborean Nightblade Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +45 Hit Rating\nTier 10: +180 Fatality Rating\nTier 10: +20 Hate Decrease Rating\nTier 10: +50 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "hit rating": 45
+               },
+               {
+                "fatality rating": 180
+               },
+               {
+                "hate decrease rating": 20
+               },
+               {
+                "protection": 50
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4695,
+           "name": "Fatal Hyperborean Sentinel Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fatal_hyperborean_sentinel_gem_legendary.jpg",
+           "tooltip": "Fatal Hyperborean Sentinel Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: 70 Critigation Amount\nTier 10: +20 Hit Rating\nTier 10: +180 Fatality Rating\nTier 10: +10 Hate Increase Rating\nTier 10: +125 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [
+               {
+                "critigation": 70
+               }
+              ],
+              "attributes": [
+               {
+                "hit rating": 20
+               },
+               {
+                "fatality rating": 180
+               },
+               {
+                "hate increase rating": 10
+               },
+               {
+                "protection": 125
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4696,
+           "name": "Fierce Hyperborean Hierophant Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fierce_hyperborean_hierophant_gem.jpg",
+           "tooltip": "Fierce Hyperborean Hierophant Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +40 Ferocity\nTier 10: +350 Heal Rating\nTier 10: +15 Magic Damage\nTier 10: +20 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "ferocity": 40
+               },
+               {
+                "heal rating": 350
+               },
+               {
+                "magic damage": 15
+               },
+               {
+                "protection": 20
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4697,
+           "name": "Fierce Hyperborean Mystic Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fierce_hyperborean_mystic_gem.jpg",
+           "tooltip": "Fierce Hyperborean Mystic Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +40 Ferocity\nTier 10: +350 Mana\nTier 10: +25 Magic Damage\nTier 10: +50 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "ferocity": 40
+               },
+               {
+                "mana": 350
+               },
+               {
+                "magic damage": 25
+               },
+               {
+                "protection": 50
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4698,
+           "name": "Fierce Hyperborean Nightblade Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fierce_hyperborean_nightblade_gem.jpg",
+           "tooltip": "Fierce Hyperborean Nightblade Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: +40 Ferocity\nTier 10: +45 Hit Rating\nTier 10: +20 Hate Decrease Rating\nTier 10: +50 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [
+               {
+                "ferocity": 40
+               },
+               {
+                "hit rating": 45
+               },
+               {
+                "hate decrease rating": 20
+               },
+               {
+                "protection": 50
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
+          },
+          {
+           "id": 4699,
+           "name": "Fierce Hyperborean Sentinel Gem",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/fierce_hyperborean_sentinel_gem.jpg",
+           "tooltip": "Fierce Hyperborean Sentinel Gem\nBinds when Equipped\nHyperborean Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: 70 Critigation Amount\nTier 10: +40 Ferocity\nTier 10: +20 Hit Rating\nTier 10: +10 Hate Increase Rating\nTier 10: +125 Protection\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [
+               {
+                "critigation": 70
+               }
+              ],
+              "attributes": [
+               {
+                "ferocity": 40
+               },
+               {
+                "hit rating": 20
+               },
+               {
+                "hate increase rating": 10
+               },
+               {
+                "protection": 125
+               }
+              ],
+              "procs": []
+             }
+            },
+            "gemKind": "Hyperborean"
+           }
           }
          ]
         }
@@ -262233,6 +262585,82 @@
                 "target": "target",
                 "rate": 10,
                 "rateUnit": "percent"
+               }
+              ]
+             }
+            },
+            "gemKind": "White Hand"
+           }
+          },
+          {
+           "id": 4700,
+           "name": "White Hand Gem of Fire Storm",
+           "rarity": "Legendary",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/white_hand_gem_of_fire_storm.jpg",
+           "tooltip": "White Hand Gem of Fire Storm\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Legendary\nRequires a Level 80 Item\nTier 10: Chance on damage, Fire Storm on target, 10 Procs per Minute\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [],
+              "procs": [
+               {
+                "trigger": "on damage",
+                "spell": "Fire Storm",
+                "target": "target",
+                "rate": 10,
+                "rateUnit": "ppm"
+               }
+              ]
+             }
+            },
+            "gemKind": "White Hand"
+           }
+          },
+          {
+           "id": 4701,
+           "name": "White Hand Gem of Ice Strike",
+           "rarity": "Epic",
+           "price": null,
+           "drop": null,
+           "image": "https://static.is-better-than.tv/armory/white_hand_gem_of_ice_strike.jpg",
+           "tooltip": "White Hand Gem of Ice Strike\nBinds when Equipped\nWhite Hand Gem\nItem Level 80 - Epic\nRequires a Level 80 Item\nTier 10: Chance on damage, Ice Strike on target, 10 Procs per Minute\nVendor Price 50 Copper",
+           "stats": {
+            "attributes": [],
+            "effects": [],
+            "setBonuses": [],
+            "values": [],
+            "lines": [],
+            "itemLevel": 80,
+            "requiresItemLevel": 80,
+            "binds": "BIND_ON_EQUIP",
+            "vendorPrice": {
+             "copper": 50
+            },
+            "tierBonuses": {
+             "10": {
+              "values": [],
+              "attributes": [],
+              "procs": [
+               {
+                "trigger": "on damage",
+                "spell": "Ice Strike",
+                "target": "target",
+                "rate": 10,
+                "rateUnit": "ppm"
                }
               ]
              }
@@ -263878,8 +264306,8 @@
   "sections": 39,
   "sets": 1150,
   "uniqueSets": 366,
-  "items": 4746,
-  "uniqueItems": 4541,
-  "generated": "2026-09-03T14:39:17"
+  "items": 4756,
+  "uniqueItems": 4551,
+  "generated": "2026-09-03T16:34:25"
  }
 }
