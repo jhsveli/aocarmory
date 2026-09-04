@@ -115,6 +115,8 @@ const SECTION_GROUP_DEFS: ReadonlyArray<{ label: string; ids: number[] }> = [
   },
   // Onslaught raid vendors
   { label: "Onslaught", ids: [44, 45] },
+  // Dungeons
+  { label: "Dungeons", ids: [21, 22, 28, 23, 30, 19, 32, 25] }
 ];
 
 /**

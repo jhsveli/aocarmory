@@ -9,41 +9,31 @@ import styles from "./ItemDetailsPanel.module.css";
  * separately by TooltipProvider.
  */
 export default function ItemDetailsPanel() {
-  const { panelItem, clear } = useItemDetails();
+  const { panelItem } = useItemDetails();
 
   return (
-    <aside className={styles.itemPanel} aria-label="Item details">
-      <div className={styles.panelHeader}>
-        <span className={styles.panelTitle}>Item details</span>
-        {panelItem && (
-          <button
-            type="button"
-            className={styles.panelClose}
-            onClick={clear}
-            aria-label="Close item details"
-          >
-            ✕
-          </button>
-        )}
-      </div>
-      {panelItem ? (
-        <>
-          <ItemDetailsBox item={panelItem} className={styles.inPanel} />
-          {panelItem.image && (
-            <div className={styles.panelImage}>
-              <div className={styles.panelImageLabel}>Original screenshot</div>
-              <img
-                src={panelItem.image}
-                alt={`Original screenshot: ${panelItem.name}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+      <aside className={styles.mainAside}>
+        <aside className={styles.itemPanel} aria-label="Item details">
+          {panelItem ? (
+            <>
+              <ItemDetailsBox item={panelItem} className={styles.inPanel} />
+            </>
+          ) : null}
+        </aside>
+
+          {panelItem?.image && (
+            <aside className={styles.itemPanel}>
+              <div className={styles.panelImage}>
+                  <div className={styles.panelImageLabel}>Original screenshot</div>
+                  <img
+                      src={panelItem.image}
+                      alt={`Original screenshot: ${panelItem.name}`}
+                      loading="lazy"
+                      decoding="async"
+                  />
+              </div>
+            </aside>
           )}
-        </>
-      ) : (
-        <div className={styles.panelEmpty}>Click an item to view its details.</div>
-      )}
-    </aside>
+      </aside>
   );
 }

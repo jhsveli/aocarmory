@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Duration, Item, ItemStats, PercentValue, Proc, StatValue } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
@@ -59,61 +60,87 @@ function tierBonusLine(entry: StatValue | Proc, kind: "values" | "attributes" | 
   return `${statLabel(name)}: ${value}`;
 }
 
+type StatBlock = { id: string; rows: ReactNode[] };
+
+/** Wrap a numeric stat value so it can receive its own styling. */
+function statNum(value: string): ReactNode {
+  return <span className={styles.num}>{value}</span>;
+}
+
 /**
- * Flatten the structured parse into display lines, in the order the original
- * in-game tooltip shows them. Property labels come from the language file
- * (stat-labels.ts). Raw OCR lines not covered by the structure (vendor price,
- * sockets, ...) are kept in `lines`.
+ * Build the tooltip body as an ordered list of blocks — one per logical
+ * group — in the order the original in-game tooltip shows them. The stat
+ * groups stay apart (values, then weapon damage/DPS, then attributes) so they
+ * can be rendered as separate sections, and every numeric value is emitted in
+ * its own tag. Property labels come from the language file (stat-labels.ts).
+ * Raw OCR lines not covered by the structure (vendor price, sockets, ...) are
+ * kept in `lines` at the end of the final block.
  */
-function statLines(stats: ItemStats): string[] {
-  const out: string[] = [];
+function statBlocks(stats: ItemStats): StatBlock[] {
+  const head: ReactNode[] = [];
   if (stats.type) {
     // the tooltip prints "Type - Slot(s)"; slots is the split-off part
-    out.push(stats.type + (stats.slots?.length ? ` - ${stats.slots.join(", ")}` : ""));
+    head.push(stats.type + (stats.slots?.length ? ` - ${stats.slots.join(", ")}` : ""));
   }
-  if (stats.gemKind) out.push(`${stats.gemKind} Gem`);
-  if (stats.classes?.length) out.push(`${statLabel("classes")}: ${stats.classes.join(", ")}`);
-  if (stats.itemLevel) out.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
-  if (stats.requiresLevel) out.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
-  if (stats.requiresPvpLevel) out.push(`${statLabel("requiresPvpLevel")} ${stats.requiresPvpLevel}`);
-  if (stats.requiresRenownLevel) out.push(`${statLabel("requiresRenownLevel")} ${stats.requiresRenownLevel}`);
-  if (stats.requiresItemLevel) out.push(`Requires a Level ${stats.requiresItemLevel} Item`);
-  if (stats.mustBeUsedOutOfCombat) out.push("Must be used out of combat");
-  if (stats.targetingMode) out.push(`Targeting Mode: ${stats.targetingMode}`);
-  if (stats.castingTime) out.push(`Casting Time: ${durationText(stats.castingTime)}`);
-  if (stats.recast) out.push(`Recast: ${durationText(stats.recast)}`);
-  if (stats.duration) out.push(`Duration: ${durationText(stats.duration)}`);
+  if (stats.gemKind) head.push(`${stats.gemKind} Gem`);
+  if (stats.classes?.length) head.push(`${statLabel("classes")}: ${stats.classes.join(", ")}`);
+  if (stats.itemLevel) head.push(`${statLabel("itemLevel")} ${stats.itemLevel}`);
+  if (stats.requiresLevel) head.push(`${statLabel("requiresLevel")} ${stats.requiresLevel}`);
+  if (stats.requiresPvpLevel) head.push(`${statLabel("requiresPvpLevel")} ${stats.requiresPvpLevel}`);
+  if (stats.requiresRenownLevel) head.push(`${statLabel("requiresRenownLevel")} ${stats.requiresRenownLevel}`);
+  if (stats.requiresItemLevel) head.push(`Requires a Level ${stats.requiresItemLevel} Item`);
+  if (stats.mustBeUsedOutOfCombat) head.push("Must be used out of combat");
+  if (stats.targetingMode) head.push(`Targeting Mode: ${stats.targetingMode}`);
+  if (stats.castingTime) head.push(`Casting Time: ${durationText(stats.castingTime)}`);
+  if (stats.recast) head.push(`Recast: ${durationText(stats.recast)}`);
+  if (stats.duration) head.push(`Duration: ${durationText(stats.duration)}`);
   if (stats.requiresFactionRank) {
     for (const [faction, rank] of Object.entries(stats.requiresFactionRank)) {
-      out.push(factionRankText(faction, rank));
+      head.push(factionRankText(faction, rank));
     }
   }
-  if (stats.canOnlyHaveOne) out.push("Can Only Have One");
-  for (const v of stats.values) {
+  if (stats.canOnlyHaveOne) head.push("Can Only Have One");
+
+  const values: ReactNode[] = (stats.values ?? []).map((v) => {
     const [name, value] = statEntry(v);
-    if (typeof value === "object") {
-      out.push(`${statLabel(name)}: ${value.percent}%`);
-    } else {
-      out.push(`${statLabel(name)}: ${value}`);
-    }
-  }
+    return typeof value === "object"
+      ? <>{statNum(`${value.percent}%`)} {statLabel(name)}</>
+      : <>{statNum(`${value}`)} {statLabel(name)}</>;
+  });
+
+  const combat: ReactNode[] = [];
   if (stats.damage && stats.dps) {
-    out.push(`${stats.dps} DPS (${stats.damage.min} - ${stats.damage.max})`);
+    combat.push(
+      <>{statNum(`${stats.dps}`)} DPS ({statNum(`${stats.damage.min}`)} - {statNum(`${stats.damage.max}`)})</>,
+    );
   } else {
-    if (stats.damage) out.push(`Damage: ${stats.damage.min} - ${stats.damage.max}`);
-    if (stats.dps) out.push(`DPS: ${stats.dps}`);
+    if (stats.damage) {
+      combat.push(
+        <>Damage: {statNum(`${stats.damage.min}`)} - {statNum(`${stats.damage.max}`)}</>,
+      );
+    }
+    if (stats.dps) combat.push(<>DPS: {statNum(`${stats.dps}`)}</>);
   }
-  for (const a of stats.attributes) {
+
+  const attributes: ReactNode[] = [];
+  for (const a of stats.attributes ?? []) {
     const [name, value] = statEntry(a);
-    out.push(statLabelValue(name, value));
-    if (typeof value === "object" && value.appliesTo?.length) {
-      for (const target of value.appliesTo) out.push(target);
+    if (typeof value === "object") {
+      const p = value.percent;
+      attributes.push(<>{statNum(`${p >= 0 ? "+" : ""}${p}%`)} {statLabel(name)}</>);
+      if (value.appliesTo?.length) {
+        for (const target of value.appliesTo) attributes.push(target);
+      }
+    } else {
+      attributes.push(<>{statNum(`${value >= 0 ? "+" : ""}${value}`)} {statLabel(name)}</>);
     }
   }
+
+  const tail: ReactNode[] = [];
   for (const p of stats.procs ?? []) {
     // reconstruct the original tooltip line, e.g.
     // "Chance on damage, Defiling Strike on target, 3 Procs per Minute"
-    out.push(`Chance ${p.trigger}, ${p.spell} on ${p.target}, ${p.rate} ${
+    tail.push(`Chance ${p.trigger}, ${p.spell} on ${p.target}, ${p.rate} ${
       p.rateUnit === "ppm" ? "Procs per Minute" : "percent chance"
     }`);
   }
@@ -126,26 +153,33 @@ function statLines(stats: ItemStats): string[] {
       ];
       for (const [kind, entries] of groups) {
         for (const entry of entries) {
-          out.push(`Tier ${tier}: ${tierBonusLine(entry, kind as "values" | "attributes" | "procs")}`);
+          tail.push(`Tier ${tier}: ${tierBonusLine(entry, kind as "values" | "attributes" | "procs")}`);
         }
       }
     }
   }
-  out.push(...stats.effects);
-  if (stats.set) out.push(stats.set);
-  out.push(...stats.setBonuses);
-  if (stats.description) out.push(...stats.description);
-  if (stats.learnSpell) out.push(`Learn Spell: ${stats.learnSpell}`);
-  if (stats.engravings?.length) out.push(`Rune Engravings: ${stats.engravings.join(", ")}`);
-  if (stats.gemSlots?.length) out.push(`Gem Slots: ${stats.gemSlots.join(", ")}`);
+  tail.push(...stats.effects);
+  if (stats.set) tail.push(stats.set);
+  tail.push(...stats.setBonuses);
+  if (stats.description) tail.push(...stats.description);
+  if (stats.learnSpell) tail.push(`Learn Spell: ${stats.learnSpell}`);
+  if (stats.engravings?.length) tail.push(`Rune Engravings: ${stats.engravings.join(", ")}`);
+  if (stats.gemSlots?.length) tail.push(`Gem Slots: ${stats.gemSlots.join(", ")}`);
   if (stats.vendorPrice) {
     const parts = Object.entries(stats.vendorPrice).map(
       ([currency, amount]) => `${amount} ${currency.charAt(0).toUpperCase()}${currency.slice(1)}`,
     );
-    out.push(`Vendor Price ${parts.join(" ")}`);
+    tail.push(`Vendor Price ${parts.join(" ")}`);
   }
-  out.push(...stats.lines);
-  return out;
+  tail.push(...stats.lines);
+
+  const blocks: StatBlock[] = [];
+  if (head.length) blocks.push({ id: "head", rows: head });
+  if (values.length) blocks.push({ id: "values", rows: values });
+  if (combat.length) blocks.push({ id: "combat", rows: combat });
+  if (attributes.length) blocks.push({ id: "attributes", rows: attributes });
+  if (tail.length) blocks.push({ id: "tail", rows: tail });
+  return blocks;
 }
 
 /**
@@ -160,7 +194,7 @@ export default function ItemDetailsBox({ item, compact, className }: Props) {
 
   const bindText = item.stats?.binds && item.stats.binds !== "NO_BIND" ? BIND_LABEL[item.stats.binds] : null;
 
-  const lines = item.stats ? statLines(item.stats) : null;
+  const blocks = item.stats ? statBlocks(item.stats) : null;
 
   const boxCls = [
     styles.tooltipBox,
@@ -172,11 +206,15 @@ export default function ItemDetailsBox({ item, compact, className }: Props) {
     <div className={boxCls}>
       <h2 className={nameCls}>{item.name}</h2>
       {bindText && (<div className={styles.binds}>{bindText}</div>)}
-      {lines ? (
+      {blocks ? (
         <div className={styles.tooltipBody}>
-          {lines.map((line, i) => (
-            <div key={i} className={styles.line}>
-              {line}
+          {blocks.map((block) => (
+            <div key={block.id} className={styles.statSection}>
+              {block.rows.map((row, i) => (
+                <div key={i} className={styles.line}>
+                  {row}
+                </div>
+              ))}
             </div>
           ))}
         </div>

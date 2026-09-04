@@ -7,13 +7,14 @@
   --panel-head: #d9c9a8;
   --ink: #2b2116;
   --ink-soft: #5c4d3a;
-  --line: #b7a37e;
+  --line: #b7b7be;
   --line-dark: #8a744f;
   --crimson: #b3222a;
   --crimson-dark: #7d141a;
   --gold: #c9a227;
   --link: #9a3412;
   --t-binds: #FBFCFE;
+  --t-num: #41de41;
 
   /* rarity colors (kept from the original stylesheet) */
   --r-mundane: #8a8a89;

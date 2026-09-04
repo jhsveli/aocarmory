@@ -43,10 +43,15 @@ describe("ItemTooltipBox", () => {
     expect(screen.getByText("Classes: Priest of Mitra, Tempest of Set")).toBeInTheDocument();
     expect(screen.getByText("Requires Level 80")).toBeInTheDocument();
     expect(screen.getByText("Requires PvP Level 9")).toBeInTheDocument();
-    expect(screen.getByText("Armor: 512")).toBeInTheDocument();
-    expect(screen.getByText("Critigation Amount: 277")).toBeInTheDocument();
-    expect(screen.getByText("+42 Strength")).toBeInTheDocument();
-    expect(screen.getByText("+25 Constitution")).toBeInTheDocument();
+    // stat values render number-first with a separately-styled numeric value
+    expect(screen.getByText("512")).toBeInTheDocument();
+    expect(screen.getByText("Armor")).toBeInTheDocument();
+    expect(screen.getByText("277")).toBeInTheDocument();
+    expect(screen.getByText("Critigation Amount")).toBeInTheDocument();
+    expect(screen.getByText("+42")).toBeInTheDocument();
+    expect(screen.getByText("Strength")).toBeInTheDocument();
+    expect(screen.getByText("+25")).toBeInTheDocument();
+    expect(screen.getByText("Constitution")).toBeInTheDocument();
     expect(screen.getByText("Vendor Price 2 Gold")).toBeInTheDocument();
   });
 
@@ -196,8 +201,10 @@ describe("ItemTooltipBox", () => {
       },
     });
     render(<ItemDetailsBox item={item} />);
-    expect(screen.getByText("+50 Critical Rating")).toBeInTheDocument();
-    expect(screen.getByText("+16 PvP Protection")).toBeInTheDocument();
+    expect(screen.getByText("+50")).toBeInTheDocument();
+    expect(screen.getByText("Critical Rating")).toBeInTheDocument();
+    expect(screen.getByText("+16")).toBeInTheDocument();
+    expect(screen.getByText("PvP Protection")).toBeInTheDocument();
   });
 
   it("renders percentage attributes with a % sign", () => {
@@ -215,8 +222,10 @@ describe("ItemTooltipBox", () => {
       },
     });
     render(<ItemDetailsBox item={item} />);
-    expect(screen.getByText("+5% Out of Combat Movement Speed")).toBeInTheDocument();
-    expect(screen.getByText("-1% Hate Modifier")).toBeInTheDocument();
+    expect(screen.getByText("+5%")).toBeInTheDocument();
+    expect(screen.getByText("Out of Combat Movement Speed")).toBeInTheDocument();
+    expect(screen.getByText("-1%")).toBeInTheDocument();
+    expect(screen.getByText("Hate Modifier")).toBeInTheDocument();
   });
 
   it("renders proc effects reconstructed from the structured fields", () => {
@@ -299,7 +308,8 @@ describe("ItemTooltipBox", () => {
     expect(screen.getByText("Casting Time: 2 seconds")).toBeInTheDocument();
     expect(screen.getByText("Recast: 10 seconds")).toBeInTheDocument();
     expect(screen.getByText("Duration: 60 seconds")).toBeInTheDocument();
-    expect(screen.getByText("+10% Increase to Damage or Healing")).toBeInTheDocument();
+    expect(screen.getByText("+10%")).toBeInTheDocument();
+    expect(screen.getByText("Increase to Damage or Healing")).toBeInTheDocument();
     expect(screen.getByText("Mana Potions")).toBeInTheDocument();
     expect(screen.getByText("Stamina Potions")).toBeInTheDocument();
   });
@@ -393,7 +403,11 @@ describe("ItemTooltipBox", () => {
       },
     });
     render(<ItemDetailsBox item={item} />);
-    expect(screen.getByText("110.8 DPS (132 - 173)")).toBeInTheDocument();
+    expect(screen.getByText("110.8")).toBeInTheDocument();
+    expect(screen.getByText("132")).toBeInTheDocument();
+    expect(screen.getByText("173")).toBeInTheDocument();
+    // the DPS label and range parentheses surround the separate number spans
+    expect(screen.getByText((content) => content === "DPS ( - )")).toBeInTheDocument();
   });
 
   it("shows the missing-data fallback when there is no tooltip", () => {

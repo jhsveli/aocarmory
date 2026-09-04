@@ -4,13 +4,13 @@
   border-radius: 6px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
   padding: 0.6rem 0.75rem;
-  max-width: 340px;
+  max-width: 360px;
   font-size: 0.78rem;
   line-height: 1.45;
   color: #d8c9a8;
 }
 .tooltipBox .tooltipName {
-  font-family: var(--sans-serif);
+  font-family: var(--sans);
   font-size: 0.95rem;
   font-weight: bold;
   margin-bottom: 0.1rem;
@@ -20,7 +20,15 @@
   text-align: center;
   color: var(--t-binds);
 }
-.tooltipBox .line { white-space: normal; }
+.tooltipBox .line { white-space: normal; color: var(--line); }
+/* stat groups (values / damage & DPS / attributes) are separate sections */
+.tooltipBox .statSection + .statSection {
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+
+}
+/* numeric stat values can be styled independently of their labels */
+.tooltipBox .num { color: var(--t-num); font-weight: normal; white-space: nowrap; }
 .tooltipBox .missing {
   color: #cbb98f;
   font-size: 0.8rem;

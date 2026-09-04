@@ -66,8 +66,6 @@
    box becomes the scrollable body. Passed via ItemTooltipBox's className. */
 .inPanel {
   border: 0;
-  border-top: 1px solid var(--line-dark);
-  border-radius: 0 0 8px 8px;
   box-shadow: none;
   max-width: none;
   max-height: min(58vh, 420px);
