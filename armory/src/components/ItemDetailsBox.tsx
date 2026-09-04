@@ -3,6 +3,7 @@ import type { Duration, Item, ItemStats, PercentValue, Proc, StatValue } from ".
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
 import { factionRankText } from "../lib/faction-ranks";
+import StatLine from "./StatLine";
 import styles from "./ItemDetailsBox.module.css";
 
 interface Props {
@@ -103,9 +104,7 @@ function statBlocks(stats: ItemStats): StatBlock[] {
 
   const values: ReactNode[] = (stats.values ?? []).map((v) => {
     const [name, value] = statEntry(v);
-    return typeof value === "object"
-      ? <>{statNum(`${value.percent}%`)} {statLabel(name)}</>
-      : <>{statNum(`${value}`)} {statLabel(name)}</>;
+    return <StatLine key={name} name={name} value={value} />;
   });
 
   const combat: ReactNode[] = [];
@@ -125,14 +124,9 @@ function statBlocks(stats: ItemStats): StatBlock[] {
   const attributes: ReactNode[] = [];
   for (const a of stats.attributes ?? []) {
     const [name, value] = statEntry(a);
-    if (typeof value === "object") {
-      const p = value.percent;
-      attributes.push(<>{statNum(`${p >= 0 ? "+" : ""}${p}%`)} {statLabel(name)}</>);
-      if (value.appliesTo?.length) {
-        for (const target of value.appliesTo) attributes.push(target);
-      }
-    } else {
-      attributes.push(<>{statNum(`${value >= 0 ? "+" : ""}${value}`)} {statLabel(name)}</>);
+    attributes.push(<StatLine key={name} name={name} value={value} signed />);
+    if (typeof value === "object" && value.appliesTo?.length) {
+      attributes.push(...value.appliesTo);
     }
   }
 

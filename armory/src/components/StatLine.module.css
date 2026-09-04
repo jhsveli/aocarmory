@@ -1,0 +1,8 @@
+.num {
+  color: #32c132;
+  white-space: nowrap;
+}
+
+.num.neg {
+  color: #c13232;
+}
