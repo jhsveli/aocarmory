@@ -80,20 +80,51 @@
   border: 1px solid var(--line-dark);
   border-top: 1px solid var(--line);
   border-radius: 0 0 8px 8px;
-  padding: 0.35rem 0.6rem;
+  padding: 0.55rem 0.7rem 0.65rem;
   margin-bottom: 1.2rem;
 }
-.sectionmenu {
+
+/* "All sections" overview link above the grouped rows */
+.allLink {
+  display: inline-block;
+  color: var(--crimson);
+  font-weight: bold;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--line);
+  padding: 0.1rem 0.15rem 0.2rem;
+  margin: 0 0 0.3rem;
+}
+.allLink:hover { text-decoration: none; }
+
+/* one row per section group: label column + wrapping link column */
+.menuGroup {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  column-gap: 0.6rem;
+  padding: 0.25rem 0;
+}
+.menuGroup + .menuGroup { border-top: 1px solid var(--line); }
+
+.groupLabel {
+  color: var(--crimson);
+  font-family: var(--serif);
+  font-weight: bold;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.groupLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.1rem 0.9rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  align-items: baseline;
+  gap: 0.05rem 0.7rem;
 }
-.sectionmenu a { color: var(--ink); font-size: 0.85rem; white-space: nowrap; }
-.sectionmenu a:hover { color: var(--crimson); text-decoration: none; }
-.sectionmenu li.selected a { color: var(--crimson); font-weight: bold; text-decoration: underline; }
+.groupLinks a { color: var(--ink); font-size: 0.85rem; white-space: nowrap; }
+.groupLinks a:hover { color: var(--crimson); text-decoration: none; }
 
 .footer, .paypal {
   max-width: var(--page-max-width);

@@ -96,3 +96,43 @@ export function expandClassTags(tags: string[]): string[] {
 export function sectionById(id: number): Section | undefined {
   return sections.find((s) => s.id === id);
 }
+
+export interface SectionGroup {
+  label: string;
+  sections: Section[];
+}
+
+/** Grouping for the site-wide section menu (the bottom nav bar). */
+const SECTION_GROUP_DEFS: ReadonlyArray<{ label: string; ids: number[] }> = [
+  // PvE Tier 1..6
+  { label: "PvE Raids", ids: [14, 15, 13, 24, 20, 35, 38] },
+  // PvP Tier 1..3
+  { label: "PvP", ids: [16, 17, 18] },
+  // Khitai factions + Clan Vigdis, in display order
+  {
+    label: "Factions",
+    ids: [1, 2, 3, 11, 4, 5, 6, 7, 8, 9, 10, 36],
+  },
+  // Onslaught raid vendors
+  { label: "Onslaught", ids: [44, 45] },
+];
+
+/**
+ * Sections grouped for the menu. Ids listed above keep their declared order;
+ * any section not listed there falls through to the "Unsorted" group (in the
+ * data file's own order) so nothing is ever missing from the menu.
+ */
+export const sectionGroups: SectionGroup[] = (() => {
+  const groups = SECTION_GROUP_DEFS.map((def) => ({
+    label: def.label,
+    sections: def.ids
+      .map((id) => sectionById(id))
+      .filter((s): s is Section => s !== undefined),
+  }));
+  const used = new Set(groups.flatMap((g) => g.sections.map((s) => s.id)));
+  const unsorted = sections.filter((s) => !used.has(s.id));
+  return [
+    ...groups,
+    ...(unsorted.length ? [{ label: "Unsorted", sections: unsorted }] : []),
+  ];
+})();

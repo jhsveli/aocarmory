@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { sections } from "../data";
+import { sectionGroups } from "../data";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
@@ -36,14 +36,17 @@ export default function Layout() {
         </div>
 
         <div className={styles.bottommenu}>
-          <ul className={styles.sectionmenu}>
-            <li><Link to="/s/all">All</Link></li>
-            {sections.map((s) => (
-              <li key={s.id}>
-                <Link to={`/s/${s.id}`}>{s.name}</Link>
-              </li>
-            ))}
-          </ul>
+          <Link className={styles.allLink} to="/s/all">All sections</Link>
+          {sectionGroups.map((group) => (
+            <div className={styles.menuGroup} key={group.label}>
+              <span className={styles.groupLabel}>{group.label}</span>
+              <div className={styles.groupLinks}>
+                {group.sections.map((s) => (
+                  <Link key={s.id} to={`/s/${s.id}`}>{s.name}</Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <Outlet />

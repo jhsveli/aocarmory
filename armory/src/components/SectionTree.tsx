@@ -44,7 +44,7 @@ function CategoryNode({ cat }: { cat: Category }) {
   if (!cat.sets.length) {
     return (
       <li>
-        <span className="nodeLabel">{cat.name}</span>
+        <span className="nodeLabel categoryNode">{cat.name}</span>
         <div className="children">
           <p className="page-intro">No sets listed.</p>
         </div>
@@ -63,11 +63,17 @@ function CategoryNode({ cat }: { cat: Category }) {
 }
 
 function SetNode({ set }: { set: Set }) {
-  return (
-    <Collapsible defaultOpen={false} label={<SetLabel set={set} />}>
-      <SetItems set={set} />
-    </Collapsible>
-  );
+    if (set.classes && set.name) {
+        return (
+            <Collapsible defaultOpen={false} label={ <SetLabel set={set} /> }>
+                <SetItems set={set} />
+            </Collapsible>
+        );
+    } else {
+      return (
+        <SetItems set={set} />
+      );
+    }
 }
 
 /** The item list of a set (prices, drop locations, rarity-colored names, slots). */

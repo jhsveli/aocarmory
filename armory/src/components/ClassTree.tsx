@@ -34,7 +34,7 @@ export default function ClassTree({ section }: { section: Section }) {
               </>
             }
           >
-            <ul className="sets">
+            <ul className="sets here1">
               {g.sets.map((entry, i) => (
                 <Collapsible
                   key={`${entry.set.name}-${i}`}
