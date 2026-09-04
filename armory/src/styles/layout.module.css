@@ -1,6 +1,6 @@
 .contentWrap {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 270px;
+  grid-template-columns: minmax(0, 1fr) minmax(270px,  400px);
   gap: 1rem;
   align-items: start;
 }

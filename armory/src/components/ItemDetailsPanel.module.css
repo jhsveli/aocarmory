@@ -1,9 +1,11 @@
 .itemPanel {
-  background: #1a1512;
-  border: 1px solid var(--gold);
-  border-radius: 8px;
+  background: #1a1512bc;
+
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
   animation: itemPanelIn 0.16s ease-out;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0.5rem;
 }
 @keyframes itemPanelIn {
   from { opacity: 0; transform: translateX(6px); }
@@ -65,11 +67,12 @@
 /* ItemTooltipBox body inside the panel: the frame is on .itemPanel, so the
    box becomes the scrollable body. Passed via ItemTooltipBox's className. */
 .inPanel {
-  border: 0;
   box-shadow: none;
   max-width: none;
-  max-height: min(58vh, 420px);
-  overflow-y: auto;
+  padding-bottom: 3rem;
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
