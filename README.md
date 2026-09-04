@@ -1,19 +1,16 @@
-# AoC>TV Armory — modern re-creation
+# Age of Conan Armory 
 
 A modern (React + TypeScript + Vite) re-creation of the classic
 **Age of Conan Armory** (https://aoc.is-better-than.tv/armory.php) by Kentarii —
 a database of ~4,500 endgame items across 38 sections, browsed via
 Section → Location → Category → Set → Item.
 
-The original site is PHP/MySQL and currently offline (MySQL overloaded).
-The item database here was recovered from **Internet Archive / Wayback Machine**
-captures of all 38 section pages (Nov–Dec 2024 captures, plus legacy captures
-for Last Legion 2021 and Consumable Books 2017).
+The original site is PHP/MySQL and often offline.
 
 ## Features
 
-- **Home** — welcome text and live statistics
-- **Browse** — collapsible Section → Location → Category → Set → Item trees,
+
+- **Browse Gear** — collapsible Section → Location → Category → Set → Item trees,
   with rarity-colored item names, prices (Mark of Acclaim / Rare Trophy / Gold),
   dungeon drop locations, a near-cursor **hover tooltip**, and a docked
   **item detail panel** in the page's right column that pins an item's stats on
@@ -30,12 +27,10 @@ for Last Legion 2021 and Consumable Books 2017).
   `hox`), slot (`hands`), or rarity (`rare`); the original's example queries
   work (`the+grasslands belt`, `tos scarlet+circle epic`, ...)
 - **Armor Sets** — per-class set lists with builder links
-- **Factions / Links / About** — content reproduced from the archived pages
 - **Armor builder** — drag & drop (or click-to-equip) items into a gear grid,
   with shareable links in the *original site's* `ab=` format
   (`slot:itemId;...` → zlib → base64), so links are compatible both ways
 - **Attribute trickle-down calculator** — official per-point attribute effects
-  (combat revamp formulas)
 
 ## Running
 
@@ -48,6 +43,29 @@ npm run preview    # serve the production build
 npm test           # vitest (logic + rendered app)
 npm run lint       # oxlint
 ```
+
+## Deploying (Cloudflare Pages)
+
+The app is a static SPA (history routing, no server). Deploy the `dist/`
+output to Cloudflare Pages:
+
+1. Push this repo to GitHub/GitLab.
+2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages →
+   Connect to Git**, pick the repo, then set:
+   - **Root directory**: `armory`
+   - **Build command**: `npm ci && npm run build`
+   - **Build output directory**: `dist`
+   - **Production branch**: your main branch
+3. Deploy. Add a custom domain (apex or a subdomain) under **Custom domains**.
+
+Notes:
+- `public/_redirects` makes every unmatched path serve `index.html`, which the
+  history router needs for URLs like `/s/14` or `/builder?ab=…`. Keep it if you
+  deploy to any host that does not already provide an SPA fallback.
+- `public/_headers` sets long immutable caching for the hashed `/assets/*`
+  bundles and revalidation for `index.html`.
+- Everything else (`npm run dev` / `preview`) is unaffected; `dist/` may also
+  be uploaded directly from the Cloudflare Pages dashboard ("Upload assets").
 
 ## Project layout
 

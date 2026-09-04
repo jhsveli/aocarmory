@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { sections } from "../data";
-import { IMG_BASE } from "../lib/format";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
@@ -36,15 +35,6 @@ export default function Layout() {
           </form>
         </div>
 
-        <Link to="/">
-          <img
-            className={styles.banner}
-            src={`${IMG_BASE}/images/armory.png`}
-            alt="Faction Armory"
-            height={200}
-          />
-        </Link>
-
         <div className={styles.bottommenu}>
           <ul className={styles.sectionmenu}>
             <li><Link to="/s/all">All</Link></li>
@@ -58,23 +48,6 @@ export default function Layout() {
 
         <Outlet />
 
-        <div className={styles.footer}>
-          Created by Kentarii [Ragnarok] @ EN Fury PvP 2008–2024
-          <br />
-          <span>Recreated in React + TypeScript from the archived original · Page generated in 0.000 seconds using 0 queries, consuming 0 kB of memory.</span>
-        </div>
-        <div className={styles.paypal}>
-          <p>
-            If you like the content on this website, feel free to donate a few $ for the yearly costs.
-            <br />
-            This will be used to pay the bills and keep this site running free of any ads ;o)
-            <br />
-            Thanks in advance!! Kentarii
-          </p>
-          <a href="https://www.paypal.me/phuc77">
-            <img src={`${IMG_BASE}/img/btn_donate_SM.gif`} alt="Donate using PayPal" title="Donate using PayPal" />
-          </a>
-        </div>
       </div>
     </div>
   );

@@ -6,12 +6,12 @@ export const IMG_BASE = "https://static.is-better-than.tv";
 
 export function coinSrc(kind: "mark" | "trophy" | "gold" | "silver"): string {
   const map = {
-    mark: "img/mark_of_acclaim.png",
-    trophy: "img/rare_trophy.png",
-    gold: "img/gold.png",
-    silver: "img/silver.png",
+    mark: "mark_of_acclaim.png",
+    trophy: "rare_trophy.png",
+    gold: "gold.png",
+    silver: "silver.png",
   };
-  return `${IMG_BASE}/${map[kind]}`;
+  return `/img/${map[kind]}`;
 }
 
 export const COIN_TITLES: Record<keyof Price, string> = {

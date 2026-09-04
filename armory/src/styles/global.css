@@ -1,18 +1,8 @@
-/* ============================================================
-   AoC>TV Armory — global design tokens, element resets and
-   shared utilities.
-
-   Component/page styles live in *.module.css (or armory.css
-   during the CSS Modules transition); only cross-cutting rules
-   belong here: the :root palette, base element styles, and the
-   utility classes components apply as bare strings.
-   ============================================================ */
-
 :root {
   /* palette */
   --bg-deep: #17120d;
   --bg-mid: #221a12;
-  --panel: #f6efe2;           /* parchment */
+  --panel: #f6efe2bb;           /* parchment */
   --panel-2: #efe5d2;
   --panel-head: #d9c9a8;
   --ink: #2b2116;
@@ -33,7 +23,7 @@
   --r-epic: #8d11be;
   --r-legendary: #e38f35;
 
-  --page-max-width: 1180px;
+  --page-max-width: 1420px;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Verdana, Tahoma, Arial, sans-serif;
 
@@ -52,8 +42,8 @@ html, body {
 body {
   background:
     radial-gradient(1200px 500px at 50% -10%, rgba(201, 162, 39, 0.14), transparent 60%),
+    url("/armory.jpg") center / cover no-repeat fixed,
     linear-gradient(180deg, var(--bg-mid), var(--bg-deep) 40%);
-  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 14px;

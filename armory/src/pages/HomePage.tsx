@@ -9,14 +9,7 @@ export default function HomePage() {
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>
         <h1>Welcome to the Age of Conan Armory</h1>
-        <p>
-          Here you'll find information about some of the endgame gear which you can obtain.
-        </p>
-        <p>
-          This is a modern re-creation of the classic <em>AoC&gt;TV: Armory</em> by Kentarii,
-          rebuilt with React and TypeScript. The item database was recovered from the
-          archived original site.
-        </p>
+
         <hr />
 
         <h2>How to find what you're looking for</h2>
@@ -32,21 +25,24 @@ export default function HomePage() {
         </ol>
         <ul className="locations" style={{ listStyle: "disc" }}>
           <li>
-            Click your way around the lists and look at stuff.
-            <br />
-            This is good if you don't know what you're looking for.
+            <p>Click your way around the lists and look at stuff.</p>
+            <p>This is good if you don't know what you're looking for.</p>
           </li>
           <li>
-            Use the <strong>SEARCH</strong> box at the top right to find something specific.
-            <br />
-            You can type in any of the 5 things mentioned above, but you can also search
-            for class (f.ex: <em>sin</em>), category (f.ex: <em>hands</em>), power level
-            (f.ex: <em>rare</em>).
-            <br />
-            Here's a few examples you can type in the search box:
-            <br />
-            <em>the+grasslands belt</em> · <em>pillars+of+heaven</em> · <em>hox epic dungeon</em> ·{" "}
-            <em>tos scarlet+circle epic</em>
+            <p>Use the <strong>SEARCH</strong> box at the top right to find something specific.</p>
+
+            <p>
+              You can type in any of the 5 things mentioned above, but you can also search
+              for class (f.ex: <em>sin</em>), category (f.ex: <em>hands</em>), power level
+              (f.ex: <em>rare</em>).
+            </p>
+
+            <p>
+              <h4>Here's a few examples you can type in the search box:</h4>
+
+              <em>the+grasslands belt</em> · <em>pillars+of+heaven</em> · <em>hox epic dungeon</em> ·{" "}
+              <em>tos scarlet+circle epic</em>
+            </p>
           </li>
         </ul>
 
