@@ -170,7 +170,11 @@ describe("ItemTooltipBox", () => {
     });
     render(<ItemDetailsBox item={item} />);
     expect(screen.getByText("Rune Engravings: Eternal Winter, Winter Sun")).toBeInTheDocument();
-    expect(screen.getByText("Gem Slots: Blue, Red, Yellow")).toBeInTheDocument();
+    // each gem socket renders as its own labeled chip
+    expect(screen.getByText("Blue")).toBeInTheDocument();
+    expect(screen.getByText("Red")).toBeInTheDocument();
+    expect(screen.getByText("Yellow")).toBeInTheDocument();
+    expect(screen.queryByText("Gem Slots: Blue, Red, Yellow")).not.toBeInTheDocument();
   });
 
   it("renders the unique-item restriction from the boolean field", () => {

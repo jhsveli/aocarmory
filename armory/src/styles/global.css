@@ -24,6 +24,20 @@
   --r-epic: #8d11be;
   --r-legendary: #e38f35;
 
+  --gem-black: rgba(35, 33, 30, 0.9);
+  --gem-blue:  rgba(0, 110, 167, 0.55);
+  --gem-green: rgba(91, 147, 61, 0.55);
+  --gem-red: rgba(179, 34, 42, 0.55);
+  --gem-white: rgba(224, 218, 204, 0.45);
+  --gem-yellow: rgba(201, 162, 39, 0.55);
+  --gem-kuth: rgba(141, 17, 190, 0.45);
+  --gem-onsl: rgba(120, 40, 46, 0.6);
+  --gem-white-hand: rgba(224, 218, 204, 0.35);
+  --gem-hyperborean: rgba(0, 160, 190, 0.45);
+  --gem-eldritch: rgba(120, 90, 200, 0.45);
+  --gem-occult: rgba(90, 60, 160, 0.5);
+  --gem-chaos: rgba(210, 120, 40, 0.5);
+
   --page-max-width: 1420px;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Verdana, Tahoma, Arial, sans-serif;

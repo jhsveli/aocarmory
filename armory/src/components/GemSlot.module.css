@@ -1,0 +1,42 @@
+.gemSlots {}
+.gemSlot {
+  position: relative;
+  z-index: 0;
+  display: block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  line-height: 2.45;
+  white-space: nowrap;
+  color: var(--line)
+}
+
+/* the colored rectangle behind the socket label */
+.gemSlot::after {
+  content: "";
+  position: absolute;
+
+  box-sizing: border-box;
+  inset: 0;
+  width: 3rem;
+  height: 3rem;
+  margin: 1.5rem auto 0;
+
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px 3px var(--gem-red);
+  z-index: -1;
+}
+
+/* per-socket-type shading — colors tuned per type here */
+.gemBlack::after { box-shadow-color:    var(--gem-black);  }
+.gemBlue::after { box-shadow-color:      var(--gem-blue);   }
+.gemGreen::after { box-shadow-color:     var(--gem-green);   }
+.gemRed::after { box-shadow-color:       var(--gem-red); }
+.gemWhite::after { box-shadow-color:     var(--gem-white); }
+.gemYellow::after { box-shadow-color:    var(--gem-yellow); }
+.gemKuthcheman::after { box-shadow-color:var(--gem-kuth); }
+.gemOnslaught::after { box-shadow-color: var(--gem-onsl); }
+.gemWhiteHand::after { box-shadow-color: var(--gem-white-hand); }
+.gemHyperborean::after { box-shadow-color:  var(--gem-hyperborean); }
+.gemEldritch::after { box-shadow-color:  var(--gem-eldritch); }
+.gemOccult::after { box-shadow-color:    var(--gem-occult); }
+.gemChaos::after { box-shadow-color:     var(--gem-chaos); }

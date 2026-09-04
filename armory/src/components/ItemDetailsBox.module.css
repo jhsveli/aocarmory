@@ -21,6 +21,14 @@
   color: var(--t-binds);
 }
 .tooltipBox .line { white-space: normal; color: var(--line); }
+/* gem sockets: colored chips laid out in a wrapping row */
+.gemRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  justify-content: center;
+}
 /* stat groups (values / damage & DPS / attributes) are separate sections */
 .tooltipBox .statSection + .statSection {
   margin-top: 0.55rem;

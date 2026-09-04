@@ -4,6 +4,7 @@ import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
 import { factionRankText } from "../lib/faction-ranks";
 import StatLine from "./StatLine";
+import GemSlot from "./GemSlot";
 import styles from "./ItemDetailsBox.module.css";
 
 interface Props {
@@ -73,9 +74,10 @@ function statNum(value: string): ReactNode {
  * group — in the order the original in-game tooltip shows them. The stat
  * groups stay apart (values, then weapon damage/DPS, then attributes) so they
  * can be rendered as separate sections, and every numeric value is emitted in
- * its own tag. Property labels come from the language file (stat-labels.ts).
- * Raw OCR lines not covered by the structure (vendor price, sockets, ...) are
- * kept in `lines` at the end of the final block.
+ * its own tag. Gem sockets get their own block, rendered as colored chips.
+ * Property labels come from the language file (stat-labels.ts). Raw OCR lines
+ * not covered by the structure (vendor price, sockets, ...) are kept in
+ * `lines` at the end of the final block.
  */
 function statBlocks(stats: ItemStats): StatBlock[] {
   const head: ReactNode[] = [];
@@ -158,14 +160,24 @@ function statBlocks(stats: ItemStats): StatBlock[] {
   if (stats.description) tail.push(...stats.description);
   if (stats.learnSpell) tail.push(`Learn Spell: ${stats.learnSpell}`);
   if (stats.engravings?.length) tail.push(`Rune Engravings: ${stats.engravings.join(", ")}`);
-  if (stats.gemSlots?.length) tail.push(`Gem Slots: ${stats.gemSlots.join(", ")}`);
+
+  const gemSlots = stats.gemSlots ?? [];
+  const gemRow: ReactNode | null = gemSlots.length
+    ? (
+      <div className={styles.gemRow}>
+        {gemSlots.map((slot, i) => <GemSlot key={i} slot={slot} />)}
+      </div>
+    )
+    : null;
+
+  const tailEnd: ReactNode[] = [];
   if (stats.vendorPrice) {
     const parts = Object.entries(stats.vendorPrice).map(
       ([currency, amount]) => `${amount} ${currency.charAt(0).toUpperCase()}${currency.slice(1)}`,
     );
-    tail.push(`Vendor Price ${parts.join(" ")}`);
+    tailEnd.push(`Vendor Price ${parts.join(" ")}`);
   }
-  tail.push(...stats.lines);
+  tailEnd.push(...stats.lines);
 
   const blocks: StatBlock[] = [];
   if (head.length) blocks.push({ id: "head", rows: head });
@@ -173,6 +185,8 @@ function statBlocks(stats: ItemStats): StatBlock[] {
   if (combat.length) blocks.push({ id: "combat", rows: combat });
   if (attributes.length) blocks.push({ id: "attributes", rows: attributes });
   if (tail.length) blocks.push({ id: "tail", rows: tail });
+  if (gemRow) blocks.push({ id: "gems", rows: [gemRow] });
+  if (tailEnd.length) blocks.push({ id: "tail-end", rows: tailEnd });
   return blocks;
 }
 
@@ -204,11 +218,13 @@ export default function ItemDetailsBox({ item, compact, className }: Props) {
         <div className={styles.tooltipBody}>
           {blocks.map((block) => (
             <div key={block.id} className={styles.statSection}>
-              {block.rows.map((row, i) => (
-                <div key={i} className={styles.line}>
-                  {row}
-                </div>
-              ))}
+              {block.id === "gems"
+                ? block.rows
+                : block.rows.map((row, i) => (
+                    <div key={i} className={styles.line}>
+                      {row}
+                    </div>
+                  ))}
             </div>
           ))}
         </div>
