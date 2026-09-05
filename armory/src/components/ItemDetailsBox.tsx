@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Duration, Item, ItemStats, PercentValue, Proc, StatValue } from "../types";
+import type { Duration, Item, ItemStats, PercentValue, Proc, StatValue, VendorPrice } from "../types";
 import { BIND_LABEL, RARITY_CLASS } from "../lib/format";
 import { statLabel } from "../lib/stat-labels";
 import { factionRankText } from "../lib/faction-ranks";
@@ -67,6 +67,33 @@ type StatBlock = { id: string; rows: ReactNode[] };
 /** Wrap a numeric stat value so it can receive its own styling. */
 function statNum(value: string): ReactNode {
   return <span className={styles.num}>{value}</span>;
+}
+
+/** Vendor currency -> css class carrying its metallic color. */
+const VENDOR_CURRENCY_CLASS: Record<string, string> = {
+  gold: styles.vendorGold,
+  silver: styles.vendorSilver,
+  copper: styles.vendorCopper,
+  tin: styles.vendorTin,
+};
+
+/** "gold" -> "Gold". */
+function currencyLabel(currency: string): string {
+  return currency.charAt(0).toUpperCase() + currency.slice(1);
+}
+
+/** "Vendor Price 1 Gold 50 Silver" with each amount/currency pair its own span. */
+function vendorPriceRow(price: VendorPrice): ReactNode {
+  const parts: ReactNode[] = [];
+  for (const [currency, amount] of Object.entries(price)) {
+    if (parts.length) parts.push(" ");
+    parts.push(
+      <span key={currency} className={VENDOR_CURRENCY_CLASS[currency]}>
+        {amount} {currencyLabel(currency)}
+      </span>,
+    );
+  }
+  return <>Vendor Price {parts}</>;
 }
 
 /**
@@ -170,14 +197,8 @@ function statBlocks(stats: ItemStats): StatBlock[] {
     )
     : null;
 
-  const tailEnd: ReactNode[] = [];
-  if (stats.vendorPrice) {
-    const parts = Object.entries(stats.vendorPrice).map(
-      ([currency, amount]) => `${amount} ${currency.charAt(0).toUpperCase()}${currency.slice(1)}`,
-    );
-    tailEnd.push(`Vendor Price ${parts.join(" ")}`);
-  }
-  tailEnd.push(...stats.lines);
+  const vendor: ReactNode[] = stats.vendorPrice ? [vendorPriceRow(stats.vendorPrice)] : [];
+  const leftover: ReactNode[] = [...stats.lines];
 
   const blocks: StatBlock[] = [];
   if (head.length) blocks.push({ id: "head", rows: head });
@@ -185,8 +206,9 @@ function statBlocks(stats: ItemStats): StatBlock[] {
   if (combat.length) blocks.push({ id: "combat", rows: combat });
   if (attributes.length) blocks.push({ id: "attributes", rows: attributes });
   if (tail.length) blocks.push({ id: "tail", rows: tail });
+  if (vendor.length) blocks.push({ id: "vendor", rows: vendor });
   if (gemRow) blocks.push({ id: "gems", rows: [gemRow] });
-  if (tailEnd.length) blocks.push({ id: "tail-end", rows: tailEnd });
+  if (leftover.length) blocks.push({ id: "leftover", rows: leftover });
   return blocks;
 }
 

@@ -135,7 +135,30 @@ describe("ItemTooltipBox", () => {
       },
     });
     render(<ItemDetailsBox item={item} />);
-    expect(screen.getByText("Vendor Price 2 Gold 50 Silver")).toBeInTheDocument();
+    expect(screen.getByText("Vendor Price")).toBeInTheDocument();
+    // each amount/currency pair is its own (colored) span
+    expect(screen.getByText("2 Gold")).toBeInTheDocument();
+    expect(screen.getByText("50 Silver")).toBeInTheDocument();
+    expect(screen.queryByText("Vendor Price 2 Gold 50 Silver")).not.toBeInTheDocument();
+  });
+
+  it("renders the vendor price before the gem slot chips", () => {
+    const item = makeItem({
+      stats: {
+        binds: "NO_BIND",
+        vendorPrice: { gold: 2, silver: 50 },
+        gemSlots: ["Blue", "Red"],
+        values: [],
+        attributes: [],
+        effects: [],
+        setBonuses: [],
+        lines: [],
+      },
+    });
+    render(<ItemDetailsBox item={item} />);
+    const price = screen.getByText("2 Gold");
+    const gem = screen.getByText("Blue");
+    expect(price.compareDocumentPosition(gem) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("renders the description as one line per array element", () => {

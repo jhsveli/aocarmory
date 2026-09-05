@@ -37,6 +37,11 @@
 }
 /* numeric stat values can be styled independently of their labels */
 .tooltipBox .num { color: var(--t-num); font-weight: normal; white-space: nowrap; }
+/* vendor price: per-currency metallic colors */
+.vendorGold { color: #e6b93e; }
+.vendorSilver { color: #c8d2d8; }
+.vendorCopper { color: #d0885a; }
+.vendorTin { color: #aeb6bd; }
 .tooltipBox .missing {
   color: #cbb98f;
   font-size: 0.8rem;
