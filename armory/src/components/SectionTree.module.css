@@ -2,8 +2,8 @@
 .dungeon > :global(.nodeLabel) { color: #408040; }
 .raid > :global(.nodeLabel) { color: #800000; }
 
-.categories { margin: 0.15rem 0 0.4rem 0.9rem; list-style: none; }
-.items { margin: 0.1rem 0 0.4rem 0.9rem; list-style: none; }
+.categories { margin: 0.15rem 0 0.4rem var(--list-indent); list-style: none; }
+.items { margin: 0.1rem 0 0.4rem var(--list-indent); list-style: none; }
 
 .builderLink { margin-left: 0.5rem; vertical-align: middle; opacity: 0.75; }
 .builderLink:hover { opacity: 1; }

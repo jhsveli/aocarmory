@@ -2,30 +2,32 @@
 .gemSlot {
   position: relative;
   z-index: 0;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0.1rem 0.5rem;
   border-radius: 3px;
   line-height: 2.45;
   white-space: nowrap;
-  color: var(--line)
+  color: var(--line);
+  --gem-box-dim: 3rem;
+  min-width: var(--gem-box-dim);
 }
 
 /* the colored rectangle behind the socket label */
 .gemSlot::after {
   content: "";
-  position: absolute;
 
   box-sizing: border-box;
   inset: 0;
-  width: 3rem;
-  height: 3rem;
-  margin: 1.5rem auto 0;
-
+  width: var(--gem-box-dim);
+  height: var(--gem-box-dim);
   border-radius: 3px;
   --gem-box-color: black;
   box-shadow: inset 0 0 4px 3px var(--gem-box-color);
   z-index: -1;
 }
+
 
 /* per-socket-type shading — colors tuned per type here */
 .gemSlot.gemBlack::after { --gem-box-color:    var(--gem-black);  }

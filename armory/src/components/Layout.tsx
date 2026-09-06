@@ -36,7 +36,7 @@ export default function Layout() {
         </div>
 
         <div className={styles.bottommenu}>
-          <Link className={styles.allLink} to="/s/all">All sections</Link>
+          <Link className={styles.allLink} to="/s/all">Open all sections</Link>
           {sectionGroups.map((group) => (
             <div className={styles.menuGroup} key={group.label}>
               <span className={styles.groupLabel}>{group.label}</span>

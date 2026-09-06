@@ -42,6 +42,11 @@
   --serif: Georgia, "Times New Roman", serif;
   --sans: Verdana, Tahoma, Arial, sans-serif;
 
+  /* nested list/tree indentation — fluid so narrow viewports waste less space,
+     capped so wide screens keep a constant indent */
+  --list-indent: clamp(1.0rem, 1.8vw, 1.2rem);
+  --list-indent-lg: clamp(0.9rem, 1.8vw, 1.5rem);
+
   /* layer scale: dropdown -> sticky -> modal -> tooltip */
   --z-tooltip: 200;
   --z-overlay: 300;
@@ -103,8 +108,9 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
 
 /* section tree structure (shared by SectionTree + ClassTree; HomePage also
    uses .locations for its link list) */
-.locations { margin: 0.2rem 0 0.6rem; padding-left: 1.1rem; list-style: none; }
+.locations { margin: 0.2rem 0 0.6rem; padding-left: var(--list-indent-lg); list-style: none; }
 .locations > li { margin: 0.15rem 0; }
 .locations > li > .nodeLabel { font-weight: bold; }
-.sets { margin: 0.1rem 0 0.3rem 0.9rem; list-style: none; }
+.sets { margin: 0.1rem 0 0.3rem var(--list-indent); list-style: none; }
 .setClasses { color: var(--ink-soft); font-size: 0.82rem; }
+ul { padding: 0; }
