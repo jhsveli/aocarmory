@@ -13,11 +13,15 @@ export type Slot =
 
 export type LocationType = "merchant" | "dungeon" | "raid";
 
+/**
+ * Purchase price as a coin-currency code -> amount map. The codes are the
+ * archive's currency keys ("mark", "trophy", "gold", plus the Simple Trophy /
+ * Simple Relic tiers, Rare/Mythical Relics, badges, shards, copper, tin, ...).
+ * Only positive amounts are stored; display metadata (icon + name) lives in
+ * lib/format (COIN_TITLES/coinSrc).
+ */
 export interface Price {
-  mark: number;   // Mark of Acclaim
-  trophy: number; // Rare Trophy
-  gold: number;
-  silver: number;
+  [coin: string]: number;
 }
 
 /** How an item binds, normalized from the tooltip's "Binds …" line. */

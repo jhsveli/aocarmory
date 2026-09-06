@@ -2,29 +2,28 @@ import type { Price } from "../types";
 import { COIN_TITLES, coinSrc, hasPrice } from "../lib/format";
 import styles from "./Price.module.css";
 
-/** Renders a price using the original coin icons (mark/trophy/gold). */
+/** Renders a price using the original coin icons for each stored currency. */
 export default function Price({ price }: { price: Price | null }) {
   if (!price || !hasPrice(price)) return null;
-  const parts: Array<[keyof Price, number]> = [];
-  if (price.mark > 0) parts.push(["mark", price.mark]);
-  if (price.trophy > 0) parts.push(["trophy", price.trophy]);
-  if (price.gold > 0) parts.push(["gold", price.gold]);
-  if (price.silver > 0) parts.push(["silver", price.silver]);
+
   return (
     <span className={styles.itemPrice}>
-      {parts.map(([kind, amount]) => (
-        <span key={kind}>
-          <img
-            className={styles.coin}
-            src={coinSrc(kind)}
-            alt={COIN_TITLES[kind]}
-            title={COIN_TITLES[kind]}
-            height="12"
-            width="12"
-          />
-          {amount}
-        </span>
-      ))}
+      {(Object.keys(price) as Array<keyof typeof Price>).map((currency) => {
+        const amount = price[currency];
+        return (
+          <span key={currency}>
+            <img
+              className={styles.coin}
+              src={coinSrc(currency)}
+              alt={COIN_TITLES[currency] ?? currency}
+              title={COIN_TITLES[currency] ?? currency}
+              height="12"
+              width="12"
+            />
+            {amount}
+          </span>
+        );
+      })}
     </span>
   );
 }

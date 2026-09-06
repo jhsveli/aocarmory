@@ -146,11 +146,29 @@ def first_link_text(node):
 # price parsing
 # ---------------------------------------------------------------------------
 
+# Coin image -> canonical price-currency key. Any coin not listed here keeps
+# its image stem (without ".png") as the key, so Simple Trophies, Relics,
+# badges, shards, copper/tin etc. are all preserved instead of being dropped.
+COIN_KEYS = {
+    "mark_of_acclaim.png": "mark",
+    "rare_trophy.png": "trophy",
+    "gold.png": "gold",
+    "silver.png": "silver",
+}
+
+
+def coin_key(src: str) -> str:
+    name = src.rsplit("/", 1)[-1]
+    return COIN_KEYS.get(name, name[:-4] if name.endswith(".png") else name)
+
+
 def parse_price(span: dict):
-    """Extract price from a span.price node whose children interleave coin
-    images with amounts, e.g. [img(mark), '980', img(trophy), '248'].
-    A silver coin followed by text marks a dungeon drop location instead."""
-    price = {"mark": 0, "trophy": 0, "gold": 0, "silver": 0}
+    """Extract the purchase price from a span.price node whose children
+    interleave coin images with amounts, e.g. [img(mark), '980', img(gold),
+    '12']. Any coin icon is accepted (the archive prices items in Simple
+    Trophies, Relics, badges, copper/tin, ...). A silver coin followed by text
+    marks a dungeon drop location instead — the site never prices in silver."""
+    price = {}
     drop = None
     currency = None
     for c in span.get("children", []):
@@ -162,18 +180,10 @@ def parse_price(span: dict):
                 drop = val
             elif currency and val.isdigit():
                 price[currency] = int(val)
+            currency = None
             continue
         src = c.get("attrs", {}).get("src", "")
-        if "mark_of_acclaim" in src:
-            currency = "mark"
-        elif "rare_trophy" in src:
-            currency = "trophy"
-        elif "gold" in src:
-            currency = "gold"
-        elif "silver" in src:
-            currency = "silver"
-        else:
-            currency = None
+        currency = coin_key(src)
     return price, drop
 
 
