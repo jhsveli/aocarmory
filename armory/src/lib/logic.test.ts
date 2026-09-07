@@ -1,37 +1,44 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { searchArmory } from "./search";
 import { calculateAttribute, ATTRIBUTES } from "./attributes";
+import { loadArmoryData } from "../data";
+import type { FlatItem } from "../data";
 
 describe("search", () => {
+  let items: FlatItem[] = [];
+  beforeAll(async () => {
+    items = (await loadArmoryData()).flatItems;
+  });
+
   it("finds items by item name", () => {
-    const r = searchArmory("Blade's Leggings of Charred Earth");
+    const r = searchArmory("Blade's Leggings of Charred Earth", items);
     expect(r.length).toBeGreaterThan(0);
     expect(r[0].item.item.name).toContain("Charred Earth");
   });
 
   it("finds items by class tag (hox)", () => {
-    const r = searchArmory("hox epic");
+    const r = searchArmory("hox epic", items);
     expect(r.length).toBeGreaterThan(0);
   });
 
   it("finds items by slot word (hands)", () => {
-    const r = searchArmory("hands rare");
+    const r = searchArmory("hands rare", items);
     expect(r.length).toBeGreaterThan(0);
   });
 
   it("finds items by rarity (legendary)", () => {
-    const r = searchArmory("legendary");
+    const r = searchArmory("legendary", items);
     expect(r.length).toBeGreaterThan(0);
     expect(r.every((m) => m.item.item.rarity === "Legendary")).toBe(true);
   });
 
   it("matches the original's example query 'tos scarlet circle epic'", () => {
-    const r = searchArmory("tos scarlet circle epic");
+    const r = searchArmory("tos scarlet circle epic", items);
     expect(r.length).toBeGreaterThan(0);
   });
 
   it("returns nothing for gibberish", () => {
-    expect(searchArmory("zzzzqqqqxxxyyy")).toEqual([]);
+    expect(searchArmory("zzzzqqqqxxxyyy", items)).toEqual([]);
   });
 });
 

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { classes } from "../data";
+import { useArmoryData } from "../data";
 import { IMG_BASE } from "../lib/format";
 import styles from "./ArmorSetsPage.module.css";
 
 export default function ArmorSetsPage() {
+  const { classes } = useArmoryData();
   return (
     <div className="content">
       <h1>Armor Sets</h1>

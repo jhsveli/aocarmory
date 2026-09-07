@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useArmoryData } from "../data";
 import { searchArmory } from "../lib/search";
 import { slotDisplay } from "../lib/equip";
 import ItemName from "../components/ItemName";
@@ -11,7 +12,8 @@ import styles from "./SearchPage.module.css";
 export default function SearchPage() {
   const [params] = useSearchParams();
   const q = params.get("q") ?? "";
-  const results = useMemo(() => (q ? searchArmory(q) : []), [q]);
+  const { flatItems } = useArmoryData();
+  const results = useMemo(() => (q ? searchArmory(q, flatItems) : []), [q, flatItems]);
 
   return (
     <div className={layoutStyles.contentWrap}>

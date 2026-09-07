@@ -1,8 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { TooltipProvider } from "../components/ItemTooltip";
+import { loadArmoryData } from "../data";
 import { AppRoutes } from "../App";
+
+beforeAll(() => loadArmoryData());
 
 function renderAt(path: string) {
   return render(

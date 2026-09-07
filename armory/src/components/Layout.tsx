@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { sectionGroups } from "../data";
+import { useArmoryData } from "../data";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
+  const { sectionGroups } = useArmoryData();
 
   function submit(e: React.FormEvent) {
     e.preventDefault();

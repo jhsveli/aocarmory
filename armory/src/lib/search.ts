@@ -3,8 +3,8 @@
 // section / location / category / set / item, plus class tags
 // (sin, hox, ...), slot names (hands, chest, ...) and rarities.
 
-import { flatItems, CLASS_NAMES, expandClassTags } from "../data";
 import type { FlatItem } from "../data";
+import { CLASS_NAMES, expandClassTags } from "./class-names";
 import type { Rarity } from "../types";
 import { equipSlotKey, slotDisplay } from "./equip";
 
@@ -39,13 +39,13 @@ function tokenize(q: string): string[] {
   return q.toLowerCase().split(/[\s+]+/).filter(Boolean);
 }
 
-export function searchArmory(query: string): SearchMatch[] {
+export function searchArmory(query: string, items: FlatItem[]): SearchMatch[] {
   const q = query.trim();
   if (!q) return [];
   const tokens = tokenize(q);
   const results: SearchMatch[] = [];
 
-  for (const fi of flatItems) {
+  for (const fi of items) {
     const it = fi.item;
     const slotKey = equipSlotKey(it.stats);
     const hay = {

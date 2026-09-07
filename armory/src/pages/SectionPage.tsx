@@ -1,5 +1,5 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { sections } from "../data";
+import { useArmoryData } from "../data";
 import SectionTree from "../components/SectionTree";
 import ClassTree from "../components/ClassTree";
 import ViewToggle, { type SectionView } from "../components/ViewToggle";
@@ -11,6 +11,7 @@ export default function SectionPage() {
   const { id } = useParams();
   const [params, setParams] = useSearchParams();
   const view: SectionView = params.get("view") === "class" ? "class" : "location";
+  const { sections } = useArmoryData();
 
   const setView = (v: SectionView) => {
     setParams(v === "class" ? { view: "class" } : {}, { replace: true });

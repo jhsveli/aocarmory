@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { meta } from "../data";
+import { useArmoryData } from "../data";
 import { fmtNumber } from "../lib/format";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
+  const { meta } = useArmoryData();
   return (
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>

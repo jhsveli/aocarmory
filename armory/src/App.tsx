@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TooltipProvider } from "./components/ItemTooltip";
+import { loadArmoryData, useArmoryData } from "./data";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import SectionPage from "./pages/SectionPage";
@@ -27,11 +29,23 @@ export function AppRoutes() {
   );
 }
 
+/** Fetches the (lazily loaded) dataset once and only then mounts the routes. */
+function AppShell() {
+  const data = useArmoryData();
+  useEffect(() => {
+    void loadArmoryData();
+  }, []);
+  if (!data.sections.length) {
+    return <div className="page-intro" style={{ textAlign: "center", marginTop: "4rem" }}>Loading armory data…</div>;
+  }
+  return <AppRoutes />;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <TooltipProvider>
-        <AppRoutes />
+        <AppShell />
       </TooltipProvider>
     </BrowserRouter>
   );

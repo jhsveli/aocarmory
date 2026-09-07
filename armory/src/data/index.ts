@@ -1,20 +1,14 @@
-import raw from "./armory_data.json";
+import { useSyncExternalStore } from "react";
 import type {
-  ArmoryData, CharacterClass, Item, Section,
+  ArmoryData, ArmoryMeta, CharacterClass, Item, Section,
 } from "../types";
 
-const data = raw as unknown as ArmoryData;
-
-/** Section id -> section (from the site's own section menu order). */
-export const sections: Section[] = data.sections;
-
-/** Classes with their armor sets (from the Armor Sets page). */
-export const classes: CharacterClass[] = data.classes;
-
-export const meta = data.meta;
-
-/** item id -> Item (first occurrence wins; ids are the DB primary keys). */
-export const itemById = new Map<number, Item>();
+/**
+ * The armory dataset is large (~6 MB), so it is NOT statically imported into
+ * the app bundle. It is loaded once at runtime via a dynamic import (Vite
+ * emits it as its own async chunk), then cached here. Components read it
+ * through useArmoryData(), which re-renders once the data has arrived.
+ */
 
 /** Every item with its owning section/location/category/set for search. */
 export interface FlatItem {
@@ -28,78 +22,18 @@ export interface FlatItem {
   builder: string | null;
 }
 
-export const flatItems: FlatItem[] = [];
-
-for (const section of sections) {
-  for (const location of section.locations) {
-    for (const category of location.categories) {
-      for (const set of category.sets) {
-        for (const item of set.items) {
-          if (!itemById.has(item.id)) itemById.set(item.id, item);
-          flatItems.push({
-            item,
-            section: section.name,
-            sectionId: section.id,
-            location: location.name ?? "",
-            category: category.name ?? "",
-            set: set.name ?? "",
-            setClasses: set.classes,
-            builder: set.builder,
-          });
-        }
-      }
-    }
-  }
-}
-
-/** Known AoC class names (from the Armor Sets page) plus short tags. */
-export const CLASS_NAMES: Record<string, string> = {
-  assassin: "Assassin",
-  barbarian: "Barbarian",
-  "bear shaman": "Bear Shaman",
-  "herald of xotli": "Herald of Xotli",
-  necromancer: "Necromancer",
-  "priest of mitra": "Priest of Mitra",
-  ranger: "Ranger",
-  "dark templar": "Dark Templar",
-  guardian: "Guardian",
-  "conqueror (2h)": "Conqueror",
-  conqueror: "Conqueror",
-  "tempest of set": "Tempest of Set",
-  "demonologist": "Demonologist",
-  demo: "Demonologist",
-  hox: "Herald of Xotli",
-  sin: "Assassin",
-  barb: "Barbarian",
-  bs: "Bear Shaman",
-  necro: "Necromancer",
-  pom: "Priest of Mitra",
-  dt: "Dark Templar",
-  guard: "Guardian",
-  conq: "Conqueror",
-  tos: "Tempest of Set",
-};
-
-/** Expand a set class tag like "Demo/Necro" into full class names. */
-export function expandClassTags(tags: string[]): string[] {
-  const out = new Set<string>();
-  for (const tag of tags) {
-    for (const part of tag.split("/")) {
-      const key = part.trim().toLowerCase();
-      if (CLASS_NAMES[key]) out.add(CLASS_NAMES[key]);
-      else out.add(part.trim());
-    }
-  }
-  return [...out];
-}
-
-export function sectionById(id: number): Section | undefined {
-  return sections.find((s) => s.id === id);
-}
-
 export interface SectionGroup {
   label: string;
   sections: Section[];
+}
+
+export interface ArmoryBundle {
+  sections: Section[];
+  classes: CharacterClass[];
+  meta: ArmoryMeta;
+  sectionGroups: SectionGroup[];
+  flatItems: FlatItem[];
+  itemById: Map<number, Item>;
 }
 
 /** Grouping for the site-wide section menu (the bottom nav bar). */
@@ -115,26 +49,118 @@ const SECTION_GROUP_DEFS: ReadonlyArray<{ label: string; ids: number[] }> = [
   },
   // Onslaught raid vendors
   { label: "Onslaught", ids: [44, 45] },
-  // Dungeons
-  { label: "Dungeons", ids: [21, 22, 28, 23, 30, 19, 32, 25] }
 ];
 
-/**
- * Sections grouped for the menu. Ids listed above keep their declared order;
- * any section not listed there falls through to the "Unsorted" group (in the
- * data file's own order) so nothing is ever missing from the menu.
- */
-export const sectionGroups: SectionGroup[] = (() => {
+const EMPTY_META: ArmoryMeta = {
+  sections: 0, sets: 0, uniqueSets: 0, items: 0, uniqueItems: 0, generated: "",
+};
+
+const EMPTY_BUNDLE: ArmoryBundle = {
+  sections: [],
+  classes: [],
+  meta: EMPTY_META,
+  sectionGroups: [],
+  flatItems: [],
+  itemById: new Map(),
+};
+
+function sectionById(sections: Section[], id: number): Section | undefined {
+  return sections.find((s) => s.id === id);
+}
+
+/** Derive the flattened search index + menu groups from the raw dataset. */
+function buildBundle(raw: ArmoryData): ArmoryBundle {
+  const sections = raw.sections;
+  const itemById = new Map<number, Item>();
+  const flatItems: FlatItem[] = [];
+
+  for (const section of sections) {
+    for (const location of section.locations) {
+      for (const category of location.categories) {
+        for (const set of category.sets) {
+          for (const item of set.items) {
+            if (!itemById.has(item.id)) itemById.set(item.id, item);
+            flatItems.push({
+              item,
+              section: section.name,
+              sectionId: section.id,
+              location: location.name ?? "",
+              category: category.name ?? "",
+              set: set.name ?? "",
+              setClasses: set.classes,
+              builder: set.builder,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  // Sections grouped for the menu. Ids listed above keep their declared
+  // order; anything not listed falls through to the "Unsorted" group (in the
+  // data file's own order) so nothing is ever missing from the menu.
   const groups = SECTION_GROUP_DEFS.map((def) => ({
     label: def.label,
     sections: def.ids
-      .map((id) => sectionById(id))
+      .map((id) => sectionById(sections, id))
       .filter((s): s is Section => s !== undefined),
   }));
   const used = new Set(groups.flatMap((g) => g.sections.map((s) => s.id)));
   const unsorted = sections.filter((s) => !used.has(s.id));
-  return [
+  const sectionGroups: SectionGroup[] = [
     ...groups,
     ...(unsorted.length ? [{ label: "Unsorted", sections: unsorted }] : []),
   ];
-})();
+
+  return {
+    sections,
+    classes: raw.classes,
+    meta: raw.meta,
+    sectionGroups,
+    flatItems,
+    itemById,
+  };
+}
+
+let bundle: ArmoryBundle | null = null;
+let loading: Promise<ArmoryBundle> | null = null;
+const listeners = new Set<() => void>();
+
+function notify() {
+  for (const l of listeners) l();
+}
+
+function snapshot(): ArmoryBundle {
+  return bundle ?? EMPTY_BUNDLE;
+}
+
+/**
+ * Load (once) and cache the armory dataset. The dataset is a dynamic import so
+ * it becomes its own network chunk rather than part of the initial bundle.
+ */
+export async function loadArmoryData(): Promise<ArmoryBundle> {
+  if (!bundle) {
+    if (!loading) {
+      loading = (async () => {
+        const mod = await import("./armory_data.json");
+        const built = buildBundle(mod.default as unknown as ArmoryData);
+        bundle = built;
+        notify();
+        return built;
+      })();
+    }
+    await loading;
+  }
+  return bundle!;
+}
+
+/** Subscribe to dataset load completion (for useSyncExternalStore). */
+export function subscribeArmoryData(onStoreChange: () => void): () => void {
+  listeners.add(onStoreChange);
+  return () => listeners.delete(onStoreChange);
+}
+
+/** Reactive handle to the dataset: empty until loadArmoryData() resolves. */
+export function useArmoryData(): ArmoryBundle {
+  return useSyncExternalStore(subscribeArmoryData, snapshot);
+}

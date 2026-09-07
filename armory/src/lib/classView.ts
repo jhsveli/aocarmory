@@ -6,7 +6,7 @@
 // no content disappears from the class view.
 
 import type { Section, Set } from "../types";
-import { expandClassTags } from "../data";
+import { expandClassTags } from "./class-names";
 
 export interface ClassViewSetEntry {
   set: Set;

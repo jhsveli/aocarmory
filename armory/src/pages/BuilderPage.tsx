@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { DragEvent } from "react";
 import type { Item } from "../types";
-import { flatItems } from "../data";
+import { useArmoryData } from "../data";
 import { SLOT_LABEL } from "../lib/format";
 import { equipSlotKey, slotDisplay } from "../lib/equip";
 import { searchArmory } from "../lib/search";
@@ -44,6 +44,7 @@ export default function BuilderPage() {
   const [dragOver, setDragOver] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const loaded = useRef(false);
+  const { flatItems } = useArmoryData();
 
   // Load a set from the ?ab= param (original site's zlib+base64 encoding).
   useEffect(() => {
@@ -62,9 +63,9 @@ export default function BuilderPage() {
       }
       setEquipped(next);
     })();
-  }, [params]);
+  }, [params, flatItems]);
 
-  const results = useMemo(() => (query.trim() ? searchArmory(query) : []), [query]);
+  const results = useMemo(() => (query.trim() ? searchArmory(query, flatItems) : []), [query, flatItems]);
 
   const equip = useCallback((item: Item) => {
     setEquipped((prev) => {
@@ -89,7 +90,7 @@ export default function BuilderPage() {
     if (!id) return;
     const item = flatItems.find((f) => String(f.item.id) === id)?.item;
     if (item) equip(item);
-  }, [equip]);
+  }, [equip, flatItems]);
 
   async function share() {
     const pairs: Array<[string, number]> = Object.entries(equipped)
