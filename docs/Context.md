@@ -59,6 +59,10 @@ A numeric stat paired with its label in the Tooltip (e.g. Armor 512, Critigation
 **Attribute**:
 A bonus stat with a sign, e.g. "+42 Strength" or "+10% Out of Combat Movement Speed".
 
+**Requires Level**:
+The character level needed to equip an Item, from its Tooltip's "Requires Level N" line.
+_Avoid_: Item Level (the item's internal power tier — a different field, not currently a catalogue concept)
+
 **Gem slot**:
 A socket in an Item that accepts a gem, either a colour (Red, Blue, …) or a named slot (e.g. Kuthcheman, Onslaught, White Hand).
 

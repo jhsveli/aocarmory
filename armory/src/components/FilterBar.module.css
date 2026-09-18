@@ -1,0 +1,20 @@
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.filterBar select,
+.filterBar input {
+  font: inherit;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: var(--panel-2);
+  color: var(--ink);
+  padding: 0.15rem 0.4rem;
+}
+.filterBar input[type="number"] {
+  width: 4.5rem;
+}

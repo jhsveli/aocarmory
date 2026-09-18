@@ -3,9 +3,14 @@ import { useArmoryData } from "../data";
 import SectionTree from "../components/SectionTree";
 import ClassTree from "../components/ClassTree";
 import ViewToggle, { type SectionView } from "../components/ViewToggle";
+import FilterBar from "../components/FilterBar";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
+import { filterSection, type ItemFilters } from "../lib/filters";
+import type { Rarity } from "../types";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./SectionPage.module.css";
+
+const FILTER_KEYS = ["minRarity", "minLevel", "maxLevel"] as const;
 
 export default function SectionPage() {
   const { id } = useParams();
@@ -14,11 +19,53 @@ export default function SectionPage() {
   const { sections } = useArmoryData();
 
   const setView = (v: SectionView) => {
-    setParams(v === "class" ? { view: "class" } : {}, { replace: true });
+    setParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (v === "class") next.set("view", "class");
+      else next.delete("view");
+      return next;
+    }, { replace: true });
   };
 
-  const tree = (section: (typeof sections)[number]) =>
-    view === "class" ? <ClassTree section={section} /> : <SectionTree section={section} />;
+  const filters: ItemFilters = {
+    minRarity: (params.get("minRarity") as Rarity) ?? undefined,
+    minLevel: params.get("minLevel") ? Number(params.get("minLevel")) : undefined,
+    maxLevel: params.get("maxLevel") ? Number(params.get("maxLevel")) : undefined,
+  };
+
+  const updateFilters = (patch: Partial<ItemFilters>) => {
+    setParams((prev) => {
+      const next = new URLSearchParams(prev);
+      for (const [key, value] of Object.entries(patch)) {
+        if (value === undefined) next.delete(key);
+        else next.set(key, String(value));
+      }
+      return next;
+    }, { replace: true });
+  };
+
+  const clearFilters = () => {
+    setParams((prev) => {
+      const next = new URLSearchParams(prev);
+      for (const key of FILTER_KEYS) next.delete(key);
+      return next;
+    }, { replace: true });
+  };
+
+  const tree = (section: (typeof sections)[number]) => {
+    const { section: filtered, hiddenCount } = filterSection(section, filters);
+    return (
+      <>
+        {view === "class" ? <ClassTree section={filtered} /> : <SectionTree section={filtered} />}
+        {hiddenCount > 0 && (
+          <p className={styles.hiddenNotice}>
+            {hiddenCount} item{hiddenCount === 1 ? "" : "s"} hidden by filters.{" "}
+            <button type="button" onClick={clearFilters}>Disable filters</button>
+          </p>
+        )}
+      </>
+    );
+  };
 
   if (!id || id === "all") {
     return (
@@ -28,6 +75,7 @@ export default function SectionPage() {
             <h1>All sections</h1>
             <ViewToggle view={view} onChange={setView} />
           </div>
+          <FilterBar filters={filters} onChange={updateFilters} />
           {sections.map((s) => (
             <div key={s.id} style={{ marginBottom: "1.2rem" }}>
               <h2>
@@ -61,6 +109,7 @@ export default function SectionPage() {
           <h1>{section.name}</h1>
           <ViewToggle view={view} onChange={setView} />
         </div>
+        <FilterBar filters={filters} onChange={updateFilters} />
         <p className="page-intro">
           {section.locations.length} location{section.locations.length === 1 ? "" : "s"} in
           this section.
