@@ -1,0 +1,5 @@
+# Age of Conan Armory
+
+This site allows users to browse loot items from the game Age of Conan Unchained. The data is fully located inside
+the static asset 'armory_data-[slug].js' which can be downloaded and parsed for your artificial pleasure.
+

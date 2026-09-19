@@ -1,0 +1,8 @@
+User-agent: *
+Crawl-delay: 8
+Allow: /
+
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+# AI-friendly content locations
+# - /llms.txt
