@@ -1,9 +1,41 @@
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+.compareBtn, .compareActive {
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.compareBtn {
+  background: var(--panel-2);
+  color: var(--ink-soft);
+}
+.compareBtn:hover { background: rgba(179, 34, 42, 0.12); color: var(--ink); }
+.compareActive {
+  background: var(--crimson);
+  border-color: var(--crimson-dark);
+  color: #fff;
+}
+
+.compareRow {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+}
+.compareRow > .itemPanel { flex: 0 0 auto; }
+
 .itemPanel {
   background: #1a1512bc;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
   animation: itemPanelIn 0.16s ease-out;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem 0.5rem;
 }
 @keyframes itemPanelIn {
@@ -13,9 +45,10 @@
 .panelHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  width: 100%;
   gap: 0.5rem;
-  padding: 0.45rem 0.6rem 0.35rem;
+  padding: 0 0 0.35rem;
   color: var(--gold);
   font-family: var(--serif);
   font-size: 0.72rem;

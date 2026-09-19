@@ -1,7 +1,5 @@
 .page {
-  max-width: var(--page-max-width);
   margin: 1.2rem auto 0;
-  padding: 0 1rem 2rem;
 }
 
 .topmenu {
@@ -15,6 +13,8 @@
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   padding: 0.4rem 0.6rem;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
 }
 
 .mainmenu {
@@ -82,6 +82,8 @@
   border-radius: 0 0 8px 8px;
   padding: 0.55rem 0.7rem 0.65rem;
   margin-bottom: 1.2rem;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
 }
 
 /* "All sections" overview link above the grouped rows */
@@ -126,7 +128,7 @@
 .groupLinks a { color: var(--ink); font-size: 0.85rem; white-space: nowrap; }
 .groupLinks a:hover { color: var(--crimson); text-decoration: none; }
 
-.footer, .paypal {
+.footer {
   max-width: var(--page-max-width);
   margin: 1.2rem auto 0;
   text-align: center;
@@ -138,6 +140,9 @@
 .footer a { color: #9db4ff; }
 .paypal a img { margin-top: 0.4rem; border: 0; }
 
+.page {
+  width: var(--page-width)
+}
 @media (--screen-narrow) {
   .page { margin-top: 1rem; }
 }

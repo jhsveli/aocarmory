@@ -33,7 +33,7 @@ export default function ItemName({ item, className, draggable, onDragStart }: Pr
       onDragStart={onDragStart}
       onClick={(e) => {
         e.preventDefault();
-        tip.toggle(item);
+        tip.toggle(item, tip.compareMode || e.shiftKey);
       }}
       onMouseMove={(e) => tip.show(item, e.clientX, e.clientY)}
       onMouseLeave={tip.hide}

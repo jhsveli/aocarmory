@@ -21,7 +21,8 @@ const SHOW_DELAY = 120; // ms — avoids flashing when the cursor just passes ov
  */
 export function TooltipProvider({ children }: { children: ReactNode }) {
   const [tip, setTip] = useState<TooltipState | null>(null);
-  const [panel, setPanel] = useState<Item | null>(null);
+  const [panelItems, setPanelItems] = useState<Item[]>([]);
+  const [compareMode, setCompareMode] = useState(false);
   const showTimer = useRef<number | null>(null);
 
   const show = useCallback((item: Item, x: number, y: number) => {
@@ -34,18 +35,36 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
     setTip(null);
   }, []);
 
-  const toggle = useCallback((item: Item) => {
+  const toggle = useCallback((item: Item, additive?: boolean) => {
     if (showTimer.current) window.clearTimeout(showTimer.current);
     setTip(null); // a tap shouldn't leave the hover tooltip lingering
-    setPanel((p) => (p?.id === item.id ? null : item));
+    setPanelItems((prev) => {
+      const exists = prev.some((p) => p.id === item.id);
+      if (additive) {
+        return exists ? prev.filter((p) => p.id !== item.id) : [...prev, item];
+      }
+      // a plain click always focuses just this item — except toggling the
+      // sole pinned item off again, which unpins instead of no-op'ing.
+      return exists && prev.length === 1 ? [] : [item];
+    });
   }, []);
 
   const clear = useCallback(() => {
-    setPanel(null);
+    setPanelItems([]);
+  }, []);
+
+  const clearOne = useCallback((id: number) => {
+    setPanelItems((prev) => prev.filter((p) => p.id !== id));
+  }, []);
+
+  const toggleCompareMode = useCallback(() => {
+    setCompareMode((c) => !c);
   }, []);
 
   return (
-    <ItemDetails.Provider value={{ show, hide, toggle, clear, panelItem: panel }}>
+    <ItemDetails.Provider
+      value={{ show, hide, toggle, clear, clearOne, panelItems, compareMode, toggleCompareMode }}
+    >
       {children}
       {tip && (
         <div

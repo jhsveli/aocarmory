@@ -164,4 +164,48 @@ describe("Item hover tooltip and detail panel", () => {
     fireEvent.click(name); // unpin
     expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
   });
+
+  it("Shift-clicking a second item shows both side by side instead of replacing", async () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first);
+    fireEvent.click(second, { shiftKey: true });
+
+    const panels = await screen.findAllByRole("complementary", { name: "Item details" });
+    expect(panels).toHaveLength(2);
+    expect(within(panels[0]).getByText(first.textContent!)).toBeInTheDocument();
+    expect(within(panels[1]).getByText(second.textContent!)).toBeInTheDocument();
+  });
+
+  it("arming Compare mode makes a plain click additive, and removes items via their own close button", async () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first);
+    fireEvent.click(screen.getByRole("button", { name: "Compare" }));
+    fireEvent.click(second); // additive because Compare mode is armed, no Shift needed
+
+    let panels = await screen.findAllByRole("complementary", { name: "Item details" });
+    expect(panels).toHaveLength(2);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
+    );
+    panels = screen.getAllByRole("complementary", { name: "Item details" });
+    expect(panels).toHaveLength(1);
+    expect(within(panels[0]).getByText(first.textContent!)).toBeInTheDocument();
+  });
+
+  it("Shift-clicking an already-compared item removes it from the comparison", async () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first);
+    fireEvent.click(second, { shiftKey: true });
+    expect(await screen.findAllByRole("complementary", { name: "Item details" })).toHaveLength(2);
+
+    fireEvent.click(second, { shiftKey: true }); // toggle back off
+    expect(screen.getAllByRole("complementary", { name: "Item details" })).toHaveLength(1);
+  });
 });
