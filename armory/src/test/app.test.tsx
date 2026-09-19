@@ -183,7 +183,7 @@ describe("Item hover tooltip and detail panel", () => {
     const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
     fireEvent.click(first);
-    fireEvent.click(screen.getByRole("button", { name: "Compare" }));
+    fireEvent.click(screen.getByRole("button", { name: /Compare/ }));
     fireEvent.click(second); // additive because Compare mode is armed, no Shift needed
 
     let panels = await screen.findAllByRole("complementary", { name: "Item details" });
@@ -195,6 +195,18 @@ describe("Item hover tooltip and detail panel", () => {
     panels = screen.getAllByRole("complementary", { name: "Item details" });
     expect(panels).toHaveLength(1);
     expect(within(panels[0]).getByText(first.textContent!)).toBeInTheDocument();
+  });
+
+  it("highlights the Compare button while Shift is physically held down", () => {
+    renderWithItems();
+    const compareBtn = screen.getByRole("button", { name: /Compare/ });
+    expect(compareBtn).toHaveAttribute("aria-pressed", "false");
+
+    fireEvent.keyDown(window, { key: "Shift" });
+    expect(compareBtn).toHaveAttribute("aria-pressed", "true");
+
+    fireEvent.keyUp(window, { key: "Shift" });
+    expect(compareBtn).toHaveAttribute("aria-pressed", "false");
   });
 
   it("Shift-clicking an already-compared item removes it from the comparison", async () => {
