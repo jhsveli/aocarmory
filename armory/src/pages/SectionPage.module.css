@@ -7,6 +7,8 @@
 }
 .sectionHead h1 { margin: 0.2em 0; }
 
+.headControls { display: flex; align-items: center; gap: 0.6rem; }
+
 .hiddenNotice {
   color: var(--ink-soft);
   font-size: 0.85rem;

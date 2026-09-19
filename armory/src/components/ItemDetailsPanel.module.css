@@ -1,26 +1,3 @@
-.toolbar {
-  display: flex;
-  justify-content: flex-end;
-}
-.compareBtn, .compareActive {
-  border: 1px solid var(--line-dark);
-  border-radius: 6px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.78rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-.compareBtn {
-  background: var(--panel-2);
-  color: var(--ink-soft);
-}
-.compareBtn:hover { background: rgba(179, 34, 42, 0.12); color: var(--ink); }
-.compareActive {
-  background: var(--crimson);
-  border-color: var(--crimson-dark);
-  color: #fff;
-}
-
 .compareRow {
   display: flex;
   gap: 0.7rem;

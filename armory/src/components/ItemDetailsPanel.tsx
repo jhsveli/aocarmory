@@ -10,23 +10,11 @@ import styles from "./ItemDetailsPanel.module.css";
  * rendered separately by TooltipProvider.
  */
 export default function ItemDetailsPanel() {
-  const { panelItems, compareMode, toggleCompareMode, clearOne } = useItemDetails();
+  const { panelItems, clearOne } = useItemDetails();
   const comparing = panelItems.length > 1;
 
   return (
     <aside className={styles.mainAside}>
-      <div className={styles.toolbar}>
-        <button
-          type="button"
-          className={compareMode ? styles.compareActive : styles.compareBtn}
-          aria-pressed={compareMode}
-          onClick={toggleCompareMode}
-          title="Keep clicked items side by side instead of replacing the panel (Shift-click does this too)"
-        >
-          Compare
-        </button>
-      </div>
-
       {panelItems.length === 0 ? (
         <aside className={styles.itemPanel} aria-label="Item details">
           <p className={styles.panelEmpty}>Click an item to see its details.</p>
