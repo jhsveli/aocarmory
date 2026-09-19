@@ -9,28 +9,20 @@ export default function HomePage() {
   return (
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>
-        <h1>Welcome to the Age of Conan Armory</h1>
+        <h1>Welcome to the Age of Conan Armory - reconstructed</h1>
 
+        <p className={styles.intro}>
+          An hommage and spiritual successor to the original <a href="https://aoc.is-better-than.tv">Age of Conan Armory</a> by Kentarii.
+        </p>
         <hr />
 
-        <h2>How to find what you're looking for</h2>
-        <p>
-          The items are structured in the following way:
-        </p>
-        <ol style={{ margin: "0.4em 0 0.8em 1.4em" }}>
-          <li><strong>Section</strong> (f.ex: Brittle Blade)</li>
-          <li><strong>Location</strong> (f.ex: Reliquary of Flames)</li>
-          <li><strong>Category</strong> (f.ex: Dungeon Cloth Armor)</li>
-          <li><strong>Set</strong> (f.ex: The Hidden Tomb)</li>
-          <li><strong>Item</strong> (f.ex: Blade's Armbands of the Hidden Tomb)</li>
-        </ol>
-        <ul className="locations" style={{ listStyle: "disc" }}>
-          <li>
-            <p>Click your way around the lists and look at stuff.</p>
-            <p>This is good if you don't know what you're looking for.</p>
-          </li>
-          <li>
-            <p>Use the <strong>SEARCH</strong> box at the top right to find something specific.</p>
+        <h2>How to use</h2>
+            <p>Browse sections by locations or class. </p>
+            <p>Filter by rarity ond usable level</p>
+            <p>Compare several items by Shift + click or use the compare button</p>
+
+        <h3>Search</h3>
+            <p>Use Search to find something specific</p>
 
             <p>
               You can type in any of the 5 things mentioned above, but you can also search
@@ -44,8 +36,6 @@ export default function HomePage() {
               <em>the+grasslands belt</em> · <em>pillars+of+heaven</em> · <em>hox epic dungeon</em> ·{" "}
               <em>tos scarlet+circle epic</em>
             </p>
-          </li>
-        </ul>
 
         <hr />
 

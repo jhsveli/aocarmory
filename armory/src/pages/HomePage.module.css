@@ -25,3 +25,7 @@
   font-size: 0.85rem;
 }
 .statsTable td { text-align: right; font-weight: bold; padding: 0.25rem 0; }
+
+.intro {
+  font-size: 1.1rem;
+}
