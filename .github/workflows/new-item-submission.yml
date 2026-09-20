@@ -1,0 +1,82 @@
+name: New item submission
+
+# Fires on every new "Submit a new item" issue (see
+# docs/adr/0001-contribution-pipeline.md for why: nothing lands on the site
+# without an Admin approving the generated PR, so there's no maintainer gate
+# here). Runs OCR on the attached screenshot and either opens a PR with a
+# targeted, reviewable insertion into both armory_data.json copies, or
+# comments on the issue asking for a better screenshot.
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  submit:
+    if: contains(github.event.issue.labels.*.name, 'new-item-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install OCR + upload dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          pip install pytesseract pillow boto3
+
+      # github.event.issue.body is attacker-controlled free text — routed
+      # through env: (not interpolated into the script) to avoid shell
+      # injection, per GitHub's own guidance on this exact pattern.
+      - name: Write issue body to a file
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: printf '%s' "$ISSUE_BODY" > /tmp/issue_body.md
+
+      - name: Run submission pipeline
+        id: submit
+        env:
+          R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: aocarmory
+          R2_PUBLIC_BASE_URL: https://static.aoc-armory.eu/aocarmory
+        run: |
+          python scripts/submit_item.py \
+            --issue-number "${{ github.event.issue.number }}" \
+            --issue-body-file /tmp/issue_body.md \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Comment on the issue when the submission couldn't be processed
+        if: steps.submit.outputs.ok != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REASON: ${{ steps.submit.outputs.reason }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body "$REASON"
+
+      - name: Open a PR for review
+        if: steps.submit.outputs.ok == 'true'
+        # Pinned to v7's commit SHA, not the mutable tag — this action gets
+        # push/PR-create access, so a moved tag is a real supply-chain risk.
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          commit-message: "Add item: ${{ github.event.issue.title }}"
+          branch: "new-item/${{ github.event.issue.number }}"
+          title: ${{ steps.submit.outputs.pr_title }}
+          body: |
+            ${{ steps.submit.outputs.pr_body }}
+
+            Closes #${{ github.event.issue.number }}
+          add-paths: |
+            research/armory_data.json
+            armory/src/data/armory_data.json
+          labels: new-item-submission
