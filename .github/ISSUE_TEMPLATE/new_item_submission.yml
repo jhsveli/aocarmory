@@ -1,0 +1,266 @@
+name: Submit a new item
+description: Add an item that's missing from the catalogue, from a tooltip screenshot.
+title: "[New item] "
+labels: ["new-item-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping fill in the catalogue! Fill in where the item belongs and
+        attach its tooltip screenshot below — a bot will read the screenshot and open
+        a pull request for a maintainer to review. You'll need a clear, unscaled
+        screenshot of the in-game tooltip (the box that pops up when you hover the item).
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      description: Pick the existing section this item belongs to, or "New section" if it's not listed.
+      options:
+        - Aquilonia
+        - Bags
+        - Brittle Blade
+        - Children of Yag-kosha
+        - Cimmeria
+        - Clan Vigdis
+        - Consumable Books
+        - Dragon's Spine
+        - House of Crom
+        - Hyrkanians
+        - Item Store
+        - Jiang Shi
+        - Khitai
+        - Kutchemes Temple
+        - Last Legion
+        - PvE Tier 1
+        - PvE Tier 2
+        - PvE Tier 3
+        - PvE Tier 3.5
+        - PvE Tier 4
+        - PvE Tier 5
+        - PvE Tier 6
+        - PvP Tier 1
+        - PvP Tier 2
+        - PvP Tier 3
+        - Raidfinder
+        - Recipes
+        - Scarlet Circle
+        - Scholars of Cheng-Ho
+        - Shadows of Jade
+        - Skull Gate Pass
+        - Stygia
+        - Tamarin's Tigers
+        - Turan
+        - Unchained
+        - Unsorted Items
+        - Wolves of the Steppes
+        - World Boss
+        - Yellow Priests of Yun
+        - New section (name it below)
+    validations:
+      required: true
+
+  - type: input
+    id: section_new
+    attributes:
+      label: New section name
+      description: Only fill in if you picked "New section" above.
+      placeholder: e.g. Bloodfire Peaks
+
+  - type: input
+    id: location_name
+    attributes:
+      label: Location
+      description: The vendor, dungeon or raid that sells/drops it. Can be an existing or a brand-new location.
+      placeholder: "e.g. Kara Korum :: Fengdu"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: location_type
+    attributes:
+      label: Location kind
+      description: Leave blank if this is an existing location (it already has one).
+      options:
+        - merchant
+        - dungeon
+        - raid
+    validations:
+      required: false
+
+  - type: input
+    id: category_name
+    attributes:
+      label: Category
+      description: The group of sets sold/dropped together at that location. Can be existing or new.
+      placeholder: e.g. Dungeon Cloth Armor
+    validations:
+      required: true
+
+  - type: input
+    id: set_name
+    attributes:
+      label: Set name
+      description: Leave blank if this item isn't part of a named set.
+      placeholder: e.g. Malice
+
+  - type: input
+    id: set_classes
+    attributes:
+      label: Set class tag
+      description: Leave blank if usable by all classes. Combined tags stay combined, e.g. "Demo/Necro".
+      placeholder: e.g. HoX
+
+  - type: input
+    id: item_name
+    attributes:
+      label: Item name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rarity
+    attributes:
+      label: Rarity
+      options:
+        - Mundane
+        - Superior
+        - Enchanted
+        - Rare
+        - Epic
+        - Legendary
+    validations:
+      required: true
+
+  - type: input
+    id: drop
+    attributes:
+      label: Drop source
+      description: Fill in only if this drops from combat rather than being bought from a vendor.
+      placeholder: e.g. Fengdu (hardmode)
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Purchase price
+        If this is bought from a vendor, fill in up to 3 currencies it costs. Leave all
+        blank if it's a pure drop with no vendor price.
+
+  - type: dropdown
+    id: price_currency_1
+    attributes:
+      label: Currency 1
+      options:
+        - Gold
+        - Copper
+        - Tin
+        - Mark of Acclaim
+        - Rare Trophy
+        - Simple Trophy I
+        - Simple Trophy II
+        - Simple Trophy III
+        - Simple Relic I
+        - Simple Relic II
+        - Simple Relic III
+        - Simple Relic IV
+        - Simple Relic V
+        - Simple Relic VI
+        - Rare Relic
+        - Mythical Relic
+        - Campaign Badges
+        - Conquest Trophies
+        - Atlantean Shards
+        - Dragon Tear
+        - Emerald Essence
+        - Shard of Pure Ice
+    validations:
+      required: false
+  - type: input
+    id: price_amount_1
+    attributes:
+      label: Amount 1
+
+  - type: dropdown
+    id: price_currency_2
+    attributes:
+      label: Currency 2
+      options:
+        - Gold
+        - Copper
+        - Tin
+        - Mark of Acclaim
+        - Rare Trophy
+        - Simple Trophy I
+        - Simple Trophy II
+        - Simple Trophy III
+        - Simple Relic I
+        - Simple Relic II
+        - Simple Relic III
+        - Simple Relic IV
+        - Simple Relic V
+        - Simple Relic VI
+        - Rare Relic
+        - Mythical Relic
+        - Campaign Badges
+        - Conquest Trophies
+        - Atlantean Shards
+        - Dragon Tear
+        - Emerald Essence
+        - Shard of Pure Ice
+    validations:
+      required: false
+  - type: input
+    id: price_amount_2
+    attributes:
+      label: Amount 2
+
+  - type: dropdown
+    id: price_currency_3
+    attributes:
+      label: Currency 3
+      options:
+        - Gold
+        - Copper
+        - Tin
+        - Mark of Acclaim
+        - Rare Trophy
+        - Simple Trophy I
+        - Simple Trophy II
+        - Simple Trophy III
+        - Simple Relic I
+        - Simple Relic II
+        - Simple Relic III
+        - Simple Relic IV
+        - Simple Relic V
+        - Simple Relic VI
+        - Rare Relic
+        - Mythical Relic
+        - Campaign Badges
+        - Conquest Trophies
+        - Atlantean Shards
+        - Dragon Tear
+        - Emerald Essence
+        - Shard of Pure Ice
+    validations:
+      required: false
+  - type: input
+    id: price_amount_3
+    attributes:
+      label: Amount 3
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Tooltip screenshot
+      description: >-
+        Drag and drop (or paste) the tooltip screenshot into this box — do not attach it
+        anywhere else on the issue, the bot only looks here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else the reviewer should know?
+    validations:
+      required: false

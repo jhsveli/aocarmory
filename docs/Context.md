@@ -66,7 +66,18 @@ _Avoid_: Item Level (the item's internal power tier — a different field, not c
 **Gem slot**:
 A socket in an Item that accepts a gem, either a colour (Red, Blue, …) or a named slot (e.g. Kuthcheman, Onslaught, White Hand).
 
+### Contribution
+
+**Submission**:
+A contributor's proposal of one new Item (with its screenshot and its Section/Location/Category/Set placement) via the issue form, not yet part of the catalogue until an Admin approves it.
+_Avoid_: Contribution (too broad), correction (a Submission only ever adds a new Item, it does not edit an existing one — see Flagged ambiguities)
+
+**Admin**:
+A project maintainer with authority to approve or reject a Submission's generated pull request before it merges into the catalogue.
+
 ## Flagged ambiguities
+
+- **"submission" vs "correction"**: The contribution pipeline only covers adding a brand-new Item via a Submission. Fixing an existing Item's already-catalogued data is a different, unbuilt flow — don't conflate the two.
 
 - **"silver"**: In the section/item listings the silver coin icon marks a **Drop**, never a price in silver — the site does not price items in silver. Silver *is* a real denomination, but only inside **Vendor price** tooltip amounts. Disambiguate by context.
 - **"price"**: Means two different things — **Purchase price** (what the vendor charges, may be faction coins/trophies/relics) vs **Vendor price** (the tooltip's Gold/Silver/Copper/Tin value). Prefer the qualified terms.
