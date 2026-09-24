@@ -1,6 +1,6 @@
 import type { FlatItem } from "../data";
 import { equipSlotKey } from "./equip";
-import { RARITIES } from "./search";
+import { RARITIES, searchArmory } from "./search";
 import type { Item } from "../types";
 
 export interface CompareFilters {
@@ -30,9 +30,11 @@ function classCompatible(main: Item, candidate: Item): boolean {
 /**
  * Candidates for the compare page's "Add item to compare" picker: every
  * item, deduped by id, minus those already in the comparison, filtered by
- * whichever "Same: ..." toggles are on (measured against `mainItem`), then
- * by the text query, sorted by rarity descending and then name. Without a
- * mainItem there's nothing to match against, so every filter is a no-op.
+ * whichever "Same: ..." toggles are on (measured against `mainItem`). Without
+ * a mainItem there's nothing to match against, so every filter is a no-op.
+ * The text query then reuses the global search (slot names like "feet",
+ * class tags, rarities, ... — see search.ts), ranked by its relevance score;
+ * with no query, results are sorted by rarity descending and then name.
  */
 export function findCompareCandidates(
   flatItems: FlatItem[],
@@ -44,7 +46,7 @@ export function findCompareCandidates(
   const mainSlot = mainItem ? equipSlotKey(mainItem.stats) : null;
   const mainType = mainItem?.stats?.type ?? null;
   const seen = new Set<number>(excludeIds);
-  const items: Item[] = [];
+  const candidates: FlatItem[] = [];
 
   for (const f of flatItems) {
     const candidate = f.item;
@@ -54,12 +56,13 @@ export function findCompareCandidates(
     if (mainItem && filters.armorType && mainType && candidate.stats?.type !== mainType) continue;
     if (mainItem && filters.class && !classCompatible(mainItem, candidate)) continue;
     if (mainItem && filters.rarity && candidate.rarity !== mainItem.rarity) continue;
-    items.push(candidate);
+    candidates.push(f);
   }
 
-  const q = query.trim().toLowerCase();
-  const filtered = q ? items.filter((i) => i.name.toLowerCase().includes(q)) : items;
-  return filtered.sort((a, b) => {
+  const q = query.trim();
+  if (q) return searchArmory(q, candidates).map((m) => m.item.item);
+
+  return candidates.map((f) => f.item).sort((a, b) => {
     const rankDiff = rarityRank(b.rarity) - rarityRank(a.rarity);
     return rankDiff !== 0 ? rankDiff : a.name.localeCompare(b.name);
   });

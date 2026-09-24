@@ -22,7 +22,8 @@ export default function Layout() {
             <li><NavLink to="/" end>Home</NavLink></li>
             <li><NavLink to="/sets">Armor Sets</NavLink></li>
             <li><NavLink to="/factions">Factions</NavLink></li>
-            <li><NavLink to="/builder">Armor builder</NavLink></li>
+            <li><NavLink to="/builder" className={styles.strikethrough}>Armor builder</NavLink></li>
+            <li><NavLink to="/compare">Compare</NavLink></li>
           </ul>
           <form className={styles.searchForm} onSubmit={submit}>
             <input

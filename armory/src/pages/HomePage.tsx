@@ -47,6 +47,16 @@ export default function HomePage() {
           <Link to="/builder?calc=1">Attribute trickle-down calculator</Link> — see what a
           stack of an attribute is worth.
         </p>
+
+        <hr />
+
+        <h2>Missing an item?</h2>
+        <p>
+          <a href="https://github.com/jhsveli/aocarmory/issues/new?template=new_item_submission.yml">
+            Submit a new item
+          </a>{" "}
+          — fill in some details, attach a tooltip screenshot, and a bot and the maintainer will add it to the database.
+        </p>
       </div>
 
       <aside className={layoutStyles.rightColumn}>

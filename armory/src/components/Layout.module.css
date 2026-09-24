@@ -34,6 +34,8 @@
   color: var(--ink);
 }
 .mainmenu a:hover { background: rgba(179, 34, 42, 0.12); text-decoration: none; }
+.mainmenu a.strikethrough { text-decoration: line-through; }
+.mainmenu a.strikethrough:hover { text-decoration: line-through; }
 .mainmenu li.selected a {
   background: var(--crimson);
   color: #fff;

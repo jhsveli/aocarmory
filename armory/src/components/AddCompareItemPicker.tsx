@@ -52,7 +52,7 @@ export default function AddCompareItemPicker({ mainItem, excludeIds, onAdd }: Pr
           <label key={key}>
             <input
               type="checkbox"
-              checked={filters[key]}
+              checked={!!mainItem && filters[key]}
               disabled={!mainItem}
               onChange={() => toggleFilter(key)}
             />

@@ -108,4 +108,12 @@ describe("findCompareCandidates", () => {
     const result = names(findCompareCandidates(flatItems, new Set([main.id]), main, filters, "different rarity"));
     expect(result).toEqual(["Different Rarity"]);
   });
+
+  it("resolves slot aliases in the text query, same as the global search", () => {
+    const boots = makeItem(8, "Boots of Testing", "Epic", makeStats({ type: "Light Armor", slots: ["Feet"] }));
+    const items = [...flatItems, flat(boots)];
+    const filters: CompareFilters = { ...DEFAULT_COMPARE_FILTERS, class: false, armorType: false, rarity: false, slot: false };
+    const result = names(findCompareCandidates(items, new Set([main.id]), main, filters, "feet"));
+    expect(result).toEqual(["Boots of Testing"]);
+  });
 });

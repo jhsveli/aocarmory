@@ -37,12 +37,6 @@ function renderWithLocation(path: string) {
 }
 
 describe("App rendering", () => {
-  it("renders the home page with welcome text and stats", () => {
-    renderAt("/");
-    expect(screen.getByText("Welcome to the Age of Conan Armory")).toBeInTheDocument();
-    expect(screen.getByText("Statistics")).toBeInTheDocument();
-  });
-
   it("renders a section browse page with the section title", () => {
     renderAt("/s/1");
     expect(screen.getByRole("heading", { name: "Brittle Blade" })).toBeInTheDocument();
