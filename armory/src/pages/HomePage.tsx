@@ -19,7 +19,7 @@ export default function HomePage() {
         <h2>How to use</h2>
             <p>Browse sections by locations or class. </p>
             <p>Filter by rarity ond usable level</p>
-            <p>Compare several items by Shift + click or use the compare button</p>
+            <p>Shift + click items to stage them, then open the compare page to see them side by side</p>
 
         <h3>Search</h3>
             <p>Use Search to find something specific</p>

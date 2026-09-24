@@ -1,0 +1,125 @@
+import { useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { useArmoryData } from "../data";
+import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
+import StatDiffBox from "../components/StatDiffBox.tsx";
+import AddCompareItemPicker from "../components/AddCompareItemPicker.tsx";
+import { equipSlotKey } from "../lib/equip";
+import type { Item } from "../types";
+import layoutStyles from "../styles/layout.module.css";
+import styles from "./ComparePage.module.css";
+
+function parseIds(raw: string | null): number[] {
+  if (!raw) return [];
+  return raw.split(",").map(Number).filter(Number.isFinite);
+}
+
+/**
+ * The item each position diffs against: with exactly 2 items they diff
+ * against each other; with more, item 0 is the implicit main (first in the
+ * ?items= param order) and has no partner of its own.
+ */
+function diffPartner(items: Item[], index: number): Item | undefined {
+  if (items.length < 2) return undefined;
+  if (items.length === 2) return items[index === 0 ? 1 : 0];
+  return index === 0 ? undefined : items[0];
+}
+
+/** One compared item, with its screenshot collapsed behind a link until requested. */
+function CompareItem({
+  item, onRemove, diffAgainst, isMain,
+}: { item: Item; onRemove: (id: number) => void; diffAgainst?: Item; isMain?: boolean }) {
+  const [showScreenshot, setShowScreenshot] = useState(false);
+
+  return (
+    <div className={styles.compareItem}>
+      <button
+        type="button"
+        className={styles.remove}
+        aria-label={`Remove ${item.name} from comparison`}
+        onClick={() => onRemove(item.id)}
+      >
+        ×
+      </button>
+      {isMain && <span className={styles.mainBadge}>Main</span>}
+      <ItemDetailsBox item={item} />
+      {diffAgainst && <StatDiffBox main={diffAgainst} item={item} />}
+      {item.image && (
+        showScreenshot ? (
+          <div className={styles.itemImage}>
+            <div className={styles.itemImageLabel}>Original screenshot</div>
+            <img
+              src={item.image}
+              alt={`Original screenshot: ${item.name}`}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <button type="button" className={styles.screenshotLink} onClick={() => setShowScreenshot(true)}>
+            Original screenshot
+          </button>
+        )
+      )}
+    </div>
+  );
+}
+
+/**
+ * Full-width side-by-side comparison, driven entirely by the ?items= URL
+ * param (not the left-column staging list) so the link is shareable and
+ * survives a refresh. Unresolvable ids are dropped silently.
+ */
+export default function ComparePage() {
+  const [params, setParams] = useSearchParams();
+  const { itemById } = useArmoryData();
+  const ids = parseIds(params.get("items"));
+  const items = useMemo(
+    () => ids.map((id) => itemById.get(id)).filter((item): item is NonNullable<typeof item> => Boolean(item)),
+    [ids, itemById],
+  );
+
+  const remove = (id: number) => {
+    const remaining = ids.filter((i) => i !== id);
+    setParams(remaining.length ? { items: remaining.join(",") } : {}, { replace: true });
+  };
+
+  const add = (item: Item) => {
+    setParams({ items: [...items.map((i) => i.id), item.id].join(",") }, { replace: true });
+  };
+
+  return (
+    <div className={layoutStyles.contentWrap}>
+      <div className={layoutStyles.content}>
+        <h1>Compare items</h1>
+        {items.length === 0 && (
+          <p className="page-intro">
+            Shift-click items on a section or search page to add them here, then use the Compare
+            button. <Link to="/search">Search for items</Link>.
+          </p>
+        )}
+        {items.length === 1 && (
+          equipSlotKey(items[0].stats) ? (
+            <AddCompareItemPicker mainItem={items[0]} onAdd={add} />
+          ) : (
+            <p className="page-intro">
+              Shift-click another item on a section or search page to add it here, then use the
+              Compare button. <Link to="/search">Search for items</Link>.
+            </p>
+          )
+        )}
+        <div className={styles.compareRow}>
+          {items.map((item, index) => (
+            <CompareItem
+              key={item.id}
+              item={item}
+              onRemove={remove}
+              diffAgainst={diffPartner(items, index)}
+              isMain={items.length > 2 && index === 0}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

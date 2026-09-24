@@ -10,6 +10,7 @@ import FactionsPage from "./pages/FactionsPage";
 
 import SearchPage from "./pages/SearchPage";
 import BuilderPage from "./pages/BuilderPage";
+import ComparePage from "./pages/ComparePage";
 import "./styles/global.css";
 
 /** Routes only — used by the app and by tests (which supply their own router). */
@@ -23,6 +24,7 @@ export function AppRoutes() {
         <Route path="factions" element={<FactionsPage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="builder" element={<BuilderPage />} />
+        <Route path="compare" element={<ComparePage />} />
         <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>

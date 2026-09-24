@@ -165,59 +165,194 @@ describe("Item hover tooltip and detail panel", () => {
     expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
   });
 
-  it("Shift-clicking a second item shows both side by side instead of replacing", async () => {
+  it("Shift-clicking an item stages it for comparison instead of touching the right-side panel", async () => {
     renderWithItems();
     const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    fireEvent.click(first);
+    fireEvent.click(first); // plain click still pins to the panel
     fireEvent.click(second, { shiftKey: true });
 
-    const panels = await screen.findAllByRole("complementary", { name: "Item details" });
-    expect(panels).toHaveLength(2);
-    expect(within(panels[0]).getByText(first.textContent!)).toBeInTheDocument();
-    expect(within(panels[1]).getByText(second.textContent!)).toBeInTheDocument();
+    const panel = await screen.findByRole("complementary", { name: "Item details" });
+    expect(within(panel).getByText(first.textContent!)).toBeInTheDocument();
+    expect(within(panel).queryByText(second.textContent!)).not.toBeInTheDocument();
+
+    const bar = screen.getByRole("group", { name: "Items to compare" });
+    expect(within(bar).queryByText(first.textContent!)).not.toBeInTheDocument();
+    expect(within(bar).getByText(second.textContent!)).toBeInTheDocument();
   });
 
-  it("arming Compare mode makes a plain click additive, and removes items via their own close button", async () => {
+  it("shows the compare bar only once 2+ items are staged, and removes items via their chip", async () => {
     renderWithItems();
     const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    fireEvent.click(first);
-    fireEvent.click(screen.getByRole("button", { name: /Compare/ }));
-    fireEvent.click(second); // additive because Compare mode is armed, no Shift needed
+    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
 
-    let panels = await screen.findAllByRole("complementary", { name: "Item details" });
-    expect(panels).toHaveLength(2);
+    fireEvent.click(first, { shiftKey: true });
+    let bar = await screen.findByRole("group", { name: "Items to compare" });
+    expect(screen.queryByRole("link", { name: /Compare \d+ items/ })).not.toBeInTheDocument();
+
+    fireEvent.click(second, { shiftKey: true });
+    bar = screen.getByRole("group", { name: "Items to compare" });
+    const link = screen.getByRole("link", { name: "Compare 2 items" });
+    expect(link.getAttribute("href")).toMatch(/^\/compare\?items=\d+,\d+$/);
+
+    fireEvent.click(
+      within(bar).getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
+    );
+    expect(screen.queryByRole("group", { name: "Items to compare" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /Compare \d+ items/ })).not.toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: `Remove ${first.textContent} from comparison` }),
+    );
+    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
+  });
+
+  it("Shift-clicking an already-staged item removes it from the compare list", async () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    const bar = await screen.findByRole("group", { name: "Items to compare" });
+    expect(within(bar).getByText(first.textContent!)).toBeInTheDocument();
+
+    fireEvent.click(first, { shiftKey: true }); // toggle back off
+    expect(within(bar).queryByText(first.textContent!)).not.toBeInTheDocument();
+    expect(within(bar).getByText(second.textContent!)).toBeInTheDocument();
+  });
+
+  it("ignores Shift on the armor builder page, which has no compare-list UI to show it in", () => {
+    renderAt("/builder");
+    fireEvent.change(screen.getByPlaceholderText("Find items to equip..."), {
+      target: { value: "charred earth" },
+    });
+    const name = screen.getAllByTestId("item-name")[0] as HTMLElement;
+
+    fireEvent.click(name, { shiftKey: true });
+    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
+    const panel = screen.getByRole("complementary", { name: "Item details" });
+    expect(within(panel).getByText(name.textContent!)).toBeInTheDocument();
+  });
+});
+
+describe("Compare page", () => {
+  it("navigates from the compare bar to the dedicated compare page with both items", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+
+    expect(await screen.findByRole("heading", { name: "Compare items" })).toBeInTheDocument();
+    expect(screen.getByText(first.textContent!)).toBeInTheDocument();
+    expect(screen.getByText(second.textContent!)).toBeInTheDocument();
+  });
+
+  it("hides screenshots by default, loading one only once its link is clicked", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    const links = screen.getAllByRole("button", { name: "Original screenshot" });
+    expect(links.length).toBeGreaterThan(0);
+
+    fireEvent.click(links[0]);
+    expect(screen.getAllByRole("img")).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: "Original screenshot" })).toHaveLength(links.length - 1);
+  });
+
+  it("skips unresolvable ids and prompts for more when fewer than 2 items resolve", () => {
+    renderAt("/compare?items=999999999");
+    expect(screen.getByRole("heading", { name: "Compare items" })).toBeInTheDocument();
+    expect(screen.getByText(/Shift-click items/)).toBeInTheDocument();
+  });
+
+  it("removes an item via its own remove button without needing the staging list", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
 
     fireEvent.click(
       screen.getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
     );
-    panels = screen.getAllByRole("complementary", { name: "Item details" });
-    expect(panels).toHaveLength(1);
-    expect(within(panels[0]).getByText(first.textContent!)).toBeInTheDocument();
+    expect(screen.queryByText(second.textContent!)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add item to compare" })).toBeInTheDocument();
   });
 
-  it("highlights the Compare button while Shift is physically held down", () => {
-    renderWithItems();
-    const compareBtn = screen.getByRole("button", { name: /Compare/ });
-    expect(compareBtn).toHaveAttribute("aria-pressed", "false");
-
-    fireEvent.keyDown(window, { key: "Shift" });
-    expect(compareBtn).toHaveAttribute("aria-pressed", "true");
-
-    fireEvent.keyUp(window, { key: "Shift" });
-    expect(compareBtn).toHaveAttribute("aria-pressed", "false");
-  });
-
-  it("Shift-clicking an already-compared item removes it from the comparison", async () => {
-    renderWithItems();
+  it("offers same-slot items to add when the compare page has a single item, adding one on click", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
     const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    fireEvent.click(first);
+    fireEvent.click(first, { shiftKey: true });
     fireEvent.click(second, { shiftKey: true });
-    expect(await screen.findAllByRole("complementary", { name: "Item details" })).toHaveLength(2);
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+    fireEvent.click(
+      screen.getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
+    );
 
-    fireEvent.click(second, { shiftKey: true }); // toggle back off
-    expect(screen.getAllByRole("complementary", { name: "Item details" })).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "Add item to compare" }));
+    const input = screen.getByPlaceholderText("Find an item to compare...");
+    const panel = input.closest("div") as HTMLElement;
+    const candidateButtons = within(panel).getAllByRole("button");
+    expect(candidateButtons.length).toBeGreaterThan(0);
+    // the candidate never re-offers the item already being compared
+    expect(within(panel).queryByText(first.textContent!)).not.toBeInTheDocument();
+
+    const chosenName = candidateButtons[0].querySelector("span")!.textContent!;
+    fireEvent.click(candidateButtons[0]);
+
+    await screen.findByText(`Diff vs. ${first.textContent}`);
+    expect(screen.getByText(chosenName)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Add item to compare" })).not.toBeInTheDocument();
+  });
+
+  it("shows a diff box on both items when comparing exactly 2, each against the other", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+
+    expect(screen.queryByText("Main")).not.toBeInTheDocument();
+    expect(screen.getByText(`Diff vs. ${second.textContent}`)).toBeInTheDocument();
+    expect(screen.getByText(`Diff vs. ${first.textContent}`)).toBeInTheDocument();
+  });
+
+  it("marks item 0 as Main and only diffs the other items when comparing more than 2", async () => {
+    renderAt("/s/1");
+    const expandButtons = screen.getAllByRole("button", { expanded: false });
+    fireEvent.click(expandButtons[0]);
+    fireEvent.click(expandButtons[1]);
+    const names = screen.getAllByTestId("item-name") as HTMLElement[];
+    expect(names.length).toBeGreaterThanOrEqual(3);
+    const [first, second, third] = names;
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(third, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 3 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+
+    expect(screen.getByText("Main")).toBeInTheDocument();
+    expect(screen.getAllByText(`Diff vs. ${first.textContent}`)).toHaveLength(2);
   });
 });

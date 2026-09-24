@@ -14,15 +14,16 @@ interface TooltipState {
 const SHOW_DELAY = 120; // ms — avoids flashing when the cursor just passes over a name
 
 /**
- * Provides the near-cursor hover tooltip and the click-pinned item state for
- * the docked item-detail panel. The panel itself is rendered in-flow by
+ * Provides the near-cursor hover tooltip, the click-pinned item for the
+ * docked right-side panel, and the shift-click staging list for the
+ * dedicated compare page. The panel itself is rendered in-flow by
  * ItemDetailsPanel (pages place it in their right column); only the floating
  * tooltip lives here.
  */
 export function TooltipProvider({ children }: { children: ReactNode }) {
   const [tip, setTip] = useState<TooltipState | null>(null);
-  const [panelItems, setPanelItems] = useState<Item[]>([]);
-  const [compareMode, setCompareMode] = useState(false);
+  const [panelItem, setPanelItem] = useState<Item | null>(null);
+  const [itemsToCompare, setItemsToCompare] = useState<Item[]>([]);
   const showTimer = useRef<number | null>(null);
 
   const show = useCallback((item: Item, x: number, y: number) => {
@@ -35,35 +36,33 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
     setTip(null);
   }, []);
 
-  const toggle = useCallback((item: Item, additive?: boolean) => {
+  const toggle = useCallback((item: Item) => {
     if (showTimer.current) window.clearTimeout(showTimer.current);
     setTip(null); // a tap shouldn't leave the hover tooltip lingering
-    setPanelItems((prev) => {
-      const exists = prev.some((p) => p.id === item.id);
-      if (additive) {
-        return exists ? prev.filter((p) => p.id !== item.id) : [...prev, item];
-      }
-      // a plain click always focuses just this item — except toggling the
-      // sole pinned item off again, which unpins instead of no-op'ing.
-      return exists && prev.length === 1 ? [] : [item];
-    });
+    setPanelItem((prev) => (prev?.id === item.id ? null : item));
   }, []);
 
   const clear = useCallback(() => {
-    setPanelItems([]);
+    setPanelItem(null);
   }, []);
 
-  const clearOne = useCallback((id: number) => {
-    setPanelItems((prev) => prev.filter((p) => p.id !== id));
+  const toggleCompare = useCallback((item: Item) => {
+    setItemsToCompare((prev) => {
+      const exists = prev.some((p) => p.id === item.id);
+      return exists ? prev.filter((p) => p.id !== item.id) : [...prev, item];
+    });
   }, []);
 
-  const toggleCompareMode = useCallback(() => {
-    setCompareMode((c) => !c);
+  const removeFromCompare = useCallback((id: number) => {
+    setItemsToCompare((prev) => prev.filter((p) => p.id !== id));
   }, []);
 
   return (
     <ItemDetails.Provider
-      value={{ show, hide, toggle, clear, clearOne, panelItems, compareMode, toggleCompareMode }}
+      value={{
+        show, hide, toggle, clear, panelItem,
+        itemsToCompare, toggleCompare, removeFromCompare,
+      }}
     >
       {children}
       {tip && (

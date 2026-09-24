@@ -1,0 +1,56 @@
+.picker {
+  margin-top: 0.8rem;
+}
+
+.toggle {
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: var(--panel-2);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+.toggle:hover { background: rgba(255, 255, 255, 0.08); }
+
+.panel {
+  margin-top: 0.6rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  background: var(--panel-2);
+  padding: 0.6rem 0.7rem;
+  max-width: 360px;
+}
+
+.panel input[type="text"] {
+  width: 100%;
+  font: inherit;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 0.25rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.candidate {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0.15rem 0.2rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.candidate:hover { background: rgba(255, 255, 255, 0.08); }
