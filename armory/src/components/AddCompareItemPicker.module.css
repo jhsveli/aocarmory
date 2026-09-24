@@ -1,44 +1,51 @@
-.picker {
-  margin-top: 0.8rem;
+.panel {
+  flex: 1 1 380px;
+  max-width: 460px;
+  background: var(--panel);
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.toggle {
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  background: var(--panel-2);
-  color: var(--ink);
-  font: inherit;
-  padding: 0.3rem 0.7rem;
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.filterRow label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   cursor: pointer;
 }
-.toggle:hover { background: rgba(255, 255, 255, 0.08); }
-
-.panel {
-  margin-top: 0.6rem;
-  border: 1px solid var(--line-dark);
-  border-radius: 6px;
-  background: var(--panel-2);
-  padding: 0.6rem 0.7rem;
-  max-width: 360px;
-}
+.filterRow input[type="checkbox"] { cursor: pointer; }
 
 .panel input[type="text"] {
   width: 100%;
   font: inherit;
   border: 1px solid var(--line-dark);
   border-radius: 4px;
-  background: var(--panel);
+  background: var(--panel-2);
   color: var(--ink);
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   box-sizing: border-box;
 }
 
 .list {
   list-style: none;
-  margin: 0.5rem 0 0;
-  padding: 0;
-  max-height: 320px;
+  margin: 0;
+  padding: 0.4rem;
+  max-height: 600px;
   overflow-y: auto;
+  background: var(--panel-2);
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
 }
 
 .candidate {
@@ -47,10 +54,10 @@
   text-align: left;
   border: none;
   background: transparent;
-  color: inherit;
+  color: var(--ink);
   font: inherit;
-  padding: 0.15rem 0.2rem;
+  padding: 0.2rem 0.3rem;
   cursor: pointer;
   border-radius: 3px;
 }
-.candidate:hover { background: rgba(255, 255, 255, 0.08); }
+.candidate:hover { background: rgba(0, 0, 0, 0.08); }

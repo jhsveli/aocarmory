@@ -4,7 +4,6 @@ import { useArmoryData } from "../data";
 import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
 import StatDiffBox from "../components/StatDiffBox.tsx";
 import AddCompareItemPicker from "../components/AddCompareItemPicker.tsx";
-import { equipSlotKey } from "../lib/equip";
 import type { Item } from "../types";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./ComparePage.module.css";
@@ -42,8 +41,8 @@ function CompareItem({
         ×
       </button>
       {isMain && <span className={styles.mainBadge}>Main</span>}
-      <ItemDetailsBox item={item} />
       {diffAgainst && <StatDiffBox main={diffAgainst} item={item} />}
+      <ItemDetailsBox item={item} />
       {item.image && (
         showScreenshot ? (
           <div className={styles.itemImage}>
@@ -84,29 +83,29 @@ export default function ComparePage() {
     setParams(remaining.length ? { items: remaining.join(",") } : {}, { replace: true });
   };
 
+  const [addOpen, setAddOpen] = useState(false);
+
   const add = (item: Item) => {
     setParams({ items: [...items.map((i) => i.id), item.id].join(",") }, { replace: true });
+    setAddOpen(false);
   };
+
+  const excludeIds = useMemo(() => new Set(items.map((i) => i.id)), [items]);
 
   return (
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>
-        <h1>Compare items</h1>
-        {items.length === 0 && (
+        <div className={styles.pageHead}>
+          <h1>Compare items</h1>
+          <button type="button" className={styles.addToggle} onClick={() => setAddOpen((o) => !o)}>
+            {addOpen ? "Cancel" : "Add item to compare"}
+          </button>
+        </div>
+        {items.length === 0 && !addOpen && (
           <p className="page-intro">
-            Shift-click items on a section or search page to add them here, then use the Compare
-            button. <Link to="/search">Search for items</Link>.
+            Shift-click items on a section or search page, or use the Add item button above, to
+            start a comparison. <Link to="/search">Search for items</Link>.
           </p>
-        )}
-        {items.length === 1 && (
-          equipSlotKey(items[0].stats) ? (
-            <AddCompareItemPicker mainItem={items[0]} onAdd={add} />
-          ) : (
-            <p className="page-intro">
-              Shift-click another item on a section or search page to add it here, then use the
-              Compare button. <Link to="/search">Search for items</Link>.
-            </p>
-          )
         )}
         <div className={styles.compareRow}>
           {items.map((item, index) => (
@@ -118,6 +117,9 @@ export default function ComparePage() {
               isMain={items.length > 2 && index === 0}
             />
           ))}
+          {addOpen && (
+            <AddCompareItemPicker mainItem={items[0]} excludeIds={excludeIds} onAdd={add} />
+          )}
         </div>
       </div>
     </div>

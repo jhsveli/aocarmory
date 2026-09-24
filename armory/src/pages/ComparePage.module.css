@@ -1,3 +1,24 @@
+.pageHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.pageHead h1 { margin: 0.2em 0; }
+
+.addToggle {
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: var(--panel-2);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.addToggle:hover { background: rgba(255, 255, 255, 0.08); }
+
 .compareRow {
   display: flex;
   flex-wrap: wrap;
@@ -36,9 +57,10 @@
 
 .mainBadge {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: -1rem;
+  left: 0;
   border: 1px solid var(--gold);
+  background: #1a1512;
   border-radius: 4px;
   color: var(--gold);
   font-family: var(--serif);

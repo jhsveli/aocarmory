@@ -274,6 +274,17 @@ describe("Compare page", () => {
     renderAt("/compare?items=999999999");
     expect(screen.getByRole("heading", { name: "Compare items" })).toBeInTheDocument();
     expect(screen.getByText(/Shift-click items/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add item to compare" })).toBeInTheDocument();
+  });
+
+  it("keeps the Add item button on the heading row, unfiltered, when there are no items yet", () => {
+    renderAt("/compare");
+    const heading = screen.getByRole("heading", { name: "Compare items" });
+    const addButton = within(heading.parentElement!).getByRole("button", { name: "Add item to compare" });
+
+    fireEvent.click(addButton);
+    expect(screen.getByPlaceholderText("Find an item to compare...")).toBeInTheDocument();
+    expect(screen.getAllByRole("button").length).toBeGreaterThan(1); // unfiltered: candidates from every slot
   });
 
   it("removes an item via its own remove button without needing the staging list", async () => {
@@ -319,7 +330,32 @@ describe("Compare page", () => {
 
     await screen.findByText(`Diff vs. ${first.textContent}`);
     expect(screen.getByText(chosenName)).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Add item to compare" })).not.toBeInTheDocument();
+    // the picker closes itself after adding — button reverts, panel is gone
+    expect(screen.getByRole("button", { name: "Add item to compare" })).toBeInTheDocument();
+    expect(screen.queryByPlaceholderText("Find an item to compare...")).not.toBeInTheDocument();
+  });
+
+  it("shows the four Same filters, default-checked, and toggling one updates its state", async () => {
+    renderAt("/s/1");
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 2 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+    fireEvent.click(
+      screen.getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Add item to compare" }));
+    for (const name of ["slot", "armor type", "class", "rarity"]) {
+      expect(screen.getByRole("checkbox", { name })).toBeChecked();
+    }
+
+    fireEvent.click(screen.getByRole("checkbox", { name: "rarity" }));
+    expect(screen.getByRole("checkbox", { name: "rarity" })).not.toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "slot" })).toBeChecked();
   });
 
   it("shows a diff box on both items when comparing exactly 2, each against the other", async () => {
@@ -335,6 +371,7 @@ describe("Compare page", () => {
     expect(screen.queryByText("Main")).not.toBeInTheDocument();
     expect(screen.getByText(`Diff vs. ${second.textContent}`)).toBeInTheDocument();
     expect(screen.getByText(`Diff vs. ${first.textContent}`)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add item to compare" })).toBeInTheDocument();
   });
 
   it("marks item 0 as Main and only diffs the other items when comparing more than 2", async () => {
