@@ -210,6 +210,8 @@ RE_EQUIP = re.compile(r"^Equip:\s*(.+)$", re.I)
 RE_SET = re.compile(r"^Set:\s*(.+)$", re.I)
 RE_SET_BONUS = re.compile(r"^\(\s*(\d+)\s*\)\s*Set Bonus:\s*(.+)$", re.I)
 RE_CLASSES = re.compile(r"^Classes[: ]?\s*(.+)$", re.I)
+RE_ITEM_LEVEL_RARITY = re.compile(r"^Ite[rm]n?\s*Level[: ]?\s*\d+\s*-\s*(\w+)", re.I)
+RARITIES = {"Mundane", "Superior", "Enchanted", "Rare", "Epic", "Legendary"}
 
 # The tooltip screenshots draw a frame around the text; OCR picks up the
 # decoration chars (| _ ' / - : . ,) on the left/right of lines.
@@ -521,6 +523,42 @@ def parse_stats(lines, name=None):
         else:
             stats["binds"] = "NO_BIND"
     return stats
+
+
+def guess_item_name(lines):
+    """Best-effort item name for a submission with no name given up front
+    (see submit_item.py — new items have no archived HTML to take it from).
+
+    The icon/name region above the tooltip's first "Binds ..." line is OCR'd
+    unreliably (see parse_stats), but the name itself is consistently the
+    last letters-heavy line in that region — anything earlier there is icon
+    noise. Returns None if there's no Binds line or no plausible candidate.
+    """
+    first_binds = next((i for i, ln in enumerate(lines) if RE_BINDS.match(_strip_decor(ln))), None)
+    if first_binds is None:
+        return None
+    candidates = []
+    for ln in lines[:first_binds]:
+        cleaned = _strip_decor(ln)
+        if not cleaned or len(cleaned) < 5:
+            continue
+        letters = sum(c.isalpha() for c in cleaned)
+        if letters < len(cleaned) * 0.7:
+            continue  # mostly punctuation/digits: icon noise, not a name
+        first_alpha = next((c for c in cleaned if c.isalpha()), "")
+        if not first_alpha.isupper():
+            continue  # names are proper nouns; lowercase-led junk is icon noise
+        candidates.append(cleaned)
+    return candidates[-1] if candidates else None
+
+
+def guess_rarity(lines):
+    """Best-effort rarity read off the tooltip's "Item Level N - Rarity" line."""
+    for ln in lines:
+        m = RE_ITEM_LEVEL_RARITY.match(_strip_decor(ln))
+        if m and m.group(1).capitalize() in RARITIES:
+            return m.group(1).capitalize()
+    return None
 
 
 # ---------------------------------------------------------------------------

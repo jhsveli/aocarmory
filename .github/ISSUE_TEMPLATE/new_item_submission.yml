@@ -10,6 +10,8 @@ body:
         attach its tooltip screenshot below — a bot will read the screenshot and open
         a pull request for a maintainer to review. You'll need a clear, unscaled
         screenshot of the in-game tooltip (the box that pops up when you hover the item).
+        The bot reads item name and rarity off the screenshot itself, so those two
+        are optional — only fill them in if the bot is likely to get them wrong.
 
   - type: dropdown
     id: section
@@ -109,19 +111,21 @@ body:
     attributes:
       label: Set class tag
       description: Leave blank if usable by all classes. Combined tags stay combined, e.g. "Demo/Necro".
-      placeholder: e.g. HoX
+      placeholder: "e.g. 'HoX' or 'Demo/Necro'"
 
   - type: input
     id: item_name
     attributes:
       label: Item name
+      description: Leave blank — the bot reads this off the screenshot. Fill in only if it gets it wrong.
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: rarity
     attributes:
       label: Rarity
+      description: Leave blank — the bot reads this off the screenshot's "Item Level N - Rarity" line. Fill in only if it gets it wrong.
       options:
         - Mundane
         - Superior
@@ -130,14 +134,14 @@ body:
         - Epic
         - Legendary
     validations:
-      required: true
+      required: false
 
   - type: input
     id: drop
     attributes:
       label: Drop source
       description: Fill in only if this drops from combat rather than being bought from a vendor.
-      placeholder: e.g. Fengdu (hardmode)
+      placeholder: e.g. Coppice of the Heart
 
   - type: markdown
     attributes:

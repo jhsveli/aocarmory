@@ -132,6 +132,32 @@ class ResolveSectionNameTests(unittest.TestCase):
         self.assertEqual(si.resolve_section_name(fields), "Stygia")
 
 
+class GuessItemNameTests(unittest.TestCase):
+    def test_single_clean_line_before_binds(self):
+        lines = ["Shroud of Zath", "Binds when Picked Up", "Social - Cloak"]
+        self.assertEqual(si.et.guess_item_name(lines), "Shroud of Zath")
+
+    def test_icon_noise_before_name_is_skipped(self):
+        lines = ["tg-*!", "{ S A", "Companion: Corrupted Self", "Binds when Picked Up"]
+        self.assertEqual(si.et.guess_item_name(lines), "Companion: Corrupted Self")
+
+    def test_no_binds_line_returns_none(self):
+        self.assertIsNone(si.et.guess_item_name(["Shroud of Zath", "Social - Cloak"]))
+
+
+class GuessRarityTests(unittest.TestCase):
+    def test_reads_rarity_off_item_level_line(self):
+        lines = ["Shroud of Zath", "Binds when Picked Up", "Item Level 1 - Legendary"]
+        self.assertEqual(si.et.guess_rarity(lines), "Legendary")
+
+    def test_no_rarity_suffix_returns_none(self):
+        lines = ["Path of Ahriman", "Binds when Picked Up", "Item Level 1 -"]
+        self.assertIsNone(si.et.guess_rarity(lines))
+
+    def test_no_item_level_line_returns_none(self):
+        self.assertIsNone(si.et.guess_rarity(["Requires Level 80"]))
+
+
 class StatsIsEmptyTests(unittest.TestCase):
     def test_empty(self):
         self.assertTrue(si.stats_is_empty({"values": [], "attributes": [], "lines": [], "effects": []}))

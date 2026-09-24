@@ -206,10 +206,12 @@ def upload_to_r2(image_path: str, key: str) -> str:
 def build_pr_body(fields: dict, item: dict, section: dict, ocr_lines: list) -> str:
     notes = fields.get("Anything else the reviewer should know?", "").strip()
     preview = "\n".join(ocr_lines) if ocr_lines else "(no OCR text)"
-    return f"""Auto-generated from a "Submit a new item" issue — new item **{item['name']}**.
+    name_tag = "" if fields.get("Item name", "").strip() else " (auto-detected — verify)"
+    rarity_tag = "" if fields.get("Rarity", "").strip() else " (auto-detected — verify)"
+    return f"""Auto-generated from a "Submit a new item" issue — new item **{item['name']}**{name_tag}.
 
 **Placement:** {section['name']} → {fields.get('Location', '').strip()} → {fields.get('Category', '').strip()} → {fields.get('Set name', '').strip() or '(no set)'}
-**Rarity:** {item['rarity'] or '(none)'}
+**Rarity:** {item['rarity'] or '(none — check screenshot)'}{rarity_tag}
 **Price:** {item['price'] or '(none — pure drop)'}
 **Drop:** {item['drop'] or '(none — vendor purchase)'}
 
@@ -253,11 +255,6 @@ def main() -> int:
     with open(args.issue_body_file, encoding="utf-8") as fh:
         fields = parse_issue_form(fh.read())
 
-    item_name = fields.get("Item name", "").strip()
-    if not item_name:
-        emit_output(args.github_output, ok=False, reason="Item name is required.")
-        return 1
-
     screenshot_url = extract_screenshot_url(fields.get("Tooltip screenshot", ""))
     if not screenshot_url:
         emit_output(args.github_output, ok=False,
@@ -269,14 +266,23 @@ def main() -> int:
         image_path = download_image(screenshot_url, tmp)
         pytesseract = et._ensure_tesseract()
         lines = et.ocr_image(image_path, pytesseract)
-        stats = et.parse_stats(lines, name=item_name)
 
+        item_name = fields.get("Item name", "").strip() or et.guess_item_name(lines)
+        if not item_name:
+            emit_output(args.github_output, ok=False,
+                        reason="Couldn't read the item name off that screenshot — retake it "
+                               "unscaled with the full tooltip visible, or fill in 'Item name' "
+                               "yourself, and resubmit.")
+            return 1
+
+        stats = et.parse_stats(lines, name=item_name)
         if stats_is_empty(stats):
             emit_output(args.github_output, ok=False,
                         reason="Couldn't read any stats off that screenshot — please retake it "
                                "unscaled, with the full tooltip visible, and resubmit.")
             return 1
 
+        rarity = fields.get("Rarity", "").strip() or et.guess_rarity(lines)
         new_id = ID_OFFSET + args.issue_number
         image_url = upload_to_r2(image_path, f"screenshots/{new_id}.jpg")
 
@@ -284,7 +290,7 @@ def main() -> int:
     item = {
         "id": new_id,
         "name": item_name,
-        "rarity": fields.get("Rarity", "").strip() or None,
+        "rarity": rarity or None,
         "price": price,
         "drop": fields.get("Drop source", "").strip() or None,
         "image": image_url,
