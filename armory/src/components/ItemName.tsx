@@ -9,14 +9,17 @@ interface Props {
   className?: string;
   draggable?: boolean;
   onDragStart?: (e: DragEvent<HTMLAnchorElement>) => void;
+  /** Ignore Shift — used on the armor builder, which has no compare-list UI to show it in. */
+  compareDisabled?: boolean;
 }
 
 /**
  * Rarity-colored item name. Hovering shows a floating tooltip near the
  * cursor; clicking/tapping pins the item in the right-side detail panel
- * (click/tap again to unpin).
+ * (click/tap again to unpin). Shift-click instead adds/removes the item
+ * from the compare list (unless compareDisabled).
  */
-export default function ItemName({ item, className, draggable, onDragStart }: Props) {
+export default function ItemName({ item, className, draggable, onDragStart, compareDisabled }: Props) {
   const tip = useItemDetails();
   const cls = [
     "itemName",
@@ -33,7 +36,11 @@ export default function ItemName({ item, className, draggable, onDragStart }: Pr
       onDragStart={onDragStart}
       onClick={(e) => {
         e.preventDefault();
-        tip.toggle(item, tip.compareMode || e.shiftKey);
+        if (!compareDisabled && e.shiftKey) {
+          tip.toggleCompare(item);
+          return;
+        }
+        tip.toggle(item);
       }}
       onMouseMove={(e) => tip.show(item, e.clientX, e.clientY)}
       onMouseLeave={tip.hide}

@@ -5,7 +5,7 @@ import { useArmoryData } from "../data";
 import { searchArmory } from "../lib/search";
 import { slotDisplay } from "../lib/equip";
 import ItemName from "../components/ItemName";
-import CompareToggle from "../components/CompareToggle";
+import ItemsToCompareBar from "../components/ItemsToCompareBar";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./SearchPage.module.css";
@@ -19,9 +19,9 @@ export default function SearchPage() {
   return (
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>
+        <ItemsToCompareBar />
         <div className={styles.searchHead}>
           <h1>Search results</h1>
-          <CompareToggle />
         </div>
         {!q && (
           <p className={styles.searchExamples}>

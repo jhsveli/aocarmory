@@ -4,50 +4,42 @@ import styles from "./ItemDetailsPanel.module.css";
 
 /**
  * The docked item-detail panel, rendered in-flow where a page places it
- * (typically the right column). Shows the click-pinned item(s) side by side
- * — Compare mode (or Shift-click) pins more than one at a time — plus a
- * placeholder while nothing is pinned. The floating hover tooltip is
- * rendered separately by TooltipProvider.
+ * (typically the right column). Shows the click-pinned item, plus a
+ * placeholder while nothing is pinned. The floating hover tooltip and the
+ * shift-click compare list are handled elsewhere.
  */
 export default function ItemDetailsPanel() {
-  const { panelItems, clearOne } = useItemDetails();
-  const comparing = panelItems.length > 1;
+  const { panelItem, clear } = useItemDetails();
 
   return (
-    <aside className={styles.mainAside}>
-      {panelItems.length === 0 ? (
-        <aside className={styles.itemPanel} aria-label="Item details">
-          <p className={styles.panelEmpty}>Click an item to see its details.</p>
-        </aside>
+    <aside className={styles.itemPanel} aria-label="Item details">
+      {!panelItem ? (
+        <p className={styles.panelEmpty}>Click an item to see its details.</p>
       ) : (
-        <div className={styles.compareRow}>
-          {panelItems.map((item) => (
-            <aside key={item.id} className={styles.itemPanel} aria-label="Item details">
-              <div className={styles.panelHeader}>
-                <button
-                  type="button"
-                  className={styles.panelClose}
-                  aria-label={comparing ? `Remove ${item.name} from comparison` : "Close item details"}
-                  onClick={() => clearOne(item.id)}
-                >
-                  ×
-                </button>
-              </div>
-              <ItemDetailsBox item={item} className={styles.inPanel} />
-              {item.image && (
-                <div className={styles.panelImage}>
-                  <div className={styles.panelImageLabel}>Original screenshot</div>
-                  <img
-                    src={item.image}
-                    alt={`Original screenshot: ${item.name}`}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              )}
-            </aside>
-          ))}
-        </div>
+        <>
+          <div className={styles.panelHeader}>
+            <button
+              type="button"
+              className={styles.panelClose}
+              aria-label="Close item details"
+              onClick={clear}
+            >
+              ×
+            </button>
+          </div>
+          <ItemDetailsBox item={panelItem} className={styles.inPanel} />
+          {panelItem.image && (
+            <div className={styles.panelImage}>
+              <div className={styles.panelImageLabel}>Original screenshot</div>
+              <img
+                src={panelItem.image}
+                alt={`Original screenshot: ${panelItem.name}`}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+        </>
       )}
     </aside>
   );

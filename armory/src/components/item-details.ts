@@ -6,21 +6,18 @@ interface ItemDetailsApi {
   show: (item: Item, x: number, y: number) => void;
   /** Pointer left the item — hides the floating tooltip. */
   hide: () => void;
-  /**
-   * Click/tap — pins the item in the right-side panel.
-   * additive (compare mode active, or Shift held) adds/removes the item
-   * from the panel instead of replacing it, showing items side by side.
-   */
-  toggle: (item: Item, additive?: boolean) => void;
-  /** Closes the right-side panel entirely. */
+  /** Click/tap — pins the item in the right-side panel (click again to unpin). */
+  toggle: (item: Item) => void;
+  /** Closes the right-side panel. */
   clear: () => void;
-  /** Removes a single item from the panel (used by its close button). */
-  clearOne: (id: number) => void;
-  /** The click-pinned items shown in the docked panel, in click order. */
-  panelItems: Item[];
-  /** Whether Compare mode is armed — makes plain clicks additive too. */
-  compareMode: boolean;
-  toggleCompareMode: () => void;
+  /** The click-pinned item shown in the docked panel, if any. */
+  panelItem: Item | null;
+  /** Items staged for the dedicated compare page, in the order they were added. */
+  itemsToCompare: Item[];
+  /** Shift-click — adds/removes an item from itemsToCompare. */
+  toggleCompare: (item: Item) => void;
+  /** Removes a single item from itemsToCompare (used by its chip's remove button). */
+  removeFromCompare: (id: number) => void;
 }
 
 export const ItemDetails = createContext<ItemDetailsApi>({
@@ -28,10 +25,10 @@ export const ItemDetails = createContext<ItemDetailsApi>({
   hide: () => {},
   toggle: () => {},
   clear: () => {},
-  clearOne: () => {},
-  panelItems: [],
-  compareMode: false,
-  toggleCompareMode: () => {},
+  panelItem: null,
+  itemsToCompare: [],
+  toggleCompare: () => {},
+  removeFromCompare: () => {},
 });
 
 export function useItemDetails() {

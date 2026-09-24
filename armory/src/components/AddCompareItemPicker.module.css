@@ -1,0 +1,63 @@
+.panel {
+  flex: 1 1 380px;
+  max-width: 460px;
+  background: var(--panel);
+  border: 1px solid var(--line-dark);
+  border-radius: 8px;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.filterRow label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+.filterRow input[type="checkbox"] { cursor: pointer; }
+
+.panel input[type="text"] {
+  width: 100%;
+  font: inherit;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: var(--panel-2);
+  color: var(--ink);
+  padding: 0.3rem 0.6rem;
+  box-sizing: border-box;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  max-height: 600px;
+  overflow-y: auto;
+  background: var(--panel-2);
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+}
+
+.candidate {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  padding: 0.2rem 0.3rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.candidate:hover { background: rgba(0, 0, 0, 0.08); }
