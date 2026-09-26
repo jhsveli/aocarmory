@@ -9,6 +9,8 @@ import { filterSection, type ItemFilters } from "../lib/filters";
 import type { Rarity } from "../types";
 import layoutStyles from "../styles/layout.module.css";
 import styles from "./SectionPage.module.css";
+import { useState } from "react";
+import PinManyToggle from "../components/PinManyToggle.tsx";
 
 const FILTER_KEYS = ["minRarity", "minLevel", "maxLevel"] as const;
 
@@ -17,6 +19,7 @@ export default function SectionPage() {
   const [params, setParams] = useSearchParams();
   const view: SectionView = params.get("view") === "class" ? "class" : "location";
   const { sections } = useArmoryData();
+  const [filtersVisible, setFiltersVisible] = useState(false)
 
   const setView = (v: SectionView) => {
     setParams((prev) => {
@@ -75,9 +78,11 @@ export default function SectionPage() {
             <h1>All sections</h1>
             <div className={styles.headControls}>
               <ViewToggle view={view} onChange={setView} />
+              <PinManyToggle />
+              <button className={`${styles.toggleFilters} ${filtersVisible ? styles.active: ''}`} type="button" onClick={() => setFiltersVisible(!filtersVisible)}>Filter</button>
             </div>
           </div>
-          <FilterBar filters={filters} onChange={updateFilters} />
+          {filtersVisible && <FilterBar filters={filters} onChange={updateFilters} />}
           {sections.map((s) => (
             <div key={s.id} style={{ marginBottom: "1.2rem" }}>
               <h2>
@@ -111,9 +116,11 @@ export default function SectionPage() {
           <h1>{section.name}</h1>
           <div className={styles.headControls}>
             <ViewToggle view={view} onChange={setView} />
+            <PinManyToggle />
+            <button className={`${styles.toggleFilters} ${filtersVisible ? styles.active: ''}`} type="button" onClick={() => setFiltersVisible(!filtersVisible)}>Filter</button>
           </div>
         </div>
-        <FilterBar filters={filters} onChange={updateFilters} />
+        {filtersVisible && <FilterBar filters={filters} onChange={updateFilters} />}
         <p className="page-intro">
           {section.locations.length} location{section.locations.length === 1 ? "" : "s"} in
           this section.

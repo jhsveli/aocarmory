@@ -1,4 +1,5 @@
 import styles from "./ViewToggle.module.css";
+import PinManyToggle from "./PinManyToggle.tsx";
 
 export type SectionView = "location" | "class";
 

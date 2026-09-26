@@ -32,7 +32,6 @@ export default function ItemDetailsPanel({ builder }: Props) {
   return (
     <section className={styles.pinnedPanel} aria-label="Pinned items">
       <div className={styles.pinnedHead}>
-        <PinManyToggle />
         {many && (
           <>
             <button type="button" className={styles.clearAll} onClick={clear}>
