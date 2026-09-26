@@ -66,6 +66,23 @@ _Avoid_: Item Level (the item's internal power tier — a different field, not c
 **Gem slot**:
 A socket in an Item that accepts a gem, either a colour (Red, Blue, …) or a named slot (e.g. Kuthcheman, Onslaught, White Hand).
 
+### Browsing
+
+**Pinned item**:
+An Item a player has clicked to keep open in the details panel. Several can be pinned at once, shown side by side; the pinned items are what the Compare page compares.
+_Avoid_: Compare list, staged item, selected item
+
+**Pin-many mode**:
+An armed state (or Shift held) in which clicking an Item adds it to, or removes it from, the Pinned items instead of replacing them.
+_Avoid_: Compare mode
+
+**Compare page**:
+The dedicated view showing stat differences between a chosen set of Items, opened from the Pinned items. Once opened, it's independent: changes there don't alter the Pinned items.
+
+**Main item**:
+On the Compare page with three or more Items, the one every other Item's stat difference is measured against. With exactly two, they're measured against each other and there's no Main item.
+_Avoid_: Base, reference item
+
 ### Contribution
 
 **Submission**:

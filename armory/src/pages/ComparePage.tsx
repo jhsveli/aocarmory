@@ -26,8 +26,15 @@ function diffPartner(items: Item[], index: number): Item | undefined {
 
 /** One compared item, with its screenshot collapsed behind a link until requested. */
 function CompareItem({
-  item, onRemove, diffAgainst, isMain,
-}: { item: Item; onRemove: (id: number) => void; diffAgainst?: Item; isMain?: boolean }) {
+  item, onRemove, onMakeMain, diffAgainst, isMain,
+}: {
+  item: Item;
+  onRemove: (id: number) => void;
+  /** Set when this item can become the main (3+ items, not already main). */
+  onMakeMain?: (id: number) => void;
+  diffAgainst?: Item;
+  isMain?: boolean;
+}) {
   const [showScreenshot, setShowScreenshot] = useState(false);
 
   return (
@@ -40,6 +47,16 @@ function CompareItem({
       >
         ×
       </button>
+      {onMakeMain && (
+        <button
+          type="button"
+          className={styles.makeMain}
+          aria-label={`Make ${item.name} the main item`}
+          onClick={() => onMakeMain(item.id)}
+        >
+          Set main
+        </button>
+      )}
       {isMain && <span className={styles.mainBadge}>Main</span>}
       {diffAgainst && <StatDiffBox main={diffAgainst} item={item} />}
       <ItemDetailsBox item={item} />
@@ -66,7 +83,7 @@ function CompareItem({
 
 /**
  * Full-width side-by-side comparison, driven entirely by the ?items= URL
- * param (not the left-column staging list) so the link is shareable and
+ * param (not the pinned items) so the link is shareable and
  * survives a refresh. Unresolvable ids are dropped silently.
  */
 export default function ComparePage() {
@@ -81,6 +98,11 @@ export default function ComparePage() {
   const remove = (id: number) => {
     const remaining = ids.filter((i) => i !== id);
     setParams(remaining.length ? { items: remaining.join(",") } : {}, { replace: true });
+  };
+
+  // moves the item to the front; the old main shifts to 2nd, the rest keep order
+  const makeMain = (id: number) => {
+    setParams({ items: [id, ...ids.filter((i) => i !== id)].join(",") }, { replace: true });
   };
 
   const [addOpen, setAddOpen] = useState(false);
@@ -113,6 +135,7 @@ export default function ComparePage() {
               key={item.id}
               item={item}
               onRemove={remove}
+              onMakeMain={items.length > 2 && index > 0 ? makeMain : undefined}
               diffAgainst={diffPartner(items, index)}
               isMain={items.length > 2 && index === 0}
             />

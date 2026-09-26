@@ -1,0 +1,18 @@
+.pinManyToggle, .active {
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.pinManyToggle {
+  background: var(--panel-2);
+  color: var(--ink-soft);
+}
+.pinManyToggle:hover { background: rgba(179, 34, 42, 0.12); color: var(--ink); }
+.active {
+  background: var(--crimson);
+  border-color: var(--crimson-dark);
+  color: #fff;
+}

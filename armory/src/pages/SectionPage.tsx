@@ -3,7 +3,6 @@ import { useArmoryData } from "../data";
 import SectionTree from "../components/SectionTree";
 import ClassTree from "../components/ClassTree";
 import ViewToggle, { type SectionView } from "../components/ViewToggle";
-import ItemsToCompareBar from "../components/ItemsToCompareBar";
 import FilterBar from "../components/FilterBar";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import { filterSection, type ItemFilters } from "../lib/filters";
@@ -72,7 +71,6 @@ export default function SectionPage() {
     return (
       <div className={layoutStyles.contentWrap}>
         <div className={layoutStyles.content}>
-          <ItemsToCompareBar />
           <div className={styles.sectionHead}>
             <h1>All sections</h1>
             <div className={styles.headControls}>
@@ -109,7 +107,6 @@ export default function SectionPage() {
   return (
     <div className={layoutStyles.contentWrap}>
       <div className={layoutStyles.content}>
-        <ItemsToCompareBar />
         <div className={styles.sectionHead}>
           <h1>{section.name}</h1>
           <div className={styles.headControls}>

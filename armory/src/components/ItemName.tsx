@@ -9,17 +9,17 @@ interface Props {
   className?: string;
   draggable?: boolean;
   onDragStart?: (e: DragEvent<HTMLAnchorElement>) => void;
-  /** Ignore Shift — used on the armor builder, which has no compare-list UI to show it in. */
-  compareDisabled?: boolean;
+  /** Pins into the builder's own single-item panel instead; Shift is ignored. */
+  builderPin?: boolean;
 }
 
 /**
  * Rarity-colored item name. Hovering shows a floating tooltip near the
  * cursor; clicking/tapping pins the item in the right-side detail panel
- * (click/tap again to unpin). Shift-click instead adds/removes the item
- * from the compare list (unless compareDisabled).
+ * (click/tap again to unpin). Shift-click, or any click in Pin-many mode,
+ * adds/removes it from the pinned items instead of replacing them.
  */
-export default function ItemName({ item, className, draggable, onDragStart, compareDisabled }: Props) {
+export default function ItemName({ item, className, draggable, onDragStart, builderPin }: Props) {
   const tip = useItemDetails();
   const cls = [
     "itemName",
@@ -36,11 +36,8 @@ export default function ItemName({ item, className, draggable, onDragStart, comp
       onDragStart={onDragStart}
       onClick={(e) => {
         e.preventDefault();
-        if (!compareDisabled && e.shiftKey) {
-          tip.toggleCompare(item);
-          return;
-        }
-        tip.toggle(item);
+        if (builderPin) tip.toggleBuilder(item);
+        else tip.toggle(item, tip.pinManyMode || e.shiftKey);
       }}
       onMouseMove={(e) => tip.show(item, e.clientX, e.clientY)}
       onMouseLeave={tip.hide}

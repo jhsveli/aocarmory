@@ -55,7 +55,7 @@ export default function HomePage() {
           <a href="https://github.com/jhsveli/aocarmory/issues/new?template=new_item_submission.yml">
             Submit a new item
           </a>{" "}
-          — fill in some details, attach a tooltip screenshot, and a bot and the maintainer will add it to the database.
+          — fill in some details, attach a tooltip screenshot, and a bot and the maintainer will add it to the databasebbaa.
         </p>
       </div>
 

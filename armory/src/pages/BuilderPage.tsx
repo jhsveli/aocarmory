@@ -147,7 +147,7 @@ export default function BuilderPage() {
                     item={it}
                     className={styles.searchItem}
                     draggable
-                    compareDisabled
+                    builderPin
                     onDragStart={(e) => {
                       e.dataTransfer.setData("text/item-id", String(it.id));
                       e.dataTransfer.setData("text/plain", it.name ?? "");
@@ -169,7 +169,7 @@ export default function BuilderPage() {
               <li className="page-intro">Search by name, slot, class or rarity above.</li>
             )}
           </ul>
-          <ItemDetailsPanel />
+          <ItemDetailsPanel builder />
         </div>
 
         <div>
@@ -200,7 +200,7 @@ export default function BuilderPage() {
                             <ItemDetailsBox item={item} compact />
                           </div>
                           <div className={styles.equippedName}>
-                            <ItemName item={item} compareDisabled />
+                            <ItemName item={item} builderPin />
                           </div>
                           <button className={styles.removeBtn} onClick={() => unequip(slotKey)}>
                             remove

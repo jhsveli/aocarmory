@@ -1,3 +1,41 @@
+.pinnedPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: calc(100vw - var(--page-max-width) / 1.5 - 4rem);
+}
+.pinnedHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+.clearAll {
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  background: var(--panel-2);
+  color: var(--ink-soft);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.clearAll:hover { color: var(--ink); }
+.compareLink {
+  margin-left: auto;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pinnedRow {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+}
+.pinnedRow > .itemPanel { flex: 0 0 auto; }
+@media (--screen-narrow) {
+  .pinnedPanel { max-width: 100%; }
+}
+
 .itemPanel {
   background: #1a1512bc;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);

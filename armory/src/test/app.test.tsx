@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeAll } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import { MemoryRouter, useLocation } from "react-router-dom";
+import { MemoryRouter, useLocation, useNavigate } from "react-router-dom";
 import { TooltipProvider } from "../components/ItemTooltip";
 import { loadArmoryData } from "../data";
 import { AppRoutes } from "../App";
@@ -159,74 +159,131 @@ describe("Item hover tooltip and detail panel", () => {
     expect(within(panel).queryByText(itemLabel)).not.toBeInTheDocument();
   });
 
-  it("Shift-clicking an item stages it for comparison instead of touching the right-side panel", async () => {
+  /** Asserts the panel shows exactly these items' cards, in order. */
+  function expectPinned(...names: HTMLElement[]) {
+    const panel = screen.getByRole("region", { name: "Pinned items" });
+    if (names.length === 0) {
+      expect(within(panel).getByText("Click an item to see its details.")).toBeInTheDocument();
+      return;
+    }
+    const cards = within(panel).getAllByRole("complementary", { name: "Item details" });
+    expect(cards).toHaveLength(names.length);
+    names.forEach((n, i) => expect(within(cards[i]).getAllByText(n.textContent!).length).toBeGreaterThan(0));
+  }
+
+  it("Shift-click adds items side by side; a plain click replaces them", () => {
     renderWithItems();
-    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+    const [first, second, third] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    fireEvent.click(first); // plain click still pins to the panel
+    fireEvent.click(first);
     fireEvent.click(second, { shiftKey: true });
+    expectPinned(first, second);
 
-    const panel = await screen.findByRole("complementary", { name: "Item details" });
-    expect(within(panel).getByText(first.textContent!)).toBeInTheDocument();
-    expect(within(panel).queryByText(second.textContent!)).not.toBeInTheDocument();
-
-    const bar = screen.getByRole("group", { name: "Items to compare" });
-    expect(within(bar).queryByText(first.textContent!)).not.toBeInTheDocument();
-    expect(within(bar).getByText(second.textContent!)).toBeInTheDocument();
+    fireEvent.click(third);
+    expectPinned(third);
   });
 
-  it("shows the compare bar only once 2+ items are staged, and removes items via their chip", async () => {
+  it("Shift-clicking an already-pinned item unpins it", () => {
     renderWithItems();
     const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(first, { shiftKey: true });
+    expectPinned(second);
+  });
+
+  it("Pin-many mode makes plain clicks additive", () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(screen.getByRole("button", { name: /Pin many/ }));
+    fireEvent.click(first);
+    fireEvent.click(second);
+    expectPinned(first, second);
+  });
+
+  it("highlights the Pin many button while Shift is physically held down", () => {
+    renderWithItems();
+    const btn = screen.getByRole("button", { name: /Pin many/ });
+    expect(btn).toHaveAttribute("aria-pressed", "false");
+
+    fireEvent.keyDown(window, { key: "Shift" });
+    expect(btn).toHaveAttribute("aria-pressed", "true");
+
+    fireEvent.keyUp(window, { key: "Shift" });
+    expect(btn).toHaveAttribute("aria-pressed", "false");
+  });
+
+  it("shows Compare and Clear all only once 2+ items are pinned, and unpins via ×", () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
     fireEvent.click(first, { shiftKey: true });
-    let bar = await screen.findByRole("group", { name: "Items to compare" });
     expect(screen.queryByRole("link", { name: /Compare \d+ items/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Clear all" })).not.toBeInTheDocument();
 
     fireEvent.click(second, { shiftKey: true });
-    bar = screen.getByRole("group", { name: "Items to compare" });
     const link = screen.getByRole("link", { name: "Compare 2 items" });
     expect(link.getAttribute("href")).toMatch(/^\/compare\?items=\d+,\d+$/);
 
-    fireEvent.click(
-      within(bar).getByRole("button", { name: `Remove ${second.textContent} from comparison` }),
-    );
-    expect(screen.queryByRole("group", { name: "Items to compare" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: `Unpin ${second.textContent}` }));
+    expectPinned(first);
     expect(screen.queryByRole("link", { name: /Compare \d+ items/ })).not.toBeInTheDocument();
 
-    fireEvent.click(
-      screen.getByRole("button", { name: `Remove ${first.textContent} from comparison` }),
-    );
-    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(screen.getByRole("button", { name: "Clear all" }));
+    expectPinned();
   });
 
-  it("Shift-clicking an already-staged item removes it from the compare list", async () => {
-    renderWithItems();
-    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+  it("Back undoes a plain click that replaced several pinned items", () => {
+    function BackButton() {
+      const navigate = useNavigate();
+      return <button type="button" onClick={() => navigate(-1)}>test back</button>;
+    }
+    render(
+      <MemoryRouter initialEntries={["/s/1"]}>
+        <TooltipProvider>
+          <BackButton />
+          <AppRoutes />
+        </TooltipProvider>
+      </MemoryRouter>,
+    );
+    fireEvent.click(screen.getAllByRole("button", { expanded: false })[0]);
+    const [first, second, third] = screen.getAllByTestId("item-name") as HTMLElement[];
 
     fireEvent.click(first, { shiftKey: true });
     fireEvent.click(second, { shiftKey: true });
-    const bar = await screen.findByRole("group", { name: "Items to compare" });
-    expect(within(bar).getByText(first.textContent!)).toBeInTheDocument();
+    fireEvent.click(third); // oops, forgot Shift
+    expectPinned(third);
 
-    fireEvent.click(first, { shiftKey: true }); // toggle back off
-    expect(within(bar).queryByText(first.textContent!)).not.toBeInTheDocument();
-    expect(within(bar).getByText(second.textContent!)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "test back" }));
+    expectPinned(first, second);
   });
 
-  it("ignores Shift on the armor builder page, which has no compare-list UI to show it in", () => {
+  it("keeps pinned items when moving to another section", async () => {
+    renderWithItems();
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+
+    fireEvent.click(screen.getAllByRole("link", { name: /./ }).find((a) => a.getAttribute("href") === "/s/2")!);
+    expectPinned(first, second);
+  });
+
+  it("gives the armor builder its own single pinned item, ignoring Shift", () => {
     renderAt("/builder");
     fireEvent.change(screen.getByPlaceholderText("Find items to equip..."), {
       target: { value: "charred earth" },
     });
-    const name = screen.getAllByTestId("item-name")[0] as HTMLElement;
+    const [first, second] = screen.getAllByTestId("item-name") as HTMLElement[];
 
-    fireEvent.click(name, { shiftKey: true });
-    expect(screen.queryByRole("group", { name: "Items to compare" })).not.toBeInTheDocument();
-    const panel = screen.getByRole("complementary", { name: "Item details" });
-    expect(within(panel).getByText(name.textContent!)).toBeInTheDocument();
+    fireEvent.click(first);
+    fireEvent.click(second, { shiftKey: true });
+    const panels = screen.getAllByRole("complementary", { name: "Item details" });
+    expect(panels).toHaveLength(1);
+    expect(within(panels[0]).getByText(second.textContent!)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Pin many/ })).not.toBeInTheDocument();
   });
 });
 
@@ -385,5 +442,28 @@ describe("Compare page", () => {
 
     expect(screen.getByText("Main")).toBeInTheDocument();
     expect(screen.getAllByText(`Diff vs. ${first.textContent}`)).toHaveLength(2);
+  });
+
+  it("Set main makes that item the main, shifting the old main to second", async () => {
+    const location = renderWithLocation("/s/1");
+    const expandButtons = screen.getAllByRole("button", { expanded: false });
+    fireEvent.click(expandButtons[0]);
+    fireEvent.click(expandButtons[1]);
+    const [first, second, third] = screen.getAllByTestId("item-name") as HTMLElement[];
+
+    fireEvent.click(first, { shiftKey: true });
+    fireEvent.click(second, { shiftKey: true });
+    fireEvent.click(third, { shiftKey: true });
+    fireEvent.click(await screen.findByRole("link", { name: "Compare 3 items" }));
+    await screen.findByRole("heading", { name: "Compare items" });
+    const [a, b, c] = new URLSearchParams(location.current.split("?")[1]).get("items")!.split(",");
+
+    // the current main has no Set main button
+    expect(screen.queryByRole("button", { name: `Make ${first.textContent} the main item` }))
+      .not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: `Make ${third.textContent} the main item` }));
+
+    expect(location.current).toBe(`/compare?items=${[c, a, b].join("%2C")}`);
+    expect(screen.getAllByText(`Diff vs. ${third.textContent}`)).toHaveLength(2);
   });
 });
