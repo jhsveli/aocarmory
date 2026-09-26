@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { Item } from "../types";
 import { useItemDetails } from "./item-details.ts";
 import ItemDetailsBox from "./ItemDetailsBox.tsx";
+import Button from "./Button.tsx";
 import PinManyToggle from "./PinManyToggle.tsx";
 import styles from "./ItemDetailsPanel.module.css";
 
@@ -34,9 +35,7 @@ export default function ItemDetailsPanel({ builder }: Props) {
       <div className={styles.pinnedHead}>
         {many && (
           <>
-            <button type="button" className={styles.clearAll} onClick={clear}>
-              Clear all
-            </button>
+            <Button onClick={clear}>Clear all</Button>
             <Link to={compareHref} className={styles.compareLink}>
               Compare {pinnedItems.length} items
             </Link>
@@ -73,9 +72,9 @@ function PinnedCard({ item, closeLabel, onClose }: { item: Item; closeLabel: str
   return (
     <aside className={styles.itemPanel} aria-label="Item details">
       <div className={styles.panelHeader}>
-        <button type="button" className={styles.panelClose} aria-label={closeLabel} onClick={onClose}>
+        <Button variant="icon" aria-label={closeLabel} onClick={onClose}>
           ×
-        </button>
+        </Button>
       </div>
       <ItemDetailsBox item={item} className={styles.inPanel} />
       {item.image && (

@@ -48,6 +48,9 @@
   --spacing-3xl: 60px;
   --spacing-4xl: 80px;
 
+  --text-xs: 0.7rem;
+  --text-s: 0.85rem;
+
   --page-max-width: 1440px;
   --page-width: calc(100vw - 2 * var(--spacing-3xl));
   --serif: Georgia, "Times New Roman", serif;
@@ -125,3 +128,4 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
 .sets { margin: 0.1rem 0 0.3rem var(--list-indent); list-style: none; }
 .setClasses { color: var(--ink-soft); font-size: 0.82rem; }
 ul { padding: 0; }
+

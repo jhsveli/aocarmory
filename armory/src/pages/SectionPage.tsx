@@ -11,6 +11,7 @@ import layoutStyles from "../styles/layout.module.css";
 import styles from "./SectionPage.module.css";
 import { useState } from "react";
 import PinManyToggle from "../components/PinManyToggle.tsx";
+import Button from "../components/Button.tsx";
 
 const FILTER_KEYS = ["minRarity", "minLevel", "maxLevel"] as const;
 
@@ -63,7 +64,7 @@ export default function SectionPage() {
         {hiddenCount > 0 && (
           <p className={styles.hiddenNotice}>
             {hiddenCount} item{hiddenCount === 1 ? "" : "s"} hidden by filters.{" "}
-            <button type="button" onClick={clearFilters}>Disable filters</button>
+            <Button variant="link" onClick={clearFilters}>Disable filters</Button>
           </p>
         )}
       </>
@@ -79,7 +80,7 @@ export default function SectionPage() {
             <div className={styles.headControls}>
               <ViewToggle view={view} onChange={setView} />
               <PinManyToggle />
-              <button className={`${styles.toggleFilters} ${filtersVisible ? styles.active: ''}`} type="button" onClick={() => setFiltersVisible(!filtersVisible)}>Filter</button>
+              <Button pressed={filtersVisible} onClick={() => setFiltersVisible(!filtersVisible)}>Filter</Button>
             </div>
           </div>
           {filtersVisible && <FilterBar filters={filters} onChange={updateFilters} />}
@@ -117,7 +118,7 @@ export default function SectionPage() {
           <div className={styles.headControls}>
             <ViewToggle view={view} onChange={setView} />
             <PinManyToggle />
-            <button className={`${styles.toggleFilters} ${filtersVisible ? styles.active: ''}`} type="button" onClick={() => setFiltersVisible(!filtersVisible)}>Filter</button>
+            <Button pressed={filtersVisible} onClick={() => setFiltersVisible(!filtersVisible)}>Filter</Button>
           </div>
         </div>
         {filtersVisible && <FilterBar filters={filters} onChange={updateFilters} />}

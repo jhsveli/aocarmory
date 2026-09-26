@@ -6,20 +6,6 @@
   gap: 0.5rem;
 }
 .builderHeadBtns { display: flex; gap: 0.5rem; }
-.builderBtn {
-  background: var(--panel-2);
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--ink);
-  cursor: pointer;
-}
-.builderBtn:hover { border-color: var(--crimson); color: var(--crimson); }
-.builderBtn.primary { background: var(--crimson); border-color: var(--crimson-dark); color: #fff; }
-.builderBtn.primary:hover { background: var(--crimson-dark); color: #fff; }
-.builderBtn:disabled { opacity: 0.5; cursor: default; }
 
 .builderLayout {
   display: grid;
@@ -47,17 +33,6 @@
 .builderSearchList li:active { cursor: grabbing; }
 /* passed to ItemName (was .builderSearchList .itemName) */
 .searchItem { flex: 1; }
-.equipMini {
-  background: none;
-  border: 1px solid var(--line-dark);
-  border-radius: 3px;
-  font-size: 0.68rem;
-  color: var(--ink-soft);
-  cursor: pointer;
-  padding: 0.08rem 0.35rem;
-}
-.equipMini:hover { border-color: var(--crimson); color: var(--crimson); }
-
 .slotGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -83,11 +58,6 @@
 .slotCell .removeBtn {
   margin-top: 0.3rem;
   font-size: 0.7rem;
-  color: var(--crimson);
-  background: none;
-  border: 0;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 @media (--screen-narrow) {

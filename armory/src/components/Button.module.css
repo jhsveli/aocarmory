@@ -1,0 +1,63 @@
+.button {
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.button:disabled { opacity: 0.5; cursor: default; }
+
+.default, .primary {
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.default { background: var(--panel-2); color: var(--ink-soft); }
+.default:hover:not(:disabled) { background: rgba(179, 34, 42, 0.12); color: var(--ink); }
+
+.primary { background: var(--crimson); border-color: var(--crimson-dark); color: #fff; }
+.primary:hover:not(:disabled) { background: var(--crimson-dark); }
+
+.icon {
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: transparent;
+  color: #d8c9a8;
+  width: 1.35rem;
+  height: 1.35rem;
+  line-height: 1;
+  padding: 0;
+  font-size: 0.75rem;
+}
+.icon:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+
+.tag {
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  background: transparent;
+  color: #cbb98f;
+  font-family: var(--serif);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+
+.link {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--crimson);
+  font-size: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.link:hover { color: var(--crimson-dark); }
+
+/* toggle on-state — shared by every variant used with `pressed` */
+.pressed, .pressed:hover:not(:disabled) {
+  background: var(--crimson);
+  border-color: var(--crimson-dark);
+  color: #fff;
+}

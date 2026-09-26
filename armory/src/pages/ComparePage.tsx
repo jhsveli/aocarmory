@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useArmoryData } from "../data";
 import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
+import Button from "../components/Button.tsx";
 import StatDiffBox from "../components/StatDiffBox.tsx";
 import AddCompareItemPicker from "../components/AddCompareItemPicker.tsx";
 import type { Item } from "../types";
@@ -39,23 +40,23 @@ function CompareItem({
 
   return (
     <div className={styles.compareItem}>
-      <button
-        type="button"
+      <Button
+        variant="icon"
         className={styles.remove}
         aria-label={`Remove ${item.name} from comparison`}
         onClick={() => onRemove(item.id)}
       >
         ×
-      </button>
+      </Button>
       {onMakeMain && (
-        <button
-          type="button"
+        <Button
+          variant="tag"
           className={styles.makeMain}
           aria-label={`Make ${item.name} the main item`}
           onClick={() => onMakeMain(item.id)}
         >
           Set main
-        </button>
+        </Button>
       )}
       {isMain && <span className={styles.mainBadge}>Main</span>}
       <ItemDetailsBox item={item} diffTarget={diffAgainst} />
@@ -71,9 +72,9 @@ function CompareItem({
             />
           </div>
         ) : (
-          <button type="button" className={styles.screenshotLink} onClick={() => setShowScreenshot(true)}>
+          <Button variant="link" className={styles.screenshotLink} onClick={() => setShowScreenshot(true)}>
             Original screenshot
-          </button>
+          </Button>
         )
       )}
     </div>
@@ -118,9 +119,9 @@ export default function ComparePage() {
       <div className={layoutStyles.content}>
         <div className={styles.pageHead}>
           <h1>Compare items</h1>
-          <button type="button" className={styles.addToggle} onClick={() => setAddOpen((o) => !o)}>
+          <Button onClick={() => setAddOpen((o) => !o)}>
             {addOpen ? "Cancel" : "Add item to compare"}
-          </button>
+          </Button>
         </div>
         {items.length === 0 && !addOpen && (
           <p className="page-intro">

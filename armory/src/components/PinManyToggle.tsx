@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useItemDetails } from "./item-details.ts";
-import styles from "./PinManyToggle.module.css";
+import Button from "./Button.tsx";
+import styles from "./PinManyToggle.module.css"
 
 /**
  * Arms Pin-many mode: while active (or while Shift is held), clicking an
@@ -33,14 +34,15 @@ export default function PinManyToggle() {
   const highlighted = pinManyMode || shiftHeld;
 
   return (
-    <button
-      type="button"
-      className={highlighted ? styles.active : styles.pinManyToggle}
-      aria-pressed={highlighted}
-      onClick={togglePinManyMode}
-      title="Keep clicked items side by side instead of replacing them (Shift-click does this too)"
-    >
-      ⇧ Pin many
-    </button>
+      <div className={styles.pinManyOuter}>
+        <Button
+          pressed={highlighted}
+          onClick={togglePinManyMode}
+          title="Keep clicked items side by side instead of replacing them (Shift-click does this too)"
+        >
+          Pin many
+        </Button>
+        <span>(Shift + Click)</span>
+      </div>
   );
 }

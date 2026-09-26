@@ -13,14 +13,3 @@
   color: var(--ink-soft);
   font-size: 0.85rem;
 }
-.hiddenNotice button {
-  border: none;
-  background: none;
-  padding: 0;
-  color: var(--crimson);
-  font-size: inherit;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.hiddenNotice button:hover { color: var(--crimson-dark); }

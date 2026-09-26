@@ -8,6 +8,7 @@ import { equipSlotKey, slotDisplay } from "../lib/equip";
 import { searchArmory } from "../lib/search";
 import { decodeBuilder, encodeBuilder } from "../lib/builder";
 import ItemName from "../components/ItemName";
+import Button from "../components/Button.tsx";
 import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
 import ItemDetailsPanel from "../components/ItemDetailsPanel";
 import AttributeCalculator from "../components/AttributeCalculator";
@@ -113,16 +114,12 @@ export default function BuilderPage() {
       <div className={styles.builderHead}>
         <h1>Armor builder</h1>
         <div className={styles.builderHeadBtns}>
-          <button className={styles.builderBtn} onClick={() => setCalcOpen(true)}>
+          <Button onClick={() => setCalcOpen(true)}>
             Attribute calculator
-          </button>
-          <button
-            className={`${styles.builderBtn} ${styles.primary}`}
-            onClick={share}
-            disabled={totalEquipped === 0}
-          >
+          </Button>
+          <Button variant="primary" onClick={share} disabled={totalEquipped === 0}>
             {copied ? "Link copied!" : "Copy share link"}
-          </button>
+          </Button>
         </div>
       </div>
       <p className="page-intro">
@@ -156,9 +153,9 @@ export default function BuilderPage() {
                   {slotDisplay(it.stats) && (
                     <span className="itemSlot"> [{slotDisplay(it.stats)}]</span>
                   )}
-                  <button className={styles.equipMini} onClick={() => equip(it)} title={`Equip ${it.name}`}>
+                  <Button variant="tag" onClick={() => equip(it)} title={`Equip ${it.name}`}>
                     equip
-                  </button>
+                  </Button>
                 </li>
               );
             })}
@@ -202,9 +199,9 @@ export default function BuilderPage() {
                           <div className={styles.equippedName}>
                             <ItemName item={item} builderPin />
                           </div>
-                          <button className={styles.removeBtn} onClick={() => unequip(slotKey)}>
+                          <Button variant="link" className={styles.removeBtn} onClick={() => unequip(slotKey)}>
                             remove
-                          </button>
+                          </Button>
                         </>
                       ) : (
                         <span className={`page-intro ${styles.emptySlot}`}>empty</span>

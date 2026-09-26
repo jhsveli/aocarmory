@@ -10,16 +10,6 @@
   align-items: center;
   gap: 0.6rem;
 }
-.clearAll {
-  border: 1px solid var(--line-dark);
-  border-radius: 6px;
-  background: var(--panel-2);
-  color: var(--ink-soft);
-  padding: 0.4rem 0.9rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-.clearAll:hover { color: var(--ink); }
 .compareLink {
   margin-left: auto;
   font-weight: 600;
@@ -62,19 +52,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.panelClose {
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  background: transparent;
-  color: #d8c9a8;
-  width: 1.35rem;
-  height: 1.35rem;
-  line-height: 1;
-  padding: 0;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
-.panelClose:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
 .panelEmpty {
   padding: 0.6rem 0.75rem;
   color: #cbb98f;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./AttributeCalculator.module.css";
+import Button from "./Button.tsx";
 import {
   ATTRIBUTE_KEYS, ATTRIBUTES, calculateAttribute, type AttributeKey,
 } from "../lib/attributes";
@@ -31,7 +32,7 @@ export default function AttributeCalculator({ open, onClose }: Props) {
   return (
     <div className={styles.calcOverlay} onClick={onClose}>
       <div className={styles.calcCard} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Attribute trickle-down calculator">
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Close calculator">✕ close</button>
+        <Button className={styles.closeBtn} onClick={onClose} aria-label="Close calculator">✕ close</Button>
         <h2 style={{ marginTop: 0 }}>Attribute trickle-down calculator</h2>
         <p className="page-intro">{def?.blurb}</p>
         <form

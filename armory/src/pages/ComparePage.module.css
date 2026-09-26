@@ -7,18 +7,6 @@
 }
 .pageHead h1 { margin: 0.2em 0; }
 
-.addToggle {
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  background: var(--panel-2);
-  color: var(--ink);
-  font: inherit;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.addToggle:hover { background: rgba(255, 255, 255, 0.08); }
-
 .compareRow {
   display: flex;
   flex-wrap: wrap;
@@ -42,35 +30,13 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  background: transparent;
-  color: #d8c9a8;
-  width: 1.35rem;
-  height: 1.35rem;
-  line-height: 1;
-  padding: 0;
-  font-size: 0.75rem;
-  cursor: pointer;
 }
-.remove:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
 
 .makeMain {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  border: 1px solid var(--line-dark);
-  border-radius: 4px;
-  background: transparent;
-  color: #cbb98f;
-  font-family: var(--serif);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.1rem 0.35rem;
-  cursor: pointer;
 }
-.makeMain:hover { border-color: var(--gold); color: var(--gold); }
 
 .mainBadge {
   position: absolute;
@@ -89,18 +55,7 @@
 
 .screenshotLink {
   margin-top: 0.6rem;
-  border: none;
-  background: transparent;
-  color: var(--gold);
-  font-family: var(--serif);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
 }
-.screenshotLink:hover { color: #fff; }
 
 .itemImage {
   border-top: 1px solid var(--line-dark);

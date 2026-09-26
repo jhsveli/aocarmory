@@ -1,4 +1,5 @@
 import styles from "./ViewToggle.module.css";
+import Button from "./Button.tsx";
 import PinManyToggle from "./PinManyToggle.tsx";
 
 export type SectionView = "location" | "class";
@@ -12,22 +13,12 @@ interface Props {
 export default function ViewToggle({ view, onChange }: Props) {
   return (
     <div className={styles.viewToggle} role="group" aria-label="Section view">
-      <button
-        type="button"
-        className={view === "location" ? styles.active : undefined}
-        aria-pressed={view === "location"}
-        onClick={() => onChange("location")}
-      >
+      <Button pressed={view === "location"} onClick={() => onChange("location")}>
         By drop / location
-      </button>
-      <button
-        type="button"
-        className={view === "class" ? styles.active : undefined}
-        aria-pressed={view === "class"}
-        onClick={() => onChange("class")}
-      >
+      </Button>
+      <Button pressed={view === "class"} onClick={() => onChange("class")}>
         By class
-      </button>
+      </Button>
     </div>
   );
 }
