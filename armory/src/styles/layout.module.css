@@ -11,7 +11,7 @@
   border: 1px solid var(--line-dark);
   border-radius: 8px;
   padding: 1.1rem 1.3rem;
-  min-width: calc(var(--page-max-width)/1.5);
+  min-width: calc(var(--page-max-width)/2.5);
   box-shadow: 0 3px 14px rgba(0,0,0,0.35);
 }
 

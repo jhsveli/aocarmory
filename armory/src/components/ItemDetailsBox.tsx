@@ -6,13 +6,13 @@ import { factionRankText } from "../lib/faction-ranks";
 import StatLine from "./StatLine";
 import GemSlot from "./GemSlot";
 import styles from "./ItemDetailsBox.module.css";
+import StatDiffBox from "./StatDiffBox.tsx";
 
 interface Props {
   item: Item;
-  /** extra class names (e.g. the panel's in-box override) */
   className?: string;
-  /** compact variant for small slots (armor builder) */
   compact?: boolean;
+  diffTarget?: Item;
 }
 
 /** The single key/value pair of a StatValue (e.g. { armor: 512 }). */
@@ -216,7 +216,7 @@ function statBlocks(stats: ItemStats): StatBlock[] {
  * Mimics the look of the original tooltip screenshot
  * (dark panel, rarity-coloration, armor location and stats extracted with OCR from OG screenshot)
  */
-export default function ItemDetailsBox({ item, compact, className }: Props) {
+export default function ItemDetailsBox({ item, compact, className, diffTarget }: Props) {
   const nameCls = [
     styles.tooltipName,
     item.rarity ? RARITY_CLASS[item.rarity] : "",
@@ -249,6 +249,8 @@ export default function ItemDetailsBox({ item, compact, className }: Props) {
                   ))}
             </div>
           ))}
+          {diffTarget && <StatDiffBox main={diffTarget} item={item} />}
+
         </div>
       ) : (
         <div className={styles.missing}>No tooltip data available for {item.name}</div>

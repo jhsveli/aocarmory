@@ -58,8 +58,7 @@ function CompareItem({
         </button>
       )}
       {isMain && <span className={styles.mainBadge}>Main</span>}
-      {diffAgainst && <StatDiffBox main={diffAgainst} item={item} />}
-      <ItemDetailsBox item={item} />
+      <ItemDetailsBox item={item} diffTarget={diffAgainst} />
       {item.image && (
         showScreenshot ? (
           <div className={styles.itemImage}>

@@ -1,7 +1,6 @@
 .diffBox {
-  margin-bottom: 0.6rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--line-dark);
+  margin: 1rem 0 0.6rem;
+
   width: 100%;
   font-size: 0.82rem;
 }
@@ -13,7 +12,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.35rem;
-  text-align: center;
+  text-align: left;
 }
 
 .diffList {
@@ -23,7 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  text-align: center;
+  text-align: left;
 }
 
 .pos { color: #32c132; }
