@@ -3,7 +3,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useArmoryData } from "../data";
 import ItemDetailsBox from "../components/ItemDetailsBox.tsx";
 import Button from "../components/Button.tsx";
-import StatDiffBox from "../components/StatDiffBox.tsx";
 import AddCompareItemPicker from "../components/AddCompareItemPicker.tsx";
 import type { Item } from "../types";
 import layoutStyles from "../styles/layout.module.css";

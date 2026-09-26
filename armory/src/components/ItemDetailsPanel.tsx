@@ -3,7 +3,6 @@ import type { Item } from "../types";
 import { useItemDetails } from "./item-details.ts";
 import ItemDetailsBox from "./ItemDetailsBox.tsx";
 import Button from "./Button.tsx";
-import PinManyToggle from "./PinManyToggle.tsx";
 import styles from "./ItemDetailsPanel.module.css";
 
 interface Props {
